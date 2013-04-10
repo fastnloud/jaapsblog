@@ -3,6 +3,12 @@
 .idea/*
 config/autoload/local.php
 passwd.txt
+google*.html
+
+# Libs #
+############
+vendor/ZF2/library/*
+public_html/admin/extjs/*
 
 # Compiled source #
 ###################
