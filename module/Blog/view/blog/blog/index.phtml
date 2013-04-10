@@ -1,0 +1,45 @@
+<?php $this->headTitle()->prepend('Blog'); ?>
+<?php $this->headMeta()->appendName('keywords', 'blog, items, jaapsblog, index'); ?>
+<?php $this->headMeta()->appendName('description', 'Blog index.'); ?>
+
+<div id="index">
+<?php if ($q): ?>
+    <p class="searched">Searched for: <span><?php echo $this->escapeHtml($q); ?></span></p>
+<?php endif;?>
+<?php if ($index->count() > 0): ?>
+    <?php foreach($index as $key => $value): ?>
+        <?php
+            $href  = $this->url('blog', array('action' => 'view', 'id' => $value->id, 'title' => $this->urlString($value->title)));
+            $class = ('offline' == $value->status || strtotime($value->date) > time() ? ' class="hidden"' : null);
+        ?>
+
+        <article<?php echo $class;?>>
+
+        	<hgroup>
+        		<h1>
+        		    <a href="<?php echo $href; ?>" title="<?php echo $this->escapeHtml($value->title) ?>">
+                        <span class="block <?php echo $this->escapeHtml($value->category); ?>"></span>
+                            <?php echo $this->escapeHtml($value->title) ?>
+
+                        <span class="category"><?php echo $this->escapeHtml($value->category); ?></span>
+        		    </a>
+        		</h1>
+        		<h2><?php echo $this->escapeHtml($value->subtitle) ?></h2>
+        	</hgroup>
+        	
+        	<p><?php echo $value->lead ?></p>
+        	
+        	<a title="Read article: <?php echo $this->escapeHtml($value->title) ?>" href="<?php echo $href; ?>">Read more...</a>
+        	
+        	<footer>
+        		Date added: <time datetime="<?php echo $value->date ?>"><?php echo $this->date($value->date) ?></time>
+        	</footer>
+
+        </article>
+    <?php endforeach; ?>
+<?php else: ?>
+    <h1>Eh..?</h1>
+    <p>What exactly are you lookin' for?</p>
+<?php endif; ?>
+
+</div>

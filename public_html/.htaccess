@@ -1,0 +1,12 @@
+php_flag magic_quotes_gpc Off
+
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^jaapsblog.nl [NC]
+RewriteRule ^(.*)$ http://www.jaapsblog.nl/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]

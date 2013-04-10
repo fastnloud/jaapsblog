@@ -1,0 +1,12 @@
+<hgroup>
+    <h1><?php echo $this->escapeHtml($blog->title); ?></h1>
+    <h2><?php echo $this->escapeHtml($blog->subtitle); ?></h2>
+</hgroup>
+
+<?php echo $blog->content; ?>
+
+<footer>
+    <span class="date">
+        Date added: <time datetime="<?php echo $blog->date ?>"><?php echo $this->date($blog->date) ?></time>
+    </span>
+</footer>

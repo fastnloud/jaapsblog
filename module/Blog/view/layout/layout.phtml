@@ -1,0 +1,84 @@
+<?php $this->placeholder('version')->set('1.4'); ?>
+<?php if (!defined('AUTHENTICATED')): define('AUTHENTICATED', false); endif; ?>
+
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+
+        <?php echo $this->headTitle('Jaapsblog.nl')->setSeparator(' - '); ?>
+
+        <?php echo $this->headMeta()->setCharset('UTF-8')
+                                    ->setName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1'); ?>
+
+        <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/main.css?v=' . $this->placeholder('version'))
+                                           ->prependStylesheet($this->basePath() . '/css/normalize.css')
+                                           ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif'); ?>
+
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . $this->placeholder('version'), 'text/javascript')
+                                               ->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                                               ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js') ?>
+
+        <?php  echo $this->analytics(); ?>
+
+
+    </head>
+    
+    <body>
+
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/blog">Blog</a></li>
+				<li><a href="#" id="btn-search">Search</a></li>
+			</ul>
+		</nav>
+
+		<div id="search">
+		    <form method="get" action="/blog">
+		        <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
+		    </form>
+		</div>
+
+		<div id="page">
+<!-- Content start -->
+<?php echo trim($this->content); ?>
+
+<!-- Content end -->
+		</div>
+
+        <?php echo $this->cookies(); ?>
+
+		<footer>
+		    <table class="bottom">
+		        <tr>
+		            <td class="col1">
+		                <strong>Resources</strong>
+		                <ul>
+        		            <li><a href="http://framework.zend.com/" target="_blank" title="Zend Framework 2">Zend Framework 2</a></li>
+        		            <li><a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank" title="famfamfam icons">famfamfam icons</a></li>
+        		            <li><a href="http://jquery.com/" target="_blank" title="jQuery">jQuery</a></li>
+        		            <li><a href="http://markitup.jaysalvat.com/home/" target="_blank" title="markItUp!">markItUp!</a></li>
+        		        </ul>
+		            </td>
+		            <td class="col2">
+		                <strong>Latest blog posts</strong>
+		                <?php echo $this->latestBlogPosts(); ?>
+		            </td>
+		            <td class="col3">
+		                <strong>Links</strong>
+		                <ul>
+        		            <li><a href="http://www.imdb.com/" target="_blank" title="IMDb">IMDb</a></li>
+        		        </ul>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td colspan="3" class="login">
+		                &nbsp;
+		            </td>
+		        </tr>
+		    </table>
+		</footer>
+
+	</body>
+</html>

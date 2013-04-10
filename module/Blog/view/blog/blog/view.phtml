@@ -1,0 +1,34 @@
+<?php
+    $this->headTitle()->prepend($blog->meta_title);
+    $this->headMeta()->appendName('keywords', $blog->meta_keywords);
+    $this->headMeta()->appendName('description', $blog->meta_description);
+?>
+
+<article>
+    <?php
+        switch ($blog->category):
+            case 'review':
+                require_once 'category/review.phtml';
+                break;
+            default:
+                require_once 'category/default.phtml';
+        endswitch;
+    ?>
+
+    <?php echo $this->socialMedia(array('google' => array('plus'))); ?>
+    <?php echo $this->replies($blog->id, $blog->title); ?>
+</article>
+
+<div id="reply">
+    <h6>Leave a comment</h6>
+    <?php
+    // reply form
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    echo $this->formRow($form->get('subject'));
+    echo $this->formRow($form->get('name'));
+    echo $this->formRow($form->get('comment'));
+    echo $this->formRow($form->get('submit'));
+    ?><div class="clear"></div>
+    <?php echo $this->form()->closeTag(); ?>
+</div>
