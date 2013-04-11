@@ -1,7 +1,7 @@
 Ext.define('App.controller.Blog', {
     extend  : 'App.controller.Auth',
     views   : ['blog.List', 'blog.Edit'],
-    stores  : ['Blog'],
+    stores  : ['Blog','BlogReply'],
     models  : ['Blog'],
 
     init: function() {
@@ -54,7 +54,12 @@ Ext.define('App.controller.Blog', {
                     if ('yes' === btn) {
                         store = this.getBlogStore();
                         store.remove(selection);
-                        store.sync();
+                        store.sync({
+                            scope: this,
+                            callback : function() {
+                                this.getBlogReplyStore().reload();
+                            }
+                        });
                     }
                 }
             });
