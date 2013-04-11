@@ -59,6 +59,7 @@
         		            <li><a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank" title="famfamfam icons">famfamfam icons</a></li>
         		            <li><a href="http://jquery.com/" target="_blank" title="jQuery">jQuery</a></li>
         		            <li><a href="http://markitup.jaysalvat.com/home/" target="_blank" title="markItUp!">markItUp!</a></li>
+                            <li><a href="http://www.sencha.com/products/extjs" target="_blank" title="Ext JS">Ext JS 4.2</a></li>
         		        </ul>
 		            </td>
 		            <td class="col2">
@@ -66,15 +67,17 @@
 		                <?php echo $this->latestBlogPosts(); ?>
 		            </td>
 		            <td class="col3">
-		                <strong>Links</strong>
+		                <strong>Tools</strong>
 		                <ul>
-        		            <li><a href="http://www.imdb.com/" target="_blank" title="IMDb">IMDb</a></li>
+        		            <li><a href="http://www.jetbrains.com/phpstorm/" target="_blank" title="PhpStorm">PhpStorm 6</a></li>
         		        </ul>
 		            </td>
 		        </tr>
 		        <tr>
 		            <td colspan="3" class="login">
-		                &nbsp;
+                        <a href="/admin"
+                           onclick="return !popup(this.href,'admin', 900, 620)"
+                           target="_blank">Login</a>
 		            </td>
 		        </tr>
 		    </table>
