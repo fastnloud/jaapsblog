@@ -65,11 +65,13 @@ class ReplyTable extends AbstractTableGateway
             'comment'  => $reply->comment
         );
 
-        if (AUTHENTICATED) {
+        $id = (int) $reply->id;
+
+        // only set admin to true on insert
+        // when logged on
+        if (0 == $id && true === AUTHENTICATED) {
             $data['is_admin'] = true;
         }
-
-        $id = (int) $reply->id;
 
         if (0 == $id || true !== AUTHENTICATED) {
             $this->insert($data);
