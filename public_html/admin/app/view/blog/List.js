@@ -7,9 +7,9 @@ Ext.define('App.view.blog.List' ,{
 
     initComponent: function() {
         this.columns = [
-            {header: 'Title',  dataIndex: 'title',  flex: 1},
-            {header: 'Subtitle',  dataIndex: 'subtitle',  flex: 1},
+            {header: 'Title',  dataIndex: 'title',  flex: 3},
             {header: 'Category',  dataIndex: 'category',  flex: 1},
+            {header: 'Status',  dataIndex: 'status',  flex: 1},
             {header: 'Date', dataIndex: 'date', flex: 1}
         ];
 

@@ -19,7 +19,7 @@ Ext.define('App.view.blog.Reply' ,{
                     allowBlank: false
                 }
             },
-            {header: 'Comment',  dataIndex: 'comment',  flex: 1,
+            {header: 'Comment',  dataIndex: 'comment',  flex: 2,
                 editor: {
                     xtype: 'textareafield',
                     allowBlank: false
