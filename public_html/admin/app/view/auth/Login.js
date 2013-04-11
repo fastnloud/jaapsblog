@@ -9,6 +9,10 @@ Ext.define('App.view.auth.Login', {
     closable    : false,
 
     initComponent: function() {
+        Ext.EventManager.addListener(window, 'resize', function() {
+            this.center();
+        }, this);
+
         this.items = [
             {
                 xtype: 'form',

@@ -18,6 +18,10 @@ Ext.define('App.view.blog.Edit', {
     },
 
     initComponent: function() {
+        Ext.EventManager.addListener(window, 'resize', function() {
+            this.center();
+        }, this);
+
         this.items = [
             {
                 xtype: 'form',
