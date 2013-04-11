@@ -33,8 +33,12 @@ Ext.define('App.controller.BlogReply', {
 
         if (!record.get('id')) {
             if ('' != record.get('name') && '' != record.get('comment')) {
-                store.sync();
-                store.reload();
+                store.sync({
+                    scope: store,
+                    callback : function() {
+                        this.reload();
+                    }
+                });
             }
         } else {
             store.update(record);
@@ -96,19 +100,6 @@ Ext.define('App.controller.BlogReply', {
 
         if (null === store.getById('')) {
             store.add(reply);
-        }
-    },
-
-    insertRecordHandler: function(button) {
-        var win    = button.up('window'),
-            form   = win.down('form'),
-            store  = this.getBlogStore(),
-            values = form.getValues();
-
-        if (form.isValid()) {
-            store.add(values);
-            win.close();
-            store.sync();
         }
     }
 

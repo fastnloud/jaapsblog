@@ -8,6 +8,17 @@ Ext.define('App.store.Blog', {
         direction: 'DESC'
     }],
 
+    listeners: {
+        add: function() {
+            this.sync({
+                scope: this,
+                callback : function() {
+                    this.reload();
+                }
+            });
+        }
+    },
+
     proxy: {
         type: 'ajax',
         api: {

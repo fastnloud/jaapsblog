@@ -25,9 +25,6 @@ Ext.define('App.controller.Page', {
             },
             'pageEdit button[action=create]': {
                 click: this.insertRecordHandler
-            },
-            'pageEdit button[action=create-interim]': {
-                click: this.insertRecordHandler
             }
         });
     },
@@ -72,7 +69,6 @@ Ext.define('App.controller.Page', {
             dock : 'bottom',
             buttons : [
                 {text : 'Save', action : 'create'},
-                {text : 'Interim save', action : 'create-interim'},
                 {text : 'Cancel', scope : win, handler : win.close}
             ]
         });
@@ -87,20 +83,6 @@ Ext.define('App.controller.Page', {
         if (form.isValid()) {
             store.add(values);
             win.close();
-
-            if ('create-interim' == button.action) {
-                var record = store.getNewRecords()[0],
-                    grid   = Ext.getCmp('pageList');
-
-                store.sync({
-                    scope: this,
-                    callback : function() {
-                        this.updateRecord(grid, record);
-                    }
-                });
-            } else {
-                store.sync();
-            }
         }
     },
 

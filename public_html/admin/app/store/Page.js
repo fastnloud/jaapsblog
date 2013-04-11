@@ -8,6 +8,17 @@ Ext.define('App.store.Page', {
         direction: 'ASC'
     }],
 
+    listeners: {
+        add: function() {
+            this.sync({
+                scope: this,
+                callback : function() {
+                    this.reload();
+                }
+            });
+        }
+    },
+
     proxy: {
         type: 'ajax',
         api: {
