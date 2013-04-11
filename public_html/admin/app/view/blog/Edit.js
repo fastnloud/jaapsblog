@@ -76,6 +76,7 @@ Ext.define('App.view.blog.Edit', {
                         fieldLabel: 'Category',
                         store : ['code snippet', 'media', 'review', 'social'],
                         allowBlank : false,
+                        forceSelection : true,
                         value: 'code snippet'
                     },
                     {
@@ -84,6 +85,7 @@ Ext.define('App.view.blog.Edit', {
                         fieldLabel: 'Status',
                         store : ['online', 'offline'],
                         allowBlank : false,
+                        forceSelection : true,
                         value: 'offline'
                     },
                     {
@@ -103,7 +105,9 @@ Ext.define('App.view.blog.Edit', {
                                 xtype: 'combobox',
                                 name : 'rating',
                                 fieldLabel: 'Rating',
-                                store : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                store : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                                forceSelection : true,
+                                value : 0
                             }
                         ]
                     },
