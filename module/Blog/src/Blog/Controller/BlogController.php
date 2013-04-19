@@ -16,63 +16,44 @@ class BlogController extends AbstractActionController
 
     protected $replyTable;
 
-    /**
-     * Fetch blog content.
-     *
-     * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
-     */
     public function indexAction()
     {
-        // make sure no title is set
-        if ($this->params('title')) {
-            $this->getResponse()->setStatusCode(404);
-            return false;
-        }
-
         return new ViewModel(array(
             'q'     => $this->request->getQuery('q'),
             'index' => $this->getBlogTable()->getIndex($this->request->getQuery('q'))
         ));
     }
 
-    /**
-     * View blog item, with all content.
-     */
     public function viewAction()
     {
-        // A few preperations.
-        $sm   = $this->getEvent()->getApplication()->getServiceManager();
-        $uri  = $this->getRequest()->getUri();
-
-        // Fetch View helpers needed to check the URL.
-        $urlHelper        = $sm->get('viewhelpermanager')->get('Url');
-        $urlStringHelper  = $sm->get('viewhelpermanager')->get('UrlString');
-
-        // Fetch ID from URL.
+        // page id
         $id = $this->getEvent()->getRouteMatch()->getParam('id');
 
-        // Get blog item.
+        // fetch blog item from db
         $blog = $this->getBlogTable()->getBlogItem($id);
-        if (false === $blog) {
+
+        // search navigation container for entries
+        $post = $this->getEvent()
+              ->getApplication()->getServiceManager()->get('Navigation')
+              ->findOneBy('id_blog_post', $id);
+
+        if ($post) { // so we can compare the path
+            $path  = $this->getRequest()->getUri()->getPath();
+            $realPath = $post->getHref();
+        } else { // 404 if not in container
             $this->getResponse()->setStatusCode(404);
+
             return false;
         }
 
-        // Fetch the current path.
-        $path = $uri->getPath();
-
-        // And build the actual path.
-        $params = array('action' => 'view', 'id' => $id, 'title' => $urlStringHelper($blog->title));
-        $realPath = $urlHelper('blog', $params);
-
-        // So if "path" differs from "real path" do redirect.
+        // redirect if needed
         if ($path != $realPath) {
             $this->redirect()->toUrl($realPath);
             $this->response->setStatusCode(301);
         }
 
         // reply form
-        $form = $this->getReplyForm($params);
+        $form = $this->getReplyForm($realPath);
 
         return new ViewModel(array(
             'blog' => $blog,
@@ -80,13 +61,7 @@ class BlogController extends AbstractActionController
         ));
     }
 
-    /**
-     * Fetch Reply forms.
-     *
-     * @param $params Route params for redirecting
-     * @return \Blog\Form\ReplyForm
-     */
-    protected function getReplyForm($params)
+    protected function getReplyForm($path)
     {
         // model
         $reply = new Reply();
@@ -114,7 +89,7 @@ class BlogController extends AbstractActionController
                 $this->notification();
 
                 // redirect
-                $this->redirect()->toRoute('blog', $params);
+                $this->redirect()->toUrl($path);
             } else {
                 // override form messages and replace with attribute
                 foreach ($form->getElements() as $element) {
@@ -129,11 +104,6 @@ class BlogController extends AbstractActionController
         return $form;
     }
 
-    /**
-     * Notification e-mail.
-     *
-     * @return void
-     */
     protected function notification()
     {
         // fetch config

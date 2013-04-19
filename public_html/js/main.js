@@ -18,7 +18,7 @@ function replyForm(){
 }
 
 function loadSearch(){
-    var button      = $('#btn-search'),
+    var button      = $('#menu-btn-search'),
         searchBlock = $('#search'),
         searchInput = $('#search input');
     

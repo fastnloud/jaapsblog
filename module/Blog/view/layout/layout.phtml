@@ -27,11 +27,9 @@
     <body>
 
 		<nav>
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/blog">Blog</a></li>
-				<li><a href="#" id="btn-search">Search</a></li>
-			</ul>
+
+            <?php echo $this->navigation('navigation')->menu()->setMaxDepth(0); ?>
+
 		</nav>
 
 		<div id="search">

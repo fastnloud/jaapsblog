@@ -5,6 +5,7 @@ namespace Blog\Model;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\Sql\Predicate;
 
 class PageTable extends AbstractTableGateway
 {
@@ -23,10 +24,18 @@ class PageTable extends AbstractTableGateway
     public function getPages()
     {
         $select = $this->getSql()->select();
-        $select->order('title asc');
+        $select->order('priority asc');
 
         if (true !== AUTHENTICATED) {
-            $select->where("status = 'online' or status = 'online-not-in-menu");
+            $select->where(array(
+                new Predicate\PredicateSet(
+                    array(
+                        new Predicate\Operator('status', '=', 'online'),
+                        new Predicate\Operator('status', '=', 'online-not-in-menu'),
+                    ),
+                    Predicate\PredicateSet::COMBINED_BY_OR
+                )
+            ));
         }
 
         return $this->selectWith($select);
@@ -42,7 +51,15 @@ class PageTable extends AbstractTableGateway
         ));
 
         if (true !== AUTHENTICATED) {
-            $select->where("status = 'online' or status = 'online-not-in-menu");
+            $select->where(array(
+                new Predicate\PredicateSet(
+                    array(
+                        new Predicate\Operator('status', '=', 'online'),
+                        new Predicate\Operator('status', '=', 'online-not-in-menu'),
+                    ),
+                    Predicate\PredicateSet::COMBINED_BY_OR
+                )
+            ));
         }
 
         $row = $this->selectWith($select)->current();
@@ -62,7 +79,15 @@ class PageTable extends AbstractTableGateway
         ));
 
         if (true !== AUTHENTICATED) {
-            $select->where("status = 'online' or status = 'online-not-in-menu");
+            $select->where(array(
+                new Predicate\PredicateSet(
+                    array(
+                        new Predicate\Operator('status', '=', 'online'),
+                        new Predicate\Operator('status', '=', 'online-not-in-menu'),
+                    ),
+                    Predicate\PredicateSet::COMBINED_BY_OR
+                )
+            ));
         }
 
         $row = $this->selectWith($select)->current();

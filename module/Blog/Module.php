@@ -7,7 +7,6 @@ use Blog\Model\ReplyTable;
 use Blog\Model\PageTable;
 use Blog\Service\Amazon as AmazonService;
 use Blog\View\Helper\Amazon;
-use Blog\View\Helper\UrlString;
 use Blog\View\Helper\Date;
 use Blog\View\Helper\Cookies;
 use Blog\View\Helper\Analytics;
@@ -37,11 +36,11 @@ class Module
     {
         return array(
             'factories' => array(
-                'urlString' => function() {
-                    return new UrlString();
-                },
                 'date' => function() {
                     return new Date();
+                },
+                'latestBlogPosts' => function() {
+                    return new LatestBlogPosts();
                 },
                 'cookies' => function($sm) {
                     $locator = $sm->getServiceLocator();
@@ -54,9 +53,6 @@ class Module
                 'socialMedia' => function($sm) {
                     $locator = $sm->getServiceLocator();
                     return new SocialMedia($locator->get('Request'));
-                },
-                'latestBlogPosts' => function($sm) {
-                    return new LatestBlogPosts($sm);
                 },
                 'replies' => function($sm) {
                     return new Replies($sm);
@@ -72,6 +68,7 @@ class Module
     {
         return array(
             'factories' => array(
+                'Navigation' => 'Blog\Navigation\BlogNavigationFactory',
                 'Blog\Model\BlogTable' =>  function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table     = new BlogTable($dbAdapter);

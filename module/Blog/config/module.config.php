@@ -4,12 +4,9 @@ return array (
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'segment',
+                'type' => 'literal',
                 'options' => array(
                     'route'    => '/',
-                    'constraints' => array(
-                        'page' => ''
-                    ),
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Page',
                         'action'     => 'page'
@@ -19,10 +16,9 @@ return array (
             'page' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route'    => '/[:page][/:action]',
+                    'route'    => '/[:page].html',
                     'constraints' => array(
-                        'page' => '[^\/]*',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                        'page' => '[a-zA-Z][a-zA-Z0-9_-]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Page',
@@ -31,13 +27,23 @@ return array (
                 ),
             ),
             'blog' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route'    => '/blog',
+                    'defaults' => array(
+                        'controller' => 'Blog\Controller\Blog',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'blog_post' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/blog[/:action][/:id][/:title]',
+                    'route'    => '/blog/[:action]/[:id]/[:title].html',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
-                        'title'  => '[a-zAZ0-9_-]+.html'
+                        'title'  => '[a-zAZ0-9_-]+'
                     ),
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Blog',
