@@ -53,7 +53,7 @@ class BlogTable extends AbstractTableGateway
         }
 
         // Show all if authenticated.
-        if (!AUTHENTICATED) {
+        if (true !== AUTHENTICATED) {
             $select = $select->where(array('status = ?' => 'online'))
                     ->where('date <= CURDATE()');
         }
@@ -70,7 +70,7 @@ class BlogTable extends AbstractTableGateway
             'id' => $id,
         ));
         
-        if (!AUTHENTICATED) {
+        if (true !== AUTHENTICATED) {
             $select = $select->where(array('status = ?' => 'online'))
                     ->where('date <= CURDATE()');
         }
