@@ -3,6 +3,7 @@ Ext.define('App.model.Page', {
     fields: [
         'id',
         'title',
+        'label',
         'url_string',
         'route',
         'content',
