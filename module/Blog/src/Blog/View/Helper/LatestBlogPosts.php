@@ -39,6 +39,6 @@ class LatestBlogPosts extends AbstractHelper
             return '<ul>' . implode(PHP_EOL, $list) . '</ul>';
         }
 
-        return '<p>No items found.</p>';
+        return false;
     }
 }
