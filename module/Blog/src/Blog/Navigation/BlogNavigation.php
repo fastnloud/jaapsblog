@@ -81,7 +81,6 @@ class BlogNavigation extends DefaultNavigationFactory
         $urlString = preg_replace('/[^a-z0-9]+/i', '-', $urlString);
         $urlString = preg_replace('/-$/', '', $urlString);
 
-        // return without suffix and strip if needed
-        return (preg_match('/.html$/i', $urlString) ? substr($urlString,0,-5) : $urlString);
+        return $urlString;
     }
 }
