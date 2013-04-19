@@ -161,7 +161,13 @@ nav
     li
       display: inline
 
+      &.active a
+        background: $theme
+        color: white
+        padding: 5px 10px
+
     a
+      border-radius: 10px 0
       margin: 0 10px 0 0
       text-decoration: none
       font-size: 1.4em
@@ -212,7 +218,7 @@ div#reply
     padding: 10px
 
 /* reply form
-div#reply form 
+div#reply form
   border-radius: 10px
   width: 480px
   background: #EFEFEF
