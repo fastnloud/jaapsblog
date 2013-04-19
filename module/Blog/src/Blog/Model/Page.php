@@ -11,6 +11,7 @@ class Page implements InputFilterAwareInterface
 {
     public $id;
     public $title;
+    public $label;
     public $url_string;
     public $route;
     public $content;
@@ -26,6 +27,7 @@ class Page implements InputFilterAwareInterface
     {
         $this->id                    = (isset($data['id'])) ? $data['id'] : null;
         $this->title                 = (isset($data['title'])) ? $data['title'] : null;
+        $this->label                 = (isset($data['label'])) ? $data['label'] : null;
         $this->url_string            = (isset($data['url_string'])) ? $data['url_string'] : null;
         $this->route                 = (isset($data['route'])) ? $data['route'] : null;
         $this->content               = (isset($data['content'])) ? $data['content'] : null;

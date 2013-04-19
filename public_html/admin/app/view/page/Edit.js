@@ -46,6 +46,12 @@ Ext.define('App.view.page.Edit', {
                     },
                     {
                         xtype: 'textfield',
+                        name : 'label',
+                        fieldLabel: 'Label',
+                        allowBlank : false
+                    },
+                    {
+                        xtype: 'textfield',
                         name : 'url_string',
                         fieldLabel: 'Address (URL String)',
                         allowBlank : false

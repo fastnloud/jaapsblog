@@ -86,6 +86,7 @@ class PageTable extends AbstractTableGateway
     {
         $data = array(
             'title'             => $page->title,
+            'label'             => $page->label,
             'url_string'        => $page->url_string,
             'route'             => $page->route,
             'content'           => $page->content,

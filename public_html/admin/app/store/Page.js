@@ -4,7 +4,7 @@ Ext.define('App.store.Page', {
     autoLoad    : false,
 
     sorters     : [{
-        property: 'title',
+        property: 'priority',
         direction: 'ASC'
     }],
 
