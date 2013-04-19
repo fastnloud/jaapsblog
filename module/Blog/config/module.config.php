@@ -14,9 +14,9 @@ return array (
                 ),
             ),
             'page' => array(
-                'type' => 'segment',
+                'type' => 'regex',
                 'options' => array(
-                    'route'    => '/[:page].html',
+                    'regex'    => '/(?!home|blog)(?<page>[a-zA-Z0-9_-]+).html',
                     'constraints' => array(
                         'page' => '[a-zA-Z][a-zA-Z0-9_-]+',
                     ),
@@ -24,6 +24,7 @@ return array (
                         'controller' => 'Blog\Controller\Page',
                         'action'     => 'page'
                     ),
+                    'spec' => '/%page%.html',
                 ),
             ),
             'blog' => array(
