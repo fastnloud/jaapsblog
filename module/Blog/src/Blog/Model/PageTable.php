@@ -25,6 +25,10 @@ class PageTable extends AbstractTableGateway
         $select = $this->getSql()->select();
         $select->order('title asc');
 
+        if (true !== AUTHENTICATED) {
+            $select->where("status = 'online' or status = 'online-not-in-menu");
+        }
+
         return $this->selectWith($select);
     }
 
@@ -37,6 +41,10 @@ class PageTable extends AbstractTableGateway
             'id' => $id,
         ));
 
+        if (true !== AUTHENTICATED) {
+            $select->where("status = 'online' or status = 'online-not-in-menu");
+        }
+
         $row = $this->selectWith($select)->current();
 
         if (!$row) {
@@ -48,11 +56,16 @@ class PageTable extends AbstractTableGateway
 
     public function getPageByUrlString($urlString)
     {
-        $rowset = $this->select(array(
+        $select = $this->getSql()->select();
+        $select->where(array(
             'url_string' => $urlString,
         ));
 
-        $row = $rowset->current();
+        if (true !== AUTHENTICATED) {
+            $select->where("status = 'online' or status = 'online-not-in-menu");
+        }
+
+        $row = $this->selectWith($select)->current();
 
         if (!$row) {
             return false;
@@ -74,8 +87,10 @@ class PageTable extends AbstractTableGateway
         $data = array(
             'title'             => $page->title,
             'url_string'        => $page->url_string,
+            'route'             => $page->route,
             'content'           => $page->content,
-            //'status'            => $page->status,
+            'status'            => $page->status,
+            'priority'          => $page->priority,
             'meta_title'        => $page->meta_title,
             'meta_description'  => $page->meta_description,
             'meta_keywords'     => $page->meta_keywords

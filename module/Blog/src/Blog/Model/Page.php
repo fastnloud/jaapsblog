@@ -12,8 +12,10 @@ class Page implements InputFilterAwareInterface
     public $id;
     public $title;
     public $url_string;
+    public $route;
     public $content;
     public $status;
+    public $priority;
     public $meta_title;
     public $meta_description;
     public $meta_keywords;
@@ -25,8 +27,10 @@ class Page implements InputFilterAwareInterface
         $this->id                    = (isset($data['id'])) ? $data['id'] : null;
         $this->title                 = (isset($data['title'])) ? $data['title'] : null;
         $this->url_string            = (isset($data['url_string'])) ? $data['url_string'] : null;
+        $this->route                 = (isset($data['route'])) ? $data['route'] : null;
         $this->content               = (isset($data['content'])) ? $data['content'] : null;
         $this->status                = (isset($data['status'])) ? $data['status'] : 'offline';
+        $this->priority              = (isset($data['priority'])) ? $data['priority'] : null;
         $this->meta_title            = (isset($data['meta_title'])) ? $data['meta_title'] : null;
         $this->meta_description      = (isset($data['meta_description'])) ? $data['meta_description'] : null;
         $this->meta_keywords         = (isset($data['meta_keywords'])) ? $data['meta_keywords'] : null;
@@ -50,6 +54,25 @@ class Page implements InputFilterAwareInterface
     
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'title',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 255,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'route',
                 'required' => true,
                 'filters'  => array(
                     array('name' => 'StripTags'),

@@ -7,8 +7,11 @@ Ext.define('App.view.page.List' ,{
 
     initComponent: function() {
         this.columns = [
-            {header: 'Title',  dataIndex: 'title',  flex: 1},
-            {header: 'Address (URL String)', dataIndex: 'url_string', flex: 1}
+            {header: 'Title',  dataIndex: 'title',  flex: 3},
+            {header: 'Address (URL String)', dataIndex: 'url_string', flex: 3},
+            {header: 'Route',  dataIndex: 'route',  flex: 1},
+            {header: 'Priority',  dataIndex: 'priority',  flex: 1},
+            {header: 'Status',  dataIndex: 'status',  flex: 1}
         ];
 
         this.callParent(arguments);

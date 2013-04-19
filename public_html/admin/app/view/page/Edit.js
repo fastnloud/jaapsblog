@@ -58,6 +58,27 @@ Ext.define('App.view.page.Edit', {
                         allowBlank : false
                     },
                     {
+                        xtype: 'combobox',
+                        name : 'status',
+                        fieldLabel: 'Status',
+                        store : ['online', 'online-not-in-menu', 'offline'],
+                        allowBlank : false,
+                        forceSelection : true,
+                        value: 'offline'
+                    },
+                    {
+                        xtype: 'textfield',
+                        name : 'priority',
+                        fieldLabel: 'Priority',
+                        allowBlank : false
+                    },
+                    {
+                        xtype: 'textfield',
+                        name : 'route',
+                        fieldLabel: 'Route',
+                        allowBlank : false
+                    },
+                    {
                         xtype: 'fieldset',
                         title: 'SEO',
                         collapsible: true,

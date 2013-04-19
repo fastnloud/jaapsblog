@@ -4,8 +4,10 @@ Ext.define('App.model.Page', {
         'id',
         'title',
         'url_string',
+        'route',
         'content',
-        //'status',
+        'status',
+        'priority',
         'meta_title',
         'meta_description',
         'meta_keywords'
