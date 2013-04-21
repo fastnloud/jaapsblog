@@ -8,9 +8,10 @@ class BlogNavigation extends DefaultNavigationFactory
 {
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {
+        $navigation = $config['navigation'][$this->getName()] = array();
+
         if (null === $this->pages) {
             $pages  = $serviceLocator->get('Page\Model\PageTable')->getPages();
-            $config['navigation']['default'] = array();
 
             if ($pages) {
                 foreach ($pages as $key => $page) {
@@ -22,7 +23,7 @@ class BlogNavigation extends DefaultNavigationFactory
                         $visible = false;
                     }
 
-                    $config['navigation']['default'][$key] = array (
+                    $navigation[$key] = array (
                         'url_string'=> $page->url_string, // unique
                         'visible'   => $visible,
                         'label'     => $page->label,
@@ -30,7 +31,7 @@ class BlogNavigation extends DefaultNavigationFactory
                     );
 
                     if ('page' == $page->route) {
-                        $config['navigation']['default'][$key]['params'] = array(
+                        $navigation[$key]['params'] = array(
                             'page' => $this->urlString($page->url_string)
                         );
                     }
@@ -39,9 +40,10 @@ class BlogNavigation extends DefaultNavigationFactory
                         $blogPosts = $serviceLocator->get('Blog\Model\BlogTable')->getIndex();
 
                         if ($blogPosts) {
-                            $config['navigation']['default'][$key]['pages'] = array();
+                            $navigation[$key]['pages'] = array();
+
                             foreach ($blogPosts as $post) {
-                                $config['navigation']['default'][$key]['pages'][] = array(
+                                $navigation[$key]['pages'][] = array(
                                     'id_blog_post' => $post->id, // unique
                                     'label'        => $post->title,
                                     'date'         => $post->date,
@@ -57,19 +59,25 @@ class BlogNavigation extends DefaultNavigationFactory
                     }
                 }
 
-                $config['navigation']['default'][] = array(
+                $navigation[] = array(
                     'id'    => 'btn-search',
                     'label' => 'Search',
                     'uri'   => '#'
                 );
             }
 
-            $application = $serviceLocator->get('Application');
-            $routeMatch  = $application->getMvcEvent()->getRouteMatch();
-            $router      = $application->getMvcEvent()->getRouter();
-            $pages       = $this->getPagesFromConfig($config['navigation'][$this->getName()]);
+            $mvcEvent = $serviceLocator->get('Application')
+                      ->getMvcEvent();
 
-            $this->pages = $this->injectComponents($pages, $routeMatch, $router);
+            $routeMatch  = $mvcEvent->getRouteMatch();
+            $router      = $mvcEvent->getRouter();
+            $pages       = $this->getPagesFromConfig($navigation);
+
+            $this->pages = $this->injectComponents(
+                $pages,
+                $routeMatch,
+                $router
+            );
         }
 
         return $this->pages;
