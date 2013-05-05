@@ -67,7 +67,7 @@ Ext.define('App.view.page.Edit', {
                         xtype: 'combobox',
                         name : 'status',
                         fieldLabel: 'Status',
-                        store : ['online', 'online-not-in-menu', 'offline'],
+                        store : ['online', 'online, not in menu', 'offline'],
                         allowBlank : false,
                         forceSelection : true,
                         value: 'offline'
