@@ -6,6 +6,7 @@ Ext.define('App.model.Blog', {
         'subtitle',
         'lead',
         'content',
+        'author',
         'date',
         'category',
         'rating',

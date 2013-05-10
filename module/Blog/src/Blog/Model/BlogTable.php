@@ -99,6 +99,7 @@ class BlogTable extends AbstractTableGateway
             'subtitle'          => $blog->subtitle,
             'lead'              => $blog->lead,
             'content'           => $blog->content,
+            'author'            => $blog->author,
             'category'          => $blog->category,
             'rating'            => $blog->rating,
             'date'              => $blog->date,

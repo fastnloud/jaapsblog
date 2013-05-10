@@ -63,6 +63,11 @@ Ext.define('App.view.blog.Edit', {
                         allowBlank : false
                     },
                     {
+                        xtype: 'textfield',
+                        name : 'author',
+                        fieldLabel: 'Author'
+                    },
+                    {
                         xtype: 'datefield',
                         name : 'date',
                         fieldLabel: 'Date',
