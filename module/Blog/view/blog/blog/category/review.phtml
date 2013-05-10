@@ -27,7 +27,12 @@
             </span>
         <?php endif; ?>
         <span class="reviewer">
-            Reviewed by <span itemprop="reviewer"><?php echo ($blog->author ? $this->escapeHtml($blog->author) : 'Jaapsblog.nl') ?></span> on <time itemprop="dtreviewed" datetime="<?php echo $blog->date ?>"><?php echo $this->date($blog->date) ?></time>
+            Reviewed by
+            <span itemprop="reviewer">
+                <a rel="author" href="/about.html"><?php echo ($blog->author ? $this->escapeHtml($blog->author) : 'Jaapsblog.nl') ?></a>
+            </span>
+            on
+            <time itemprop="dtreviewed" datetime="<?php echo $blog->date ?>"><?php echo $this->date($blog->date) ?></time>
         </span>
     </footer>
 </div>
