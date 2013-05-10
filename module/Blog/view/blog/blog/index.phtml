@@ -18,9 +18,7 @@
         	<hgroup>
         		<h1>
         		    <a href="<?php echo $href; ?>" title="<?php echo $this->escapeHtml($post->title) ?>">
-                        <span class="block <?php echo $this->escapeHtml($post->category); ?>"></span>
-                            <?php echo $this->escapeHtml($post->title) ?>
-
+                        <?php echo $this->escapeHtml($post->title) ?>
                         <span class="category"><?php echo $this->escapeHtml($post->category); ?></span>
         		    </a>
         		</h1>
