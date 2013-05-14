@@ -30,8 +30,7 @@ class PageTable extends AbstractTableGateway
             $select->where(array(
                 new Predicate\PredicateSet(
                     array(
-                        new Predicate\Operator('status', '=', 'online'),
-                        new Predicate\Operator('status', '=', 'online-not-in-menu'),
+                        new Predicate\Operator('status', '<>', 'offline')
                     ),
                     Predicate\PredicateSet::COMBINED_BY_OR
                 )
@@ -54,8 +53,7 @@ class PageTable extends AbstractTableGateway
             $select->where(array(
                 new Predicate\PredicateSet(
                     array(
-                        new Predicate\Operator('status', '=', 'online'),
-                        new Predicate\Operator('status', '=', 'online-not-in-menu'),
+                        new Predicate\Operator('status', '<>', 'offline')
                     ),
                     Predicate\PredicateSet::COMBINED_BY_OR
                 )
@@ -82,8 +80,7 @@ class PageTable extends AbstractTableGateway
             $select->where(array(
                 new Predicate\PredicateSet(
                     array(
-                        new Predicate\Operator('status', '=', 'online'),
-                        new Predicate\Operator('status', '=', 'online-not-in-menu'),
+                        new Predicate\Operator('status', '<>', 'offline')
                     ),
                     Predicate\PredicateSet::COMBINED_BY_OR
                 )
