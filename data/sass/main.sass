@@ -5,12 +5,30 @@ $bgColorFrom: #ffffff
 $bgColorTo: #bbbbbb
 $bgColorCompat: #d7d7d7
 $borderColor: #959595
+$borderSearchColor: #000
 
 /* mixins
 @mixin border-container
   -moz-box-shadow: 0 0 15px 2px $borderColor
   -webkit-box-shadow: 0 0 15px 2px $borderColor
   box-shadow: 0 0 15px 2px $borderColor
+
+@mixin border-container-mobile-top
+  border-bottom: 3px solid #000
+  -moz-box-shadow: 0px 5px 10px 0px $borderColor
+  -webkit-box-shadow: 0px 5px 10px 0px $borderColor
+  box-shadow:  0px 5px 10px 0px $borderColor
+
+@mixin border-container-mobile-bottom
+  border-top: 3px solid #000
+  -moz-box-shadow: 0px -5px 10px 0px $borderColor
+  -webkit-box-shadow: 0px -5px 10px 0px $borderColor
+  box-shadow:  0px -5px 10px 0px $borderColor
+
+@mixin border-container-search
+  -moz-box-shadow: 0 0 25px 2px $borderSearchColor
+  -webkit-box-shadow: 0 0 25px 2px $borderSearchColor
+  box-shadow: 0 0 25px 5px $borderSearchColor
 
 /* start actual stylesheet
 html
@@ -117,7 +135,9 @@ nav
         color: white
         padding: 5px 10px
 
-    a
+    a,
+    span
+      cursor: pointer
       border-radius: 10px 0
       margin: 0 10px 0 0
       text-decoration: none
@@ -252,13 +272,23 @@ div#page
   @include border-container
 
 /* search block
-div#search 
-  display: none
-  background: #ececec
-  margin: 10px auto 0 auto
-  width: 780px
-  padding: 10px 20px
-  margin: 0 auto 10px auto
+div#search
+  @include border-container-search
+  display: block
+  position: absolute
+  background: black
+  padding: 10px 10px
+  width: 230px
+  margin: 0 auto 10px -125px
+  opacity: 0
+  float: left
+  left: 50%
+  -webkit-transition-timing-function: linear
+  -o-transition-timing-function: linear
+  -moz-transition-timing-function: linear
+  -ms-transition-timing-function: linear
+  -kthtml-transition-timing-function: linear
+  transition-timing-function: linear
 
   form
     padding: 0
@@ -266,6 +296,8 @@ div#search
   
     input
       width: 220px
+      color: $theme
+      border: 1px solid $theme
 
 /* index styling
 div#index article p,
@@ -507,38 +539,38 @@ footer table.bottom
     label span
       display: none
 
-  nav,
-  div#page,
-  div#search
+  nav
+    @include border-container-mobile-top
+
+  body > footer
+    @include border-container-mobile-bottom
+
+  div#page
     -moz-box-shadow: none
     -webkit-box-shadow: none
     box-shadow: none
-  
+
   nav,
   div#page,
-  div#search,
   footer,
   footer td
     width: auto!important
     height: auto!important
-  
+
   nav 
     padding: 5px 20px 10px 20px
-    border-bottom: 3px solid black
 
     ul li.active a
       color: $theme
 
-    ul li a
+    ul li a,
+    ul li span
       margin: 0 5px 0 0
       padding: 0!important
       background: none!important
   
   div#page 
     padding: 5px 20px
-  
-  div#search 
-    padding: 5px 20px 5px 20px
 
   footer table.bottom td
     display: block

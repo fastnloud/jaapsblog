@@ -17,6 +17,7 @@
 
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . $this->placeholder('version'), 'text/javascript')
                                                ->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                                               ->prependFile('/js/transit.js')
                                                ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js') ?>
 
         <?php  echo $this->analytics(); ?>
@@ -26,60 +27,59 @@
     
     <body>
 
-		<nav>
+        <nav>
 
             <?php echo $this->navigation('navigation')->menu()->setMaxDepth(0); ?>
 
-		</nav>
+        </nav>
 
-		<div id="search">
-		    <form method="get" action="/blog">
-		        <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
-		    </form>
-		</div>
+        <div id="search">
+            <form method="get" action="/blog">
+                <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
+            </form>
+        </div>
 
-		<div id="page">
+        <div id="page">
 <!-- Content start -->
 <?php echo trim($this->content); ?>
 
 <!-- Content end -->
-		</div>
-
+        </div>
         <?php echo $this->cookies(); ?>
 
-		<footer>
-		    <table class="bottom">
-		        <tr>
-		            <td class="col1">
-		                <strong>Resources</strong>
-		                <ul>
-        		            <li><a href="http://framework.zend.com/" target="_blank" title="Zend Framework 2">Zend Framework 2</a></li>
-        		            <li><a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank" title="famfamfam icons">famfamfam icons</a></li>
-        		            <li><a href="http://jquery.com/" target="_blank" title="jQuery">jQuery</a></li>
-        		            <li><a href="http://markitup.jaysalvat.com/home/" target="_blank" title="markItUp!">markItUp!</a></li>
+        <footer>
+            <table class="bottom">
+                <tr>
+                    <td class="col1">
+                        <strong>Resources</strong>
+                        <ul>
+                            <li><a href="http://framework.zend.com/" target="_blank" title="Zend Framework 2">Zend Framework 2</a></li>
+                            <li><a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank" title="famfamfam icons">famfamfam icons</a></li>
+                            <li><a href="http://jquery.com/" target="_blank" title="jQuery">jQuery</a></li>
+                            <li><a href="http://markitup.jaysalvat.com/home/" target="_blank" title="markItUp!">markItUp!</a></li>
                             <li><a href="http://www.sencha.com/products/extjs" target="_blank" title="Ext JS">Ext JS 4.2</a></li>
-        		        </ul>
-		            </td>
-		            <td class="col2">
-		                <strong>Latest blog posts</strong>
-		                <?php echo $this->latestBlogPosts(); ?>
-		            </td>
-		            <td class="col3">
-		                <strong>Tools</strong>
-		                <ul>
-        		            <li><a href="http://www.jetbrains.com/phpstorm/" target="_blank" title="PhpStorm">PhpStorm 6</a></li>
-        		        </ul>
-		            </td>
-		        </tr>
-		        <tr>
-		            <td colspan="3" class="login">
+                        </ul>
+                    </td>
+                    <td class="col2">
+                        <strong>Latest blog posts</strong>
+                        <?php echo $this->latestBlogPosts(); ?>
+                    </td>
+                    <td class="col3">
+                        <strong>Tools</strong>
+                        <ul>
+                            <li><a href="http://www.jetbrains.com/phpstorm/" target="_blank" title="PhpStorm">PhpStorm 6</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="login">
                         <a href="/admin"
                            onclick="return !popup(this.href,'admin', 980, 620)"
                            target="_blank">Login</a>
-		            </td>
-		        </tr>
-		    </table>
-		</footer>
+                    </td>
+                </tr>
+            </table>
+        </footer>
 
-	</body>
+    </body>
 </html>
