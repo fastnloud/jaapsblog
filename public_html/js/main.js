@@ -18,29 +18,39 @@ function replyForm(){
 }
 
 function loadSearch(){
-    var button      = $('#menu-btn-search'),
-        searchBlock = $('#search'),
-        searchInput = $('#search input');
-    
-    if (searchBlock) {
+    var searchContainer  = $('#search'),
+        searchButton     = $('#menu-btn-search'),
+        searchInput      = $('#search input');
+
+    if (searchContainer) {
         $(searchInput).focus(function() {
             if ('Search...' == $(this).val()) {
                 $(this).val('');
             }
         });
-        
+
         $(searchInput).blur(function() {
             if ('' == $(this).val()) {
                 $(this).val('Search...');
             }
         });
-        
-        $(button).click(function() {
-            $(searchBlock).slideToggle('fast', function() {
-                if ('' == $(searchInput).val()) {
-                    $(searchInput).val('Search...');
-                }
-            });
+
+        $(searchButton).click(function() {
+            search(searchContainer);
+        });
+    }
+}
+
+function search(searchContainer) {
+    if (0 == searchContainer.css('opacity')) {
+        $(searchContainer).transition({
+            y: 70,
+            opacity: 1
+        });
+    } else {
+        $(searchContainer).transition({
+            y: 0,
+            opacity: 0
         });
     }
 }
