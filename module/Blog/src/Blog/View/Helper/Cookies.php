@@ -62,7 +62,7 @@ class Cookies extends AbstractHelper
                  . '        <h1>Cookies in use</h1>' . PHP_EOL
                  . '        <p>By continuing to use <strong>Jaapsblog.nl</strong> you will be agreeing to the website ' . PHP_EOL
                  . '        <a href="/cookies.html">Use Of Cookies</a> while using the website.</p>' . PHP_EOL
-                 . '        <p><a href="?cookies=1">Continue</a></p>' . PHP_EOL
+                 . '        <p><a rel="nofollow" href="?cookies=1">Continue</a></p>' . PHP_EOL
                  . '</div>'  . PHP_EOL;
         }
     }
