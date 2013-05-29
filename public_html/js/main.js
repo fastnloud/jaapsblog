@@ -44,7 +44,7 @@ function loadSearch(){
 function search(searchContainer) {
     if (0 == searchContainer.css('opacity')) {
         $(searchContainer).transition({
-            y: 70,
+            y: 170,
             opacity: 1
         });
     } else {
