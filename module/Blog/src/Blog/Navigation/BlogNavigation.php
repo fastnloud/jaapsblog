@@ -61,7 +61,8 @@ class BlogNavigation extends DefaultNavigationFactory
 
                 $navigation[] = array(
                     'id'    => 'btn-search',
-                    'label' => 'Search',
+                    'label' => '',
+                    'title' => 'Search',
                     'uri'   => ''
                 );
             }
