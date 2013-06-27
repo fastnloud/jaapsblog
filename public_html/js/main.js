@@ -45,12 +45,14 @@ function search(searchContainer) {
     if (0 == searchContainer.css('opacity')) {
         $(searchContainer).transition({
             y: 170,
-            opacity: 1
+            opacity: 1,
+            delay: 0
         });
     } else {
         $(searchContainer).transition({
             y: 0,
-            opacity: 0
+            opacity: 0,
+            delay: 0
         });
     }
 }
