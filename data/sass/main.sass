@@ -26,9 +26,9 @@ $borderSearchColor: #000
   box-shadow:  0px -5px 10px 0px $borderColor
 
 @mixin border-container-search
-  -moz-box-shadow: 0 0 25px 2px $borderSearchColor
-  -webkit-box-shadow: 0 0 25px 2px $borderSearchColor
-  box-shadow: 0 0 25px 5px $borderSearchColor
+  -moz-box-shadow: 0 0 20px 0px $borderSearchColor
+  -webkit-box-shadow: 0 0 20px 0px $borderSearchColor
+  box-shadow: 0 0 20px 0px $borderSearchColor
 
 /* start actual stylesheet
 html
@@ -143,6 +143,14 @@ nav
       text-decoration: none
       font-size: 1.4em
       color: black
+
+    #menu-btn-search
+      background: url('/images/search.png') center center no-repeat
+      padding: 22px 22px
+      margin: -8px 0 0 0
+      float: right
+      display: block
+      opacity: 0.2
     
 /* forms
 form
@@ -291,6 +299,10 @@ div#search
   -kthtml-transition-timing-function: linear
   transition-timing-function: linear
 
+  span
+    color: white
+    padding: 2em
+
   form
     padding: 0
     background: none
@@ -321,17 +333,6 @@ div#index article
     text-decoration: none
     padding: 3px 3px 0 0
     height: 25px
-    border-top: 3px solid #EFEFEF
-    border-right: 3px solid #EFEFEF
-
-    span.category
-      display: block
-      float: right
-      line-height: 1.1em
-      padding: 4px 6px
-      font-size: 0.6em
-      color: white
-      background: #cccccc
 
   h2
     height: 25px
@@ -558,17 +559,20 @@ footer table.bottom
     width: auto!important
     height: auto!important
 
-  nav 
+  nav
     padding: 5px 20px 10px 20px
 
     ul li.active a
       color: $theme
 
-    ul li a,
-    ul li span
+    ul li a
       margin: 0 5px 0 0
       padding: 0!important
       background: none!important
+
+    ul li span#menu-btn-search
+      margin: -10px -12px 0 0
+      opacity: 1
   
   div#page 
     padding: 5px 20px
