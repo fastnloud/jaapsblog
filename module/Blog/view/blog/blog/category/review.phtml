@@ -1,10 +1,10 @@
 <?php $rating = ($blog->rating > 0  ? (int)$blog->rating : null); ?>
 
 <div id="review" itemscope itemtype="http://data-vocabulary.org/Review">
-    <hgroup>
+    <div class="header">
         <h1><span itemprop="itemreviewed"><?php echo $this->escapeHtml($blog->title); ?></span></h1>
         <h2><?php echo $this->escapeHtml($blog->subtitle); ?></h2>
-    </hgroup>
+    </div>
 
     <div itemprop="summary">
         <?php if ($blog->amazon_item_id): ?>
