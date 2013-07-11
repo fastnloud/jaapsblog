@@ -31,8 +31,11 @@ class Replies extends AbstractHelper
     {
         $replies = $this->replyTable->getReplies($idBlog);
 
-        if (count($replies) > 0) {
-            $articles[] = "<h5 class=\"replied\">" . count($replies) . " response(s) on the article "
+        $count = count($replies);
+        if ($count > 0) {
+            $articles[] = "<h5 class=\"replied\">" . $count . " response"
+                        . (($count > 1) ? 's' : '') . " "
+                        . "on the article "
                         . "<i>" . $this->view->escapeHtml($title) . "</i>"
                         . "</h5>";
 
