@@ -30,7 +30,12 @@
         	
         	<footer>
         		Date added: <time datetime="<?php echo $post->date ?>"><?php echo $this->date($post->date) ?></time>
-        	</footer>
+
+                <span class="comments">
+                    <img alt="Comments" src="/images/icons/comments.png">
+                        <?php echo $post->comments; ?> response<?php echo (($post->comments > 1 || 0 == $post->comments ) ? 's' : ''); ?>
+                </span>
+            </footer>
 
         </article>
     <?php endforeach; ?>

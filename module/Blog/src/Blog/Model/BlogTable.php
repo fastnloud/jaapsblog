@@ -6,6 +6,7 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
 use Zend\Db\Sql\Predicate;
+use Zend\Db\Sql\Expression;
 
 class BlogTable extends AbstractTableGateway
 {
@@ -57,6 +58,14 @@ class BlogTable extends AbstractTableGateway
             $select = $select->where(array('status = ?' => 'online'))
                     ->where('date <= CURDATE()');
         }
+
+        // fetch comments
+        $select->join('blog_reply', 'blog_reply.id_blog=blog.id', array(
+            'comments' => new Expression("count(blog_reply.id)"),
+        ), 'left');
+
+        // group by id
+        $select->group('id');
 
         return $this->selectWith($select);
     }

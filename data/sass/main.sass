@@ -340,7 +340,7 @@ div#index article
     padding: 0
 
 /* article styling
-article 
+article
   padding: 0 0 0 0
   clear: both
 
@@ -366,6 +366,16 @@ article
     color: #999    
     background: none
     height: auto
+
+    span.comments
+      display: block
+      line-height: 18px
+      padding: 5px
+
+      img
+        float: left
+        padding: 0 5px 0 0
+        width: auto!important
 
     span.reviewer,
     span.date
@@ -507,9 +517,6 @@ footer table.bottom
   footer table.bottom td
     white-space: normal
 
-  article img
-    width: 100%
-
   #cookies
     margin: 0
     left: 0
@@ -551,6 +558,10 @@ footer table.bottom
     -moz-box-shadow: none
     -webkit-box-shadow: none
     box-shadow: none
+    padding: 5px 20px
+
+    article img
+      width: 100%
 
   nav,
   div#page,
@@ -573,9 +584,6 @@ footer table.bottom
     ul li span#menu-btn-search
       margin: -10px -12px 0 0
       opacity: 1
-  
-  div#page 
-    padding: 5px 20px
 
   footer table.bottom td
     display: block
