@@ -61,7 +61,7 @@ class BlogTable extends AbstractTableGateway
 
         // fetch comments
         $select->join('blog_reply', 'blog_reply.id_blog=blog.id', array(
-            'comments' => new Expression("count(blog_reply.id)"),
+            'comments' => new Expression('count(blog_reply.id)'),
         ), 'left');
 
         // group by id
