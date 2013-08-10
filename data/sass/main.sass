@@ -1,5 +1,5 @@
 /* theme color
-$theme: #d17800
+$theme: #d18200
 
 /* main font color
 $colorFont: #000
@@ -13,7 +13,7 @@ $colorBackgroundPre: #EEFFCC
 
 /* border colors
 $colorBorder: #959595
-$colorBorderSearch: #000
+$colorBorderSearch: #999
 
 /* light dark colors
 $colorLight: #999
@@ -39,20 +39,20 @@ $colorButtons: #fff
 
 @mixin border-container-mobile-top
   border-bottom: 3px solid $colorDarkest
-  -moz-box-shadow: 0px 5px 10px 0px $colorBorder
-  -webkit-box-shadow: 0px 5px 10px 0px $colorBorder
-  box-shadow:  0px 5px 10px 0px $colorBorder
+  -moz-box-shadow: 0px 0px 0px 0px $colorBorder
+  -webkit-box-shadow: 0px 0px 0px 0px $colorBorder
+  box-shadow: 0px 0px 0px 0px $colorBorder
 
 @mixin border-container-mobile-bottom
   border-top: 3px solid $colorDarkest
-  -moz-box-shadow: 0px -5px 10px 0px $colorBorder
-  -webkit-box-shadow: 0px -5px 10px 0px $colorBorder
-  box-shadow:  0px -5px 10px 0px $colorBorder
+  -moz-box-shadow: 0px 0px 0px 0px $colorBorder
+  -webkit-box-shadow: 0px 0px 0px 0px $colorBorder
+  box-shadow: 0px 0px 0px 0px $colorBorder
 
 @mixin border-container-search
   -moz-box-shadow: 0 0 20px 0px $colorBorderSearch
   -webkit-box-shadow: 0 0 20px 0px $colorBorderSearch
-  box-shadow: 0 0 20px 0px $colorBorderSearch
+  box-shadow: -2px 2px 5px 0px $colorBorderSearch
 
 /* start actual stylesheet
 html
@@ -62,6 +62,13 @@ html
   background: -moz-radial-gradient(circle, $colorBackgroundFrom, $colorBackgroundTo)
   background: -ms-radial-gradient(circle, $colorBackgroundFrom, $colorBackgroundTo)
   background-attachment: fixed
+
+*,
+*:before,
+*:after
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
 
 body
   font: normal 1em/1.6em Droid Serif, arial
@@ -144,7 +151,8 @@ nav
   top: 10px
   background: $colorBackground
   margin: 10px auto 10px auto
-  width: 780px
+  width: 820px
+  height: 66px
   padding: 20px
   @include border-container
 
@@ -300,41 +308,49 @@ h5.replied
 div#page 
   background: $colorBackground
   margin: 0 auto 0 auto
-  width: 780px
+  width: 820px
   padding: 20px
   @include border-container
 
 /* search block
 div#search
-  @include border-container-search
+  /* @include border-container-search
+  border-left: 1px dotted $colorLight
   display: block
-  position: absolute
-  background: $colorDarkest
+  float: right
+  position: fixed
+  background: $colorLightest
+  color: $colorDark
   padding: 10px 10px
   width: 230px
-  margin: -50px auto 10px -125px
-  opacity: 0
-  float: left
-  left: 50%
+  opacity: 1
   top: 0
+  right: 0
+  z-index: 999
   -webkit-transition-timing-function: linear
   -o-transition-timing-function: linear
   -moz-transition-timing-function: linear
   -ms-transition-timing-function: linear
   -kthtml-transition-timing-function: linear
   transition-timing-function: linear
+  -webkit-perspective: 1000
+  -webkit-backface-visibility: hidden
 
   span
-    padding: 2em
+    padding: 0 5px
+    text-align: right
+    display: block
 
   form
     padding: 0
     background: none
   
     input
-      width: 220px
+      width: 208px
       color: $theme
-      border: 1px solid $theme
+      border-radius: 10px
+      padding: 5px 10px
+      border: 1px solid $colorLighter
 
 /* index styling
 div#index article p,
@@ -390,6 +406,7 @@ article
     color: $colorLight    
     background: none
     height: auto
+    width: 780px
 
     span.comments
       display: block
@@ -469,7 +486,7 @@ article div#review
 footer 
   margin: 40px auto 0 auto
   background: $colorFooter
-  width: 780px
+  width: 820px
   padding: 15px 20px 15px 20px
 
   ul
@@ -596,6 +613,7 @@ footer table.bottom
 
   nav
     padding: 5px 20px 10px 20px
+    height: 44px!important
 
     ul li.active a
       color: $theme

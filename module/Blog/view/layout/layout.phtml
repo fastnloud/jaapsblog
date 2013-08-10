@@ -1,4 +1,4 @@
-<?php $this->placeholder('version')->set('1.15'); ?>
+<?php $this->placeholder('version')->set('1.17'); ?>
 <?php if (!defined('AUTHENTICATED')): define('AUTHENTICATED', false); endif; ?>
 
 <?php echo $this->doctype(); ?>
@@ -36,6 +36,7 @@
         </nav>
 
         <div id="search">
+            <span>SEARCH</span>
             <form method="get" action="/blog">
                 <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
             </form>
