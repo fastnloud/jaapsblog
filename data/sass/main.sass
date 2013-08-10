@@ -1,49 +1,74 @@
-/* variables
+/* theme color
 $theme: #d17800
 
-$bgColorFrom: #ffffff
-$bgColorTo: #bbbbbb
-$bgColorCompat: #d7d7d7
-$borderColor: #959595
-$borderSearchColor: #000
+/* main font color
+$colorFont: #000
+
+/* background
+$colorBackground: #fff
+$colorBackgroundFrom: #fff
+$colorBackgroundTo: #bbbbbb
+$colorBackgroundCompat: #d7d7d7
+$colorBackgroundPre: #EEFFCC
+
+/* border colors
+$colorBorder: #959595
+$colorBorderSearch: #000
+
+/* light dark colors
+$colorLight: #999
+$colorLighter: #d3d3d3
+$colorLightest: #ececec
+$colorDark: #555
+$colorDarker: #333
+$colorDarkest: #000
+
+/* specific element colors
+$colorH2: #888
+$colorFooter: #222
+$colorMessages: #cd5c5c
+$colorNav: #000
+$colorNavActive: #fff
+$colorButtons: #fff
 
 /* mixins
 @mixin border-container
-  -moz-box-shadow: 0 0 15px 2px $borderColor
-  -webkit-box-shadow: 0 0 15px 2px $borderColor
-  box-shadow: 0 0 15px 2px $borderColor
+  -moz-box-shadow: 0 0 15px 2px $colorBorder
+  -webkit-box-shadow: 0 0 15px 2px $colorBorder
+  box-shadow: 0 0 15px 2px $colorBorder
 
 @mixin border-container-mobile-top
-  border-bottom: 3px solid #000
-  -moz-box-shadow: 0px 5px 10px 0px $borderColor
-  -webkit-box-shadow: 0px 5px 10px 0px $borderColor
-  box-shadow:  0px 5px 10px 0px $borderColor
+  border-bottom: 3px solid $colorDarkest
+  -moz-box-shadow: 0px 5px 10px 0px $colorBorder
+  -webkit-box-shadow: 0px 5px 10px 0px $colorBorder
+  box-shadow:  0px 5px 10px 0px $colorBorder
 
 @mixin border-container-mobile-bottom
-  border-top: 3px solid #000
-  -moz-box-shadow: 0px -5px 10px 0px $borderColor
-  -webkit-box-shadow: 0px -5px 10px 0px $borderColor
-  box-shadow:  0px -5px 10px 0px $borderColor
+  border-top: 3px solid $colorDarkest
+  -moz-box-shadow: 0px -5px 10px 0px $colorBorder
+  -webkit-box-shadow: 0px -5px 10px 0px $colorBorder
+  box-shadow:  0px -5px 10px 0px $colorBorder
 
 @mixin border-container-search
-  -moz-box-shadow: 0 0 20px 0px $borderSearchColor
-  -webkit-box-shadow: 0 0 20px 0px $borderSearchColor
-  box-shadow: 0 0 20px 0px $borderSearchColor
+  -moz-box-shadow: 0 0 20px 0px $colorBorderSearch
+  -webkit-box-shadow: 0 0 20px 0px $colorBorderSearch
+  box-shadow: 0 0 20px 0px $colorBorderSearch
 
 /* start actual stylesheet
 html
-  background: $bgColorCompat
-  background: -webkit-gradient(radial, center center, 0, center center, 460, from($bgColorFrom), to($bgColorTo))
-  background: -webkit-radial-gradient(circle, $bgColorFrom, $bgColorTo)
-  background: -moz-radial-gradient(circle, $bgColorFrom, $bgColorTo)
-  background: -ms-radial-gradient(circle, $bgColorFrom, $bgColorTo)
+  background: $colorBackgroundCompat
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from($colorBackgroundFrom), to($colorBackgroundTo))
+  background: -webkit-radial-gradient(circle, $colorBackgroundFrom, $colorBackgroundTo)
+  background: -moz-radial-gradient(circle, $colorBackgroundFrom, $colorBackgroundTo)
+  background: -ms-radial-gradient(circle, $colorBackgroundFrom, $colorBackgroundTo)
   background-attachment: fixed
 
 body
   font: normal 1em/1.6em Droid Serif, arial
+  color: $colorFont
 
 s
-  color: #999
+  color: $colorLight
 
 p
   margin: 0 0 1em 0
@@ -52,7 +77,7 @@ a
   color: $theme
 
 pre
-  background: #EEFFCC
+  background: $colorBackgroundPre
   padding: 5px
   margin: 0 0 1em 0
 
@@ -65,7 +90,7 @@ blockquote
   margin: 0 0 1em 0
 
 fieldset
-  border: 1px solid #dedede
+  border: 1px solid $colorLightest
   padding: 0 5px 5px 5px
   margin: 0 0 1em 0
 
@@ -98,7 +123,7 @@ div.clear
   position: fixed
   width: 100%
   height: 100%
-  background: black
+  background: $colorDarkest
   top: 0
   left: 0
   opacity: 0.8
@@ -109,7 +134,7 @@ div.clear
 #cookies
   top: 100px
   position: absolute
-  background: white
+  background: $colorBackground
   width: 400px
   padding: 10px 20px
   margin: 0 0 0 -220px
@@ -117,7 +142,7 @@ div.clear
 
 nav 
   top: 10px
-  background: white
+  background: $colorBackground
   margin: 10px auto 10px auto
   width: 780px
   padding: 20px
@@ -132,7 +157,7 @@ nav
 
       &.active a
         background: $theme
-        color: white
+        color: $colorNavActive
         padding: 5px 10px
 
     a,
@@ -142,7 +167,7 @@ nav
       margin: 0 10px 0 0
       text-decoration: none
       font-size: 1.4em
-      color: black
+      color: $colorNav
 
     #menu-btn-search
       background: url('/images/search.png') center center no-repeat
@@ -155,7 +180,7 @@ nav
 /* forms
 form
   padding: 10px
-  background: #ececec
+  background: $colorLightest
 
   label
     display: block
@@ -187,14 +212,14 @@ div#reply
 div#reply form
   border-radius: 10px
   width: 480px
-  background: #EFEFEF
-  border: 1px solid #d3d3d3
+  background: $colorLightest
+  border: 1px solid $colorLighter
 
   span
     float: left
     width: 60px
     padding: 3px 0 5px 2px
-    color: #333
+    color: $colorDarker
 
   label
     float: left
@@ -212,14 +237,14 @@ div#reply form
 
   input[type=text],
   textarea
-    background: white
+    background: $colorBackground
     padding: 5px 10px
     border: 0
     border-radius: 10px
-    border: 1px solid #d3d3d3
+    border: 1px solid $colorLighter
 
   .error
-    background: url('/images/icons/exclamation.png') 4px 6px #fff no-repeat!important
+    background: url('/images/icons/exclamation.png') 4px 6px $colorBackground no-repeat!important
 
   #submitbutton
     float: right
@@ -227,26 +252,26 @@ div#reply form
     border-radius: 10px
     border: none
     width: 80px
-    color: white
+    color: $colorButtons
 
 /* article replies
 article.replies,
 h5.replied
   padding: 10px
   margin: 0 0 0 0
-  background: #EFEFEF
-  color: #555
-  border-top: 1px dotted #999999
+  background: $colorLightest
+  color: $colorDark
+  border-top: 1px dotted $colorLight
   line-height: 1.3em
   font-size: 0.9em
 
   .replied
     color: $theme
-    background: white
+    background: $colorBackground
     font-size: 1.2em
 
   .even
-    background: #fff
+    background: $colorBackground
 
   span
     color: $theme
@@ -255,10 +280,10 @@ h5.replied
     display: block
 
     i
-      color: #cd5c5c
+      color: $colorMessages
 
   time
-    color: #999
+    color: $colorLight
     font-size: 0.8em
 
   p
@@ -273,7 +298,7 @@ h5.replied
 
 /* page block styling
 div#page 
-  background: white
+  background: $colorBackground
   margin: 0 auto 0 auto
   width: 780px
   padding: 20px
@@ -284,7 +309,7 @@ div#search
   @include border-container-search
   display: block
   position: absolute
-  background: black
+  background: $colorDarkest
   padding: 10px 10px
   width: 230px
   margin: -50px auto 10px -125px
@@ -300,7 +325,6 @@ div#search
   transition-timing-function: linear
 
   span
-    color: white
     padding: 2em
 
   form
@@ -346,7 +370,7 @@ article
 
   &.hidden
     opacity: 0.6
-    color: red
+    color: $colorMessages
 
   div.header
     padding: 0 0 10px 0
@@ -356,14 +380,14 @@ article
 
     h2
       font-size: 0.9em
-      color: #888
+      color: $colorH2
 
   footer
     margin: 0
     padding: 0 0 0 0
     font-size: 0.8em
     font-style: italic
-    color: #999    
+    color: $colorLight    
     background: none
     height: auto
 
@@ -381,7 +405,7 @@ article
     span.date
       display: block
       margin: 1em 0 0 0
-      border-top: 1px dotted #999
+      border-top: 1px dotted $colorLight
 
       span
         font-weight: bold
@@ -401,7 +425,7 @@ article div#review
   footer span.rating
     line-height: 1em
     padding: 10px
-    border-left: 3px solid #999
+    border-left: 3px solid $colorLight
     width: 180px
 
     span
@@ -444,7 +468,7 @@ article div#review
 /* the actual footer
 footer 
   margin: 40px auto 0 auto
-  background: #222
+  background: $colorFooter
   width: 780px
   padding: 15px 20px 15px 20px
 
@@ -456,7 +480,7 @@ footer
     text-align: right
 
     a
-      color: #444
+      color: $colorDarker
       text-decoration: none
 
 /* footer table bottom
@@ -477,7 +501,7 @@ footer table.bottom
     width: 25%
 
   time
-    color: #777
+    color: $colorDark
 
   strong
     color: $theme
@@ -491,12 +515,12 @@ footer table.bottom
 
     li,
     li a
-      color: #999
+      color: $colorLight
       text-decoration: none
 
 /* markitup editor
 .markItUp 
-  border-color: white
+  border-color: $colorBackground
 
 .markItUpContainer,
 .markItUpEditor,
