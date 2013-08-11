@@ -1,3 +1,11 @@
+// check support transitions
+$.support.transition = (function(){
+    var thisBody = document.body || document.documentElement,
+        thisStyle = thisBody.style,
+        support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
+    return support;
+})();
+
 $(document).ready(function(){
     // global variable
     bodyWidth = $('body').width();
@@ -63,50 +71,61 @@ function loadSearchCss() {
     var searchContainer = $('#search');
 
     if (searchContainer) {
-        $(searchContainer).height($('#page').height()+40);
-        $(searchContainer).css('position', 'fixed');
-        $(searchContainer).css('opacity', 0);
-
+        // first reset
         resetTransition(searchContainer);
 
         // for desktop version
         if (bodyWidth > 800) {
             $(searchContainer).height($('#page').height()+20);
-            $(searchContainer).css('margin', '0 -640px 0 0');
+            $(searchContainer).css('margin', '0 -410px 0 0');
             $(searchContainer).css('top', '86px');
             $(searchContainer).css('right', '50%');
         } else { // reset if needed
             $(searchContainer).height($('#page').height()+40);
-            $(searchContainer).css('margin', '54px -230px 0 0');
+            $(searchContainer).css('margin', '54px 0 0 0');
             $(searchContainer).css('top', '0');
             $(searchContainer).css('right', '0');
         }
+
+        // double check
+        setTimeout(function() {
+            if (bodyWidth > 800) {
+                $(searchContainer).height($('#page').height()+20);
+            } else { // reset if needed
+                $(searchContainer).height($('#page').height()+40);
+            }
+        }, 400);
     }
 }
 
 function search(searchContainer) {
-    if (0 == searchContainer.css('opacity')) {
-        $(searchContainer).transition({
-            x: -230,
-            opacity: 0.9,
-            delay: 0
-        }, function() {
-            $(this).css('position', 'absolute');
-
-            if (bodyWidth > 800) {
-                $(this).height($('#page').height()+20);
-            } else { // reset if needed
-                $(this).height($('#page').height()+40);
-            }
-        });
+    if (true === $.support.transition) {
+        if ($(searchContainer).width() < 100) {
+            $(searchContainer).transition({
+                delay: 0,
+                width: 230
+            }, function() {
+                $(this).find('form').fadeToggle(100);
+                $(this).find('div').fadeToggle(100);
+            });
+        } else {
+            $(searchContainer).find('form').fadeToggle(100);
+            $(searchContainer).find('div').fadeToggle(100);
+            $(searchContainer).transition({
+                delay: 100,
+                width: 1
+            });
+        }
     } else {
-        // from the start
-        $(searchContainer).css('position', 'fixed');
-        $(searchContainer).transition({
-            x: 230,
-            opacity: 0,
-            delay: 0
-        });
+        if ($(searchContainer).width() < 100) {
+            $(searchContainer).width(220);
+            $(searchContainer).find('form').toggle(0);
+            $(searchContainer).find('div').toggle(0);
+        } else {
+            $(searchContainer).width(1);
+            $(searchContainer).find('form').toggle(0);
+            $(searchContainer).find('div').toggle(0);
+        }
     }
 }
 
