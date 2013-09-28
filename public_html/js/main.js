@@ -10,7 +10,7 @@ $(document).ready(function(){
     // global variable
     bodyWidth = $('body').width();
 
-    loadSearch();
+    loadSidebar();
     validateReplyForm();
 });
 
@@ -21,7 +21,7 @@ $(window).resize(function() {
         bodyWidth = $('body').width();
 
         // reset
-        loadSearchCss();
+        loadSidebarCss();
     }
 });
 
@@ -40,14 +40,14 @@ function validateReplyForm(){
     }
 }
 
-function loadSearch(){
-    var searchContainer  = $('#search'),
-        searchButton     = $('#menu-btn-search'),
-        searchInput      = $('#search input');
+function loadSidebar(){
+    var sidebarContainer = $('#sidebar'),
+        searchButton     = $('#menu-btn-sidebar'),
+        searchInput      = $('#sidebar #search input');
 
-    if (searchContainer) {
+    if (sidebarContainer) {
         // apply css props
-        loadSearchCss();
+        loadSidebarCss();
 
         $(searchInput).focus(function() {
             if ('Search...' == $(this).val()) {
@@ -62,69 +62,65 @@ function loadSearch(){
         });
 
         $(searchButton).click(function() {
-            search(searchContainer);
+            sidebar(sidebarContainer);
         });
     }
 }
 
-function loadSearchCss() {
-    var searchContainer = $('#search');
+function loadSidebarCss() {
+    var sidebarContainer = $('#sidebar');
 
-    if (searchContainer) {
+    if (sidebarContainer) {
         // first reset
-        resetTransition(searchContainer);
+        resetTransition(sidebarContainer);
 
         // for desktop version
         if (bodyWidth > 800) {
-            $(searchContainer).height($('#page').height()+20);
-            $(searchContainer).css('margin', '0 -410px 0 0');
-            $(searchContainer).css('top', '86px');
-            $(searchContainer).css('right', '50%');
+            $(sidebarContainer).height($('#page').height()+20);
+            $(sidebarContainer).css('margin', '0 -410px 0 0');
+            $(sidebarContainer).css('top', '86px');
+            $(sidebarContainer).css('right', '50%');
         } else { // reset if needed
-            $(searchContainer).height($('#page').height()+40);
-            $(searchContainer).css('margin', '54px 0 0 0');
-            $(searchContainer).css('top', '0');
-            $(searchContainer).css('right', '0');
+            $(sidebarContainer).height($('#page').height()+40);
+            $(sidebarContainer).css('margin', '54px 0 0 0');
+            $(sidebarContainer).css('top', '0');
+            $(sidebarContainer).css('right', '0');
         }
 
         // double check
         setTimeout(function() {
             if (bodyWidth > 800) {
-                $(searchContainer).height($('#page').height()+20);
+                $(sidebarContainer).height($('#page').height()+20);
             } else { // reset if needed
-                $(searchContainer).height($('#page').height()+40);
+                $(sidebarContainer).height($('#page').height()+40);
             }
         }, 400);
     }
 }
 
-function search(searchContainer) {
+function sidebar(sidebarContainer) {
     if (true === $.support.transition) {
-        if ($(searchContainer).width() < 100) {
-            $(searchContainer).transition({
+        if ($(sidebarContainer).width() < 100) {
+            $(sidebarContainer).transition({
                 delay: 0,
                 width: 230
             }, function() {
-                $(this).find('form').fadeToggle(100);
                 $(this).find('div').fadeToggle(100);
             });
         } else {
-            $(searchContainer).find('form').fadeToggle(100);
-            $(searchContainer).find('div').fadeToggle(100);
-            $(searchContainer).transition({
+            $(sidebarContainer).find('div').fadeToggle(100);
+            $(sidebarContainer).transition({
                 delay: 100,
                 width: 1
             });
         }
     } else {
-        if ($(searchContainer).width() < 100) {
-            $(searchContainer).width(220);
-            $(searchContainer).find('form').toggle(0);
-            $(searchContainer).find('div').toggle(0);
+        if ($(sidebarContainer).width() < 100) {
+            $(sidebarContainer).width(220);
+            $(sidebarContainer).find('div').toggle(0);
         } else {
-            $(searchContainer).width(1);
-            $(searchContainer).find('form').toggle(0);
-            $(searchContainer).find('div').toggle(0);
+            $(sidebarContainer).width(1);
+            $(sidebarContainer).find('div').toggle(0);
         }
     }
 }

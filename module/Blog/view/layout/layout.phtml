@@ -35,11 +35,12 @@
 
         </nav>
 
-        <div id="search">
-            <div>SEARCH</div>
-            <form method="get" action="/blog">
-                <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
-            </form>
+        <div id="sidebar">
+            <div id="search">
+                <form method="get" action="/blog">
+                    <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
+                </form>
+            </div>
         </div>
 
         <div id="page">
