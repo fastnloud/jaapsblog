@@ -7,7 +7,7 @@ google*.html
 
 # Libs #
 ############
-vendor/ZF2/library/*
+vendor/ZF2/*
 public_html/admin/extjs/*
 
 # Compiled source #
