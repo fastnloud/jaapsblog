@@ -8,7 +8,7 @@ class BlogNavigation extends DefaultNavigationFactory
 {
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {
-        $navigation = $config['navigation'][$this->getName()] = array();
+        $navigation = array();
 
         if (null === $this->pages) {
             $pages  = $serviceLocator->get('Page\Model\PageTable')->getPages();
