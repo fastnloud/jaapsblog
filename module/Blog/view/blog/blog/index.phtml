@@ -24,7 +24,7 @@
         		<h2><?php echo $this->escapeHtml($post->subtitle) ?></h2>
         	</div>
         	
-        	<p><?php echo $post->lead ?></p>
+        	<p><?php echo $this->escapeHtml($post->lead) ?></p>
         	
         	<a title="Read article: <?php echo $this->escapeHtml($post->title) ?>" href="<?php echo $href; ?>">Read more...</a>
         	
