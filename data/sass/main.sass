@@ -306,6 +306,24 @@ div#page
   padding: 20px
   @include border-container
 
+  aside
+    float: right
+    width: 300px
+    height: 200px
+    overflow-y: scroll
+    padding: 10px
+    background: $colorLightest
+    border-radius: 10px
+
+    ul
+      padding: 0
+      margin: 0
+      list-style: none
+
+      li
+        a
+          display: block
+
 /* search block
 div#sidebar
   /* @include border-container-search
@@ -545,6 +563,9 @@ footer table.bottom
 
   .login
     display: none!important
+
+  div#page aside
+    display: none
 
   footer table.bottom td time
     display: none

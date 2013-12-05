@@ -10,6 +10,7 @@ use Blog\View\Helper\Amazon;
 use Blog\View\Helper\Date;
 use Blog\View\Helper\Cookies;
 use Blog\View\Helper\Analytics;
+use Blog\View\Helper\LatestReplies;
 use Blog\View\Helper\SocialMedia;
 use Blog\View\Helper\LatestBlogPosts;
 use Blog\View\Helper\Replies;
@@ -44,6 +45,14 @@ class Module
                 },
                 'latestBlogPosts' => function() {
                     return new LatestBlogPosts();
+                },
+                'latestReplies' => function($sm) {
+                    $locator = $sm->getServiceLocator();
+
+                    $helper = new LatestReplies();
+                    $helper->setReplyTable($locator->get('Blog\Model\ReplyTable'));
+
+                    return $helper;
                 },
                 'cookies' => function($sm) {
                     $locator = $sm->getServiceLocator();

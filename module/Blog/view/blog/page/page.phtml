@@ -2,5 +2,11 @@
 <?php $this->headMeta()->appendName('keywords', $page->meta_keywords); ?>
 <?php $this->headMeta()->appendName('description', $page->meta_description); ?>
 
+<?php if('home' == $page->route): ?>
+    <?php echo $this->latestReplies(); ?>
+<?php endif; ?>
+
 <h1><?php echo $this->escapeHtml($page->title); ?></h1>
 <?php echo $page->content; ?>
+
+<div class="clear"></div>

@@ -50,6 +50,18 @@ class ReplyTable extends AbstractTableGateway
         return $row;
     }
 
+    public function getLatestReplies($limit = 10)
+    {
+        $select = $this->getSql()->select();
+        $select->join('blog', 'blog.id=' . $this->getTable(). '.id_blog', array(
+
+        ), $select::JOIN_INNER);
+        $select->order('timestamp ' . $select::ORDER_DESCENDING);
+        $select->limit($limit);
+
+        return $this->selectWith($select);
+    }
+
     public function deleteReply($id)
     {
         $this->delete(array(
