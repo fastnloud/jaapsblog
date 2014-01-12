@@ -25,7 +25,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'Dkim' => 'Dkim\Signer\SignerFactory',
+                'DkimSigner' => 'Dkim\Signer\SignerFactory',
             )
         );
     }
