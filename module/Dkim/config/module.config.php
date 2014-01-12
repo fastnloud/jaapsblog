@@ -5,7 +5,7 @@ return array (
         'params' => array(
             'd'    => 'jaapsblog.nl',
             'h'    => 'date:from:to:subject',
-            's'    => 'dec2013',
+            's'    => 'jan2014',
         )
     )
 );
