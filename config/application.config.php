@@ -3,7 +3,8 @@ return array(
     'modules' => array(
         'Admin',
         'Blog',
-        'Auth'
+        'Auth',
+        'Dkim'
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
