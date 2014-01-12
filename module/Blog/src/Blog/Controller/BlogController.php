@@ -122,6 +122,10 @@ class BlogController extends AbstractActionController
         $mail->addTo($config['email'][0]);
         $mail->setSubject('Notification');
 
+        // sign message with dkim
+        $signer = $this->getServiceLocator()->get('DkimSigner');
+        $signer->signMessage($mail);
+
         // only for development
         if ('development' == getenv('application_env')) {
             $options = new Transport\SmtpOptions();
