@@ -76,7 +76,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'Navigation' => 'Blog\Navigation\BlogNavigationFactory',
+                'Navigation' => 'Blog\Navigation\NavigationFactory',
                 'Blog\Model\BlogTable' =>  function($sm) {
                     return new BlogTable($sm->get('Zend\Db\Adapter\Adapter'));
                 },

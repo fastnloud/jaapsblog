@@ -1,15 +1,16 @@
 <?php
+
 namespace Blog\Navigation;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class BlogNavigationFactory implements FactoryInterface
+class NavigationFactory implements FactoryInterface
 {
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $navigation = new BlogNavigation();
+        $navigation = new Navigation();
         return $navigation->createService($serviceLocator);
     }
 

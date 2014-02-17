@@ -1,10 +1,11 @@
 <?php
+
 namespace Blog\Navigation;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Navigation\Service\DefaultNavigationFactory;
 
-class BlogNavigation extends DefaultNavigationFactory
+class Navigation extends DefaultNavigationFactory
 {
 
     protected function getPages(ServiceLocatorInterface $serviceLocator)
