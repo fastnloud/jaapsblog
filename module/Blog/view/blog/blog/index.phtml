@@ -2,7 +2,7 @@
 <?php $this->headMeta()->appendName('keywords', 'blog, items, jaapsblog, index'); ?>
 <?php $this->headMeta()->appendName('description', 'Blog index.'); ?>
 
-<div id="index">
+<div class="index">
 <?php if ($q): ?>
     <p class="searched">Searched for: <span><?php echo $this->escapeHtml($q); ?></span></p>
 <?php endif;?>
@@ -29,12 +29,16 @@
         	<a title="Read article: <?php echo $this->escapeHtml($post->title) ?>" href="<?php echo $href; ?>">Read more...</a>
         	
         	<footer>
-        		Date added: <time datetime="<?php echo $post->date ?>"><?php echo $this->date($post->date) ?></time>
+                <div>
+                    <span class="date">
+                        Date added: <time datetime="<?php echo $post->date ?>"><?php echo $this->date($post->date) ?></time>
+                    </span>
 
-                <span class="comments">
-                    <img alt="Comments" src="/images/icons/comments.png">
-                        <?php echo $post->comments; ?> response<?php echo (($post->comments > 1 || 0 == $post->comments ) ? 's' : ''); ?>
-                </span>
+                    <span class="comments">
+                        <img alt="Comments" src="/img/icons/comments.png">
+                            <?php echo $post->comments; ?> response<?php echo (($post->comments > 1 || 0 == $post->comments ) ? 's' : ''); ?>
+                    </span>
+                </div>
             </footer>
 
         </article>

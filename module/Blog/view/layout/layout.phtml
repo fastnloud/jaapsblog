@@ -8,22 +8,22 @@
 
         <?php echo $this->headTitle('Jaapsblog.nl')->setSeparator(' - '); ?>
 
+
         <?php echo $this->headMeta()->setCharset('UTF-8')
                                     ->setName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1'); ?>
 
-        <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/main.css?v=' . $this->placeholder('version'))
-                                           ->prependStylesheet($this->basePath() . '/css/normalize.css')
-                                           ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif'); ?>
+
+        <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/style.css?v=' . $this->placeholder('version'))
+                                    ->prependStylesheet($this->basePath() . '/css/main.css')
+                                    ->prependStylesheet($this->basePath() . '/css/normalize.css')
+                                    ->prependStylesheet('http://fonts.googleapis.com/css?family=Open+Sans:400,600'); ?>
+
 
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . $this->placeholder('version'), 'text/javascript')
-                                               ->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                                               ->prependFile('/js/transit.js')
-                                               ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js') ?>
+                                      ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js') ?>
 
-        <?php echo $this->headStyle()->appendStyle('nav ul #menu-btn-search, #search { display:none!important; }', array('conditional' => 'lt IE 9')); ?>
 
-        <?php echo $this->analytics(); ?>
-
+        <?php //echo $this->analytics(); ?>
 
     </head>
     
@@ -35,55 +35,73 @@
 
         </nav>
 
-        <div id="sidebar">
-            <div id="search">
-                <form method="get" action="/blog">
-                    <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
-                </form>
-            </div>
+        <div class="search">
+            <form method="get" action="/blog">
+                <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
+            </form>
         </div>
 
-        <div id="page">
+        <nav class="breadcrumbs">
+            <div><?php echo (!$this->placeholder('isHomepage')->toString() ? '<a href="/">Home</a> > ' : '') . $this->navigation('navigation')->breadcrumbs()->setMinDepth(0); ?></div>
+        </nav>
+
+        <div class="page">
 <!-- Content start -->
 <?php echo trim($this->content); ?>
 
 <!-- Content end -->
         </div>
+
         <?php echo $this->cookies(); ?>
 
-        <footer>
-            <table class="bottom">
-                <tr>
-                    <td class="col1">
-                        <strong>Resources</strong>
-                        <ul>
-                            <li><a href="http://framework.zend.com/" target="_blank" title="Zend Framework 2">Zend Framework 2</a></li>
-                            <li><a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank" title="famfamfam icons">famfamfam icons</a></li>
-                            <li><a href="http://jquery.com/" target="_blank" title="jQuery">jQuery</a></li>
-                            <li><a href="http://markitup.jaysalvat.com/home/" target="_blank" title="markItUp!">markItUp!</a></li>
-                            <li><a href="http://www.sencha.com/products/extjs" target="_blank" title="Ext JS">Ext JS 4.2</a></li>
-                        </ul>
-                    </td>
-                    <td class="col2">
-                        <strong>Latest blog posts</strong>
-                        <?php echo $this->latestBlogPosts(); ?>
-                    </td>
-                    <td class="col3">
-                        <strong>Tools</strong>
-                        <ul>
-                            <li><a href="http://www.jetbrains.com/phpstorm/" target="_blank" title="PhpStorm">PhpStorm 6</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="login">
-                        <a href="/admin"
-                           onclick="return !popup(this.href,'admin', 980, 620)"
-                           target="_blank">Login</a>
-                    </td>
-                </tr>
-            </table>
-        </footer>
+        <div class="footer">
+
+            <footer>
+
+                <div>
+                    <strong>Resources</strong>
+                    <ul>
+                        <li>
+                            <a href="http://framework.zend.com/" target="_blank" title="Zend Framework 2">Zend Framework 2</a>
+                        </li>
+                        <li>
+                            <a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank" title="famfamfam icons">famfamfam icons</a>
+                        </li>
+                        <li>
+                            <a href="http://jquery.com/" target="_blank" title="jQuery">jQuery</a>
+                        </li>
+                        <li>
+                            <a href="http://markitup.jaysalvat.com/home/" target="_blank" title="markItUp!">markItUp!</a>
+                        </li>
+                        <li>
+                            <a href="http://www.sencha.com/products/extjs" target="_blank" title="Ext JS">Ext JS 4.2</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <strong>Latest blog posts</strong>
+                    <?php echo $this->blogPosts(); ?>
+                </div>
+
+                <div>
+                    <strong>Tools</strong>
+                    <ul>
+                        <li>
+                            <a href="http://www.jetbrains.com/phpstorm/" target="_blank" title="PhpStorm">PhpStorm 7</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <span>
+                    <a href="/admin" onclick="return !popup(this.href,'admin', 980, 620)" target="_blank">Login</a>
+                </span>
+
+            </footer>
+
+        </div>
+
+        <?php echo $this->socialMedia(array('google' => array('plus'))); ?>
 
     </body>
 </html>

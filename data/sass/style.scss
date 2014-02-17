@@ -1,0 +1,305 @@
+/* theme color */
+$theme: #ff1769;
+
+/* main font color */
+$fontColor: #2f353e;
+$fontColorNav: #FFF;
+
+/* background */
+$colorBackground: #FFF;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans';
+}
+
+nav > ul,
+nav.breadcrumbs > div,
+div.search > form,
+div.page,
+div.footer {
+  padding: 0;
+  margin: 0 auto;
+  width: 50%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.5em;
+  line-height: 1.2em;
+  color: $theme;
+}
+
+h1 {
+  color: $fontColor;
+  font-size: 2em;
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+h5.replied {
+  color: #000;
+  font-size: 1em;
+  background: #F1F1F1;
+  padding: 10px;
+  margin: 0;
+}
+
+pre {
+  background: #eeffcc;
+  padding: 5px;
+}
+
+a {
+  color: $theme;
+}
+
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+nav {
+  background: #1a1a1a;
+  border-bottom: 5px solid #4a4a4a;
+
+  &.breadcrumbs {
+    padding: 10px 0;
+    background: #F1F1F1;
+    border: none;
+
+    div {
+    }
+  }
+
+  ul {
+    li {
+      display: inline;
+
+      &.active {
+        a {
+          color: $theme;
+        }
+      }
+
+      a {
+        display: inline-block;
+        color: $fontColorNav;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1.2em;
+        padding: 15px 20px 15px 0;
+      }
+    }
+  }
+}
+
+div.search {
+  background: $theme;
+  padding: 10px 0;
+
+  form {
+    input {
+      margin: 0 10px 0 0;
+      border: 0;
+      padding: 2px;
+    }
+  }
+}
+
+div.page {
+  aside {
+    display: none;
+  }
+
+  article {
+    @extend .clearfix;
+    color: $fontColor;
+    line-height: 1.6em;
+    padding: 10px;
+    margin: 0 0 20px 0;
+
+    .header {
+      h1,
+      h2 {
+        font-size: 1.6em;
+        line-height: 1.4em;
+        margin: 0;
+      }
+      h2 {
+        font-size: 1.2em;
+      }
+    }
+
+    footer {
+      @extend .clearfix;
+      font-size: 0.8em;
+
+      div {
+        float: right;
+        background: #F1F1F1;
+        padding: 10px;
+      }
+
+      span.comments img {
+        margin: 0 2px 0 5px;
+      }
+    }
+
+    article {
+      @extend .clearfix;
+      border: 1px solid #F1F1F1;
+      margin: 5px 0;
+
+      &.no-replies {
+        border: none;
+      }
+
+      span {
+        font-weight: bold;
+      }
+
+      i {
+        color: $theme;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .reply {
+    padding: 0 20px 20px 20px;
+
+    h6 {
+      margin: 0em;
+      color: #000;
+    }
+
+    form {
+      margin: 1em 0;
+
+      .subject {
+        display: none;
+      }
+
+      label,
+      span {
+        display: block;
+      }
+
+      input,
+      textarea {
+        background: #F1F1F1;
+        border: 1px solid #000000;
+        margin: 5px 0;
+        padding: 5px;
+      }
+
+      input[type=text] {
+        width: 30%;
+      }
+
+      textarea {
+        width: 60%;
+      }
+
+      input[type=submit] {
+        display: block;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.footer {
+  @extend .clearfix;
+  footer {
+    float: left;
+    background: #F1F1F1;
+    width: 100%;
+    border-top: 2px solid $fontColor;
+
+    div,
+    span {
+      float: left;
+      width: 33%;
+
+      ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 0 10px 10px 10px;
+        list-style-type: none;
+      }
+
+      strong {
+        display: block;
+        padding: 10px;
+        font-size: 1em;
+        color: $fontColor;
+      }
+
+      a {
+        font-size: 0.8em;
+        line-height: 2em;
+        color: $fontColor;
+        text-decoration: none;
+      }
+    }
+
+    span {
+      float: left;
+      display: block;
+      text-align: right;
+      width: 100%;
+
+      a {
+        display: block;
+        padding: 0 10px 10px 10px;
+      }
+    }
+  }
+}
+
+.social-media {
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+  right: 0;
+  background: #F1F1F1;
+  padding: 10px;
+  height: 24px;
+}
+
+@media only screen and (max-width : 800px) {
+  nav > ul,
+  nav.breadcrumbs > div,
+  div.search > form,
+  div.page,
+  div.footer {
+    width: 95%;
+  }
+
+  .social-media {
+    display: none;
+  }
+
+  .footer footer div {
+    width: 100%;
+  }
+}

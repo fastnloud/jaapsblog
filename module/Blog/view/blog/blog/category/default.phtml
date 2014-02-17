@@ -7,10 +7,12 @@
 
 
 <footer>
-    <span class="date">
-        Date added: <time datetime="<?php echo $blog->date ?>"><?php echo $this->date($blog->date) ?></time>
-        <?php if($blog->author): ?>
-            ~ by <span class="author"><a rel="author" href="/about.html"><?php echo $this->escapeHtml($blog->author); ?></a></span>
-        <?php endif; ?>
-    </span>
+    <div>
+        <span class="date">
+            Date added: <time datetime="<?php echo $blog->date ?>"><?php echo $this->date($blog->date) ?></time>
+            <?php if($blog->author): ?>
+                by <span class="author"><a rel="author" href="/about.html"><?php echo $this->escapeHtml($blog->author); ?></a></span>
+            <?php endif; ?>
+        </span>
+    </div>
 </footer>
