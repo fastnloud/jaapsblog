@@ -5,14 +5,11 @@ namespace Blog;
 use Blog\Model\BlogTable;
 use Blog\Model\ReplyTable;
 use Blog\Model\PageTable;
-use Blog\Service\Amazon as AmazonService;
-use Blog\View\Helper\Amazon;
 use Blog\View\Helper\Date;
 use Blog\View\Helper\Cookies;
 use Blog\View\Helper\Analytics;
-use Blog\View\Helper\LatestReplies;
 use Blog\View\Helper\SocialMedia;
-use Blog\View\Helper\LatestBlogPosts;
+use Blog\View\Helper\BlogPosts;
 use Blog\View\Helper\Replies;
 
 class Module
@@ -43,34 +40,33 @@ class Module
                 'date' => function() {
                     return new Date();
                 },
-                'latestBlogPosts' => function() {
-                    return new LatestBlogPosts();
-                },
-                'latestReplies' => function($sm) {
-                    $locator = $sm->getServiceLocator();
-
-                    $helper = new LatestReplies();
-                    $helper->setReplyTable($locator->get('Blog\Model\ReplyTable'));
-
-                    return $helper;
+                'blogPosts' => function() {
+                    return new BlogPosts();
                 },
                 'cookies' => function($sm) {
-                    $locator = $sm->getServiceLocator();
-                    return new Cookies($locator->get('Request'), $locator->get('Response'));
+                    $cookies = new Cookies();
+                    $cookies->setRequest($sm->getServiceLocator()->get('Request'));
+                    $cookies->setResponse($sm->getServiceLocator()->get('Response'));
+
+                    return $cookies;
                 },
                 'analytics' => function($sm) {
-                    $locator = $sm->getServiceLocator();
-                    return new Analytics($locator->get('Request'));
+                    $analytics = new Analytics();
+                    $analytics->setRequest($sm->getServiceLocator()->get('Request'));
+
+                    return $analytics;
                 },
                 'socialMedia' => function($sm) {
-                    $locator = $sm->getServiceLocator();
-                    return new SocialMedia($locator->get('Request'));
+                    $socialMedia = new SocialMedia();
+                    $socialMedia->setRequest($sm->getServiceLocator()->get('Request'));
+
+                    return $socialMedia;
                 },
                 'replies' => function($sm) {
-                    return new Replies($sm);
-                },
-                'amazon' => function($sm) {
-                    return new Amazon($sm);
+                    $replies = new Replies();
+                    $replies->setReplyTable($sm->getServiceLocator()->get('Blog\Model\ReplyTable'));
+
+                    return $replies;
                 }
             ),
         );
@@ -82,26 +78,14 @@ class Module
             'factories' => array(
                 'Navigation' => 'Blog\Navigation\BlogNavigationFactory',
                 'Blog\Model\BlogTable' =>  function($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new BlogTable($dbAdapter);
-                    
-                    return $table;
+                    return new BlogTable($sm->get('Zend\Db\Adapter\Adapter'));
                 },
                 'Blog\Model\ReplyTable' =>  function($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new ReplyTable($dbAdapter);
-
-                    return $table;
+                    return new ReplyTable($sm->get('Zend\Db\Adapter\Adapter'));
                 },
                 'Page\Model\PageTable' =>  function($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new PageTable($dbAdapter);
-                
-                    return $table;
+                    return new PageTable($sm->get('Zend\Db\Adapter\Adapter'));
                 }
-            ),
-            'services' => array(
-                'Amazon' => new AmazonService()
             )
         );
     }

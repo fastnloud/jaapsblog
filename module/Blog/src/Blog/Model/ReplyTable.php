@@ -8,6 +8,7 @@ use Zend\Db\TableGateway\AbstractTableGateway;
 
 class ReplyTable extends AbstractTableGateway
 {
+
     protected $table = 'blog_reply';
 
     public function __construct(Adapter $adapter)
@@ -96,4 +97,5 @@ class ReplyTable extends AbstractTableGateway
             );
         }
     }
+
 }

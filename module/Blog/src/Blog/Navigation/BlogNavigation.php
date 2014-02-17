@@ -6,6 +6,7 @@ use Zend\Navigation\Service\DefaultNavigationFactory;
 
 class BlogNavigation extends DefaultNavigationFactory
 {
+
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {
         $navigation = array();
@@ -92,4 +93,5 @@ class BlogNavigation extends DefaultNavigationFactory
 
         return $urlString;
     }
+
 }

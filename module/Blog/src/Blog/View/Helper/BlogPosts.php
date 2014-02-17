@@ -4,9 +4,7 @@ namespace Blog\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 
-use Blog\Model\Blog;
-
-class LatestBlogPosts extends AbstractHelper
+class BlogPosts extends AbstractHelper
 {
 
     /**
@@ -29,7 +27,8 @@ class LatestBlogPosts extends AbstractHelper
                 $datetime = $this->view->escapeHtml($post->date);
                 $date     = $this->view->date($post->date, 'd M');
                 $href     = $post->getHref();
-                // Add to list.
+
+                // add to list
                 $list[] = "<li><a href=\"{$href}\" title=\"Read article: {$title}\">"
                         . "<time datetime=\"{$datetime}\">{$date} - </time>{$title}"
                         . "</a></li>";
@@ -41,4 +40,5 @@ class LatestBlogPosts extends AbstractHelper
 
         return false;
     }
+
 }

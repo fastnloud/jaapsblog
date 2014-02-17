@@ -8,17 +8,8 @@ use Blog\Model\Reply;
 
 class Replies extends AbstractHelper
 {
-    protected $replyTable;
 
-    /**
-     * Fetch reply table.
-     *
-     * @param \Zend\ServiceManager\ServiceManager $sm
-     */
-    public function __construct(\Zend\ServiceManager\ServiceManager $sm)
-    {
-        $this->replyTable = $sm->getServiceLocator()->get('Blog\Model\ReplyTable');
-    }
+    protected $replyTable;
 
     /**
      * Fetch replies of blog post if any.
@@ -52,7 +43,7 @@ class Replies extends AbstractHelper
                     $name  .= ' <i>(admin)</i>';
                 }
 
-                // Add to list.
+                // add to list
                 $articles[] = "<article class=\"replies $class\">" . PHP_EOL
                             . "    <span>{$name} <time datetime=\"{$datetime}\">{$date}</time></span>" . PHP_EOL
                             . "    <p>{$comment}</p>" . PHP_EOL
@@ -62,6 +53,23 @@ class Replies extends AbstractHelper
             return implode(PHP_EOL, $articles);
         }
 
-        return "<article class=\"replies\">No replies yet.</article>";
+        return "<article class=\"replies no-replies\"><p>No replies yet.</p></article>";
     }
+
+    /**
+     * @param mixed $replyTable
+     */
+    public function setReplyTable($replyTable)
+    {
+        $this->replyTable = $replyTable;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getReplyTable()
+    {
+        return $this->replyTable;
+    }
+
 }

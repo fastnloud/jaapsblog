@@ -6,6 +6,7 @@ use Zend\View\Helper\AbstractHelper;
  
 class Date extends AbstractHelper
 {
+
     protected $defaultFormat = 'F j, Y';
     
     /**
@@ -29,4 +30,5 @@ class Date extends AbstractHelper
         
         return date($this->defaultFormat);
     }
+
 }

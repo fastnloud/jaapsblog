@@ -7,6 +7,7 @@ use Zend\View\Model\ViewModel;
 
 class PageController extends AbstractActionController
 {
+
     protected $pageTable;
 
     public function pageAction()
@@ -18,6 +19,11 @@ class PageController extends AbstractActionController
         if (!$page) { // throw error if not found
             $this->getResponse()->setStatusCode(404);
             return false;
+        }
+
+        if ('home' == $page->url_string) {
+            $this->getServiceLocator()->get('viewhelpermanager')
+                 ->get('placeholder')->createContainer('isHomepage')->set(true);
         }
 
         return new ViewModel(array(
@@ -34,4 +40,5 @@ class PageController extends AbstractActionController
     
         return $this->pageTable;
     }
+
 }

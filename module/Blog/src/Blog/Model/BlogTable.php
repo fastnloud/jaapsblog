@@ -10,6 +10,7 @@ use Zend\Db\Sql\Expression;
 
 class BlogTable extends AbstractTableGateway
 {
+
     protected $table = 'blog';
     
     public function __construct(Adapter $adapter)
@@ -132,4 +133,5 @@ class BlogTable extends AbstractTableGateway
             );
         }
     }
+
 }

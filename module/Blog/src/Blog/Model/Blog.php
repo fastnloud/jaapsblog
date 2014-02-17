@@ -9,6 +9,7 @@ use Zend\InputFilter\InputFilterInterface;
 
 class Blog implements InputFilterAwareInterface
 {
+
     public $id;
     public $title;
     public $subtitle;
@@ -148,4 +149,5 @@ class Blog implements InputFilterAwareInterface
     
         return $this->inputFilter;
     }
+
 }

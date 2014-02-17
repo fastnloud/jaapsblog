@@ -13,11 +13,6 @@ class Analytics extends AbstractHelper
      */
     protected $request;
 
-    public function __construct(Request $request)
-    {
-        $this->request  = $request;
-    }
-
     /**
      * Print Google Analytics code.
      *
@@ -42,6 +37,22 @@ JS;
         }
 
         return false;
+    }
+
+    /**
+     * @param \Zend\Http\Request $request
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return \Zend\Http\Request
+     */
+    protected function getRequest()
+    {
+        return $this->request;
     }
 
 }

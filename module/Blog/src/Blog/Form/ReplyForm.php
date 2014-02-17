@@ -6,10 +6,12 @@ use Zend\Form\Form;
 
 class ReplyForm extends Form
 {
+
     public function __construct($name = null)
     {
 
         parent::__construct('reply-form');
+
         $this->setAttribute('method', 'post');
         $this->setAttribute('action', '#reply');
 
@@ -35,6 +37,9 @@ class ReplyForm extends Form
             'name'     => 'comment',
             'attributes' => array(
                 'type' => 'textarea'
+            ),
+            'options' => array(
+                'label' => 'Comment',
             )
         ));
 
@@ -47,4 +52,5 @@ class ReplyForm extends Form
             ),
         ));
     }
+
 }

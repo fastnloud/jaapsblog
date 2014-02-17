@@ -6,6 +6,7 @@ use Zend\View\Helper\AbstractHelper;
  
 class UrlString extends AbstractHelper
 {
+
     /**
      * Convert string to URL string. Used to generate
      * friendly URL's.
@@ -28,4 +29,5 @@ class UrlString extends AbstractHelper
         // return without suffix and strip if needed
         return (preg_match('/.html$/i', $urlString) ? substr($urlString,0,-5) : $urlString);
     }
+
 }

@@ -9,6 +9,7 @@ use Zend\Db\Sql\Predicate;
 
 class PageTable extends AbstractTableGateway
 {
+
     protected $table = 'page';
     
     public function __construct(Adapter $adapter)
@@ -132,4 +133,5 @@ class PageTable extends AbstractTableGateway
             );
         }
     }
+
 }

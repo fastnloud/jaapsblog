@@ -21,16 +21,6 @@ class Cookies extends AbstractHelper
     protected $response;
 
     /**
-     * @param Request $request
-     * @param Response $response
-     */
-    public function __construct(Request $request, Response $response)
-    {
-        $this->request  = $request;
-        $this->response = $response;
-    }
-
-    /**
      * Stupid Cookie check because we have to.
      *
      * @return string
@@ -102,6 +92,38 @@ class Cookies extends AbstractHelper
         $cookie->setDomain(preg_replace('/^[a-z]{0,3}\./iU', '', $this->request->getUri()->getHost()));
 
         $this->response->getHeaders()->addHeader($cookie);
+    }
+
+    /**
+     * @param \Zend\Http\Request $request
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return \Zend\Http\Request
+     */
+    protected function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @param \Zend\Http\Response $response
+     */
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+    }
+
+    /**
+     * @return \Zend\Http\Response
+     */
+    protected function getResponse()
+    {
+        return $this->response;
     }
 
 }

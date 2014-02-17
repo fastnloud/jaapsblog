@@ -7,6 +7,7 @@ use Zend\View\Model\ViewModel;
 
 class XmlController extends AbstractActionController
 {
+
     public function sitemapAction()
     {
         $this->response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
@@ -16,4 +17,5 @@ class XmlController extends AbstractActionController
 
         return $viewModel;
     }
+
 }

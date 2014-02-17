@@ -13,11 +13,6 @@ class SocialMedia extends AbstractHelper
      */
     protected $request;
 
-    public function __construct(Request $request)
-    {
-        $this->request  = $request;
-    }
-
     /**
      * Available providers with social media
      * buttons.
@@ -46,7 +41,7 @@ class SocialMedia extends AbstractHelper
             }
         }
         if ($this->request->getCookie() && $this->request->getCookie()->offsetExists('COOKIES')) {
-            return '<div id="socialmedia">'.implode($buttons, PHP_EOL).'</div>';
+            return '<div class="social-media">' . implode($buttons, PHP_EOL) . '</div>';
         }
     }
     
@@ -87,5 +82,21 @@ JS;
 
         return '<div class="g-plusone"></div>'.$this->view->inlineScript()->setScript($script);
     }
-    
+
+    /**
+     * @param \Zend\Http\Request $request
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return \Zend\Http\Request
+     */
+    protected function getRequest()
+    {
+        return $this->request;
+    }
+
 }

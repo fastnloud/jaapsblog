@@ -9,6 +9,7 @@ use Zend\InputFilter\InputFilterInterface;
 
 class Page implements InputFilterAwareInterface
 {
+
     public $id;
     public $title;
     public $label;
@@ -111,4 +112,5 @@ class Page implements InputFilterAwareInterface
     
         return $this->inputFilter;
     }
+    
 }
