@@ -18,6 +18,14 @@ return array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
     ),
+    'mail' => array(
+        'from' => 'noreply@jaapsblog.nl',
+        'transport' => array(
+            'options' => array(
+                'host' => 'localhost'
+            )
+        )
+    ),
     'service_manager' => array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter'
