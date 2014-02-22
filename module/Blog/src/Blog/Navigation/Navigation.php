@@ -60,13 +60,6 @@ class Navigation extends DefaultNavigationFactory
                         }
                     }
                 }
-
-                $navigation[] = array(
-                    'id'    => 'btn-sidebar',
-                    'label' => '',
-                    'title' => 'Search',
-                    'uri'   => ''
-                );
             }
 
             $mvcEvent = $serviceLocator->get('Application')
