@@ -22,39 +22,34 @@ class BlogTable extends AbstractTableGateway
     
         $this->initialize();
     }
-    
-    public function getIndex($q = null, $c = null, $l = null)
+
+    /**
+     * Fetch multiple Blog items.
+     *
+     * @param null $query
+     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function getIndex($query = null)
     {
         $select = $this->getSql()->select();
         $select->order('date desc');
         
-        // Filter if a search query string has been given.
-        if ($q) {
-            $q = "%$q%"; // Search param.
+        // filter if a search query string has been given
+        if ($query) {
             $select->where(array(
                 new Predicate\PredicateSet(
                     array(
-                        new Predicate\Like('title', $q),
-                        new Predicate\Like('subtitle', $q),
-                        new Predicate\Like('lead', $q),
-                        new Predicate\Like('content', $q),
+                        new Predicate\Like('title', "%$query%"),
+                        new Predicate\Like('subtitle', "%$query%"),
+                        new Predicate\Like('lead', "%$query%"),
+                        new Predicate\Like('content', "%$query%"),
                     ),
                     Predicate\PredicateSet::COMBINED_BY_OR
                 )
             ));
         }
 
-        // Filter on category.
-        if ($c) {
-            $select->where(array('category = ?' => $c));
-        }
-
-        // Set limit.
-        if ($l) {
-            $select->limit($l);
-        }
-
-        // Show all if authenticated.
+        // show all when authenticated
         if (true !== AUTHENTICATED) {
             $select = $select->where(array('status = ?' => 'online'))
                     ->where('date <= CURDATE()');
@@ -63,15 +58,20 @@ class BlogTable extends AbstractTableGateway
         // fetch comments
         $select->join('blog_reply', 'blog_reply.id_blog=blog.id', array(
             'comments' => new Expression('count(blog_reply.id)'),
-        ), 'left');
+        ), $select::JOIN_LEFT);
 
-        // group by id
         $select->group('id');
 
         return $this->selectWith($select);
     }
-    
-    public function getBlogItem($id)
+
+    /**
+     * Fetch a single Blog item.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getItem($id)
     {
         $id = (int) $id;
 
@@ -85,16 +85,10 @@ class BlogTable extends AbstractTableGateway
                     ->where('date <= CURDATE()');
         }
 
-        $row = $this->selectWith($select)->current();
-
-        if (!$row) {
-            return false;
-        }
-
-        return $row;
+        return $this->selectWith($select)->current();
     }
     
-    public function deleteBlogItem($id)
+    public function deleteItem($id)
     {
         $id = (int) $id;
         $this->delete(array(
@@ -102,7 +96,7 @@ class BlogTable extends AbstractTableGateway
         ));
     }
     
-    public function save(Blog $blog)
+    public function saveItem(Blog $blog)
     {
         $data = array(
             'title'             => $blog->title,
