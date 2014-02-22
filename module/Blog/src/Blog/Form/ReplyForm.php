@@ -9,46 +9,42 @@ class ReplyForm extends Form
 
     public function __construct($name = null)
     {
-
         parent::__construct('reply-form');
 
         $this->setAttribute('method', 'post');
         $this->setAttribute('action', '#reply');
 
         $this->add(array(
-            'name' => 'subject',
-            'attributes' => array(
-                'type'  => 'text',
-                'class' => 'subject'
+            'type' => 'Zend\Form\Element\Csrf',
+            'name' => 'csrf',
+            'options' => array(
+                'csrf_options' => array(
+                    'timeout' => 600
+                )
             )
         ));
 
         $this->add(array(
-            'name'     => 'name',
-            'attributes' => array(
-                'type'  => 'text',
-            ),
+            'type' => 'Zend\Form\Element\Text',
+            'name' => 'name',
             'options' => array(
                 'label' => 'Name',
             ),
         ));
 
         $this->add(array(
-            'name'     => 'comment',
-            'attributes' => array(
-                'type' => 'textarea'
-            ),
+            'type' => 'Zend\Form\Element\Textarea',
+            'name' => 'comment',
             'options' => array(
                 'label' => 'Comment',
             )
         ));
 
         $this->add(array(
+            'type' => 'Zend\Form\Element\Submit',
             'name' => 'submit',
             'attributes' => array(
-                'type'  => 'submit',
                 'value' => 'Reply',
-                'id'    => 'submitbutton',
             ),
         ));
     }

@@ -23,7 +23,7 @@
     <?php
     $form->prepare();
     echo $this->form()->openTag($form);
-    echo $this->formRow($form->get('subject'));
+    echo $this->formRow($form->get('csrf'));
     echo $this->formRow($form->get('name'));
     echo $this->formRow($form->get('comment'));
     echo $this->formRow($form->get('submit'));
