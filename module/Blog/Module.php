@@ -2,6 +2,7 @@
 
 namespace Blog;
 
+use Blog\Controller\BlogController;
 use Blog\Model\BlogTable;
 use Blog\Model\ReplyTable;
 use Blog\Model\PageTable;
@@ -14,6 +15,7 @@ use Blog\View\Helper\Replies;
 
 class Module
 {
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -72,19 +74,36 @@ class Module
         );
     }
 
+    public function getControllerConfig()
+    {
+        return array(
+            'factories' => array(
+                'Blog\Controller\Blog' => function($sm) {
+                    $controller = new BlogController();
+                    $controller->setBlogService($sm->getServiceLocator()->get('BlogService'));
+
+                    return $controller;
+                }
+            )
+        );
+    }
+
     public function getServiceConfig()
     {
         return array(
             'factories' => array(
-                'Navigation' => 'Blog\Navigation\NavigationFactory',
-                'BlogService' => 'Blog\Service\BlogFactory',
-                'Blog\Model\BlogTable' =>  function($sm) {
+                'Navigation'    => 'Blog\Navigation\NavigationFactory',
+                'BlogService'   => 'Blog\Service\BlogFactory',
+                'ReplyForm'     => 'Blog\Form\ReplyFormFactory',
+
+                // db tables
+                'BlogTable' =>  function($sm) {
                     return new BlogTable($sm->get('Zend\Db\Adapter\Adapter'));
                 },
-                'Blog\Model\ReplyTable' =>  function($sm) {
+                'ReplyTable' => function($sm) {
                     return new ReplyTable($sm->get('Zend\Db\Adapter\Adapter'));
                 },
-                'Page\Model\PageTable' =>  function($sm) {
+                'PageTable' => function($sm) {
                     return new PageTable($sm->get('Zend\Db\Adapter\Adapter'));
                 }
             )
