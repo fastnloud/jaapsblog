@@ -55,6 +55,7 @@ class Module
                 },
                 'analytics' => function($sm) {
                     $analytics = new Analytics();
+                    $analytics->setConfig($sm->getServiceLocator()->get('Config'));
                     $analytics->setRequest($sm->getServiceLocator()->get('Request'));
 
                     return $analytics;

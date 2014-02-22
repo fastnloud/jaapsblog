@@ -29,6 +29,11 @@ return array(
     'reply_form' => array(
         'send_notification_to' => ''
     ),
+    'google' => array(
+        'analytics' => array(
+            'account' => 'UA-35946656-1'
+        )
+    ),
     'service_manager' => array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter'
