@@ -43,7 +43,11 @@ class Cookies extends AbstractHelper
             $uri = $this->getRequest()->getUri();
 
             // redirect
-            $this->getResponse()->getHeaders()->addHeaderLine('Location', $uri->getScheme() . '://' . $uri->getHost() . $uri->getPath());
+            $response = $this->getResponse();
+            $response->getHeaders()->addHeaderLine('Location', $uri->getScheme() . '://' . $uri->getHost() . $uri->getPath());
+            $response->setStatusCode(302);
+            $response->sendHeaders();
+            exit;
         }
         // render only if user has not yet agreed to the use of cookies
         elseif ((!$this->getRequest()->getCookie() || !$this->getRequest()->getCookie()->offsetExists('COOKIES')) && !preg_match('/\/cookies\.html$/i', $this->getRequest()->getUri()->getPath())) {
