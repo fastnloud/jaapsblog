@@ -83,7 +83,7 @@ return array (
     ),
     'controllers' => array(
         'invokables' => array(
-            'Blog\Controller\Xml'  => 'Blog\Controller\XmlController'
+            'Blog\Controller\Xml' => 'Blog\Controller\XmlController'
         ),
     ),
     'view_manager' => array(
