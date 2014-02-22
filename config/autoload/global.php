@@ -26,6 +26,9 @@ return array(
             )
         )
     ),
+    'reply_form' => array(
+        'send_notification_to' => ''
+    ),
     'service_manager' => array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter'
