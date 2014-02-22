@@ -40,7 +40,7 @@ class SocialMedia extends AbstractHelper
                 $buttons[] = $this->create($provider, $methods);
             }
         }
-        if ($this->request->getCookie() && $this->request->getCookie()->offsetExists('COOKIES')) {
+        if ($this->getRequest()->getCookie() && $this->getRequest()->getCookie()->offsetExists('COOKIES')) {
             return '<div class="social-media">' . implode($buttons, PHP_EOL) . '</div>';
         }
     }
@@ -80,7 +80,7 @@ class SocialMedia extends AbstractHelper
   })();
 JS;
 
-        return '<div class="g-plusone"></div>'.$this->view->inlineScript()->setScript($script);
+        return '<div class="g-plusone"></div>'.$this->getView()->inlineScript()->setScript($script);
     }
 
     /**

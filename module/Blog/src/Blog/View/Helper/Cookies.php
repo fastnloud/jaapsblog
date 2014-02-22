@@ -28,25 +28,25 @@ class Cookies extends AbstractHelper
     public function __invoke()
     {
         // this bit will remove the already set cookies
-        if ($this->request->getCookie() && !$this->request->getCookie()->offsetExists('COOKIES')) {
-            foreach ($this->request->getCookie() as $name => $value) {
+        if ($this->getRequest()->getCookie() && !$this->getRequest()->getCookie()->offsetExists('COOKIES')) {
+            foreach ($this->getRequest()->getCookie() as $name => $value) {
                 $this->unsetCookie($name);
             }
         }
 
         // cookies allowed
-        if ($this->request->getQuery('cookies')) {
+        if ($this->getRequest()->getQuery('cookies')) {
             // set cookie
             $this->setCookie(true);
 
             // fetch uri
-            $uri = $this->request->getUri();
+            $uri = $this->getRequest()->getUri();
 
             // redirect
-            $this->response->getHeaders()->addHeaderLine('Location', $uri->getScheme() . '://' . $uri->getHost() . $uri->getPath());
+            $this->getResponse()->getHeaders()->addHeaderLine('Location', $uri->getScheme() . '://' . $uri->getHost() . $uri->getPath());
         }
         // render only if user has not yet agreed to the use of cookies
-        elseif ((!$this->request->getCookie() || !$this->request->getCookie()->offsetExists('COOKIES')) && !preg_match('/\/cookies\.html$/i', $this->request->getUri()->getPath())) {
+        elseif ((!$this->getRequest()->getCookie() || !$this->getRequest()->getCookie()->offsetExists('COOKIES')) && !preg_match('/\/cookies\.html$/i', $this->getRequest()->getUri()->getPath())) {
             return '<div id="cookies-overlay"></div>' . PHP_EOL
                  . '    <div id="cookies">' . PHP_EOL
                  . '        <h1>Cookies in use</h1>' . PHP_EOL
@@ -71,9 +71,9 @@ class Cookies extends AbstractHelper
         $cookie->setValue($value);
         $cookie->setPath('/');
         $cookie->setExpires(time()+60*60*24*365); // 1 year
-        $cookie->setDomain(preg_replace('/^[a-z]{0,3}\./iU', '', $this->request->getUri()->getHost()));
+        $cookie->setDomain(preg_replace('/^[a-z]{0,3}\./iU', '', $this->getRequest()->getUri()->getHost()));
 
-        $this->response->getHeaders()->addHeader($cookie);
+        $this->getResponse()->getHeaders()->addHeader($cookie);
     }
 
     /**
@@ -89,9 +89,9 @@ class Cookies extends AbstractHelper
         $cookie->setName($name);
         $cookie->setPath('/');
         $cookie->setExpires(time()-9999);
-        $cookie->setDomain(preg_replace('/^[a-z]{0,3}\./iU', '', $this->request->getUri()->getHost()));
+        $cookie->setDomain(preg_replace('/^[a-z]{0,3}\./iU', '', $this->getRequest()->getUri()->getHost()));
 
-        $this->response->getHeaders()->addHeader($cookie);
+        $this->getResponse()->getHeaders()->addHeader($cookie);
     }
 
     /**

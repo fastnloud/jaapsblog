@@ -15,7 +15,7 @@ class BlogPosts extends AbstractHelper
      */
     public function __invoke($show = 5)
     {
-        $blogPosts = $this->view->navigation('navigation')->findAllBy('route', 'blog_post');
+        $blogPosts = $this->getView()->navigation('navigation')->findAllBy('route', 'blog_post');
 
         if ($blogPosts) {
             foreach ($blogPosts as $key => $post) {
@@ -23,9 +23,9 @@ class BlogPosts extends AbstractHelper
                     break;
                 }
 
-                $title    = $this->view->escapeHtml($post->label);
-                $datetime = $this->view->escapeHtml($post->date);
-                $date     = $this->view->date($post->date, 'd M');
+                $title    = $this->getView()->escapeHtml($post->label);
+                $datetime = $this->getView()->escapeHtml($post->date);
+                $date     = $this->getView()->date($post->date, 'd M');
                 $href     = $post->getHref();
 
                 // add to list

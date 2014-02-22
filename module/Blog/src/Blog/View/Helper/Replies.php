@@ -3,12 +3,14 @@
 namespace Blog\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
-
-use Blog\Model\Reply;
+use Blog\Model\ReplyTable;
 
 class Replies extends AbstractHelper
 {
 
+    /**
+     * @var ReplyTable
+     */
     protected $replyTable;
 
     /**
@@ -20,21 +22,21 @@ class Replies extends AbstractHelper
      */
     public function __invoke($idBlog, $title)
     {
-        $replies = $this->replyTable->getReplies($idBlog);
+        $replies = $this->getReplyTable()->getReplies($idBlog);
 
         $count = count($replies);
         if ($count > 0) {
             $articles[] = "<h5 class=\"replied\">" . $count . " response"
                         . (($count > 1) ? 's' : '') . " "
                         . "on the article "
-                        . "<i>" . $this->view->escapeHtml($title) . "</i>"
+                        . "<i>" . $this->getView()->escapeHtml($title) . "</i>"
                         . "</h5>";
 
             foreach ($replies as $key => $value) {
-                $name     = $this->view->escapeHtml($value->name);
-                $comment  = nl2br($this->view->escapeHtml($value->comment));
-                $datetime = $this->view->date($value->timestamp, 'Y-m-d');
-                $date     = $this->view->date($value->timestamp, 'd M h:i a');
+                $name     = $this->getView()->escapeHtml($value->name);
+                $comment  = nl2br($this->getView()->escapeHtml($value->comment));
+                $datetime = $this->getView()->date($value->timestamp, 'Y-m-d');
+                $date     = $this->getView()->date($value->timestamp, 'd M h:i a');
 
                 // odd even classes
                 $class = (0 == $key%2 ? 'odd' : 'even');
@@ -57,15 +59,15 @@ class Replies extends AbstractHelper
     }
 
     /**
-     * @param mixed $replyTable
+     * @param \Blog\Model\ReplyTable $replyTable
      */
-    public function setReplyTable($replyTable)
+    public function setReplyTable(ReplyTable $replyTable)
     {
         $this->replyTable = $replyTable;
     }
 
     /**
-     * @return mixed
+     * @return \Blog\Model\ReplyTable
      */
     protected function getReplyTable()
     {
