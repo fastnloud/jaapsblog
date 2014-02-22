@@ -36,7 +36,7 @@
 
                     <span class="comments">
                         <img alt="Comments" src="/img/icons/comments.png">
-                            <?php echo $post->comments; ?> response<?php echo (($post->comments > 1 || 0 == $post->comments ) ? 's' : ''); ?>
+                            <?php echo (int) $post->comments; ?> response<?php echo (($post->comments <= 1) ? 's' : ''); ?>
                     </span>
                 </div>
             </footer>

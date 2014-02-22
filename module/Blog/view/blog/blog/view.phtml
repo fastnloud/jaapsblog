@@ -1,7 +1,7 @@
 <?php
-    $this->headTitle()->prepend($blog->meta_title);
-    $this->headMeta()->appendName('keywords', $blog->meta_keywords);
-    $this->headMeta()->appendName('description', $blog->meta_description);
+    $this->headTitle()->prepend($this->escapeHtml($blog->meta_title));
+    $this->headMeta()->appendName('keywords', $this->escapeHtml($blog->meta_keywords));
+    $this->headMeta()->appendName('description', $this->escapeHtml($blog->meta_description));
 ?>
 
 <article>
