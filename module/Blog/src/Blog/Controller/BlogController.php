@@ -48,6 +48,8 @@ class BlogController extends AbstractActionController
             return false;
         } elseif (true !== $uri) {
             $this->redirect()->toUrl($uri);
+            $this->getResponse()->setStatusCode(301);
+            return false;
         }
 
         if ($this->getRequest()->isPost()) {
