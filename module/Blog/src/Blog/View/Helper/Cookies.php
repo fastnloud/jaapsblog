@@ -51,12 +51,12 @@ class Cookies extends AbstractHelper
         }
         // render only if user has not yet agreed to the use of cookies
         elseif ((!$this->getRequest()->getCookie() || !$this->getRequest()->getCookie()->offsetExists('COOKIES')) && !preg_match('/\/cookies\.html$/i', $this->getRequest()->getUri()->getPath())) {
-            return '<div id="cookies-overlay"></div>' . PHP_EOL
-                 . '    <div id="cookies">' . PHP_EOL
-                 . '        <h1>Cookies in use</h1>' . PHP_EOL
-                 . '        <p>By continuing to use <strong>Jaapsblog.nl</strong> you will be agreeing to the website ' . PHP_EOL
-                 . '        <a href="/cookies.html">Use Of Cookies</a> while using the website.</p>' . PHP_EOL
-                 . '        <p><a rel="nofollow" href="?cookies=1">Continue</a></p>' . PHP_EOL
+            return '<div class="cookies-overlay"></div>' . PHP_EOL
+                 . '<div class="cookies">' . PHP_EOL
+                 . '    <h1>Cookies in use</h1>' . PHP_EOL
+                 . '    <p>By continuing to use <strong>Jaapsblog.nl</strong> you will be agreeing to the website ' . PHP_EOL
+                 . '    <a href="/cookies.html">Use Of Cookies</a> while using the website.</p>' . PHP_EOL
+                 . '    <p><a rel="nofollow" href="?cookies=1">Continue</a></p>' . PHP_EOL
                  . '</div>'  . PHP_EOL;
         }
     }

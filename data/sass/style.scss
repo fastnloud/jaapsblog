@@ -272,6 +272,32 @@ div.page {
   }
 }
 
+.cookies {
+  position: fixed;
+  top: 175px;
+  width: 46%;
+  left: 27%;
+  background: #FFF;
+  border: 2px solid #000;
+
+  h1 {
+    color: $theme;
+  }
+
+  h1,
+  p {
+    margin: 10px;
+  }
+}
+
+.cookies-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
 .social-media {
   position: fixed;
   bottom: 0;
@@ -289,6 +315,14 @@ div.page {
   div.page,
   div.footer {
     width: 95%;
+  }
+
+  div.cookies {
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #000000;
   }
 
   .social-media {
