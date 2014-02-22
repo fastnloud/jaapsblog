@@ -65,20 +65,6 @@ class Reply implements InputFilterAwareInterface
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'subject',
-                'required' => false,
-                'validators' => array(
-                    array(
-                        'name' => 'StringLength',
-                        'options' => array(
-                            'min' => 0,
-                            'max' => 0
-                        )
-                    )
-                )
-            )));
-
-            $inputFilter->add($factory->createInput(array(
                 'name'     => 'comment',
                 'required' => true,
                 'validators' => array(
