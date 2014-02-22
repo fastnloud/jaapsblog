@@ -95,6 +95,7 @@ class Module
                 'Navigation'    => 'Blog\Navigation\NavigationFactory',
                 'BlogService'   => 'Blog\Service\BlogFactory',
                 'ReplyForm'     => 'Blog\Form\ReplyFormFactory',
+                'SmtpOptions'   => 'Blog\Mail\SmtpOptionsFactory',
 
                 // db tables
                 'BlogTable' =>  function($sm) {
