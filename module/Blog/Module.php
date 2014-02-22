@@ -3,6 +3,7 @@
 namespace Blog;
 
 use Blog\Controller\BlogController;
+use Blog\Controller\PageController;
 use Blog\Model\BlogTable;
 use Blog\Model\ReplyTable;
 use Blog\Model\PageTable;
@@ -78,6 +79,12 @@ class Module
     {
         return array(
             'factories' => array(
+                'Blog\Controller\Page' => function($sm) {
+                    $controller = new PageController();
+                    $controller->setPageService($sm->getServiceLocator()->get('PageService'));
+
+                    return $controller;
+                },
                 'Blog\Controller\Blog' => function($sm) {
                     $controller = new BlogController();
                     $controller->setBlogService($sm->getServiceLocator()->get('BlogService'));
@@ -93,6 +100,7 @@ class Module
         return array(
             'factories' => array(
                 'Navigation'    => 'Blog\Navigation\NavigationFactory',
+                'PageService'   => 'Blog\Service\PageFactory',
                 'BlogService'   => 'Blog\Service\BlogFactory',
                 'ReplyForm'     => 'Blog\Form\ReplyFormFactory',
                 'SmtpOptions'   => 'Blog\Mail\SmtpOptionsFactory',

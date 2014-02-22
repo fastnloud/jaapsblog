@@ -2,43 +2,51 @@
 
 namespace Blog\Controller;
 
+use Blog\Service\Page as PageService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class PageController extends AbstractActionController
 {
 
-    protected $pageTable;
+    /**
+     * @var PageService
+     */
+    protected $pageService;
 
+    /**
+     * Page (view) action.
+     *
+     * @return bool|ViewModel
+     */
     public function pageAction()
     {
-        $page = $this->getEvent() // find in container
-              ->getApplication()->getServiceManager()->get('Navigation')
-              ->findOneBy('url_string', $this->params()->fromRoute('page', 'home'));
+        $page = $this->getPageService()->getPageByUrlString($this->params()->fromRoute('page'));
 
-        if (!$page) { // throw error if not found
+        if (!$page) {
             $this->getResponse()->setStatusCode(404);
             return false;
         }
 
-        if ('home' == $page->url_string) {
-            $this->getServiceLocator()->get('viewhelpermanager')
-                 ->get('placeholder')->createContainer('isHomepage')->set(true);
-        }
-
         return new ViewModel(array(
-            'page' => $this->getPageTable()->getPageByUrlString($page->url_string)
+            'page' => $page
         ));
     }
 
-    public function getPageTable()
+    /**
+     * @param \Blog\Service\Page $pageService
+     */
+    public function setPageService(PageService $pageService)
     {
-        if (!$this->pageTable) {
-            $sm = $this->getServiceLocator();
-            $this->pageTable = $sm->get('Page\Model\PageTable');
-        }
-    
-        return $this->pageTable;
+        $this->pageService = $pageService;
+    }
+
+    /**
+     * @return \Blog\Service\Page
+     */
+    protected function getPageService()
+    {
+        return $this->pageService;
     }
 
 }

@@ -42,7 +42,7 @@
         </div>
 
         <nav class="breadcrumbs">
-            <div><?php echo (!$this->placeholder('isHomepage')->toString() ? '<a href="/">Home</a> > ' : '') . $this->navigation('navigation')->breadcrumbs()->setMinDepth(0); ?></div>
+            <div><?php echo (!\Blog\Service\Page::isHomepage() ? '<a href="/">Home</a> > ' : '') . $this->navigation('navigation')->breadcrumbs()->setMinDepth(0); ?></div>
         </nav>
 
         <div class="page">

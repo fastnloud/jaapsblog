@@ -83,7 +83,6 @@ return array (
     ),
     'controllers' => array(
         'invokables' => array(
-            'Blog\Controller\Page' => 'Blog\Controller\PageController',
             'Blog\Controller\Xml'  => 'Blog\Controller\XmlController'
         ),
     ),
