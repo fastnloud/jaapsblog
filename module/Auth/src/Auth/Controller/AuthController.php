@@ -13,9 +13,11 @@ use Auth\Model\Auth;
 class AuthController extends AbstractActionController
 {
 
-    protected $filename = 'config/passwd.txt';
-    protected $realm    = 'admin';
-    
+    /**
+     * @var array
+     */
+    protected $config;
+
     /**
      * Build and handle login form.
      * 
@@ -71,8 +73,9 @@ class AuthController extends AbstractActionController
      */
     protected function authenticate($data)
     {
+        $config   = $this->getConfig();
         $auth     = new AuthenticationService();
-        $adapter  = new Digest($this->filename, $this->realm, $data['username'],$data['password']);
+        $adapter  = new Digest($config['auth']['filename'], $config['auth']['realm'], $data['username'], $data['password']);
         
         $result = $auth->authenticate($adapter);
         if ($result->isValid()) {
@@ -80,6 +83,22 @@ class AuthController extends AbstractActionController
         }
         
         return false;
+    }
+
+    /**
+     * @param array $config
+     */
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getConfig()
+    {
+        return $this->config;
     }
 
 }

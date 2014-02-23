@@ -9,7 +9,9 @@ use Zend\InputFilter\InputFilterInterface;
 
 class Auth implements InputFilterAwareInterface
 {
+
     public $username;
+
     public $password;
     
     protected $inputFilter;
@@ -74,4 +76,5 @@ class Auth implements InputFilterAwareInterface
     
         return $this->inputFilter;
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Auth;
 
+use Auth\Controller\AuthController;
 use Zend\Authentication\AuthenticationService;
-use Auth\Model\Auth;
 
 class Module
 {   
@@ -87,6 +87,20 @@ class Module
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getControllerConfig()
+    {
+        return array(
+            'factories' => array(
+                'Auth\Controller\Auth' => function($sm) {
+                    $controller = new AuthController();
+                    $controller->setConfig($sm->getServiceLocator()->get('Config'));
+
+                    return $controller;
+                },
+            )
+        );
     }
 
     public function getServiceConfig()
