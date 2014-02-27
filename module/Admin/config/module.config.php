@@ -31,12 +31,6 @@ return array (
             ),
         ), 
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'Admin\Controller\Blog' => 'Admin\Controller\BlogController',
-            'Admin\Controller\Page' => 'Admin\Controller\PageController'
-        ),
-    ),
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
