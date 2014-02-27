@@ -3,84 +3,61 @@
 namespace Admin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Blog\Service\Page as PageService;
 use Zend\View\Model\JsonModel;
-use Blog\Model\Page;
 
 class PageController extends AbstractActionController
-{  
-    protected $pageTable;
+{
 
+    /**
+     * @var PageService
+     */
+    protected $pageService;
+
+    /**
+     * Get page index.
+     *
+     * @return array|JsonModel
+     */
     public function indexAction()
     {
-        $index = $this->getPageTable()->getPages();
-        $data  = array();
-
-        if ($index->count() > 0) {
-            foreach ($index as $entry) {
-                $data[] = $entry;
-            }
-        }
-        return new JsonModel(array(
-            'data' => $data
-        ));
+        return new JsonModel($this->getPageService()->getPages());
     }
 
+    /**
+     * Edit page.
+     *
+     * @return JsonModel
+     */
     public function editAction()
     {
-        if ($this->request->isPost()) {
-            $params = $this->params()->fromPost();
-
-            if(isset($params['data'])) {
-                $data = json_decode($params['data'], true);
-
-                if (isset($data['id'])) {
-                    $page = new Page();
-                    $page->exchangeArray($data);
-
-                    $form = new \Zend\Form\Form();
-                    $form->bind($page);
-
-                    if ($form->isValid()) {
-                        $this->getPageTable()->save($page);
-                        $success = true;
-                    };
-                }
-            }
-        }
-
-        return new JsonModel(array(
-            'success' => (isset($success) ? true : false)
-        ));
+        return new JsonModel($this->getPageService()->save(new \Blog\Model\Page()));
     }
 
+    /**
+     * Delete page.
+     *
+     * @return JsonModel
+     */
     public function deleteAction()
     {
-        if ($this->request->isPost()) {
-            $params = $this->params()->fromPost();
-
-            if(isset($params['data'])) {
-                $data = json_decode($params['data'], true);
-
-                if (isset($data['id']) && !empty($data['id'])) {
-                    $this->getPageTable()->deletePage((int)$data['id']);
-                    $success = true;
-                }
-            }
-        }
-
-        return new JsonModel(array(
-            'success' => (isset($success) ? true : false)
-        ));
+        return new JsonModel($this->getPageService()->remove());
     }
 
-    protected function getPageTable()
+    /**
+     * @param \Blog\Service\Page $pageService
+     */
+    public function setPageService(PageService $pageService)
     {
-        if (!$this->pageTable) {
-            $sm = $this->getServiceLocator();
-            $this->pageTable = $sm->get('Page\Model\PageTable');
-        }
+        $this->pageService = $pageService->setReturnType('JsonArray');
+    }
 
-        return $this->pageTable;
+    /**
+     * @return \Blog\Service\Page
+     */
+    protected function getPageService()
+    {
+        return $this->pageService;
     }
 
 }

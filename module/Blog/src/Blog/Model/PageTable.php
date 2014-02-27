@@ -10,8 +10,16 @@ use Zend\Db\Sql\Predicate;
 class PageTable extends AbstractTableGateway
 {
 
+    /**
+     * @var string
+     */
     protected $table = 'page';
-    
+
+    /**
+     * Init.
+     *
+     * @param Adapter $adapter
+     */
     public function __construct(Adapter $adapter)
     {
         $this->adapter = $adapter;
@@ -22,6 +30,12 @@ class PageTable extends AbstractTableGateway
         $this->initialize();
     }
 
+    /**
+     * Fetch all pages.
+     * - No status filter when authenticated
+     *
+     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     */
     public function getPages()
     {
         $select = $this->getSql()->select();
@@ -41,6 +55,13 @@ class PageTable extends AbstractTableGateway
         return $this->selectWith($select);
     }
 
+    /**
+     * Fetch page by id.
+     * - No status filter when authenticated
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getPage($id)
     {
         $id = (int) $id;
@@ -61,15 +82,16 @@ class PageTable extends AbstractTableGateway
             ));
         }
 
-        $row = $this->selectWith($select)->current();
-
-        if (!$row) {
-            return false;
-        }
-
-        return $row;
+        return $this->selectWith($select)->current();
     }
 
+    /**
+     * Fetch page by URL String.
+     * - No status filter when authenticated
+     *
+     * @param $urlString
+     * @return mixed
+     */
     public function getPageByUrlString($urlString)
     {
         $select = $this->getSql()->select();
@@ -88,23 +110,28 @@ class PageTable extends AbstractTableGateway
             ));
         }
 
-        $row = $this->selectWith($select)->current();
-
-        if (!$row) {
-            return false;
-        }
-
-        return $row;
+        return $this->selectWith($select)->current();
     }
 
-    public function deletePage($id)
+    /**
+     * Delete page by id.
+     *
+     * @param $id
+     * @return int
+     */
+    public function remove($id)
     {
-        $id = (int) $id;
-        $this->delete(array(
-            'id' => $id
+        return $this->delete(array(
+            'id' => (int) $id
         ));
     }
-    
+
+    /**
+     * Save page (either insert or update).
+     *
+     * @param Page $page
+     * @return int
+     */
     public function save(Page $page)
     {
         $data = array(
@@ -123,15 +150,17 @@ class PageTable extends AbstractTableGateway
         $id = (int) $page->id;
 
         if (0 == $id) {
-            $this->insert($data);
+            $result = $this->insert($data);
         } elseif ($this->getPage($id)) {
-            $this->update(
+            $result = $this->update(
                 $data,
                 array(
                     'id' => $id,
                 )
             );
         }
+
+        return $result;
     }
 
 }

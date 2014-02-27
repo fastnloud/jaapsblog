@@ -2,12 +2,15 @@
 
 namespace Admin;
 
+use Admin\Controller\BlogController;
+use Admin\Controller\PageController;
 use Blog\Model\BlogTable;
 use Blog\Model\ReplyTable;
 use Blog\Model\PageTable;
 
 class Module
 {
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -25,6 +28,26 @@ class Module
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getControllerConfig()
+    {
+        return array(
+            'factories' => array(
+                'Admin\Controller\Page' => function($sm) {
+                    $controller = new PageController();
+                    $controller->setPageService($sm->getServiceLocator()->get('PageService'));
+
+                    return $controller;
+                },
+                'Admin\Controller\Blog' => function($sm) {
+                    $controller = new BlogController();
+                    $controller->setBlogService($sm->getServiceLocator()->get('BlogService'));
+
+                    return $controller;
+                }
+            )
+        );
     }
 
     public function getServiceConfig()
@@ -52,4 +75,5 @@ class Module
             )
         );
     }
+
 }

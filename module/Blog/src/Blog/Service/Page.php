@@ -3,10 +3,9 @@
 namespace Blog\Service;
 
 use Blog\Model\PageTable;
-use Blog\Model\Page as PageModel;
 use Zend\Navigation\Navigation;
 
-class Page
+class Page extends Service
 {
 
     /**
@@ -25,8 +24,26 @@ class Page
     protected $pageTable;
 
     /**
+     * Get pages.
+     *
+     * @return array|null|\Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function getPages()
+    {
+        $pages = $this->getPageTable()->getPages();
+
+        if ('JsonArray' == $this->getReturnType()) {
+            return $this->returnAsJsonArray($pages);
+        }
+
+        return $pages;
+    }
+
+    /**
+     * Get page by URL String.
+     *
      * @param $urlString
-     * @return bool
+     * @return bool|mixed
      */
     public function getPageByUrlString($urlString)
     {
@@ -42,6 +59,38 @@ class Page
         }
 
         return $page;
+    }
+
+    /**
+     * Edit page (validating POST data).
+     *
+     * @return array
+     */
+    public function save($model)
+    {
+        $data = $this->encodeAndValidateJsonData($model);
+
+        if (false !== $data) {
+            $result = (bool) $this->getPageTable()->save($data);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
+    }
+
+    /**
+     * Delete page (validating POST data).
+     *
+     * @return array
+     */
+    public function remove()
+    {
+        $data = $this->encodeAndValidateJsonData();
+
+        if (false !== $data) {
+            $result = (bool) $this->getPageTable()->remove($data['id']);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
     }
 
     /**

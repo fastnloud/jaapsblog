@@ -2,8 +2,15 @@
 
 namespace Blog\Service;
 
+use Zend\Http\Request;
+
 abstract class Service
 {
+
+    /**
+     * @var Request
+     */
+    protected $request;
 
     /**
      * @var null|string
@@ -30,6 +37,51 @@ abstract class Service
         } elseif (is_bool($result)) {
             return array('success' => $result);
         }
+    }
+
+    protected function encodeAndValidateJsonData($model = null)
+    {
+        $params = $this->getRequest()->getPost();
+
+        if ($this->getRequest()->isPost()) {
+            if(isset($params['data'])) {
+                $data = json_decode($params['data'], true);
+
+                // validate if model has been given
+                if ($model && isset($data['id'])) {
+                    $model->exchangeArray($data);
+
+                    $form = new \Zend\Form\Form();
+                    $form->bind($model);
+
+                    if ($form->isValid()) {
+                        return $model;
+                    }
+                }
+                // check if id is set
+                elseif (isset($data['id'])) {
+                    return $data;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param \Zend\Http\Request $request
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return \Zend\Http\Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
     }
 
     /**
