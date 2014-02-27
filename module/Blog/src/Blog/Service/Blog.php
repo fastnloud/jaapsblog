@@ -69,17 +69,6 @@ class Blog extends Service
     }
 
     /**
-     * Fetch multiple Blog items.
-     *
-     * @param null $query
-     * @return null|\Zend\Db\ResultSet\ResultSetInterface
-     */
-    public function getReplies()
-    {
-        return $this->returnAsJsonArray($this->getReplyTable()->fetchAll());
-    }
-
-    /**
      * Fetch a single Blog item.
      *
      * @param $id
@@ -90,74 +79,6 @@ class Blog extends Service
         $item = $this->getBlogTable()->fetch($id);
 
         return $item;
-    }
-
-
-    /**
-     * Edit page (validating POST data).
-     *
-     * @return array
-     */
-    public function save($model)
-    {
-        $data = $this->encodeAndValidateJsonData($model);
-
-        if (false !== $data) {
-            $result = (bool) $this->getBlogTable()->save($data);
-        }
-
-        return $this->returnAsJsonArray(isset($result) ? $result : false);
-    }
-
-    /**
-     * Delete page (validating POST data).
-     *
-     * @return array
-     */
-    public function remove()
-    {
-        $data = $this->encodeAndValidateJsonData();
-
-        if (false !== $data) {
-            $result = (bool) $this->getBlogTable()->remove($data['id']);
-        }
-
-        return $this->returnAsJsonArray(isset($result) ? $result : false);
-    }
-
-
-
-
-    /**
-     * Edit page (validating POST data).
-     *
-     * @return array
-     */
-    public function saveReply($model)
-    {
-        $data = $this->encodeAndValidateJsonData($model);
-
-        if (false !== $data) {
-            $result = (bool) $this->getReplyTable()->save($data);
-        }
-
-        return $this->returnAsJsonArray(isset($result) ? $result : false);
-    }
-
-    /**
-     * Delete page (validating POST data).
-     *
-     * @return array
-     */
-    public function removeReply()
-    {
-        $data = $this->encodeAndValidateJsonData();
-
-        if (false !== $data) {
-            $result = (bool) $this->getReplyTable()->remove($data['id']);
-        }
-
-        return $this->returnAsJsonArray(isset($result) ? $result : false);
     }
 
     /**
@@ -186,8 +107,7 @@ class Blog extends Service
     }
 
     /**
-     * Sends out a notificaiton e-mail about the given
-     * blog item.
+     * Sends out a notificaiton e-mail.
      *
      * @param BlogModel $item
      */
@@ -219,7 +139,80 @@ class Blog extends Service
             // send
             $transport->send($message);
         }
+    }
 
+    /**
+     * Fetch all replies.
+     *
+     * @return array
+     */
+    public function getReplies()
+    {
+        return $this->returnAsJsonArray($this->getReplyTable()->fetchAll());
+    }
+
+    /**
+     * Edit blog item (validating POST data).
+     *
+     * @return array
+     */
+    public function save($model)
+    {
+        $data = $this->encodeAndValidateJsonData($model);
+
+        if (false !== $data) {
+            $result = (bool) $this->getBlogTable()->save($data);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
+    }
+
+    /**
+     * Edit reply (validating POST data).
+     *
+     * @return array
+     */
+    public function saveReply($model)
+    {
+        $data = $this->encodeAndValidateJsonData($model);
+
+        if (false !== $data) {
+            $result = (bool) $this->getReplyTable()->save($data);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
+    }
+
+    /**
+     * Delete blog item (validating POST data).
+     *
+     * @return array
+     */
+    public function remove()
+    {
+        $data = $this->encodeAndValidateJsonData();
+
+        if (false !== $data) {
+            $result = (bool) $this->getBlogTable()->remove($data['id']);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
+    }
+
+    /**
+     * Delete reply (validating POST data).
+     *
+     * @return array
+     */
+    public function removeReply()
+    {
+        $data = $this->encodeAndValidateJsonData();
+
+        if (false !== $data) {
+            $result = (bool) $this->getReplyTable()->remove($data['id']);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
     }
 
     /**
