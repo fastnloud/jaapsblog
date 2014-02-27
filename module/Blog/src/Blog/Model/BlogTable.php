@@ -11,8 +11,16 @@ use Zend\Db\Sql\Expression;
 class BlogTable extends AbstractTableGateway
 {
 
+    /**
+     * @var string
+     */
     protected $table = 'blog';
-    
+
+    /**
+     * Init.
+     *
+     * @param Adapter $adapter
+     */
     public function __construct(Adapter $adapter)
     {
         $this->adapter = $adapter;
@@ -25,11 +33,12 @@ class BlogTable extends AbstractTableGateway
 
     /**
      * Fetch multiple Blog items.
+     * - No status filter when authenticated
      *
      * @param null $query
      * @return null|\Zend\Db\ResultSet\ResultSetInterface
      */
-    public function getIndex($query = null)
+    public function fetchAll($query = null)
     {
         $select = $this->getSql()->select();
         $select->order('date desc');
@@ -67,11 +76,12 @@ class BlogTable extends AbstractTableGateway
 
     /**
      * Fetch a single Blog item.
+     * - No status filter when authenticated
      *
      * @param $id
      * @return mixed
      */
-    public function getItem($id)
+    public function fetch($id)
     {
         $id = (int) $id;
 
@@ -87,16 +97,27 @@ class BlogTable extends AbstractTableGateway
 
         return $this->selectWith($select)->current();
     }
-    
-    public function deleteItem($id)
+
+    /**
+     * Delete blog item by id.
+     *
+     * @param $id
+     * @return int
+     */
+    public function remove($id)
     {
-        $id = (int) $id;
-        $this->delete(array(
-            'id' => $id
+        return $this->delete(array(
+            'id' => (int) $id
         ));
     }
-    
-    public function saveItem(Blog $blog)
+
+    /**
+     * Save a blog item (either insert or update).
+     *
+     * @param Blog $blog
+     * @return bool|int
+     */
+    public function save(Blog $blog)
     {
         $data = array(
             'title'             => $blog->title,
@@ -117,15 +138,17 @@ class BlogTable extends AbstractTableGateway
         $id = (int) $blog->id;
     
         if (0 == $id) {
-            $this->insert($data);
-        } elseif ($this->getBlogItem($id)) {
-            $this->update(
+            return $this->insert($data);
+        } elseif ($this->fetch($id)) {
+            return $this->update(
                 $data,
                 array(
                     'id' => $id,
                 )
             );
         }
+
+        return false;
     }
 
 }

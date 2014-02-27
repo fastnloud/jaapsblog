@@ -9,8 +9,16 @@ use Zend\Db\TableGateway\AbstractTableGateway;
 class ReplyTable extends AbstractTableGateway
 {
 
+    /**
+     * @var string
+     */
     protected $table = 'blog_reply';
 
+    /**
+     * Init.
+     *
+     * @param Adapter $adapter
+     */
     public function __construct(Adapter $adapter)
     {
         $this->adapter = $adapter;
@@ -21,7 +29,13 @@ class ReplyTable extends AbstractTableGateway
         $this->initialize();
     }
 
-    public function getReplies($idBlog = null)
+    /**
+     * Fetch replies (can be filtered by Blog id)
+     *
+     * @param null $idBlog
+     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function fetchAll($idBlog = null)
     {
         $select = $this->getSql()->select();
         $select->order('timestamp asc');
@@ -33,7 +47,13 @@ class ReplyTable extends AbstractTableGateway
         return $this->selectWith($select);
     }
 
-    public function getReply($id)
+    /**
+     * Fetch a single reply by id.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function fetch($id)
     {
         $id = (int) $id;
 
@@ -42,34 +62,28 @@ class ReplyTable extends AbstractTableGateway
             'id' => $id,
         ));
 
-        $row = $this->selectWith($select)->current();
-
-        if (!$row) {
-            return false;
-        }
-
-        return $row;
+        return $this->selectWith($select)->current();
     }
 
-    public function getLatestReplies($limit = 10)
+    /**
+     * Remove reply by id.
+     *
+     * @param $id
+     * @return int
+     */
+    public function remove($id)
     {
-        $select = $this->getSql()->select();
-        $select->join('blog', 'blog.id=' . $this->getTable(). '.id_blog', array(
-
-        ), $select::JOIN_INNER);
-        $select->order('timestamp ' . $select::ORDER_DESCENDING);
-        $select->limit($limit);
-
-        return $this->selectWith($select);
-    }
-
-    public function deleteReply($id)
-    {
-        $this->delete(array(
+        return $this->delete(array(
             'id' => (int)$id
         ));
     }
 
+    /**
+     * Save reply (either insert or update).
+     *
+     * @param Reply $reply
+     * @return bool|int
+     */
     public function save(Reply $reply)
     {
         $data = array(
@@ -80,22 +94,23 @@ class ReplyTable extends AbstractTableGateway
 
         $id = (int) $reply->id;
 
-        // only set admin to true on insert
-        // when logged on
+        // whenever logged on
         if (0 == $id && true === AUTHENTICATED) {
             $data['is_admin'] = true;
         }
 
         if (0 == $id || true !== AUTHENTICATED) {
-            $this->insert($data);
-        } elseif ($this->getReply($id)) {
-            $this->update(
+            return $this->insert($data);
+        } elseif ($this->fetch($id)) {
+            return $this->update(
                 $data,
                 array(
                     'id' => $id,
                 )
             );
         }
+
+        return false;
     }
 
 }

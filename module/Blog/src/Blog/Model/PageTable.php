@@ -36,7 +36,7 @@ class PageTable extends AbstractTableGateway
      *
      * @return null|\Zend\Db\ResultSet\ResultSetInterface
      */
-    public function getPages()
+    public function fetchAll()
     {
         $select = $this->getSql()->select();
         $select->order('priority asc');
@@ -62,7 +62,7 @@ class PageTable extends AbstractTableGateway
      * @param $id
      * @return mixed
      */
-    public function getPage($id)
+    public function fetch($id)
     {
         $id = (int) $id;
 
@@ -92,7 +92,7 @@ class PageTable extends AbstractTableGateway
      * @param $urlString
      * @return mixed
      */
-    public function getPageByUrlString($urlString)
+    public function fetchByUrlString($urlString)
     {
         $select = $this->getSql()->select();
         $select->where(array(
@@ -130,7 +130,7 @@ class PageTable extends AbstractTableGateway
      * Save page (either insert or update).
      *
      * @param Page $page
-     * @return int
+     * @return bool|int
      */
     public function save(Page $page)
     {
@@ -150,9 +150,9 @@ class PageTable extends AbstractTableGateway
         $id = (int) $page->id;
 
         if (0 == $id) {
-            $result = $this->insert($data);
-        } elseif ($this->getPage($id)) {
-            $result = $this->update(
+            return $this->insert($data);
+        } elseif ($this->fetch($id)) {
+            return $this->update(
                 $data,
                 array(
                     'id' => $id,
@@ -160,7 +160,7 @@ class PageTable extends AbstractTableGateway
             );
         }
 
-        return $result;
+        return false;
     }
 
 }

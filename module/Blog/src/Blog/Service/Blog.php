@@ -12,9 +12,8 @@ use Dkim\Signer\Signer as DkimSigner;
 use Zend\Mail\Message;
 use Zend\Mail\Transport\Smtp;
 use Zend\Navigation\Navigation;
-use Zend\Http\Request;
 
-class Blog
+class Blog extends Service
 {
 
     /**
@@ -26,11 +25,6 @@ class Blog
      * @var Navigation
      */
     protected $navigation;
-
-    /**
-     * @var Request
-     */
-    protected $request;
 
     /**
      * @var SmtpOptions
@@ -63,9 +57,26 @@ class Blog
      * @param null $query
      * @return null|\Zend\Db\ResultSet\ResultSetInterface
      */
-    public function getIndex($query = null)
+    public function getItems($query = null)
     {
-        return $this->getBlogTable()->getIndex($query);
+        $result = $this->getBlogTable()->fetchAll($query);
+
+        if ('JsonArray' == $this->getReturnType()) {
+            return $this->returnAsJsonArray($result);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Fetch multiple Blog items.
+     *
+     * @param null $query
+     * @return null|\Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function getReplies()
+    {
+        return $this->returnAsJsonArray($this->getReplyTable()->fetchAll());
     }
 
     /**
@@ -76,9 +87,77 @@ class Blog
      */
     public function getItem($id)
     {
-        $item = $this->getBlogTable()->getItem($id);
+        $item = $this->getBlogTable()->fetch($id);
 
         return $item;
+    }
+
+
+    /**
+     * Edit page (validating POST data).
+     *
+     * @return array
+     */
+    public function save($model)
+    {
+        $data = $this->encodeAndValidateJsonData($model);
+
+        if (false !== $data) {
+            $result = (bool) $this->getBlogTable()->save($data);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
+    }
+
+    /**
+     * Delete page (validating POST data).
+     *
+     * @return array
+     */
+    public function remove()
+    {
+        $data = $this->encodeAndValidateJsonData();
+
+        if (false !== $data) {
+            $result = (bool) $this->getBlogTable()->remove($data['id']);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
+    }
+
+
+
+
+    /**
+     * Edit page (validating POST data).
+     *
+     * @return array
+     */
+    public function saveReply($model)
+    {
+        $data = $this->encodeAndValidateJsonData($model);
+
+        if (false !== $data) {
+            $result = (bool) $this->getReplyTable()->save($data);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
+    }
+
+    /**
+     * Delete page (validating POST data).
+     *
+     * @return array
+     */
+    public function removeReply()
+    {
+        $data = $this->encodeAndValidateJsonData();
+
+        if (false !== $data) {
+            $result = (bool) $this->getReplyTable()->remove($data['id']);
+        }
+
+        return $this->returnAsJsonArray(isset($result) ? $result : false);
     }
 
     /**
@@ -197,22 +276,6 @@ class Blog
     protected function getNavigation()
     {
         return $this->navigation;
-    }
-
-    /**
-     * @param \Zend\Http\Request $request
-     */
-    public function setRequest(Request $request)
-    {
-        $this->request = $request;
-    }
-
-    /**
-     * @return \Zend\Http\Request
-     */
-    protected function getRequest()
-    {
-        return $this->request;
     }
 
     /**

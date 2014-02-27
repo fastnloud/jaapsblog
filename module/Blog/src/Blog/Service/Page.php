@@ -30,13 +30,13 @@ class Page extends Service
      */
     public function getPages()
     {
-        $pages = $this->getPageTable()->getPages();
+        $result = $this->getPageTable()->fetchAll();
 
         if ('JsonArray' == $this->getReturnType()) {
-            return $this->returnAsJsonArray($pages);
+            return $this->returnAsJsonArray($result);
         }
 
-        return $pages;
+        return $result;
     }
 
     /**
@@ -51,14 +51,14 @@ class Page extends Service
             return false;
         }
 
-        $page = $this->getPageTable()->getPageByUrlString(($urlString ? $urlString : 'home'));
+        $result = $this->getPageTable()->fetchByUrlString(($urlString ? $urlString : 'home'));
 
         // flag as homepage
-        if ('home' == $page->url_string) {
+        if ('home' == $result->url_string) {
             $this->setIsHomepage(true);
         }
 
-        return $page;
+        return $result;
     }
 
     /**
