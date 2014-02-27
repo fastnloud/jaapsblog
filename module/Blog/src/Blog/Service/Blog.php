@@ -76,9 +76,7 @@ class Blog extends Service
      */
     public function getItem($id)
     {
-        $item = $this->getBlogTable()->fetch($id);
-
-        return $item;
+        return $this->getBlogTable()->fetch($id);
     }
 
     /**
