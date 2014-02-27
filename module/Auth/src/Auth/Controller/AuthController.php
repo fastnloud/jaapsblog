@@ -29,8 +29,6 @@ class AuthController extends AbstractActionController
         $request = $this->getRequest();
         $success = false;
 
-        $this->response->getHeaders()->addHeaderLine('Content-Type', 'application/json');
-
         if ($request->isPost()) {
             $auth = new Auth();
             $form->setInputFilter($auth->getInputFilter());
