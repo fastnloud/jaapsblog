@@ -19,9 +19,9 @@ class AuthController extends AbstractActionController
     protected $config;
 
     /**
-     * Build and handle login form.
-     * 
-     * @return multitype:\Auth\Controller\AuthForm
+     * Validate.
+     *
+     * @return JsonModel
      */
     public function loginAction()
     {
@@ -47,11 +47,11 @@ class AuthController extends AbstractActionController
             'success' => $success
         ));
     }
-    
+
     /**
-     * Kill session and redirect to homepage.
-     * 
-     * @return false;
+     * Kill session.
+     *
+     * @return JsonModel
      */
     public function logoutAction()
     {
@@ -62,12 +62,12 @@ class AuthController extends AbstractActionController
             'success' => true
         ));
     }
-    
+
     /**
-     * Auhtenticate user input.
-     * 
-     * @param array $data
-     * @return boolean
+     * Authenticate user.
+     *
+     * @param $data
+     * @return bool
      */
     protected function authenticate($data)
     {

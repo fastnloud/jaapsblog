@@ -11,7 +11,6 @@ class Auth implements InputFilterAwareInterface
 {
 
     public $username;
-
     public $password;
     
     protected $inputFilter;

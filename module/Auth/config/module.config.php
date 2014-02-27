@@ -3,14 +3,7 @@
 return array (
     'secure_areas' => array(
         'Admin\Controller\Page',
-        'Admin\Controller\Blog'/* => array(
-            'add',
-            'edit',
-            'delete'
-        ),
-        'Blog\Controller\Page' => array(
-            'edit'
-        )*/
+        'Admin\Controller\Blog'
     ),
     'router' => array(
         'routes' => array(
@@ -49,6 +42,5 @@ return array (
         'strategies' => array(
             'ViewJsonStrategy',
         )
-    ),
-        
+    )
 );
