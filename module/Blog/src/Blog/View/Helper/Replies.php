@@ -22,7 +22,7 @@ class Replies extends AbstractHelper
      */
     public function __invoke($idBlog, $title)
     {
-        $replies = $this->getReplyTable()->getReplies($idBlog);
+        $replies = $this->getReplyTable()->fetchAll($idBlog);
 
         $count = count($replies);
         if ($count > 0) {
