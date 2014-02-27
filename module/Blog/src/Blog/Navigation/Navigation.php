@@ -13,7 +13,7 @@ class Navigation extends DefaultNavigationFactory
         $navigation = array();
 
         if (null === $this->pages) {
-            $pages  = $serviceLocator->get('Page\Model\PageTable')->getPages();
+            $pages  = $serviceLocator->get('Page\Model\PageTable')->fetchAll();
 
             if ($pages) {
                 foreach ($pages as $key => $page) {
@@ -39,7 +39,7 @@ class Navigation extends DefaultNavigationFactory
                     }
 
                     if ('blog' == $page->route) {
-                        $blogPosts = $serviceLocator->get('Blog\Model\BlogTable')->getIndex();
+                        $blogPosts = $serviceLocator->get('Blog\Model\BlogTable')->fetchAll();
 
                         if ($blogPosts) {
                             $navigation[$key]['pages'] = array();
