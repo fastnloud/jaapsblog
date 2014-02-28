@@ -101,6 +101,8 @@ class Blog extends Service
             if (isset($config['reply_form']) && !empty($config['reply_form']['send_notification_to'])) {
                 $this->notify($item);
             }
+
+            $form->bind(new ReplyModel());
         }
     }
 
