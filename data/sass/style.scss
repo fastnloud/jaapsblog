@@ -193,6 +193,20 @@ div.page {
     form {
       margin: 1em 0;
 
+      > ul {
+        @extend .clearfix;
+        display: inline-block;
+        padding: 5px 10px;
+        list-style: none;
+        border: 1px solid #ffa5a2;
+        background: #ffe3e4;
+        color: #8c0000;
+
+        li {
+          display: inline;
+        }
+      }
+
       label,
       span {
         display: block;
