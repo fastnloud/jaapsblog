@@ -11,6 +11,11 @@ class Page extends Service
     /**
      * @var bool
      */
+    protected static $hasPage = false;
+
+    /**
+     * @var bool
+     */
     protected static $isHomepage = false;
 
     /**
@@ -57,6 +62,9 @@ class Page extends Service
         if ($result && 'home' == $result->url_string) {
             $this->setIsHomepage(true);
         }
+
+        // flag has page
+        $this->setHasPage(true);
 
         return $result;
     }
@@ -139,6 +147,22 @@ class Page extends Service
     public static function isHomepage()
     {
         return self::$isHomepage;
+    }
+
+    /**
+     * @param boolean $hasPage
+     */
+    protected static function setHasPage($hasPage)
+    {
+        self::$hasPage = (bool) $hasPage;
+    }
+
+    /**
+     * @return boolean
+     */
+    public static function hasPage()
+    {
+        return self::$hasPage;
     }
 
 }
