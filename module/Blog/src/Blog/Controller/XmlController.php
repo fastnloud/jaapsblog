@@ -10,7 +10,7 @@ class XmlController extends AbstractActionController
 
     public function sitemapAction()
     {
-        $this->response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
+        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
 
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
