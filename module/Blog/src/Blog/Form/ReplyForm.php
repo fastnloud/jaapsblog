@@ -12,7 +12,7 @@ class ReplyForm extends Form
         parent::__construct('reply-form');
 
         $this->setAttribute('method', 'post');
-        $this->setAttribute('action', '#reply');
+        $this->setAttribute('action', '#reply-form');
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Csrf',
