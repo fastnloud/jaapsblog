@@ -42,7 +42,11 @@
         </div>
 
         <nav class="breadcrumbs">
-            <div><?php echo (!\Blog\Service\Page::isHomepage() ? '<a href="/">Home</a> > ' : '') . $this->navigation('navigation')->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?></div>
+            <div>
+<?php echo (!\Blog\Service\Page::isHomepage() ? '<a href="/">Home</a> > ' : ''); ?>
+<?php echo (!\Blog\Service\Page::hasPage() ? 'Error' : ''); ?>
+<?php echo $this->navigation('navigation')->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?>
+</div>
         </nav>
 
         <div class="page">
