@@ -1,6 +1,6 @@
-<?php $this->headTitle()->prepend('Blog'); ?>
-<?php $this->headMeta()->appendName('keywords', 'blog, items, jaapsblog, index'); ?>
-<?php $this->headMeta()->appendName('description', 'Blog index.'); ?>
+<?php $this->headTitle()->prepend($this->escapeHtml($page->meta_title)); ?>
+<?php $this->headMeta()->appendName('keywords', $this->escapeHtml($page->meta_keywords)); ?>
+<?php $this->headMeta()->appendName('description', $this->escapeHtml($page->meta_description)); ?>
 
 <div class="index">
 <?php if ($q): ?>

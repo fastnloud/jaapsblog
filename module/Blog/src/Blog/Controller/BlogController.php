@@ -2,12 +2,18 @@
 
 namespace Blog\Controller;
 
+use Blog\Service\Page as PageService;
 use Blog\Service\Blog as BlogService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class BlogController extends AbstractActionController
 {
+
+    /**
+     * @var PageService
+     */
+    protected $pageService;
 
     /**
      * @var BlogService
@@ -21,8 +27,16 @@ class BlogController extends AbstractActionController
      */
     public function indexAction()
     {
+        $page = $this->getPageService()->getPageByUrlString('blog');
+
+        if (!$page) {
+            $this->getResponse()->setStatusCode(404);
+            return false;
+        }
+
         return new ViewModel(array(
             'q'     => $this->params()->fromQuery('q'),
+            'page'  => $page,
             'index' => $this->getBlogService()->getItems($this->params()->fromQuery('q'))
         ));
     }
@@ -34,9 +48,10 @@ class BlogController extends AbstractActionController
      */
     public function viewAction()
     {
+        $page = $this->getPageService()->getPageByUrlString('blog');
         $item = $this->getBlogService()->getItem($this->params()->fromRoute('id'));
 
-        if (!$item) {
+        if (!$item || !$page) {
             $this->getResponse()->setStatusCode(404);
             return false;
         }
@@ -57,9 +72,26 @@ class BlogController extends AbstractActionController
         }
 
         return new ViewModel(array(
+            'page' => $page,
             'blog' => $item,
             'form' => $this->getBlogService()->getReplyForm()
         ));
+    }
+
+    /**
+     * @param \Blog\Service\Page $pageService
+     */
+    public function setPageService(PageService $pageService)
+    {
+        $this->pageService = $pageService;
+    }
+
+    /**
+     * @return \Blog\Service\Page
+     */
+    protected function getPageService()
+    {
+        return $this->pageService;
     }
 
     /**

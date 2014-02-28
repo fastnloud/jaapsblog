@@ -88,6 +88,7 @@ class Module
                 },
                 'Blog\Controller\Blog' => function($sm) {
                     $controller = new BlogController();
+                    $controller->setPageService($sm->getServiceLocator()->get('PageService'));
                     $controller->setBlogService($sm->getServiceLocator()->get('BlogService'));
 
                     return $controller;
