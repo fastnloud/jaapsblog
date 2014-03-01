@@ -17,11 +17,6 @@ class Blog extends Service
 {
 
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
      * @var Navigation
      */
     protected $navigation;
@@ -317,22 +312,6 @@ class Blog extends Service
     public function getReplyForm()
     {
         return $this->replyForm;
-    }
-
-    /**
-     * @param array $config
-     */
-    public function setConfig(array $config)
-    {
-        $this->config = $config;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getConfig()
-    {
-        return $this->config;
     }
 
     /**

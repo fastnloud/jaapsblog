@@ -18,6 +18,9 @@ return array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
     ),
+    'website' => array (
+        'version' => '2'
+    ),
     'mail' => array(
         'from' => 'noreply@jaapsblog.nl',
         'transport' => array(

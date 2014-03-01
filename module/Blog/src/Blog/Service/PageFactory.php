@@ -10,7 +10,9 @@ class PageFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $page = new Page();
+        $config = $serviceLocator->get('Config');
+
+        $page = new Page($config['website']['version']);
         $page->setRequest($serviceLocator->get('Request'));
         $page->setNavigation($serviceLocator->get('Navigation'));
         $page->setPageTable($serviceLocator->get('PageTable'));

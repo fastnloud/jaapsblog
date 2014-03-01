@@ -9,6 +9,11 @@ class Page extends Service
 {
 
     /**
+     * @var string
+     */
+    protected static $version = '1';
+
+    /**
      * @var bool
      */
     protected static $hasPage = false;
@@ -27,6 +32,16 @@ class Page extends Service
      * @var PageTable
      */
     protected $pageTable;
+
+    /**
+     * Init and set version param.
+     *
+     * @param $version
+     */
+    public function __construct($version)
+    {
+        self::setVersion($version);
+    }
 
     /**
      * Get pages.
@@ -163,6 +178,22 @@ class Page extends Service
     public static function hasPage()
     {
         return self::$hasPage;
+    }
+
+    /**
+     * @param string $version
+     */
+    public static function setVersion($version)
+    {
+        self::$version = $version;
+    }
+
+    /**
+     * @return string
+     */
+    public static function version()
+    {
+        return self::$version;
     }
 
 }

@@ -4,6 +4,7 @@ namespace Auth;
 
 use Auth\Controller\AuthController;
 use Zend\Authentication\AuthenticationService;
+use Zend\Mvc\MvcEvent;
 
 class Module
 {   
@@ -13,10 +14,13 @@ class Module
      * is being bootstrapped.
      * A high priority is set for this task.
      */
-    public function onBootstrap($e)
+    public function onBootstrap(MvcEvent $e)
     {
         $application = $e->getApplication();
-        $application->getEventManager()->attach('dispatch', array($this, 'checkAuth'), 100);
+        $application->getEventManager()->attach($e::EVENT_DISPATCH, array($this, 'checkAuth'), 100);
+        $application->getEventManager()->attach($e::EVENT_DISPATCH_ERROR, function() {
+            define('AUTHENTICATED', false);
+        }, 100);
     }
     
     /**
@@ -26,7 +30,7 @@ class Module
      * @param $e
      * @return boolean
      */
-    public function checkAuth($e)
+    public function checkAuth(MvcEvent $e)
     {
         // Firstly we'll fetch the needed params.
         $matches         = $e->getRouteMatch();

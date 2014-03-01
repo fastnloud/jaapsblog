@@ -13,9 +13,21 @@ use Blog\View\Helper\Analytics;
 use Blog\View\Helper\SocialMedia;
 use Blog\View\Helper\BlogPosts;
 use Blog\View\Helper\Replies;
+use Zend\Mvc\MvcEvent;
 
 class Module
 {
+
+    public function onBootstrap(MvcEvent $e)
+    {
+        $application = $e->getApplication();
+        $application->getEventManager()->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'initPage'), 50);
+    }
+
+    public function initPage(MvcEvent $e)
+    {
+        $e->getApplication()->getServiceManager()->get('PageService');
+    }
 
     public function getAutoloaderConfig()
     {

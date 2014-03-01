@@ -1,9 +1,9 @@
 <?php
 return array(
     'modules' => array(
+        'Auth',
         'Admin',
         'Blog',
-        'Auth',
         'Dkim'
     ),
     'module_listener_options' => array(

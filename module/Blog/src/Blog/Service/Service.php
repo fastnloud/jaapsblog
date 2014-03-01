@@ -8,6 +8,11 @@ abstract class Service
 {
 
     /**
+     * @var array
+     */
+    protected $config;
+
+    /**
      * @var Request
      */
     protected $request;
@@ -66,6 +71,22 @@ abstract class Service
         }
 
         return false;
+    }
+
+    /**
+     * @param array $config
+     */
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getConfig()
+    {
+        return $this->config;
     }
 
     /**

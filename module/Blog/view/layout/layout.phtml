@@ -1,6 +1,3 @@
-<?php $this->placeholder('version')->set('1.21'); ?>
-<?php if (!defined('AUTHENTICATED')): define('AUTHENTICATED', false); endif; ?>
-
 <?php echo $this->doctype(); ?>
 
 <html lang="en">
@@ -13,15 +10,16 @@
                                     ->setName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1'); ?>
 
 
-        <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/style.css?v=' . $this->placeholder('version'))
+        <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/style.css?v=' . \Blog\Service\Page::version())
                                     ->prependStylesheet($this->basePath() . '/css/main.css')
                                     ->prependStylesheet($this->basePath() . '/css/normalize.css')
                                     ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif:400,600'); ?>
 
 
-        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . $this->placeholder('version'), 'text/javascript')
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . \Blog\Service\Page::version(), 'text/javascript')
                                       ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js')
-                                      ->prependFile($this->basePath() . '/js/vendor/jquery-1.10.2.min.js'); ?>
+                                      ->prependFile($this->basePath() . '/js/vendor/jquery-migrate-1.2.1.min.js')
+                                      ->prependFile($this->basePath() . '/js/vendor/jquery-1.11.0.min.js'); ?>
 
 
         <?php echo $this->analytics(); ?>
