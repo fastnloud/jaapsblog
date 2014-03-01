@@ -16,11 +16,12 @@
         <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/style.css?v=' . $this->placeholder('version'))
                                     ->prependStylesheet($this->basePath() . '/css/main.css')
                                     ->prependStylesheet($this->basePath() . '/css/normalize.css')
-                                    ->prependStylesheet('http://fonts.googleapis.com/css?family=Open+Sans:400,600'); ?>
+                                    ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif:400,600'); ?>
 
 
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . $this->placeholder('version'), 'text/javascript')
-                                      ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js') ?>
+                                      ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js')
+                                      ->prependFile($this->basePath() . '/js/vendor/jquery-1.10.2.min.js'); ?>
 
 
         <?php echo $this->analytics(); ?>
@@ -42,7 +43,7 @@
         </div>
 
         <nav class="breadcrumbs">
-            <div>
+            <div class="path">
 <?php echo (!\Blog\Service\Page::isHomepage() ? '<a href="/">Home</a> > ' : ''); ?>
 <?php echo (!\Blog\Service\Page::hasPage() ? 'Error' : ''); ?>
 <?php echo $this->navigation('navigation')->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?>
