@@ -1,26 +1,19 @@
-/* theme color */
 $theme: #ff1769;
-
-/* main font color */
 $fontColor: #2f353e;
-$fontColorNav: #FFF;
-
-/* background */
-$colorBackground: #FFF;
 
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans';
+  font: normal 1em/1.8em 'Droid Serif', arial;
 }
 
 nav > ul,
-nav.breadcrumbs > div,
+nav.breadcrumbs > div.path,
 div.search > form,
 div.page,
-div.footer {
+div.footer > footer {
   padding: 0;
   margin: 0 auto;
   width: 50%;
@@ -74,15 +67,11 @@ a {
 
 nav {
   background: #1a1a1a;
-  border-bottom: 5px solid #4a4a4a;
 
   &.breadcrumbs {
-    padding: 10px 0;
-    background: #F1F1F1;
+    padding: 10px 0 0 0;
+    background: #FFFFFF;
     border: none;
-
-    div {
-    }
   }
 
   ul {
@@ -97,7 +86,7 @@ nav {
 
       a {
         display: inline-block;
-        color: $fontColorNav;
+        color: #FFFFFF;
         font-weight: bold;
         text-decoration: none;
         font-size: 1.2em;
@@ -108,39 +97,42 @@ nav {
 }
 
 div.search {
-  background: $theme;
+  background: #F1F1F1;
   padding: 10px 0;
+  border-bottom: 1px dotted #4a4a4a;
 
   form {
     input {
       margin: 0 10px 0 0;
-      border: 0;
+      border: 1px dotted #4a4a4a;
       padding: 2px;
+      color: #4a4a4a;
     }
   }
 }
 
 div.page {
-  aside {
-    display: none;
+  .searched {
+    margin-bottom: 0;
+
+    span {
+      color: $theme;
+    }
   }
 
   article {
     @extend .clearfix;
     color: $fontColor;
-    line-height: 1.6em;
     padding: 10px;
     margin: 0 0 20px 0;
 
     .header {
-      h1,
-      h2 {
-        font-size: 1.6em;
-        line-height: 1.4em;
-        margin: 0;
+      h1 {
+        margin-bottom: 0;
       }
+
       h2 {
-        font-size: 1.2em;
+        margin-top: 5px;
       }
     }
 
@@ -198,9 +190,8 @@ div.page {
         display: inline-block;
         padding: 5px 10px;
         list-style: none;
-        border: 1px solid #ffa5a2;
-        background: #ffe3e4;
-        color: #8c0000;
+        border: 1px solid #ffcccf;
+        background: #ffe9ee;
 
         li {
           display: inline;
@@ -238,11 +229,13 @@ div.page {
 
 .footer {
   @extend .clearfix;
+  border-top: 2px solid $fontColor;
+  background: #F1F1F1;
+  width: 100%;
+
   footer {
-    float: left;
     background: #F1F1F1;
     width: 100%;
-    border-top: 2px solid $fontColor;
 
     div,
     span {
@@ -252,14 +245,13 @@ div.page {
       ul {
         display: block;
         margin: 0;
-        padding: 0;
-        padding: 0 10px 10px 10px;
+        padding: 0 0 10px 0;
         list-style-type: none;
       }
 
       strong {
         display: block;
-        padding: 10px;
+        padding: 10px 0;
         font-size: 1em;
         color: $fontColor;
       }
@@ -324,10 +316,10 @@ div.page {
 
 @media only screen and (max-width : 800px) {
   nav > ul,
-  nav.breadcrumbs > div,
+  nav.breadcrumbs > div.path,
   div.search > form,
   div.page,
-  div.footer {
+  div.footer footer {
     width: 95%;
   }
 
