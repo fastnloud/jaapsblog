@@ -167,7 +167,7 @@ class Page extends Service
     /**
      * @param boolean $hasPage
      */
-    protected static function setHasPage($hasPage)
+    public static function setHasPage($hasPage)
     {
         self::$hasPage = (bool) $hasPage;
     }

@@ -52,6 +52,7 @@ class BlogController extends AbstractActionController
         $item = $this->getBlogService()->getItem($this->params()->fromRoute('id'));
 
         if (!$item || !$page) {
+            $this->getPageService()->setHasPage(false);
             $this->getResponse()->setStatusCode(404);
             return false;
         }
@@ -59,6 +60,7 @@ class BlogController extends AbstractActionController
         $uri = $this->getBlogService()->validateUri($item);
 
         if (!$uri) {
+            $this->getPageService()->setHasPage(false);
             $this->getResponse()->setStatusCode(404);
             return false;
         } elseif (true !== $uri) {
