@@ -7,9 +7,6 @@
 <article>
     <?php
         switch ($blog->category):
-            case 'review':
-                require_once 'category/review.phtml';
-                break;
             default:
                 require_once 'category/default.phtml';
         endswitch;
