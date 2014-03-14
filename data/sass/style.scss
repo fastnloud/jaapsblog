@@ -257,12 +257,20 @@ div.page {
 
     div {
       float: left;
-      width: 33%;
+
+      &.col1,
+      &.col3 {
+        width: 25%;
+      }
+
+      &.col2 {
+        width: 50%;
+      }
 
       ul {
         display: block;
         margin: 0;
-        padding: 0 0 10px 0;
+        padding: 0 0 20px 0;
         list-style-type: none;
       }
 
@@ -360,7 +368,9 @@ div.page {
     display: none;
   }
 
-  .footer footer div {
+  .footer footer div.col1,
+  .footer footer div.col2,
+  .footer footer div.col3 {
     width: 100%;
   }
 }
