@@ -9,9 +9,9 @@ class Page extends Service
 {
 
     /**
-     * @var string
+     * @var array
      */
-    protected static $version = '1';
+    protected static $websiteGlobals = array();
 
     /**
      * @var bool
@@ -34,13 +34,13 @@ class Page extends Service
     protected $pageTable;
 
     /**
-     * Init and set version param.
+     * Init website globals.
      *
-     * @param $version
+     * @param $config
      */
-    public function __construct($version)
+    public function __construct(array $config)
     {
-        self::setVersion($version);
+        self::setWebsiteGlobals($config['website']);
     }
 
     /**
@@ -181,19 +181,19 @@ class Page extends Service
     }
 
     /**
-     * @param string $version
+     * @param array $websiteGlobals
      */
-    public static function setVersion($version)
+    protected static function setWebsiteGlobals(array $websiteGlobals)
     {
-        self::$version = $version;
+        self::$websiteGlobals = array_merge(self::$websiteGlobals, $websiteGlobals);
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public static function version()
+    public static function websiteGlobals($key)
     {
-        return self::$version;
+        return self::$websiteGlobals[$key];
     }
 
 }

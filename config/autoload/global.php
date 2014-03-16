@@ -18,8 +18,16 @@ return array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
     ),
+    'auth' => array(
+        'realm'     => 'admin',
+        'filename'  => __DIR__ . '/../../files/passwd.txt'
+    ),
     'website' => array (
-        'version' => '2'
+        'version'       => '2',
+        'title'         => 'Jaapsblog.nl',
+        'description'   => 'PHP / ZF2 blog',
+        'author'        => '',
+        'email'         => ''
     ),
     'mail' => array(
         'from' => 'noreply@jaapsblog.nl',
@@ -34,7 +42,7 @@ return array(
     ),
     'google' => array(
         'analytics' => array(
-            'account' => 'UA-35946656-1'
+            'account' => ''
         )
     ),
     'service_manager' => array(
