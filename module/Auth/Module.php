@@ -18,7 +18,11 @@ class Module
     {
         $application = $e->getApplication();
         $application->getEventManager()->attach($e::EVENT_DISPATCH, array($this, 'checkAuth'), 100);
-        $application->getEventManager()->attach($e::EVENT_DISPATCH_ERROR, array($this, 'checkAuth'), 100);
+        $application->getEventManager()->attach($e::EVENT_DISPATCH_ERROR, function() {
+            if (!defined('AUTHENTICATED')) {
+                define('AUTHENTICATED', false);
+            }
+        }, 100);
     }
     
     /**
