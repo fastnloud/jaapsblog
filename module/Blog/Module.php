@@ -4,6 +4,7 @@ namespace Blog;
 
 use Blog\Controller\BlogController;
 use Blog\Controller\PageController;
+use Blog\Controller\XmlController;
 use Blog\Model\BlogTable;
 use Blog\Model\ReplyTable;
 use Blog\Model\PageTable;
@@ -21,6 +22,7 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         $application = $e->getApplication();
+        $application->getEventManager()->attach(MvcEvent::EVENT_DISPATCH, array($this, 'initPage'), 50);
         $application->getEventManager()->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'initPage'), 50);
     }
 
@@ -101,6 +103,12 @@ class Module
                 'Blog\Controller\Blog' => function($sm) {
                     $controller = new BlogController();
                     $controller->setPageService($sm->getServiceLocator()->get('PageService'));
+                    $controller->setBlogService($sm->getServiceLocator()->get('BlogService'));
+
+                    return $controller;
+                },
+                'Blog\Controller\Xml' => function($sm) {
+                    $controller = new XmlController();
                     $controller->setBlogService($sm->getServiceLocator()->get('BlogService'));
 
                     return $controller;

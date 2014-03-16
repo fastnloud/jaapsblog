@@ -3,20 +3,24 @@
 <html lang="en">
     <head>
 
-        <?php echo $this->headTitle('Jaapsblog.nl')->setSeparator(' - '); ?>
+        <?php echo $this->headTitle(\Blog\Service\Page::websiteGlobals('title'))->setSeparator(' - '); ?>
 
 
         <?php echo $this->headMeta()->setCharset('UTF-8')
                                     ->setName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1'); ?>
 
-
-        <?php echo $this->headLink()->prependStylesheet($this->basePath() . '/css/style.css?v=' . \Blog\Service\Page::version())
-                                    ->prependStylesheet($this->basePath() . '/css/main.css?v=' . \Blog\Service\Page::version())
-                                    ->prependStylesheet($this->basePath() . '/css/normalize.css?v=' . \Blog\Service\Page::version())
+        <?php echo $this->headLink(array(
+            'rel'   => 'alternate',
+            'type'  => 'application/rss+xml',
+            'title' => 'RSS',
+            'href'  => $this->basePath() . '/xml/rss.xml'
+        ))->prependStylesheet($this->basePath() . '/css/style.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
+                                    ->prependStylesheet($this->basePath() . '/css/main.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
+                                    ->prependStylesheet($this->basePath() . '/css/normalize.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
                                     ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif:400,600'); ?>
 
 
-        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . \Blog\Service\Page::version(), 'text/javascript')
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . \Blog\Service\Page::websiteGlobals('version'), 'text/javascript')
                                       ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js')
                                       ->prependFile($this->basePath() . '/js/vendor/jquery-migrate-1.2.1.min.js')
                                       ->prependFile($this->basePath() . '/js/vendor/jquery-1.11.0.min.js'); ?>

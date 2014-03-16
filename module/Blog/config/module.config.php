@@ -81,11 +81,6 @@ return array (
             ),
         ),
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'Blog\Controller\Xml' => 'Blog\Controller\XmlController'
-        ),
-    ),
     'view_manager' => array(
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
@@ -98,6 +93,9 @@ return array (
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+            'ViewFeedStrategy',
         ),
     )
 );
