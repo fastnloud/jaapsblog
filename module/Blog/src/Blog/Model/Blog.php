@@ -18,9 +18,7 @@ class Blog implements InputFilterAwareInterface
     public $author;
     public $date;
     public $category;
-    public $rating;
     public $status;
-    public $amazon_item_id;
     public $meta_title;
     public $meta_description;
     public $meta_keywords;
@@ -38,9 +36,7 @@ class Blog implements InputFilterAwareInterface
         $this->author                = (isset($data['author'])) ? $data['author'] : null;
         $this->date                  = (isset($data['date'])) ? $data['date'] : null;
         $this->category              = (isset($data['category'])) ? $data['category'] : 'social';
-        $this->rating                = (isset($data['rating'])) ? $data['rating'] : null;
         $this->status                = (isset($data['status'])) ? $data['status'] : 'offline';
-        $this->amazon_item_id        = (isset($data['amazon_item_id'])) ? $data['amazon_item_id'] : null;
         $this->meta_title            = (isset($data['meta_title'])) ? $data['meta_title'] : null;
         $this->meta_description      = (isset($data['meta_description'])) ? $data['meta_description'] : null;
         $this->meta_keywords         = (isset($data['meta_keywords'])) ? $data['meta_keywords'] : null;

@@ -126,10 +126,8 @@ class BlogTable extends AbstractTableGateway
             'content'           => $blog->content,
             'author'            => $blog->author,
             'category'          => $blog->category,
-            'rating'            => $blog->rating,
             'date'              => $blog->date,
             'status'            => $blog->status,
-            'amazon_item_id'    => $blog->amazon_item_id,
             'meta_title'        => $blog->meta_title,
             'meta_description'  => $blog->meta_description,
             'meta_keywords'     => $blog->meta_keywords

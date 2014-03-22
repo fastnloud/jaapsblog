@@ -79,7 +79,7 @@ Ext.define('App.view.blog.Edit', {
                         xtype: 'combobox',
                         name : 'category',
                         fieldLabel: 'Category',
-                        store : ['code snippet', 'media', 'review', 'social'],
+                        store : ['code snippet', 'media', 'social'],
                         allowBlank : false,
                         forceSelection : true,
                         value: 'code snippet'
@@ -92,49 +92,6 @@ Ext.define('App.view.blog.Edit', {
                         allowBlank : false,
                         forceSelection : true,
                         value: 'offline'
-                    },
-                    {
-                        xtype: 'fieldset',
-                        title: 'Review',
-                        collapsible: true,
-                        defaults: {
-                            labelWidth: 90,
-                            anchor: '100%',
-                            padding: 10,
-                            layout: {
-                                type: 'hbox'
-                            }
-                        },
-                        items : [
-                            {
-                                xtype: 'combobox',
-                                name : 'rating',
-                                fieldLabel: 'Rating',
-                                store : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                                forceSelection : true,
-                                value : 0
-                            }
-                        ]
-                    },
-                    {
-                        xtype: 'fieldset',
-                        title: 'Amazon',
-                        collapsible: true,
-                        defaults: {
-                            labelWidth: 90,
-                            anchor: '100%',
-                            padding: 10,
-                            layout: {
-                                type: 'hbox'
-                            }
-                        },
-                        items : [
-                            {
-                                xtype: 'textfield',
-                                name : 'amazon_item_id',
-                                fieldLabel: 'Item Id'
-                            }
-                        ]
                     },
                     {
                         xtype: 'fieldset',

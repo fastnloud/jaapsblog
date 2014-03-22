@@ -9,9 +9,7 @@ Ext.define('App.model.Blog', {
         'author',
         'date',
         'category',
-        'rating',
         'status',
-        'amazon_item_id',
         'meta_title',
         'meta_description',
         'meta_keywords'
