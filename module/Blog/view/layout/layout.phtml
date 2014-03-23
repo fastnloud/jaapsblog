@@ -14,10 +14,11 @@
             'type'  => 'application/rss+xml',
             'title' => 'RSS',
             'href'  => $this->basePath() . '/xml/rss.xml'
-        ))->prependStylesheet($this->basePath() . '/css/style.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
-                                    ->prependStylesheet($this->basePath() . '/css/main.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
-                                    ->prependStylesheet($this->basePath() . '/css/normalize.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
-                                    ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif:400,600'); ?>
+        ))->prependAlternate(array('rel' => 'shortcut icon', 'href'  => $this->basePath() . '/favicon.ico?v=' . \Blog\Service\Page::websiteGlobals('version')))
+          ->prependStylesheet($this->basePath() . '/css/style.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
+          ->prependStylesheet($this->basePath() . '/css/main.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
+          ->prependStylesheet($this->basePath() . '/css/normalize.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
+          ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif:400,600'); ?>
 
 
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . \Blog\Service\Page::websiteGlobals('version'), 'text/javascript')
