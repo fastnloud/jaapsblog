@@ -1,14 +1,12 @@
 # Private #
 ############
-.idea/*
 config/autoload/local.php
-passwd.txt
 google*.html
 
 # Libs #
 ############
-vendor/ZF2/*
 admin/extjs/*
+vendor/bin
 
 # Compiled source #
 ###################
@@ -40,11 +38,14 @@ admin/extjs/*
 
 # OS generated files #
 ######################
+.idea
 .DS_Store
 .DS_Store?
 ._*
+.~lock.*
 .Spotlight-V100
 .Trashes
 Icon?
+composer.lock
 ehthumbs.db
 Thumbs.db
