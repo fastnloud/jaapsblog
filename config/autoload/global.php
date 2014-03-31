@@ -29,6 +29,10 @@ return array(
         'author'        => '',
         'email'         => ''
     ),
+    'recaptcha' => array (
+        'public_key'  => '',
+        'private_key' => ''
+    ),
     'mail' => array(
         'from' => 'noreply@jaapsblog.nl',
         'transport' => array(

@@ -10,7 +10,12 @@ class ReplyFormFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new ReplyForm();
+        $replyForm = new ReplyForm(
+            'reply-form',
+            $serviceLocator->get('Config')
+        );
+
+        return $replyForm;
     }
 
 }

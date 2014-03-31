@@ -2,12 +2,19 @@
 
 namespace Blog\Form;
 
+use Zend\Captcha\ReCaptcha;
 use Zend\Form\Form;
 
 class ReplyForm extends Form
 {
 
-    public function __construct($name = null)
+    /**
+     * Initialize form with config.
+     *
+     * @param string $name
+     * @param array $config
+     */
+    public function __construct($name, array $config)
     {
         parent::__construct('reply-form');
 
@@ -21,6 +28,17 @@ class ReplyForm extends Form
                 'csrf_options' => array(
                     'timeout' => 600
                 )
+            )
+        ));
+
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Captcha',
+            'name' => 'captcha',
+            'options' => array(
+                'captcha' => new ReCaptcha(array(
+                    'public_key'  => $config['recaptcha']['public_key'],
+                    'private_key' => $config['recaptcha']['private_key'],
+                ))
             )
         ));
 
