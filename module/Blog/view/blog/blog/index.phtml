@@ -1,6 +1,6 @@
-<?php $this->headTitle()->prepend($this->escapeHtml($page->meta_title)); ?>
-<?php $this->headMeta()->appendName('keywords', $this->escapeHtml($page->meta_keywords)); ?>
-<?php $this->headMeta()->appendName('description', $this->escapeHtml($page->meta_description)); ?>
+<?php $this->headTitle()->prepend($page->meta_title); ?>
+<?php $this->headMeta()->appendName('keywords', $page->meta_keywords); ?>
+<?php $this->headMeta()->appendName('description', $page->meta_description); ?>
 
 <div class="index">
 <?php if ($q): ?>
