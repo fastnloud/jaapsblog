@@ -31,7 +31,7 @@ class ReplyForm extends Form
             )
         ));
 
-        $this->add(array(
+        /*$this->add(array(
             'type' => 'Zend\Form\Element\Captcha',
             'name' => 'captcha',
             'options' => array(
@@ -40,7 +40,7 @@ class ReplyForm extends Form
                     'private_key' => $config['recaptcha']['private_key'],
                 ))
             )
-        ));
+        ));*/
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Text',
