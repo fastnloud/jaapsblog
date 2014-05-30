@@ -41,7 +41,7 @@ class ReplyTable extends AbstractTableGateway
         $select->order('timestamp asc');
 
         if (null !== $idBlog) {
-            $select->where(array('id_blog = ?' => (int)$idBlog));
+            $select->where(array('id_blog = ?' => (int) $idBlog));
         }
 
         return $this->selectWith($select);
@@ -55,11 +55,9 @@ class ReplyTable extends AbstractTableGateway
      */
     public function fetch($id)
     {
-        $id = (int) $id;
-
         $select = $this->getSql()->select();
         $select->where(array(
-            'id' => $id,
+            'id' => (int) $id,
         ));
 
         return $this->selectWith($select)->current();
@@ -74,7 +72,7 @@ class ReplyTable extends AbstractTableGateway
     public function remove($id)
     {
         return $this->delete(array(
-            'id' => (int)$id
+            'id' => (int) $id
         ));
     }
 
@@ -87,25 +85,23 @@ class ReplyTable extends AbstractTableGateway
     public function save(Reply $reply)
     {
         $data = array(
-            'id_blog'  => $reply->id_blog,
-            'name'     => $reply->name,
-            'comment'  => $reply->comment
+            'id_blog'  => $reply->getIdBlog(),
+            'name'     => $reply->getName(),
+            'comment'  => $reply->getComment()
         );
 
-        $id = (int) $reply->id;
-
         // whenever logged on
-        if (0 == $id && true === AUTHENTICATED) {
+        if (0 == $reply->getId() && true === AUTHENTICATED) {
             $data['is_admin'] = true;
         }
 
-        if (0 == $id || true !== AUTHENTICATED) {
+        if (0 == $reply->getId() || true !== AUTHENTICATED) {
             return $this->insert($data);
-        } elseif ($this->fetch($id)) {
+        } elseif ($this->fetch($reply->getId())) {
             return $this->update(
                 $data,
                 array(
-                    'id' => $id,
+                    'id' => $reply->getId(),
                 )
             );
         }

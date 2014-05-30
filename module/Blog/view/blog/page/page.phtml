@@ -1,8 +1,8 @@
-<?php $this->headTitle()->prepend($page->meta_title); ?>
-<?php $this->headMeta()->appendName('keywords', $page->meta_keywords); ?>
-<?php $this->headMeta()->appendName('description', $page->meta_description); ?>
+<?php $this->headTitle()->prepend($page->getMetaTitle()); ?>
+<?php $this->headMeta()->appendName('keywords', $page->getMetaKeywords()); ?>
+<?php $this->headMeta()->appendName('description', $page->getMetaDescription()); ?>
 
 <article>
-    <h1><?php echo $this->escapeHtml($page->title); ?></h1>
-    <?php echo $page->content; ?>
+    <h1><?php echo $this->escapeHtml($page->getTitle()); ?></h1>
+    <?php echo $page->getContent(); ?>
 </article>

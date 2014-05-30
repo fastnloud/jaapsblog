@@ -19,26 +19,26 @@ class Navigation extends DefaultNavigationFactory
                 foreach ($pages as $key => $page) {
                     $visible = true;
 
-                    if (true !== AUTHENTICATED && 'offline' == $page->status) {
+                    if (true !== AUTHENTICATED && 'offline' == $page->getStatus()) {
                         continue;
-                    } elseif ('online' != $page->status) {
+                    } elseif ('online' != $page->getStatus()) {
                         $visible = false;
                     }
 
                     $navigation[$key] = array (
-                        'url_string'=> $page->url_string, // unique
+                        'url_string'=> $page->getUrlString(), // unique
                         'visible'   => $visible,
-                        'label'     => $page->label,
-                        'route'     => $page->route
+                        'label'     => $page->getLabel(),
+                        'route'     => $page->getRoute()
                     );
 
-                    if ('page' == $page->route) {
+                    if ('page' == $page->getRoute()) {
                         $navigation[$key]['params'] = array(
-                            'page' => $this->urlString($page->url_string)
+                            'page' => $this->urlString($page->getUrlString())
                         );
                     }
 
-                    if ('blog' == $page->route) {
+                    if ('blog' == $page->getRoute()) {
                         $blogPosts = $serviceLocator->get('Blog\Model\BlogTable')->fetchAll();
 
                         if ($blogPosts) {
@@ -46,14 +46,14 @@ class Navigation extends DefaultNavigationFactory
 
                             foreach ($blogPosts as $post) {
                                 $navigation[$key]['pages'][] = array(
-                                    'id_blog_post' => $post->id, // unique
-                                    'label'        => $post->title,
-                                    'date'         => $post->date,
+                                    'id_blog_post' => $post->getId(), // unique
+                                    'label'        => $post->getTitle(),
+                                    'date'         => $post->getDate(),
                                     'route'        => 'blog_post',
                                     'params'       => array(
                                         'action' => 'view',
-                                        'id' => $post->id,
-                                        'title' => $this->urlString($post->title)
+                                        'id'     => $post->getId(),
+                                        'title'  => $this->urlString($post->getTitle())
                                     )
                                 );
                             }

@@ -35,7 +35,7 @@ abstract class Service
 
         if ($result instanceof \Zend\Db\ResultSet\ResultSet) {
             foreach ($result as $row) {
-                $data[] = $row;
+                $data[] = $row->getArrayCopy();
             }
 
             return array('data' => $data);

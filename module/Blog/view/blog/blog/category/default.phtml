@@ -1,17 +1,17 @@
 <div class="header">
-    <h1><?php echo $this->escapeHtml($blog->title); ?></h1>
-    <h2><?php echo $this->escapeHtml($blog->subtitle); ?></h2>
+    <h1><?php echo $this->escapeHtml($blog->getTitle()); ?></h1>
+    <h2><?php echo $this->escapeHtml($blog->getSubtitle()); ?></h2>
 </div>
 
-<?php echo $blog->content; ?>
+<?php echo $blog->getContent(); ?>
 
 
 <footer>
     <div>
         <span class="date">
-            Date added: <time datetime="<?php echo $blog->date ?>"><?php echo $this->date($blog->date) ?></time>
-            <?php if($blog->author): ?>
-                by <span class="author"><a rel="author" href="/about.html"><?php echo $this->escapeHtml($blog->author); ?></a></span>
+            Date added: <time datetime="<?php echo $blog->getDate() ?>"><?php echo $this->date($blog->getDate()) ?></time>
+            <?php if($blog->getAuthor()): ?>
+                by <span class="author"><a rel="author" href="/about.html"><?php echo $this->escapeHtml($blog->getAuthor()); ?></a></span>
             <?php endif; ?>
         </span>
     </div>

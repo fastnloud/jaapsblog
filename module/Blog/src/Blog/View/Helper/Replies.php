@@ -33,14 +33,14 @@ class Replies extends AbstractHelper
                         . "</h5>";
 
             foreach ($replies as $key => $value) {
-                $name     = $this->getView()->escapeHtml($value->name);
-                $comment  = nl2br($this->getView()->escapeHtml($value->comment));
-                $datetime = $this->getView()->date($value->timestamp, 'Y-m-d');
-                $date     = $this->getView()->date($value->timestamp, 'd M h:i a');
+                $name     = $this->getView()->escapeHtml($value->getName());
+                $comment  = nl2br($this->getView()->escapeHtml($value->getComment()));
+                $datetime = $this->getView()->date($value->getTimestamp(), 'Y-m-d');
+                $date     = $this->getView()->date($value->getTimestamp(), 'd M h:i a');
 
                 // odd even classes
                 $class = (0 == $key%2 ? 'odd' : 'even');
-                if (true == $value->is_admin) {
+                if ($value->getIsAdmin()) {
                     $class .= ' admin';
                     $name  .= ' <i>(admin)</i>';
                 }

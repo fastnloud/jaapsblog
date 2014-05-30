@@ -10,17 +10,17 @@ use Zend\InputFilter\InputFilterInterface;
 class Page implements InputFilterAwareInterface
 {
 
-    public $id;
-    public $title;
-    public $label;
-    public $url_string;
-    public $route;
-    public $content;
-    public $status;
-    public $priority;
-    public $meta_title;
-    public $meta_description;
-    public $meta_keywords;
+    protected $id;
+    protected $title;
+    protected $label;
+    protected $url_string;
+    protected $route;
+    protected $content;
+    protected $status;
+    protected $priority;
+    protected $meta_title;
+    protected $meta_description;
+    protected $meta_keywords;
     
     protected $inputFilter;
 
@@ -112,5 +112,181 @@ class Page implements InputFilterAwareInterface
     
         return $this->inputFilter;
     }
-    
+
+    /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = (int) $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return (int) $this->id;
+    }
+
+    /**
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string $meta_description
+     */
+    public function setMetaDescription($meta_description)
+    {
+        $this->meta_description = $meta_description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->meta_description;
+    }
+
+    /**
+     * @param string $meta_keywords
+     */
+    public function setMetaKeywords($meta_keywords)
+    {
+        $this->meta_keywords = $meta_keywords;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaKeywords()
+    {
+        return $this->meta_keywords;
+    }
+
+    /**
+     * @param string $meta_title
+     */
+    public function setMetaTitle($meta_title)
+    {
+        $this->meta_title = $meta_title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+        return $this->meta_title;
+    }
+
+    /**
+     * @param int $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = (int) $priority;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPriority()
+    {
+        return (int) $this->priority;
+    }
+
+    /**
+     * @param string $route
+     */
+    public function setRoute($route)
+    {
+        $this->route = $route;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $url_string
+     */
+    public function setUrlString($url_string)
+    {
+        $this->url_string = $url_string;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrlString()
+    {
+        return $this->url_string;
+    }
+
 }

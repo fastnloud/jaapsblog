@@ -64,11 +64,9 @@ class PageTable extends AbstractTableGateway
      */
     public function fetch($id)
     {
-        $id = (int) $id;
-
         $select = $this->getSql()->select();
         $select->where(array(
-            'id' => $id,
+            'id' => (int) $id,
         ));
 
         if (true !== AUTHENTICATED) {
@@ -135,27 +133,25 @@ class PageTable extends AbstractTableGateway
     public function save(Page $page)
     {
         $data = array(
-            'title'             => $page->title,
-            'label'             => $page->label,
-            'url_string'        => $page->url_string,
-            'route'             => $page->route,
-            'content'           => $page->content,
-            'status'            => $page->status,
-            'priority'          => $page->priority,
-            'meta_title'        => $page->meta_title,
-            'meta_description'  => $page->meta_description,
-            'meta_keywords'     => $page->meta_keywords
+            'title'             => $page->getTitle(),
+            'label'             => $page->getLabel(),
+            'url_string'        => $page->getUrlString(),
+            'route'             => $page->getRoute(),
+            'content'           => $page->getContent(),
+            'status'            => $page->getStatus(),
+            'priority'          => $page->getPriority(),
+            'meta_title'        => $page->getMetaTitle(),
+            'meta_description'  => $page->getMetaDescription(),
+            'meta_keywords'     => $page->getMetaKeywords()
         );
 
-        $id = (int) $page->id;
-
-        if (0 == $id) {
+        if (0 == $page->getId()) {
             return $this->insert($data);
-        } elseif ($this->fetch($id)) {
+        } elseif ($this->fetch($page->getId())) {
             return $this->update(
                 $data,
                 array(
-                    'id' => $id,
+                    'id' => $page->getId(),
                 )
             );
         }

@@ -74,7 +74,7 @@ class Page extends Service
         $result = $this->getPageTable()->fetchByUrlString(($urlString ? $urlString : 'home'));
 
         // flag as homepage
-        if ($result && 'home' == $result->url_string) {
+        if ($result && 'home' == $result->getUrlString()) {
             $this->setIsHomepage(true);
         }
 

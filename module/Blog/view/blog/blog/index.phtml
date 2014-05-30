@@ -1,6 +1,6 @@
-<?php $this->headTitle()->prepend($page->meta_title); ?>
-<?php $this->headMeta()->appendName('keywords', $page->meta_keywords); ?>
-<?php $this->headMeta()->appendName('description', $page->meta_description); ?>
+<?php $this->headTitle()->prepend($page->getMetaTitle()); ?>
+<?php $this->headMeta()->appendName('keywords', $page->getMetaKeywords()); ?>
+<?php $this->headMeta()->appendName('description', $page->getMetaDescription()); ?>
 
 <div class="index">
 <?php if ($q): ?>
@@ -8,35 +8,32 @@
 <?php endif;?>
 <?php if ($index->count() > 0): ?>
     <?php foreach($index as $key => $post): ?>
-        <?php
-            $href = $this->navigation('Navigation')->findOneBy('id_blog_post', $post->id)->getHref();
-            $class = ('offline' == $post->status || strtotime($post->date) > time() ? ' class="hidden"' : null);
-        ?>
+        <?php $href = $this->navigation('Navigation')->findOneBy('id_blog_post', $post->getId())->getHref(); ?>
 
-        <article<?php echo $class;?>>
+        <article>
 
         	<div class="header">
         		<h1>
-        		    <a href="<?php echo $href; ?>" title="<?php echo $this->escapeHtml($post->title) ?>">
-                        <?php echo $this->escapeHtml($post->title) ?>
+        		    <a href="<?php echo $href; ?>" title="<?php echo $this->escapeHtml($post->getTitle()) ?>">
+                        <?php echo $this->escapeHtml($post->getTitle()) ?>
         		    </a>
         		</h1>
-        		<h2><?php echo $this->escapeHtml($post->subtitle) ?></h2>
+        		<h2><?php echo $this->escapeHtml($post->getSubtitle()) ?></h2>
         	</div>
         	
-        	<p><?php echo $this->escapeHtml($post->lead) ?></p>
+        	<p><?php echo $this->escapeHtml($post->getLead()) ?></p>
         	
-        	<a title="Read article: <?php echo $this->escapeHtml($post->title) ?>" href="<?php echo $href; ?>">Read more...</a>
+        	<a title="Read article: <?php echo $this->escapeHtml($post->getTitle()) ?>" href="<?php echo $href; ?>">Read more...</a>
         	
         	<footer>
                 <div>
                     <span class="date">
-                        Date added: <time datetime="<?php echo $post->date ?>"><?php echo $this->date($post->date) ?></time>
+                        Date added: <time datetime="<?php echo $post->getDate() ?>"><?php echo $this->date($post->getDate()) ?></time>
                     </span>
 
                     <span class="comments">
                         <img alt="Comments" src="/img/icons/comments.png">
-                            <?php echo (int) $post->comments; ?> response<?php echo ((1 != $post->comments) ? 's' : ''); ?>
+                            <?php echo $post->getComments(); ?> response<?php echo ((1 != $post->getComments()) ? 's' : ''); ?>
                     </span>
                 </div>
             </footer>

@@ -10,12 +10,12 @@ use Zend\InputFilter\InputFilterInterface;
 class Reply implements InputFilterAwareInterface
 {
 
-    public $id;
-    public $id_blog;
-    public $name;
-    public $comment;
-    public $is_admin;
-    public $timestamp;
+    protected $id;
+    protected $id_blog;
+    protected $name;
+    protected $comment;
+    protected $is_admin;
+    protected $timestamp;
 
     protected $inputFilter;
 
@@ -82,6 +82,102 @@ class Reply implements InputFilterAwareInterface
         }
 
         return $this->inputFilter;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = (int) $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return (int) $this->id;
+    }
+
+    /**
+     * @param int $id_blog
+     */
+    public function setIdBlog($id_blog)
+    {
+        $this->id_blog = (int) $id_blog;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdBlog()
+    {
+        return (int) $this->id_blog;
+    }
+
+    /**
+     * @param bool $is_admin
+     */
+    public function setIsAdmin($is_admin)
+    {
+        $this->is_admin = (bool) $is_admin;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsAdmin()
+    {
+        return (bool) $this->is_admin;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $timestamp
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
     }
 
 }

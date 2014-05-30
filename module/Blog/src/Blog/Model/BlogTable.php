@@ -83,11 +83,9 @@ class BlogTable extends AbstractTableGateway
      */
     public function fetch($id)
     {
-        $id = (int) $id;
-
         $select = $this->getSql()->select();
         $select->where(array(
-            'id' => $id,
+            'id' => (int) $id,
         ));
         
         if (true !== AUTHENTICATED) {
@@ -120,28 +118,26 @@ class BlogTable extends AbstractTableGateway
     public function save(Blog $blog)
     {
         $data = array(
-            'title'             => $blog->title,
-            'subtitle'          => $blog->subtitle,
-            'lead'              => $blog->lead,
-            'content'           => $blog->content,
-            'author'            => $blog->author,
-            'category'          => $blog->category,
-            'date'              => $blog->date,
-            'status'            => $blog->status,
-            'meta_title'        => $blog->meta_title,
-            'meta_description'  => $blog->meta_description,
-            'meta_keywords'     => $blog->meta_keywords
+            'title'             => $blog->getTitle(),
+            'subtitle'          => $blog->getSubtitle(),
+            'lead'              => $blog->getLead(),
+            'content'           => $blog->getContent(),
+            'author'            => $blog->getAuthor(),
+            'category'          => $blog->getCategory(),
+            'date'              => $blog->getDate(),
+            'status'            => $blog->getStatus(),
+            'meta_title'        => $blog->getMetaTitle(),
+            'meta_description'  => $blog->getMetaDescription(),
+            'meta_keywords'     => $blog->getMetaKeywords()
         );
-    
-        $id = (int) $blog->id;
-    
-        if (0 == $id) {
+
+        if (0 == $blog->getId()) {
             return $this->insert($data);
-        } elseif ($this->fetch($id)) {
+        } elseif ($this->fetch($blog->getId())) {
             return $this->update(
                 $data,
                 array(
-                    'id' => $id,
+                    'id' => $blog->getId(),
                 )
             );
         }

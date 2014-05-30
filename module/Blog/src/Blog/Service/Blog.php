@@ -90,9 +90,9 @@ class Blog extends Service
         $form->setData($this->getRequest()->getPost());
 
         if ($form->isValid()) {
-            $model->id_blog = $item->id;
-            $this->getReplyTable()->save($model);
+            $model->setIdBlog($item->getId());
 
+            $this->getReplyTable()->save($model);
             if (isset($config['reply_form']) && !empty($config['reply_form']['send_notification_to'])) {
                 $this->notify($item);
             }
@@ -218,7 +218,7 @@ class Blog extends Service
      */
     public function getUriPath(BlogModel $item)
     {
-        $itemInNavigation = $this->getNavigation()->findOneBy('id_blog_post', $item->id);
+        $itemInNavigation = $this->getNavigation()->findOneBy('id_blog_post', $item->getId());
 
         if ($itemInNavigation) {
             return $itemInNavigation->getHref();
