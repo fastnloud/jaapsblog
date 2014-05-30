@@ -5,7 +5,6 @@ google*.html
 
 # Libs #
 ############
-admin/extjs/*
 vendor/bin
 
 # Compiled source #
