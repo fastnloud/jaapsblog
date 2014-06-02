@@ -47,7 +47,7 @@ class Replies extends AbstractHelper
 
                 // add to list
                 $articles[] = "<article class=\"replies $class\">" . PHP_EOL
-                            . "    <span>{$name} <time datetime=\"{$datetime}\">{$date}</time></span>" . PHP_EOL
+                            . "    <h2>{$name} <time datetime=\"{$datetime}\">{$date}</time></h2>" . PHP_EOL
                             . "    <p>{$comment}</p>" . PHP_EOL
                             . "</article>" . PHP_EOL;
             }
