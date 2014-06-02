@@ -44,6 +44,14 @@ class ReplyForm extends Form
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Text',
+            'name' => 'email',
+            'attributes' => array(
+                'class' => 'email',
+            ),
+        ));
+
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Text',
             'name' => 'name',
             'options' => array(
                 'label' => 'Name',

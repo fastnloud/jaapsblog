@@ -78,6 +78,20 @@ class Reply implements InputFilterAwareInterface
                 ),
             )));
 
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'email',
+                'required' => false,
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'max'      => 0
+                        ),
+                    ),
+                ),
+            )));
+
             $this->inputFilter = $inputFilter;
         }
 

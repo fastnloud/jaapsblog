@@ -15,6 +15,12 @@ $fontColor: #2f353e;
   *zoom: 1;
 }
 
+/* honeypot */
+input.email {
+  position: absolute;
+  left: -9000px;
+}
+
 /* style */
 html,
 body {
