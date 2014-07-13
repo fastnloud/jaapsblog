@@ -48,3 +48,4 @@ Icon?
 composer.lock
 ehthumbs.db
 Thumbs.db
+*.mwb.bak
