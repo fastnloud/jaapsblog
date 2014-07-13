@@ -67,11 +67,13 @@ class Page extends Service
      */
     public function getPageByUrlString($urlString)
     {
+        $urlString = ($urlString ? $urlString : 'home');
+
         if (!$this->getNavigation()->findOneBy('url_string', $urlString)) {
             return false;
         }
 
-        $result = $this->getPageTable()->fetchByUrlString(($urlString ? $urlString : 'home'));
+        $result = $this->getPageTable()->fetchByUrlString($urlString);
 
         // flag as homepage
         if ($result && 'home' == $result->getUrlString()) {

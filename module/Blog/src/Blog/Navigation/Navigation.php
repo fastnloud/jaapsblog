@@ -19,7 +19,7 @@ class Navigation extends DefaultNavigationFactory
                 foreach ($pages as $key => $page) {
                     $visible = true;
 
-                    if (true !== AUTHENTICATED && 'offline' == $page->getStatus()) {
+                    if ('offline' == $page->getStatus()) {
                         continue;
                     } elseif ('online' != $page->getStatus()) {
                         $visible = false;
