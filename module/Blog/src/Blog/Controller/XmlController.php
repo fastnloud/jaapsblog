@@ -55,19 +55,19 @@ class XmlController extends AbstractActionController
 
         if ($items->count() > 0) {
             foreach($items as $key => $item) {
-                $dateTime = new \DateTime($item->date);
+                $dateTime = new \DateTime($item->getDate());
 
                 if (0 === $key) { // last modified
                     $feed->setDateModified($dateTime);
                 }
 
                 $entry = $feed->createEntry();
-                $entry->setTitle($item->title);
+                $entry->setTitle($item->getTitle());
                 $entry->setLink($baseUrl . $this->getBlogService()->getUriPath($item));
                 $entry->setDateModified($dateTime);
                 $entry->setDateCreated($dateTime);
-                $entry->setDescription($item->lead);
-                $entry->setContent($item->content);
+                $entry->setDescription($item->getLead());
+                $entry->setContent($item->getContent());
                 $feed->addEntry($entry);
             }
         }
