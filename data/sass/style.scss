@@ -1,5 +1,7 @@
 /* theme colors */
 $theme: #cc152a;
+$themeDark: #6b0e1c;
+$themeLight: #ff2142;
 $fontColor: #2f353e;
 
 /* boilerplate clearfix */
@@ -13,6 +15,14 @@ $fontColor: #2f353e;
 }
 .clearfix {
   *zoom: 1;
+}
+
+/* transition */
+.transition-background-color {
+  -webkit-transition: background-color 200ms ease;
+  -moz-transition: background-color 200ms ease;
+  -o-transition: background-color 200ms ease;
+  transition: background-color 200ms ease;
 }
 
 /* honeypot */
@@ -102,10 +112,10 @@ nav {
     li {
       width: 100px;
 
-      &.active {
-        a {
-          text-decoration: underline;
-        }
+      &.active a,
+      a:hover {
+        @extend .transition-background-color;
+        background-color: $theme;
       }
 
       a {
@@ -116,7 +126,7 @@ nav {
         font-weight: bold;
         text-decoration: none;
         font-size: 1.2em;
-        background: $theme;
+        background-color: $themeDark;
         padding: 10px 15px;
       }
     }
@@ -190,7 +200,7 @@ div.page {
       }
 
       h2 {
-        color: #000000;
+        color: $fontColor;
         font-size: 1em;
         font-weight: bold;
       }
@@ -221,7 +231,7 @@ div.page {
         display: inline-block;
         padding: 2px 5px;
         list-style: none;
-        border: 1px solid #FFCCCF;
+        border: 1px solid $themeLight;
         margin: 0 0 10px 0;
         *display: inline; /* ie7 hack */
         *zoom: 1; /* ie7 hack */
