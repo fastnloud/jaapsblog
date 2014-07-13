@@ -106,7 +106,7 @@ nav {
     position: absolute;
     margin: 0 0 0 -125px;
     padding: 0;
-    top: 70px;
+    top: 75px;
 
 
     li {
@@ -119,6 +119,7 @@ nav {
       }
 
       a {
+        border-radius: 0 10px;
         float: right;
         display: inline-block;
         margin: 0 0 5px 0;
