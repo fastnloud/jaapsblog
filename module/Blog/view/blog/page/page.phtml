@@ -3,6 +3,9 @@
 <?php $this->headMeta()->appendName('description', $page->getMetaDescription()); ?>
 
 <article>
-    <h1><?php echo $this->escapeHtml($page->getTitle()); ?></h1>
+    <?php if (!\Blog\Service\Page::isHomepage()): ?>
+        <h1><?php echo $this->escapeHtml($page->getTitle()); ?></h1>
+    <?php endif; ?>
+
     <?php echo $page->getContent(); ?>
 </article>

@@ -3,9 +3,6 @@
 <?php $this->headMeta()->appendName('description', $page->getMetaDescription()); ?>
 
 <div class="index">
-<?php if ($q): ?>
-    <p class="searched">Searched for: <span><?php echo $this->escapeHtml($q); ?></span></p>
-<?php endif;?>
 <?php if ($index->count() > 0): ?>
     <?php foreach($index as $key => $post): ?>
         <?php $href = $this->navigation('Navigation')->findOneBy('id_blog_post', $post->getId())->getHref(); ?>

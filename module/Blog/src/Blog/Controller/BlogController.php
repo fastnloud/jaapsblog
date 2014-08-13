@@ -35,9 +35,8 @@ class BlogController extends AbstractActionController
         }
 
         return new ViewModel(array(
-            'q'     => $this->params()->fromQuery('q'),
             'page'  => $page,
-            'index' => $this->getBlogService()->getItems($this->params()->fromQuery('q'))
+            'index' => $this->getBlogService()->getItems()
         ));
     }
 

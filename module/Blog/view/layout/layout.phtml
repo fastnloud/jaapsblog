@@ -5,7 +5,6 @@
 
         <?php echo $this->headTitle(\Blog\Service\Page::websiteGlobals('title'))->setSeparator(' - '); ?>
 
-
         <?php echo $this->headMeta()->setCharset('UTF-8')
                                     ->setName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1'); ?>
 
@@ -20,12 +19,10 @@
           ->prependStylesheet($this->basePath() . '/css/normalize.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
           ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif:400,600'); ?>
 
-
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . \Blog\Service\Page::websiteGlobals('version'), 'text/javascript')
                                       ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js')
                                       ->prependFile($this->basePath() . '/js/vendor/jquery-migrate-1.2.1.min.js')
                                       ->prependFile($this->basePath() . '/js/vendor/jquery-1.11.0.min.js'); ?>
-
 
         <?php echo $this->analytics(); ?>
 
@@ -33,31 +30,30 @@
     
     <body>
 
-        <nav>
+        <div class="header">
+            <div class="container">
+                <nav class="main">
+                    <?php echo $this->navigation('navigation')->menu()->setMaxDepth(0); ?>
+                </nav>
 
-            <?php echo $this->navigation('navigation')->menu()->setMaxDepth(0); ?>
-
-        </nav>
-
-        <div class="search">
-            <form method="get" action="/blog">
-                <input type="text" name="q" value="<?php echo $this->escapeHtml((isset($_GET['q']) ? $_GET['q'] : 'Search...')); ?>">
-            </form>
+                <nav class="breadcrumbs">
+                    <div class="path">
+                        <?php if (!\Blog\Service\Page::isHomepage()): ?>
+                            <a href="/">Home</a> >
+                            <?php echo (!\Blog\Service\Page::hasPage() ? 'Error' : ''); ?>
+                            <?php echo $this->navigation('navigation')->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?>
+                        <?php endif; ?>
+                    </div>
+                </nav>
+            </div>
         </div>
 
-        <nav class="breadcrumbs">
-            <div class="path">
-<?php echo (!\Blog\Service\Page::isHomepage() ? '<a href="/">Home</a> > ' : ''); ?>
-<?php echo (!\Blog\Service\Page::hasPage() ? 'Error' : ''); ?>
-<?php echo $this->navigation('navigation')->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?>
-</div>
-        </nav>
-
-        <div class="page">
-<!-- Content start -->
-<?php echo trim($this->content); ?>
-
-<!-- Content end -->
+        <div class="container">
+            <div class="page">
+                <!-- Content start -->
+                <?php echo trim($this->content); ?>
+                <!-- Content end -->
+            </div>
         </div>
 
         <?php echo $this->cookies(); ?>
@@ -65,4 +61,5 @@
         <?php echo $this->socialMedia(array('google' => array('plus'))); ?>
 
     </body>
+
 </html>
