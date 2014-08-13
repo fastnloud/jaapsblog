@@ -34,7 +34,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font: normal 13px/22px 'sans-serif', arial;
+  font: normal 13px/20px 'sans-serif', arial;
   letter-spacing: 0em;
 }
 
@@ -47,7 +47,7 @@ div.container {
 
 h1 {
   color: $fontColor;
-  font-size: 2em;
+  font-size: 1.5em;
   line-height: 1.2em;
 
   a {
@@ -61,7 +61,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: $fontColor;
   margin: 0;
 }
@@ -324,7 +324,7 @@ div.page {
 
 /* mobile only */
 @media only screen and (max-width : 800px) {
- 
+
   nav.breadcrumbs {
     display: none;
   }
