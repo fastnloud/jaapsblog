@@ -16,8 +16,7 @@
         ))->prependAlternate(array('rel' => 'shortcut icon', 'href'  => $this->basePath() . '/favicon.ico?v=' . \Blog\Service\Page::websiteGlobals('version')))
           ->prependStylesheet($this->basePath() . '/css/style.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
           ->prependStylesheet($this->basePath() . '/css/main.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
-          ->prependStylesheet($this->basePath() . '/css/normalize.css?v=' . \Blog\Service\Page::websiteGlobals('version'))
-          ->prependStylesheet('http://fonts.googleapis.com/css?family=Droid+Serif:400,600'); ?>
+          ->prependStylesheet($this->basePath() . '/css/normalize.css?v=' . \Blog\Service\Page::websiteGlobals('version')); ?>
 
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/main.js?v=' . \Blog\Service\Page::websiteGlobals('version'), 'text/javascript')
                                       ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js')

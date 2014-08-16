@@ -55,7 +55,7 @@ class Replies extends AbstractHelper
             return implode(PHP_EOL, $articles);
         }
 
-        return "<article class=\"replies no-replies\"><p>No replies yet.</p></article>";
+        return "<p class=\"replies no-replies\"><i>No replies yet.</i></p>";
     }
 
     /**

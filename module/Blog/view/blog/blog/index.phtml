@@ -10,12 +10,12 @@
         <article>
 
         	<div class="header">
-        		<h1>
+        		<h2>
         		    <a href="<?php echo $href; ?>" title="<?php echo $this->escapeHtml($post->getTitle()) ?>">
                         <?php echo $this->escapeHtml($post->getTitle()) ?>
         		    </a>
-        		</h1>
-        		<h2><?php echo $this->escapeHtml($post->getSubtitle()) ?></h2>
+        		</h2>
+        		<h3><?php echo $this->escapeHtml($post->getSubtitle()) ?></h3>
         	</div>
         	
         	<p><?php echo $this->escapeHtml($post->getLead()) ?></p>
@@ -41,5 +41,4 @@
     <h1>Eh..?</h1>
     <p>What exactly are you lookin' for?</p>
 <?php endif; ?>
-
 </div>
