@@ -1,3 +1,0 @@
-[submodule "module/Dkim"]
-	path = module/Dkim
-	url = https://github.com/fastnloud/zf2-dkim.git
