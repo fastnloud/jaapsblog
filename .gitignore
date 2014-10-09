@@ -6,5 +6,6 @@ nbproject
 .idea
 .project
 .settings
+.sencha
 composer.lock
 vendor/bin
