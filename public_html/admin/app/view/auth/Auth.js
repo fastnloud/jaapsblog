@@ -16,6 +16,7 @@ Ext.define("App.view.auth.Auth",{
     items: {
         xtype       : 'form',
         reference   : 'form',
+        url         : 'data/user/get',
 
         items : [{
             xtype       : 'textfield',
