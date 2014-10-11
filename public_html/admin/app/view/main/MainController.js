@@ -1,26 +1,29 @@
-/**
- * This class is the main view for the application. It is specified in app.js as the
- * "autoCreateViewport" property. That setting automatically applies the "viewport"
- * plugin to promote that instance of this class to the body element.
- *
- * TODO - Replace this content of this view to suite the needs of your application.
- */
 Ext.define('App.view.main.MainController', {
-    extend: 'Ext.app.ViewController',
+    extend : 'Ext.app.ViewController',
 
-    requires: [
+    requires : [
         'Ext.MessageBox'
     ],
 
-    alias: 'controller.main',
+    alias : 'controller.main',
 
-    onClickButton: function () {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+    // Logout button
+    onClickLogout : function () {
+        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirmLogout', this);
     },
 
-    onConfirm: function (choice) {
+    // Confirm logout click
+    onConfirmLogout : function (choice) {
+        // Logout
         if (choice === 'yes') {
-            //
+            // Remove the isAuthenticated from localStorage.
+            localStorage.removeItem('isAuthenticated');
+
+            // Remove Main View
+            this.getView().destroy();
+
+            // Add the Login Window
+            Ext.widget('auth');
         }
     }
 });

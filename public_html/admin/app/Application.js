@@ -1,8 +1,3 @@
-/**
- * The main application class. An instance of this class is created by app.js when it calls
- * Ext.application(). This is the ideal place to handle application launch and initialization
- * details.
- */
 Ext.define('App.Application', {
     extend: 'Ext.app.Application',
     
@@ -11,8 +6,22 @@ Ext.define('App.Application', {
     stores: [
         // TODO: add global / shared stores here
     ],
+
+    views: [
+        'App.view.auth.Auth',
+        'App.view.main.Main'
+    ],
     
     launch: function () {
-        // TODO - Launch the application
+        var supportsLocalStorage = Ext.supports.LocalStorage,
+            isAuthenticated      = false;
+
+        if (!supportsLocalStorage) {
+            Ext.Msg.alert('Your browser does not support Local Storage!');
+            return;
+        }
+
+        isAuthenticated = localStorage.getItem("isAuthenticated");
+        Ext.widget(isAuthenticated ? 'app-main' : 'auth');
     }
 });
