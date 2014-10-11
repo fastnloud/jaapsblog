@@ -5,7 +5,7 @@ namespace User\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="User\Entity\UserRepository")
  * @ORM\Table(name="user")
  */
 class User
@@ -21,7 +21,7 @@ class User
     /**
      * @ORM\Column(type="string", length=40)
      */
-    protected $username;
+    protected $user;
 
     /**
      * @ORM\Column(type="string", length=60, options={"fixed"=true})
@@ -53,19 +53,19 @@ class User
     }
 
     /**
-     * @param string $username
+     * @param string $user
      */
-    public function setUsername($username)
+    public function setUser($user)
     {
-        $this->username = $username;
+        $this->user = $user;
     }
 
     /**
      * @return string
      */
-    public function getUsername()
+    public function getUser()
     {
-        return $this->username;
+        return $this->user;
     }
 
 }

@@ -13,5 +13,15 @@ return array(
                 )
             )
         )
+    ),
+    'bcrypt' => array(
+        'salt' => null,
+        'cost' => 11,
+    ),
+    'user' => array(
+        'default_user' => array(
+            'user'      => null, // username
+            'password'  => null, // password
+        )
     )
 );
