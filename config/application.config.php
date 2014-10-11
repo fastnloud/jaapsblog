@@ -4,6 +4,7 @@ return array(
     'modules' => array(
         'DoctrineModule',
         'DoctrineORMModule',
+        'Auth',
         'User',
         'Page',
         'Application',
