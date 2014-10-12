@@ -5,6 +5,7 @@ namespace Auth\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\Authentication\AuthenticationService as AuthService;
+use User\Service\User as UserService;
 
 class AuthController extends AbstractActionController
 {
@@ -20,6 +21,11 @@ class AuthController extends AbstractActionController
     protected $authService;
 
     /**
+     * @var UserService
+     */
+    protected $userService;
+
+    /**
      * Authenticate User action.
      *
      * @return JsonModel
@@ -29,11 +35,17 @@ class AuthController extends AbstractActionController
         if ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getPost();
 
-            if (isset($data['user']) && isset($data['password'])) {
+            if (isset($data['username']) && isset($data['password'])) {
+                // add default user if none found
+                if (!$this->getUserService()->hasUsers()) {
+                    $this->getUserService()->addDefaultUser();
+                }
+
+                // authentication
                 $adapter = $this->getAuthService()
                          ->getAdapter();
 
-                $adapter->setIdentityValue($data['user']);
+                $adapter->setIdentityValue($data['username']);
                 $adapter->setCredentialValue($data['password']);
 
                 $result = $this->getAuthService()->authenticate();
@@ -66,6 +78,22 @@ class AuthController extends AbstractActionController
     protected function getAuthService()
     {
         return $this->authService;
+    }
+
+    /**
+     * @param \User\Service\User $userService
+     */
+    public function setUserService(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
+    /**
+     * @return \User\Service\User
+     */
+    protected function getUserService()
+    {
+        return $this->userService;
     }
 
 }

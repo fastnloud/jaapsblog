@@ -28,7 +28,7 @@ class UserRepository extends EntityRepository
     public function addDefaultUser(array $defaultUser)
     {
         $user = new User();
-        $user->setUser($defaultUser['user']);
+        $user->setUsername($defaultUser['username']);
         $user->setPassword($defaultUser['password']);
 
         return $this->addUser($user);

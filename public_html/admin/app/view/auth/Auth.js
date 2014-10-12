@@ -20,8 +20,8 @@ Ext.define("App.view.auth.Auth",{
 
         items : [{
             xtype       : 'textfield',
-            name        : 'user',
-            fieldLabel  : 'user',
+            name        : 'username',
+            fieldLabel  : 'Username',
             allowBlank  : false
         }, {
             xtype       : 'textfield',

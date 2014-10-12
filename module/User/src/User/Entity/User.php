@@ -21,7 +21,7 @@ class User
     /**
      * @ORM\Column(type="string", length=40)
      */
-    protected $user;
+    protected $username;
 
     /**
      * @ORM\Column(type="string", length=60, options={"fixed"=true})
@@ -53,19 +53,19 @@ class User
     }
 
     /**
-     * @param string $user
+     * @param string $username
      */
-    public function setUser($user)
+    public function setUsername($username)
     {
-        $this->user = $user;
+        $this->username = $username;
     }
 
     /**
      * @return string
      */
-    public function getUser()
+    public function getUsername()
     {
-        return $this->user;
+        return $this->username;
     }
 
 }

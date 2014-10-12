@@ -42,6 +42,7 @@ class Module
                 'Auth\Controller\Auth' => function($sm) {
                     $controller = new AuthController();
                     $controller->setAuthService($sm->getServiceLocator()->get('AuthService'));
+                    $controller->setUserService($sm->getServiceLocator()->get('UserService'));
 
                     return $controller;
                 }

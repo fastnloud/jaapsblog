@@ -6,7 +6,7 @@ return array(
             'orm_default' => array(
                 'object_manager'      => 'Doctrine\ORM\EntityManager',
                 'identity_class'      => 'User\Entity\User',
-                'identity_property'   => 'user',
+                'identity_property'   => 'username',
                 'credential_property' => 'password',
                 'credential_callable' => array(new \Auth\Validator\Callback\Bcrypt(), 'validate')
             ),

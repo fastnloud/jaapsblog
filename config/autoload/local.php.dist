@@ -19,8 +19,8 @@ return array(
     ),
     'user' => array(
         'default_user' => array(
-            'user'      => null, // username
-            'password'  => null, // password
+            'username'  => null,
+            'password'  => null,
         )
     )
 );
