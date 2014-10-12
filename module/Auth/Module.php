@@ -41,6 +41,7 @@ class Module
             'factories' => array(
                 'Auth\Controller\Auth' => function($sm) {
                     $controller = new AuthController();
+                    $controller->setAuthService($sm->getServiceLocator()->get('AuthService'));
 
                     return $controller;
                 }

@@ -16,12 +16,12 @@ Ext.define("App.view.auth.Auth",{
     items: {
         xtype       : 'form',
         reference   : 'form',
-        url         : 'data/user/get',
+        url         : '/auth/user',
 
         items : [{
             xtype       : 'textfield',
-            name        : 'username',
-            fieldLabel  : 'Username',
+            name        : 'user',
+            fieldLabel  : 'user',
             allowBlank  : false
         }, {
             xtype       : 'textfield',

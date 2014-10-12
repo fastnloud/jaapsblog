@@ -16,10 +16,11 @@ Ext.define('App.view.auth.AuthController', {
                     // Add the main view to the viewport
                     Ext.widget('app-main');*/
 
-                    Ext.Msg.alert('Success', 'action.result.msg');
+                    Ext.Msg.alert('Success', action.result.msg);
                 },
                 failure: function(form, action) {
-                    Ext.Msg.alert('Failed', 'action.result.msg');
+                    form.reset();
+                    Ext.Msg.alert('Failed', action.result.msg);
                 }
             });
         }

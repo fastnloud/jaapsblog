@@ -10,9 +10,7 @@ class AuthFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $auth = new Auth();
-
-        return $auth;
+        return $serviceLocator->get('doctrine.authenticationservice.orm_default');
     }
 
 }
