@@ -56,10 +56,7 @@ class UserRepository extends EntityRepository
         $password = $user->getPassword();
 
         if ($password) {
-            $bcrypt   = new Bcrypt(array(
-                'salt' => $this->getConfig()['bcrypt']['salt'],
-                'cost' => $this->getConfig()['bcrypt']['cost']
-            ));
+            $bcrypt = new Bcrypt($this->getConfig()['bcrypt']);
 
             $user->setPassword(
                 $bcrypt->create($password)

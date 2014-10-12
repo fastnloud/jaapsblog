@@ -15,8 +15,7 @@ return array(
         )
     ),
     'bcrypt' => array(
-        'salt' => null,
-        'cost' => 11,
+        'cost' => 14,
     ),
     'user' => array(
         'default_user' => array(
