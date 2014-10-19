@@ -18,5 +18,19 @@ return array(
                 )
             )
         )
-    )
+    ),
+    'session' => array(
+        'config' => array(
+            'options' => array(
+                'name' => 'blog'
+            ),
+        ),
+        'validators' => array(
+            'Zend\Session\Validator\RemoteAddr',
+            'Zend\Session\Validator\HttpUserAgent',
+        ),
+        'save_handler' => array(
+            'debug' => false
+        )
+    ),
 );

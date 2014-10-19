@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Session\Entity\SessionRepository")
  * @ORM\Table(name="session")
  */
 class Session
@@ -43,7 +44,7 @@ class Session
      */
     public function setData($data)
     {
-        $this->data = $data;
+        $this->data = (string) $data;
     }
 
     /**
@@ -51,7 +52,7 @@ class Session
      */
     public function getData()
     {
-        return $this->data;
+        return (string) $this->data;
     }
 
     /**
