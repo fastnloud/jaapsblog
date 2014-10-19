@@ -17,8 +17,10 @@ class SessionManagerFactory implements FactoryInterface
         $sessionConfig->setOptions($config['session']['config']);
 
         $sessionManager = new SessionManager($sessionConfig);
+        $sessionManager->setSessionConfig($config['session']);
+        $sessionManager->setRequest($serviceLocator->get('Request'));
         $sessionManager->setSaveHandler($serviceLocator->get('SessionSaveHandler'));
-        $sessionManager->init($config['session']);
+        $sessionManager->init();
 
         return $sessionManager;
     }
