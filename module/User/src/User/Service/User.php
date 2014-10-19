@@ -17,11 +17,6 @@ class User
      */
     protected $entityManager;
 
-    /**
-     * @var EntityRepository
-     */
-    protected $userRepository;
-
     public function init()
     {
         $this->getEntityManager()
