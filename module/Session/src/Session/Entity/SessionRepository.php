@@ -43,6 +43,7 @@ class SessionRepository extends EntityRepository
         }
 
         if ($this->getDebug()) {
+            Debug::dump('session read');
             Debug::dump($data);
         }
 
@@ -102,11 +103,8 @@ class SessionRepository extends EntityRepository
 
             if ($this->getDebug()) {
                 Debug::dump('session destroy');
+                Debug::dump($storedSession);
             }
-        }
-
-        if ($this->getDebug()) {
-            Debug::dump($storedSession);
         }
 
         return (bool) $storedSession;

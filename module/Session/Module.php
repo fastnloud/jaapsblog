@@ -3,6 +3,7 @@
 namespace Session;
 
 use Zend\Mvc\MvcEvent;
+use Zend\Session\Container;
 
 class Module
 {
@@ -14,6 +15,12 @@ class Module
                             ->get('SessionManager');
 
         $sessionManager->start();
+
+        $container = new Container('init');
+        if (!isset($container->init)) {
+            $sessionManager->regenerateId(true);
+            $container->init = true;
+        }
     }
 
     public function getConfig()
