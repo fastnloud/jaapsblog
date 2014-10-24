@@ -4,6 +4,7 @@ namespace Session\Service;
 
 use Zend\Session\Container;
 use Zend\Http\Request;
+use Zend\Session\Exception\RuntimeException;
 
 class SessionManager extends \Zend\Session\SessionManager
 {
@@ -32,6 +33,7 @@ class SessionManager extends \Zend\Session\SessionManager
      * Gracefully start session.
      *
      * @return void
+     * @throws RuntimeException
      */
     public function graceful()
     {
@@ -48,6 +50,8 @@ class SessionManager extends \Zend\Session\SessionManager
                 $this->attachValidators($container, $sessionConfig['validators']);
             }
         }
+
+        $this->rememberMe();
     }
 
     /**
