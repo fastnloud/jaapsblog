@@ -3,24 +3,22 @@ Ext.define('App.view.auth.AuthController', {
     alias   : 'controller.auth',
 
     onLoginClick : function(){
-        var form = this.lookupReference('form');
+        var form = this.lookupReference('form'),
+            view = this.getView();
 
         if (form.isValid()) {
             form.submit({
                 success: function(form, action) {
-                    /*localStorage.setItem("isAuthenticated", isAuthenticated);
+                    localStorage.setItem("isAuthenticated", true);
 
-                    // Remove Login Window
-                    this.getView().destroy();
+                    view.destroy();
 
-                    // Add the main view to the viewport
-                    Ext.widget('app-main');*/
-
-                    Ext.Msg.alert('Success', action.result.msg);
+                    Ext.widget('app-main');
                 },
                 failure: function(form, action) {
                     form.reset();
-                    Ext.Msg.alert('Failed', action.result.msg);
+
+                    Ext.Msg.alert('Error', action.result.msg);
                 }
             });
         }
