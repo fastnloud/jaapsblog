@@ -43,13 +43,15 @@ class AuthController extends AbstractActionController
 
                 // authentication
                 $adapter = $this->getAuthService()
-                         ->getAdapter();
+                                ->getAdapter();
 
                 $adapter->setIdentityValue($data['username']);
                 $adapter->setCredentialValue($data['password']);
 
                 $result = $this->getAuthService()->authenticate();
                 if ($result->isValid()) {
+                    $this->getUserService()->setIsAuthenticated(true);
+
                     return new JsonModel(array(
                         'success' => true,
                         'msg'     => 'Authentication successful.'
