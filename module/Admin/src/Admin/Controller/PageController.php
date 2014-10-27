@@ -23,7 +23,7 @@ class PageController extends AbstractActionController
     public function indexAction()
     {
         $data = $this->getPageService()
-                     ->setHydrator(Query::HYDRATE_ARRAY)
+                     ->setQueryHydrator(Query::HYDRATE_ARRAY)
                      ->getAllPages();
 
         return new JsonModel(array(
