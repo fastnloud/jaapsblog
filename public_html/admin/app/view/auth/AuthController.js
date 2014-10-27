@@ -8,14 +8,15 @@ Ext.define('App.view.auth.AuthController', {
 
         if (form.isValid()) {
             form.submit({
-                success: function(form, action) {
+                success : function(form, action) {
                     localStorage.setItem("isAuthenticated", true);
 
                     view.destroy();
 
-                    Ext.widget('app-main');
+                    Ext.widget('mainView');
                 },
-                failure: function(form, action) {
+
+                failure : function(form, action) {
                     form.reset();
 
                     Ext.Msg.alert('Error', action.result.msg);

@@ -1,18 +1,14 @@
 Ext.define('App.Application', {
-    extend: 'Ext.app.Application',
-    
-    name: 'App',
+    extend  : 'Ext.app.Application',
+    name    : 'App',
 
-    stores: [
-        // TODO: add global / shared stores here
-    ],
-
-    views: [
+    views : [
         'App.view.auth.Auth',
-        'App.view.main.Main'
+        'App.view.main.Main',
+        'App.view.page.Page'
     ],
     
-    launch: function () {
+    launch : function () {
         var supportsLocalStorage = Ext.supports.LocalStorage,
             isAuthenticated      = false;
 
@@ -22,6 +18,6 @@ Ext.define('App.Application', {
         }
 
         isAuthenticated = localStorage.getItem("isAuthenticated");
-        Ext.widget(isAuthenticated ? 'app-main' : 'auth');
+        Ext.widget(isAuthenticated ? 'mainView' : 'authView');
     }
 });

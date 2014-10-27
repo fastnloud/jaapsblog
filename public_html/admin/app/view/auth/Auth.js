@@ -1,13 +1,13 @@
-Ext.define("App.view.auth.Auth",{
-    extend  : 'Ext.window.Window',
-    xtype   : 'auth',
+Ext.define('App.view.auth.Auth',{
+    extend      : 'Ext.window.Window',
+    xtype       : 'authView',
+    controller  : 'auth',
 
     requires : [
         'App.view.auth.AuthController',
         'Ext.form.Panel'
     ],
 
-    controller  : 'auth',
     bodyPadding : 10,
     title       : 'Login',
     closable    : false,
@@ -18,29 +18,36 @@ Ext.define("App.view.auth.Auth",{
         reference   : 'form',
         url         : '/auth/user',
 
-        items : [{
-            xtype       : 'textfield',
-            name        : 'username',
-            fieldLabel  : 'Username',
-            allowBlank  : false
-        }, {
-            xtype       : 'textfield',
-            name        : 'password',
-            inputType   : 'password',
-            fieldLabel  : 'Password',
-            allowBlank  : false
-        }, {
-            xtype           : 'displayfield',
-            hideEmptyLabel  : false,
-            value           : 'Enter any non-blank password'
-        }],
-
-        buttons : [{
-            text        : 'Login',
-            formBind    : true,
-            listeners   : {
-                click: 'onLoginClick'
+        items : [
+            {
+                xtype       : 'textfield',
+                name        : 'username',
+                fieldLabel  : 'Username',
+                allowBlank  : false
+            },
+            {
+                xtype       : 'textfield',
+                name        : 'password',
+                inputType   : 'password',
+                fieldLabel  : 'Password',
+                allowBlank  : false
+            },
+            {
+                xtype           : 'displayfield',
+                hideEmptyLabel  : false,
+                value           : 'Enter any non-blank password'
             }
-        }]
+        ],
+
+        buttons : [
+            {
+                text        : 'Login',
+                formBind    : true,
+
+                listeners : {
+                    click : 'onLoginClick'
+                }
+            }
+        ]
     }
 });
