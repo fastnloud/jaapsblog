@@ -3,17 +3,20 @@
 namespace Session;
 
 use Zend\Mvc\MvcEvent;
+use Zend\Http\Request;
 
 class Module
 {
 
     public function onBootstrap(MvcEvent $e)
     {
-        $sessionManager = $e->getApplication()
-                            ->getServiceManager()
-                            ->get('SessionManager');
+        if ($e->getRequest() instanceof Request) {
+            $sessionManager = $e->getApplication()
+                ->getServiceManager()
+                ->get('SessionManager');
 
-        $sessionManager->graceful();
+            $sessionManager->graceful();
+        }
     }
 
     public function getConfig()
