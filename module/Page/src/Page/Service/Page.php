@@ -2,31 +2,25 @@
 
 namespace Page\Service;
 
-use Doctrine\ORM\EntityManager;
-use Page\Entity\Page as PageEntity;
+use Application\Service\AbstractService;
 
-class Page
+class Page extends AbstractService
 {
 
-    /**
-     * @var EntityManager
-     */
-    protected $entityManager;
-
-    /**
-     * @param \Doctrine\ORM\EntityManager $entityManager
-     */
-    public function setEntityManager(EntityManager $entityManager)
+    public function getPages()
     {
-        $this->entityManager = $entityManager;
+        return $this->getEntityManager()
+                    ->getRepository('Page\Entity\Page')
+                    ->setQueryHydrator($this->getQueryHydrator())
+                    ->getPages();
     }
 
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getEntityManager()
+    public function getAllPages()
     {
-        return $this->entityManager;
+        return $this->getEntityManager()
+                    ->getRepository('Page\Entity\Page')
+                    ->setQueryHydrator($this->getQueryHydrator())
+                    ->getPages(true);
     }
 
 }
