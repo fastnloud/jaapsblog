@@ -3,6 +3,7 @@
 namespace Admin;
 
 use Admin\Controller\PageController;
+use Admin\Controller\StatusController;
 
 class Module
 {
@@ -33,6 +34,12 @@ class Module
                 'Admin\Controller\Page' => function($sm) {
                     $controller = new PageController();
                     $controller->setPageService($sm->getServiceLocator()->get('PageService'));
+
+                    return $controller;
+                },
+                'Admin\Controller\Status' => function($sm) {
+                    $controller = new StatusController();
+                    $controller->setStatusService($sm->getServiceLocator()->get('StatusService'));
 
                     return $controller;
                 }

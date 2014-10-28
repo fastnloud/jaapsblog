@@ -12,6 +12,16 @@ return array(
                         'action'     => 'index'
                     ),
                 ),
+            ),
+            'admin_status' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route'    => '/admin/status',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Status',
+                        'action'     => 'index'
+                    ),
+                ),
             )
         ),
     ),

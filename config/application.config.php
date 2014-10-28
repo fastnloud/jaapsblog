@@ -9,6 +9,7 @@ return array(
         'Auth',
         'User',
         'Page',
+        'Status',
         'Application',
     ),
 

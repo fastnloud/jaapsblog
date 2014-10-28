@@ -1,11 +1,12 @@
 <?php
 
-namespace Application\Entity;
+namespace Status\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Status\Entity\StatusRepository")
  * @ORM\Table(name="status")
  */
 class Status
