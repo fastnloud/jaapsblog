@@ -56,7 +56,7 @@ class Page
     protected $meta_keywords;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Entity\Status")
+     * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
     protected $status;
