@@ -4,12 +4,14 @@ return array(
     'router' => array(
         'routes' => array(
             'admin_page' => array(
-                'type' => 'literal',
+                'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/page',
+                    'route'    => '/admin/page[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ),
                     'defaults' => array(
-                        'controller' => 'Admin\Controller\Page',
-                        'action'     => 'index'
+                        'controller' => 'Admin\Controller\Page'
                     ),
                 ),
             ),
@@ -19,7 +21,7 @@ return array(
                     'route'    => '/admin/status',
                     'defaults' => array(
                         'controller' => 'Admin\Controller\Status',
-                        'action'     => 'index'
+                        'action'     => 'read'
                     ),
                 ),
             )
