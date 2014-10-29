@@ -2,6 +2,16 @@ Ext.define('App.Application', {
     extend  : 'Ext.app.Application',
     name    : 'App',
 
+    requires : [
+        'App.form.Form',
+        'App.form.controller.Controller',
+        'App.form.field.ComboBox'
+    ],
+
+    stores: [
+        'Status'
+    ],
+
     views : [
         'App.view.auth.Auth',
         'App.view.main.Main',
@@ -18,6 +28,6 @@ Ext.define('App.Application', {
         }
 
         isAuthenticated = localStorage.getItem("isAuthenticated");
-        Ext.widget(isAuthenticated ? 'mainView' : 'authView');
+        Ext.widget(isAuthenticated ? 'mainview' : 'authview');
     }
 });
