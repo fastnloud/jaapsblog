@@ -25,6 +25,14 @@ class Status
     protected $label;
 
     /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = (int) $id;
+    }
+
+    /**
      * @return int
      */
     public function getId()

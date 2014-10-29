@@ -2,7 +2,7 @@
 
 namespace Status\Entity;
 
-use Application\Repository\AbstractEntityRepository;
+use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
 
 class StatusRepository extends AbstractEntityRepository

@@ -2,9 +2,9 @@
 
 namespace Status\Service;
 
-use Application\Service\AbstractService;
+use Application\Entity\AbstractEntityService;
 
-class Status extends AbstractService
+class Status extends AbstractEntityService
 {
 
     public function getStatus()
