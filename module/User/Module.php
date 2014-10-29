@@ -2,8 +2,6 @@
 
 namespace User;
 
-use Zend\Mvc\MvcEvent;
-
 class Module
 {
 

@@ -3,6 +3,7 @@
 namespace Page;
 
 use Page\Controller\PageController;
+use Zend\Mvc\Controller\ControllerManager;
 
 class Module
 {
@@ -39,9 +40,9 @@ class Module
     {
         return array(
             'factories' => array(
-                'Page\Controller\Page' => function($sm) {
+                'Page\Controller\Page' => function(ControllerManager $cm) {
                     $controller = new PageController();
-                    $controller->setPageService($sm->getServiceLocator()->get('PageService'));
+                    $controller->setPageService($cm->getServiceLocator()->get('PageService'));
 
                     return $controller;
                 }

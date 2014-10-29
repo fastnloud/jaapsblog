@@ -4,6 +4,7 @@ namespace Admin;
 
 use Admin\Controller\PageController;
 use Admin\Controller\StatusController;
+use Zend\Mvc\Controller\ControllerManager;
 
 class Module
 {
@@ -31,15 +32,15 @@ class Module
     {
         return array(
             'factories' => array(
-                'Admin\Controller\Page' => function($sm) {
+                'Admin\Controller\Page' => function(ControllerManager $cm) {
                     $controller = new PageController();
-                    $controller->setPageService($sm->getServiceLocator()->get('PageService'));
+                    $controller->setPageService($cm->getServiceLocator()->get('PageService'));
 
                     return $controller;
                 },
-                'Admin\Controller\Status' => function($sm) {
+                'Admin\Controller\Status' => function(ControllerManager $cm) {
                     $controller = new StatusController();
-                    $controller->setStatusService($sm->getServiceLocator()->get('StatusService'));
+                    $controller->setStatusService($cm->getServiceLocator()->get('StatusService'));
 
                     return $controller;
                 }

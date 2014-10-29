@@ -3,6 +3,7 @@
 namespace Auth;
 
 use Auth\Controller\AuthController;
+use Zend\Mvc\Controller\ControllerManager;
 
 class Module
 {
@@ -39,10 +40,10 @@ class Module
     {
         return array(
             'factories' => array(
-                'Auth\Controller\Auth' => function($sm) {
+                'Auth\Controller\Auth' => function(ControllerManager $cm) {
                     $controller = new AuthController();
-                    $controller->setAuthService($sm->getServiceLocator()->get('AuthService'));
-                    $controller->setUserService($sm->getServiceLocator()->get('UserService'));
+                    $controller->setAuthService($cm->getServiceLocator()->get('AuthService'));
+                    $controller->setUserService($cm->getServiceLocator()->get('UserService'));
 
                     return $controller;
                 }
