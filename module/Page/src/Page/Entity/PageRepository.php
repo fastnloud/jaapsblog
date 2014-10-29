@@ -2,7 +2,7 @@
 
 namespace Page\Entity;
 
-use Application\Repository\AbstractEntityRepository;
+use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
 
 class PageRepository extends AbstractEntityRepository
@@ -28,6 +28,25 @@ class PageRepository extends AbstractEntityRepository
 
         return $qb->getQuery()
                   ->getResult($this->getQueryHydrator());
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getPage($id)
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('p', 's')
+           ->from('Page\Entity\Page', 'p')
+           ->join('p.status', 's')
+           ->where('p.id = :id')
+           ->setParameter(':id', $id);
+
+        return $qb->getQuery()
+                  ->getSingleResult($this->getQueryHydrator());
     }
 
 }
