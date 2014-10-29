@@ -1,6 +1,6 @@
 Ext.define('App.view.auth.Auth',{
     extend      : 'Ext.window.Window',
-    xtype       : 'authView',
+    xtype       : 'authview',
     controller  : 'auth',
 
     requires : [
