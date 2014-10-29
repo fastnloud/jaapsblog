@@ -16,11 +16,11 @@ class StatusController extends AbstractActionController
     protected $statusService;
 
     /**
-     * Index.
+     * Read.
      *
      * @return array|JsonModel
      */
-    public function indexAction()
+    public function readAction()
     {
         $data = $this->getStatusService()
                      ->setQueryHydrator(Query::HYDRATE_ARRAY)
