@@ -3,6 +3,7 @@ Ext.define('App.Application', {
     name    : 'App',
 
     requires : [
+        'App.grid.Tab',
         'App.form.Form',
         'App.form.controller.Controller',
         'App.form.field.ComboBox'

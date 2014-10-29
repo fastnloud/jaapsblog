@@ -83,6 +83,20 @@ abstract class AbstractEntityService
     }
 
     /**
+     * Delete given entity.
+     *
+     * @param $entity
+     * @return mixed
+     */
+    public function deleteEntity($entity)
+    {
+        $this->getEntityManager()
+             ->remove($entity);
+
+        return $entity;
+    }
+
+    /**
      * Validate given Entity object.
      *
      * @param InputFilterAwareInterface $entity

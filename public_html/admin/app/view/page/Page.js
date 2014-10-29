@@ -14,7 +14,7 @@ Ext.define('App.view.page.Page',{
 
     items : [
         {
-            xtype   : 'grid',
+            xtype   : 'tabgrid',
             bind    : '{page}',
 
             columns : [
@@ -28,24 +28,7 @@ Ext.define('App.view.page.Page',{
                     flex        : 1,
                     dataIndex   : 'title'
                 }
-            ],
-
-            listeners : {
-                itemdblclick : 'onGridDblClick'
-            },
-
-            dockedItems: [{
-                xtype   : 'toolbar',
-                dock    : 'top',
-
-                items : [
-                    {
-                        xtype   : 'button',
-                        text    : 'Create New Record',
-                        handler : 'onCreateClick'
-                    }
-                ]
-            }]
+            ]
         }
     ]
 });

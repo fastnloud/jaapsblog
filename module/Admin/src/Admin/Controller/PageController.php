@@ -38,6 +38,7 @@ class PageController extends AbstractActionController
      */
     public function createAction()
     {
+        $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
         if ($jsonObject) {
@@ -45,14 +46,13 @@ class PageController extends AbstractActionController
                            ->mergeEntityWithJsonObject(new \Page\Entity\Page(), $jsonObject);
 
             if ($this->getPageService()->validateEntity($entity)) {
-                return new JsonModel(array(
-                    'success' => $this->getPageService()->saveEntity($entity)
-                ));
+                $success = $this->getPageService()
+                                ->saveEntity($entity);
             }
         }
 
         return new JsonModel(array(
-            'success' => false
+            'success' => $success
         ));
     }
 
@@ -63,6 +63,7 @@ class PageController extends AbstractActionController
      */
     public function updateAction()
     {
+        $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
         if (isset($jsonObject->id)) {
@@ -74,15 +75,52 @@ class PageController extends AbstractActionController
                                ->mergeEntityWithJsonObject($page, $jsonObject);
 
                 if ($this->getPageService()->validateEntity($entity)) {
-                    return new JsonModel(array(
-                        'success' => $this->getPageService()->saveEntity($entity, true)
-                    ));
+                    $success = $this->getPageService()
+                                    ->saveEntity($entity, true);
                 }
             }
         }
 
         return new JsonModel(array(
-            'success' => false
+            'success' => $success
+        ));
+    }
+
+    /**
+     * Delete.
+     *
+     * @return JsonModel
+     */
+    public function deleteAction()
+    {
+        $success              = false;;
+        $jsonObject           = json_decode($this->params()->fromPost('data'));
+        $jsonObjectCollection = array();
+
+        if (isset($jsonObject->id)) {
+            $jsonObjectCollection[] = $jsonObject;
+        } elseif (is_array($jsonObject)) {
+            $jsonObjectCollection = $jsonObject;
+        }
+
+        if (!empty($jsonObjectCollection)) {
+            foreach ($jsonObjectCollection as $jsonObject) {
+                if (isset($jsonObject->id)) {
+                    $entity  = $this->getPageService()
+                                    ->getPage($jsonObject->id);
+
+                    if ($entity) {
+                        $this->getPageService()
+                             ->deleteEntity($entity);
+                    }
+
+                    $success = true;
+                }
+            }
+        }
+
+        return new JsonModel(array(
+            'success' => $success
         ));
     }
 

@@ -30,6 +30,20 @@ Ext.define('App.form.controller.Controller', {
         this.setContainer(null);
     },
 
+    onGridSelect : function() {
+        var deleteButton = this.getView().lookupReference('deletebutton');
+
+        deleteButton.enable();
+    },
+
+    onGridDeselect : function(grid) {
+        var deleteButton = this.getView().lookupReference('deletebutton');
+
+        if (!grid.getSelection().length) {
+            deleteButton.disable();
+        }
+    },
+
     onGridDblClick : function(grid, record) {
         this.setContainer(this.getView().add({
             xtype        : this.getName(),
@@ -64,7 +78,7 @@ Ext.define('App.form.controller.Controller', {
     onSyncClick : function() {
         var formContainer = this.getContainer(),
             form          = formContainer.down('form'),
-            store         = formContainer.lookupViewModel(true).getStore(this.getStore()),
+            store         = formContainer.this.lookupViewModel(true).getStore(this.getStore()),
             values        = form.getValues(),
             success       = false;
 
@@ -72,6 +86,26 @@ Ext.define('App.form.controller.Controller', {
             if (formContainer.createRecord) {
                 store.add(values);
             }
+
+            store.sync({
+                'failure' : function() {
+                    store.rejectChanges();
+                }
+            });
+
+            return true;
+        }
+
+        return false;
+    },
+
+    onDeleteClick : function() {
+        var grid          = this.getView().down('tabgrid'),
+            store         = grid.lookupViewModel(true).getStore(this.getStore()),
+            selection     = grid.getSelection();
+
+        if (selection.length > 0) {
+            store.remove(selection);
 
             store.sync({
                 'failure' : function() {
