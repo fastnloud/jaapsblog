@@ -1,11 +1,7 @@
 Ext.define('App.view.page.Page',{
-    extend      : 'Ext.grid.Panel',
-    xtype       : 'pageView',
+    extend      : 'Ext.panel.Panel',
     controller  : 'page',
-
-    bind : {
-        store : '{pageStore}'
-    },
+    xtype       : 'pageview',
 
     requires : [
         'App.view.page.PageController',
@@ -16,16 +12,40 @@ Ext.define('App.view.page.Page',{
         type : 'page'
     },
 
-    columns : [
+    items : [
         {
-            text        : 'Id',
-            width       : 100,
-            dataIndex   : 'id'
-        },
-        {
-            text        : 'Title',
-            flex        : 1,
-            dataIndex   : 'title'
+            xtype   : 'grid',
+            bind    : '{page}',
+
+            columns : [
+                {
+                    text        : 'Id',
+                    width       : 100,
+                    dataIndex   : 'id'
+                },
+                {
+                    text        : 'Title',
+                    flex        : 1,
+                    dataIndex   : 'title'
+                }
+            ],
+
+            listeners : {
+                itemdblclick : 'onGridDblClick'
+            },
+
+            dockedItems: [{
+                xtype   : 'toolbar',
+                dock    : 'top',
+
+                items : [
+                    {
+                        xtype   : 'button',
+                        text    : 'Create New Record',
+                        handler : 'onCreateClick'
+                    }
+                ]
+            }]
         }
     ]
 });

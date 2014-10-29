@@ -1,4 +1,12 @@
 Ext.define('App.view.page.PageController', {
-    extend  : 'Ext.app.ViewController',
-    alias   : 'controller.page'
+    extend : 'App.form.controller.Controller',
+
+    init : function() {
+        this.initForm('pageform', 'page');
+    },
+
+    requires : [
+        'App.view.page.PageForm'
+    ]
+
 });
