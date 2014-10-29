@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Repository;
+namespace Application\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
@@ -15,7 +15,7 @@ abstract class AbstractEntityRepository extends EntityRepository
 
     /**
      * @param int $queryHydrator
-     * @param $this
+     * @return $this
      */
     public function setQueryHydrator($queryHydrator)
     {
