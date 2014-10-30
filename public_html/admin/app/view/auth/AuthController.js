@@ -1,5 +1,6 @@
 Ext.define('App.view.auth.AuthController', {
     extend : 'Ext.app.ViewController',
+    alias  : 'controller.auth',
 
     onLoginClick : function(){
         var form = this.lookupReference('form'),

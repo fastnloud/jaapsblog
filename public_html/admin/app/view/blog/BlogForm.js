@@ -1,6 +1,6 @@
-Ext.define('App.view.page.PageForm', {
+Ext.define('App.view.blog.BlogForm', {
     extend  : 'App.form.Form',
-    xtype   : 'pageform',
+    xtype   : 'blogform',
 
     items : {
         xtype       : 'form',
@@ -19,9 +19,9 @@ Ext.define('App.view.page.PageForm', {
                 allowBlank  : false
             },
             {
-                fieldLabel  : 'Label',
-                name        : 'label',
-                bind        : '{record.label}',
+                fieldLabel  : 'Subtitle',
+                name        : 'subtitle',
+                bind        : '{record.subtitle}',
                 allowBlank  : false
             },
             {
@@ -32,9 +32,40 @@ Ext.define('App.view.page.PageForm', {
             },
             {
                 xtype       : 'textarea',
+                fieldLabel  : 'Lead',
+                name        : 'lead',
+                bind        : '{record.lead}'
+            },
+            {
+                xtype       : 'textarea',
                 fieldLabel  : 'Content',
                 name        : 'content',
                 bind        : '{record.content}'
+            },
+            {
+                fieldLabel  : 'Author',
+                name        : 'author',
+                bind        : '{record.author}',
+                allowBlank  : false
+            },
+            {
+                xtype       : 'datefield',
+                fieldLabel  : 'Date',
+                name        : 'date',
+                bind        : '{record.date}',
+                format      : 'Y-m-d',
+                allowBlank  : false
+            },
+            {
+                xtype           : 'combobox',
+                fieldLabel      : 'Category',
+                name            : 'category',
+                bind            : '{record.category}',
+                store           : 'Category',
+                queryMode       : 'local',
+                valueField      : 'id',
+                displayField    : 'label',
+                allowBlank      : false
             },
             {
                 xtype           : 'combobox',

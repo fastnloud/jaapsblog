@@ -6,17 +6,20 @@ Ext.define('App.Application', {
         'App.grid.Tab',
         'App.form.Form',
         'App.form.controller.Controller',
-        'App.form.field.ComboBox'
+        'App.form.field.ComboBox',
+        'App.form.field.Date'
     ],
 
     stores: [
-        'Status'
+        'Status',
+        'Category'
     ],
 
     views : [
         'App.view.auth.Auth',
         'App.view.main.Main',
-        'App.view.page.Page'
+        'App.view.page.Page',
+        'App.view.blog.Blog'
     ],
     
     launch : function () {

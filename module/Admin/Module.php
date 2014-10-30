@@ -2,6 +2,8 @@
 
 namespace Admin;
 
+use Admin\Controller\BlogController;
+use Admin\Controller\CategoryController;
 use Admin\Controller\PageController;
 use Admin\Controller\StatusController;
 use Zend\Mvc\Controller\ControllerManager;
@@ -38,9 +40,21 @@ class Module
 
                     return $controller;
                 },
+                'Admin\Controller\Blog' => function(ControllerManager $cm) {
+                    $controller = new BlogController();
+                    $controller->setBlogService($cm->getServiceLocator()->get('BlogService'));
+
+                    return $controller;
+                },
                 'Admin\Controller\Status' => function(ControllerManager $cm) {
                     $controller = new StatusController();
                     $controller->setStatusService($cm->getServiceLocator()->get('StatusService'));
+
+                    return $controller;
+                },
+                'Admin\Controller\Category' => function(ControllerManager $cm) {
+                    $controller = new CategoryController();
+                    $controller->setCategoryService($cm->getServiceLocator()->get('CategoryService'));
 
                     return $controller;
                 }

@@ -1,9 +1,9 @@
-Ext.define('App.view.page.PageModel', {
+Ext.define('App.view.blog.BlogModel', {
     extend  : 'Ext.app.ViewModel',
-    alias   : 'viewmodel.page',
+    alias   : 'viewmodel.blog',
 
     stores : {
-        page : {
+        blog : {
             autoLoad : true,
 
             fields : [
@@ -14,13 +14,13 @@ Ext.define('App.view.page.PageModel', {
 
             proxy : {
                 type : 'ajax',
-                url  : '/admin/page',
+                url  : '/admin/blog',
 
                 api: {
-                    read    : '/admin/page/read',
-                    update  : '/admin/page/update',
-                    create  : '/admin/page/create',
-                    destroy : '/admin/page/delete'
+                    read    : '/admin/blog/read',
+                    update  : '/admin/blog/update',
+                    create  : '/admin/blog/create',
+                    destroy : '/admin/blog/delete'
                 },
 
                 reader : {
