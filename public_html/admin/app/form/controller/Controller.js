@@ -111,23 +111,25 @@ Ext.define('App.form.controller.Controller', {
     },
 
     onDeleteClick : function() {
-        var grid          = this.getView().down('tabgrid'),
-            store         = grid.lookupViewModel(true).getStore(this.getStore()),
-            selection     = grid.getSelection();
+        Ext.Msg.confirm('Delete', 'Are you sure?', 'onDeleteConfirm', this);
+    },
 
-        if (selection.length > 0) {
-            store.remove(selection);
+    onDeleteConfirm : function(choice) {
+        if (choice === 'yes') {
+            var grid          = this.getView().down('tabgrid'),
+                store         = grid.lookupViewModel(true).getStore(this.getStore()),
+                selection     = grid.getSelection();
 
-            store.sync({
-                'failure' : function() {
-                    store.rejectChanges();
-                }
-            });
+            if (selection.length > 0) {
+                store.remove(selection);
 
-            return true;
+                store.sync({
+                    'failure' : function() {
+                        store.rejectChanges();
+                    }
+                });
+            }
         }
-
-        return false;
     },
 
     onCancelClick : function() {

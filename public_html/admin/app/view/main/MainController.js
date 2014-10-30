@@ -5,11 +5,11 @@ Ext.define('App.view.main.MainController', {
         'Ext.MessageBox'
     ],
 
-    onClickLogout : function () {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirmLogout', this);
+    onLogoutClick : function () {
+        Ext.Msg.confirm('Logout', 'Are you sure?', 'onLogoutConfirm', this);
     },
 
-    onConfirmLogout : function (choice) {
+    onLogoutConfirm : function (choice) {
         if (choice === 'yes') {
             localStorage.removeItem('isAuthenticated');
 

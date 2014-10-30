@@ -32,7 +32,7 @@ Ext.define('App.view.main.Main', {
             tbar : [
                 {
                     text    : 'Logout',
-                    handler : 'onClickLogout',
+                    handler : 'onLogoutClick',
                     width   : '100%'
                 }
             ]
