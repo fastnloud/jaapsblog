@@ -65,7 +65,13 @@ Ext.define('App.form.controller.Controller', {
     onCreateClick : function() {
         this.setContainer(this.getView().add({
             xtype : this.getName(),
-            title : 'New Record'
+            title : 'New Record',
+
+            viewModel : {
+                data : {
+                    record : []
+                }
+            }
         }).show());
     },
 
@@ -78,7 +84,7 @@ Ext.define('App.form.controller.Controller', {
     onSyncClick : function() {
         var formContainer = this.getContainer(),
             form          = formContainer.down('form'),
-            store         = formContainer.this.lookupViewModel(true).getStore(this.getStore()),
+            store         = formContainer.lookupViewModel(true).getStore(this.getStore()),
             values        = form.getValues(),
             success       = false;
 
@@ -90,6 +96,11 @@ Ext.define('App.form.controller.Controller', {
             store.sync({
                 'failure' : function() {
                     store.rejectChanges();
+                },
+                'success' : function() {
+                    if (formContainer.createRecord) {
+                        store.reload();
+                    }
                 }
             });
 
