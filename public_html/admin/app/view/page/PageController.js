@@ -3,7 +3,7 @@ Ext.define('App.view.page.PageController', {
     alias  : 'controller.page',
 
     init : function() {
-        this.initForm('pageform', 'page');
+        this.initForm('pageForm', 'page');
     },
 
     requires : [

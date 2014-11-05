@@ -3,7 +3,7 @@ Ext.define('App.Application', {
     name    : 'App',
 
     requires : [
-        'App.grid.Tab',
+        'App.grid.Main',
         'App.form.Form',
         'App.form.controller.Controller',
         'App.form.field.ComboBox',
@@ -32,6 +32,6 @@ Ext.define('App.Application', {
         }
 
         isAuthenticated = localStorage.getItem("isAuthenticated");
-        Ext.widget(isAuthenticated ? 'mainview' : 'authview');
+        Ext.widget(isAuthenticated ? 'mainView' : 'authView');
     }
 });

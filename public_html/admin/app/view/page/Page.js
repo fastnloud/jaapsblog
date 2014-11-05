@@ -1,7 +1,7 @@
 Ext.define('App.view.page.Page',{
     extend      : 'Ext.panel.Panel',
     controller  : 'page',
-    xtype       : 'pageview',
+    xtype       : 'pageView',
 
     requires : [
         'App.view.page.PageController',
@@ -14,7 +14,7 @@ Ext.define('App.view.page.Page',{
 
     items : [
         {
-            xtype   : 'tabgrid',
+            xtype   : 'mainGrid',
             bind    : '{page}',
 
             columns : [

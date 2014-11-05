@@ -1,6 +1,6 @@
 Ext.define('App.view.auth.Auth',{
     extend      : 'Ext.window.Window',
-    xtype       : 'authview',
+    xtype       : 'authView',
     controller  : 'auth',
 
     requires : [
@@ -31,11 +31,6 @@ Ext.define('App.view.auth.Auth',{
                 inputType   : 'password',
                 fieldLabel  : 'Password',
                 allowBlank  : false
-            },
-            {
-                xtype           : 'displayfield',
-                hideEmptyLabel  : false,
-                value           : 'Enter any non-blank password'
             }
         ],
 

@@ -1,6 +1,6 @@
 Ext.define('App.view.blog.BlogForm', {
     extend  : 'App.form.Form',
-    xtype   : 'blogform',
+    xtype   : 'blogForm',
 
     items : {
         xtype       : 'form',

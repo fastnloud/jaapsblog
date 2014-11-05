@@ -31,13 +31,11 @@ Ext.define('App.form.controller.Controller', {
     },
 
     onGridSelect : function() {
-        var deleteButton = this.getView().lookupReference('deletebutton');
-
-        deleteButton.enable();
+        this.getView().lookupReference('mainGridDeleteButton').enable();
     },
 
     onGridDeselect : function(grid) {
-        var deleteButton = this.getView().lookupReference('deletebutton');
+        var deleteButton = this.getView().lookupReference('mainGridDeleteButton');
 
         if (!grid.getSelection().length) {
             deleteButton.disable();
@@ -116,7 +114,7 @@ Ext.define('App.form.controller.Controller', {
 
     onDeleteConfirm : function(choice) {
         if (choice === 'yes') {
-            var grid          = this.getView().down('tabgrid'),
+            var grid          = this.getView().down('mainGrid'),
                 store         = grid.lookupViewModel(true).getStore(this.getStore()),
                 selection     = grid.getSelection();
 

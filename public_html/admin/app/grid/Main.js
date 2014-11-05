@@ -1,11 +1,15 @@
-Ext.define('App.grid.Tab', {
+Ext.define('App.grid.Main', {
     extend      : 'Ext.grid.Panel',
     selType     : 'checkboxmodel',
-    xtype       : 'tabgrid',
+    xtype       : 'mainGrid',
+
+    initComponent : function() {
+        this.callParent();
+    },
 
     listeners : {
         select       : 'onGridSelect',
-        deselect      : 'onGridDeselect',
+        deselect     : 'onGridDeselect',
         itemdblclick : 'onGridDblClick'
     },
 
@@ -21,7 +25,7 @@ Ext.define('App.grid.Tab', {
             },
             {
                 xtype     : 'button',
-                reference : 'deletebutton',
+                reference : 'mainGridDeleteButton',
                 text      : 'Delete selection',
                 handler   : 'onDeleteClick',
                 disabled  : true

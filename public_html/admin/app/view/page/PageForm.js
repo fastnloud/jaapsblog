@@ -1,6 +1,6 @@
 Ext.define('App.view.page.PageForm', {
     extend  : 'App.form.Form',
-    xtype   : 'pageform',
+    xtype   : 'pageForm',
 
     items : {
         xtype       : 'form',

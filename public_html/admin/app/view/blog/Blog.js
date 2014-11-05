@@ -1,7 +1,8 @@
 Ext.define('App.view.blog.Blog',{
     extend      : 'Ext.panel.Panel',
     controller  : 'blog',
-    xtype       : 'blogview',
+    xtype       : 'blogView',
+    layout      : 'hbox',
 
     requires : [
         'App.view.blog.BlogController',
@@ -14,8 +15,9 @@ Ext.define('App.view.blog.Blog',{
 
     items : [
         {
-            xtype   : 'tabgrid',
-            bind    : '{blog}',
+            xtype       : 'mainGrid',
+            bind        : '{blog}',
+            flex        : 1,
 
             columns : [
                 {

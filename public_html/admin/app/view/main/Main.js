@@ -1,7 +1,7 @@
 Ext.define('App.view.main.Main', {
     extend      : 'Ext.container.Container',
     plugins     : 'viewport',
-    xtype       : 'mainview',
+    xtype       : 'mainView',
     controller  : 'main',
 
     requires : [
@@ -44,11 +44,11 @@ Ext.define('App.view.main.Main', {
             items : [
                 {
                     title : 'Pages',
-                    xtype : 'pageview'
+                    xtype : 'pageView'
                 },
                 {
                     title : 'Blog Items',
-                    xtype : 'blogview'
+                    xtype : 'blogView'
                 }
             ]
         }
