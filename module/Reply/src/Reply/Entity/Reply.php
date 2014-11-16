@@ -1,14 +1,15 @@
 <?php
 
-namespace Blog\Entity;
+namespace Reply\Entity;
 
 use Application\Entity\AbstractEntity;
 use Application\Entity\Exception\EntityException;
+use Blog\Entity\Blog;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Blog\Entity\BlogRepository")
+ * @ORM\Entity(repositoryClass="Reply\Entity\BlogRepository")
  * @ORM\Table(name="reply")
  */
 class Reply extends AbstractEntity

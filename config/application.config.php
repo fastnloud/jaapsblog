@@ -12,6 +12,7 @@ return array(
         'Blog',
         'Status',
         'Category',
+        'Reply',
         'Application',
     ),
 

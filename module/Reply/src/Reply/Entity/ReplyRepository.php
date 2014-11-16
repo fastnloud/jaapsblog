@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Entity;
+namespace Reply\Entity;
 
 use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;

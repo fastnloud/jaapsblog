@@ -7,6 +7,7 @@ use Application\Entity\Exception\EntityException;
 use Category\Entity\Category;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Reply\Entity\Reply;
 use Status\Entity\Status;
 
 /**
@@ -87,7 +88,7 @@ class Blog extends AbstractEntity
     protected $status;
 
     /**
-     * @ORM\OneToMany(targetEntity="Blog\Entity\Reply", mappedBy="blog", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Reply\Entity\Reply", mappedBy="blog", cascade={"all"})
      * @ORM\JoinColumn(name="id", referencedColumnName="blog_id", nullable=false)
      */
     protected $reply;
