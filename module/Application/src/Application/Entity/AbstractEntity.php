@@ -23,14 +23,28 @@ abstract class AbstractEntity implements InputFilterAwareInterface
     }
 
     /**
-     * Set input filter
+     * Set input filter.
      *
      * @param  InputFilterInterface $inputFilter
-     * @return InputFilterAwareInterface
+     * @return void
      */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
-        return null;
+        $this->inputFilter = $inputFilter;
+    }
+
+    /**
+     * Retrieve input filter.
+     *
+     * @return InputFilterInterface
+     */
+    public function getInputFilter()
+    {
+        if (!$this->inputFilter) {
+            $this->inputFilter = new InputFilter();
+        }
+
+        return $this->inputFilter;
     }
 
 }

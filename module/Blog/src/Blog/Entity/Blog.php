@@ -5,10 +5,9 @@ namespace Blog\Entity;
 use Application\Entity\AbstractEntity;
 use Application\Entity\Exception\EntityException;
 use Category\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Status\Entity\Status;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterInterface;
 
 /**
  * @ORM\Entity
@@ -88,29 +87,20 @@ class Blog extends AbstractEntity
     protected $status;
 
     /**
-     * Init default values.
+     * @ORM\OneToMany(targetEntity="Blog\Entity\Reply", mappedBy="blog")
+     * @ORM\JoinColumn(name="id", referencedColumnName="blog_id", nullable=false)
+     */
+    protected $reply;
+
+    /**
+     * Init object.
      */
     public function __construct()
     {
         $this->status   = new Status();
         $this->category = new Category();
+        $this->reply    = new ArrayCollection();
         $this->date     = new \DateTime();
-    }
-
-    /**
-     * Retrieve input filter
-     *
-     * @return InputFilterInterface
-     */
-    public function getInputFilter()
-    {
-        if (!$this->inputFilter) {
-            $inputFilter = new InputFilter();
-
-            $this->inputFilter = $inputFilter;
-        }
-
-        return $this->inputFilter;
     }
 
     /**
@@ -319,6 +309,26 @@ class Blog extends AbstractEntity
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * @param Reply $reply
+     */
+    public function setReply($reply)
+    {
+        if (!$reply instanceof Reply) {
+            throw new EntityException('Invalid object!');
+        }
+
+        $this->reply = $reply;
+    }
+
+    /**
+     * @return Reply
+     */
+    public function getReply()
+    {
+        return $this->reply;
     }
 
 }
