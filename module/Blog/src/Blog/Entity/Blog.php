@@ -87,7 +87,7 @@ class Blog extends AbstractEntity
     protected $status;
 
     /**
-     * @ORM\OneToMany(targetEntity="Blog\Entity\Reply", mappedBy="blog")
+     * @ORM\OneToMany(targetEntity="Blog\Entity\Reply", mappedBy="blog", cascade={"all"})
      * @ORM\JoinColumn(name="id", referencedColumnName="blog_id", nullable=false)
      */
     protected $reply;

@@ -37,7 +37,7 @@ class Reply extends AbstractEntity
     protected $timestamp;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Blog\Entity\Blog", inversedBy="reply")
+     * @ORM\ManyToOne(targetEntity="Blog\Entity\Blog", inversedBy="reply", cascade={"all"})
      * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", nullable=false)
      */
     protected $blog;
@@ -47,7 +47,7 @@ class Reply extends AbstractEntity
      */
     public function __construct()
     {
-        $this->blog = new Blog();
+        $this->blog      = new Blog();
         $this->timestamp = new \DateTime();
     }
 
