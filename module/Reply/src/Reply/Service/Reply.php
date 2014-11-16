@@ -12,7 +12,7 @@ class Reply extends AbstractEntityService
         return $this->getEntityManager()
                     ->getRepository('Reply\Entity\Reply')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->getCategories();
+                    ->getReplies();
     }
 
 }

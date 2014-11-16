@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Reply\Entity\BlogRepository")
+ * @ORM\Entity(repositoryClass="Reply\Entity\ReplyRepository")
  * @ORM\Table(name="reply")
  */
 class Reply extends AbstractEntity

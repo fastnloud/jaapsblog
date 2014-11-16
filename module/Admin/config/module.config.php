@@ -27,6 +27,18 @@ return array(
                     ),
                 ),
             ),
+            'admin_reply' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin/reply[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Reply'
+                    ),
+                ),
+            ),
             'admin_status' => array(
                 'type' => 'literal',
                 'options' => array(
