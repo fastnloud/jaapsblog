@@ -38,6 +38,11 @@ class Reply extends AbstractEntity
     protected $timestamp;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $is_admin = 0;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Blog\Entity\Blog", inversedBy="reply", cascade={"all"})
      * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", nullable=false)
      */
@@ -126,6 +131,22 @@ class Reply extends AbstractEntity
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    /**
+     * @param bool $is_admin
+     */
+    public function setIsAdmin($is_admin)
+    {
+        $this->is_admin = (bool) $is_admin;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsAdmin()
+    {
+        return $this->is_admin;
     }
 
 }
