@@ -11,7 +11,8 @@ return array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                     ),
                     'defaults' => array(
-                        'controller' => 'Admin\Controller\Page'
+                        'controller' => 'Admin\Controller\Page',
+                        'action'     => 'read'
                     ),
                 ),
             ),
@@ -23,7 +24,8 @@ return array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                     ),
                     'defaults' => array(
-                        'controller' => 'Admin\Controller\Blog'
+                        'controller' => 'Admin\Controller\Blog',
+                        'action'     => 'read'
                     ),
                 ),
             ),
@@ -35,7 +37,8 @@ return array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                     ),
                     'defaults' => array(
-                        'controller' => 'Admin\Controller\Reply'
+                        'controller' => 'Admin\Controller\Reply',
+                        'action'     => 'read'
                     ),
                 ),
             ),
