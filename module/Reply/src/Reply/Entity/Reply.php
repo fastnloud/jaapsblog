@@ -43,6 +43,11 @@ class Reply extends AbstractEntity
     protected $is_admin = 0;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $blog_id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Blog\Entity\Blog", inversedBy="reply", cascade={"all"})
      * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", nullable=false)
      */
@@ -147,6 +152,22 @@ class Reply extends AbstractEntity
     public function getIsAdmin()
     {
         return $this->is_admin;
+    }
+
+    /**
+     * @param int $blog_id
+     */
+    public function setBlogId($blog_id)
+    {
+        $this->blog_id = (int) $blog_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBlogId()
+    {
+        return (int) $this->blog_id;
     }
 
 }

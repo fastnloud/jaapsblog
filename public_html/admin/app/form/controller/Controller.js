@@ -30,11 +30,11 @@ Ext.define('App.form.controller.Controller', {
         this.setContainer(null);
     },
 
-    onGridSelect : function() {
+    onMainGridSelect : function() {
         this.getView().lookupReference('mainGridDeleteButton').enable();
     },
 
-    onGridDeselect : function(grid) {
+    onMainGridDeselect : function(grid) {
         var deleteButton = this.getView().lookupReference('mainGridDeleteButton');
 
         if (!grid.getSelection().length) {
@@ -42,7 +42,7 @@ Ext.define('App.form.controller.Controller', {
         }
     },
 
-    onGridDblClick : function(grid, record) {
+    onMainGridDblClick : function(grid, record) {
         this.setContainer(this.getView().add({
             xtype        : this.getName(),
             formStore    : this.getStore(),
@@ -58,6 +58,18 @@ Ext.define('App.form.controller.Controller', {
                 }
             }
         }).show());
+    },
+
+    onChildGridBeforeRender : function(grid) {
+        var store      = grid.getStore(),
+            filters    = grid.filters,
+            container  = this.getContainer();
+
+        if (Ext.isArray(filters) && !Ext.isEmpty(filters)) {
+            Ext.Array.each(filters, function(filter) {
+                store.filter(filter.property, container.getViewModel().data.record.get(filter.value));
+            });
+        }
     },
 
     onCreateClick : function() {

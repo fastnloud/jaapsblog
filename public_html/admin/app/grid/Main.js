@@ -8,9 +8,9 @@ Ext.define('App.grid.Main', {
     },
 
     listeners : {
-        select       : 'onGridSelect',
-        deselect     : 'onGridDeselect',
-        itemdblclick : 'onGridDblClick'
+        select       : 'onMainGridSelect',
+        deselect     : 'onMainGridDeselect',
+        itemdblclick : 'onMainGridDblClick'
     },
 
     dockedItems: [{

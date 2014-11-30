@@ -4,6 +4,7 @@ Ext.define('App.Application', {
 
     requires : [
         'App.grid.Main',
+        'App.grid.Child',
         'App.form.Form',
         'App.form.controller.Controller',
         'App.form.field.ComboBox',
@@ -12,7 +13,8 @@ Ext.define('App.Application', {
 
     stores: [
         'Status',
-        'Category'
+        'Category',
+        'Reply'
     ],
 
     views : [
