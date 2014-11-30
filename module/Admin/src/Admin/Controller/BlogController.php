@@ -87,11 +87,11 @@ class BlogController extends AbstractActionController
     }
 
     /**
-     * Delete.
+     * Destroy.
      *
      * @return JsonModel
      */
-    public function deleteAction()
+    public function destroyAction()
     {
         $success              = false;;
         $jsonObject           = json_decode($this->params()->fromPost('data'));

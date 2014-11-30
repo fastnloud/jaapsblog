@@ -18,7 +18,7 @@ Ext.define('App.store.Reply', {
             read    : '/admin/reply/read',
             update  : '/admin/reply/update',
             create  : '/admin/reply/create',
-            destroy : '/admin/reply/delete'
+            destroy : '/admin/reply/destroy'
         },
 
         reader : {

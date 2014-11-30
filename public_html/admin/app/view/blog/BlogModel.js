@@ -20,7 +20,7 @@ Ext.define('App.view.blog.BlogModel', {
                     read    : '/admin/blog/read',
                     update  : '/admin/blog/update',
                     create  : '/admin/blog/create',
-                    destroy : '/admin/blog/delete'
+                    destroy : '/admin/blog/destroy'
                 },
 
                 reader : {

@@ -20,7 +20,7 @@ Ext.define('App.view.page.PageModel', {
                     read    : '/admin/page/read',
                     update  : '/admin/page/update',
                     create  : '/admin/page/create',
-                    destroy : '/admin/page/delete'
+                    destroy : '/admin/page/destroy'
                 },
 
                 reader : {
