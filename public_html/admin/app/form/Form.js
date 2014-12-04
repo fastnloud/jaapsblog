@@ -1,7 +1,7 @@
 Ext.define('App.form.Form', {
     extend          : 'Ext.window.Window',
     modal           : true,
-    width           : 400,
+    width           : 500,
     autoScroll      : true,
     resizable       : false,
     createRecord    : true,

@@ -1,8 +1,7 @@
 Ext.define('App.grid.Child', {
-    extend          : 'Ext.grid.Panel',
-    selType         : 'checkboxmodel',
-    xtype           : 'childGrid',
-    sortableColumns : false,
+    extend              : 'Ext.grid.Panel',
+    selType             : 'checkboxmodel',
+    xtype               : 'childGrid',
 
     initComponent : function() {
         this.callParent();

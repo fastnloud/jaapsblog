@@ -127,30 +127,30 @@ Ext.define('App.view.blog.BlogForm', {
                 columns : [
                     {
                         text        : 'Name',
-                        flex        : 1,
+                        flex        : 2,
                         dataIndex   : 'name',
-                        hideable    : false,
                         editor      : 'textfield'
                     },
                     {
                         text        : 'Comment',
-                        flex        : 2,
                         dataIndex   : 'comment',
+                        editor      : 'textarea',
+                        flex        : 5,
                         hideable    : false,
-                        editor      : 'textarea'
+                        renderer    : function(value) {
+                            return '<div style="height:70px;">' + value + '</div>';
+                        }
                     },
                     {
                         text        : 'Date',
-                        width       : 75,
+                        flex        : 3,
                         dataIndex   : 'timestamp',
-                        hideable    : false,
                         editor      : 'textfield'
                     },
                     {
                         text        : 'Admin',
-                        width       : 75,
+                        flex        : 2,
                         dataIndex   : 'is_admin',
-                        hideable    : false,
                         editor      : 'checkbox'
                     }
                 ]
