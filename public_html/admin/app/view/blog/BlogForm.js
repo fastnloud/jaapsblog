@@ -144,14 +144,14 @@ Ext.define('App.view.blog.BlogForm', {
                         width       : 75,
                         dataIndex   : 'timestamp',
                         hideable    : false,
-                        editor      : 'date'
+                        editor      : 'textfield'
                     },
                     {
                         text        : 'Admin',
                         width       : 75,
                         dataIndex   : 'is_admin',
                         hideable    : false,
-                        editor      : 'textfield'
+                        editor      : 'checkbox'
                     }
                 ]
             }

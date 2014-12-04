@@ -5,8 +5,20 @@
         override : 'Ext.form.field.Date',
 
         parseDate : function(value) {
-            if (Ext.isObject(value)) {
-                value = new Date(value.date);
+
+            if (Ext.isString(value)) {
+                var dateTime = value.split(/[- :]/);
+
+                if (dateTime.length > 3) {
+                    value = new Date(
+                        dateTime[0],
+                        dateTime[1]-1,
+                        dateTime[2],
+                        dateTime[3],
+                        dateTime[4],
+                        dateTime[5]
+                    );
+                }
             }
 
             return parseDate.apply(this, arguments);

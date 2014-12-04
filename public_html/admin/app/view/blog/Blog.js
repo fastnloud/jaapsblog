@@ -29,6 +29,13 @@ Ext.define('App.view.blog.Blog',{
                     text        : 'Title',
                     flex        : 1,
                     dataIndex   : 'title'
+                },
+                {
+                    text        : 'Date',
+                    flex        : 1,
+                    dataIndex   : 'date',
+                    xtype       : 'datecolumn',
+                    format      : 'Y-m-d'
                 }
             ]
         }

@@ -1,13 +1,16 @@
 Ext.define('App.store.Reply', {
     extend   : 'Ext.data.Store',
     autoLoad : true,
+    autoSync : true,
 
     fields : [
         'id',
         'name',
         'comment',
-        'timestamp',
-        'blog_id'
+        {
+            name    : 'timestamp',
+            mapping : 'timestamp.date'
+        }
     ],
 
     proxy : {

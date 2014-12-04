@@ -9,7 +9,11 @@ Ext.define('App.view.blog.BlogModel', {
             fields : [
                 'id',
                 'title',
-                'status'
+                'status',
+                {
+                    name    : 'date',
+                    mapping : 'date.date'
+                }
             ],
 
             proxy : {
