@@ -23,4 +23,23 @@ class ReplyRepository extends AbstractEntityRepository
                   ->getResult($this->getQueryHydrator());
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getReply($id)
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('r', 'b')
+           ->from('Reply\Entity\Reply', 'r')
+           ->join('r.blog', 'b')
+           ->where('r.id = :id')
+           ->setParameter(':id', $id);
+
+        return $qb->getQuery()
+                  ->getSingleResult($this->getQueryHydrator());
+    }
+
 }

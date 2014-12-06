@@ -60,6 +60,19 @@ Ext.define('App.form.controller.Controller', {
         }).show());
     },
 
+    onMainGridCreateClick : function() {
+        this.setContainer(this.getView().add({
+            xtype : this.getName(),
+            title : 'New Record',
+
+            viewModel : {
+                data : {
+                    record : []
+                }
+            }
+        }).show());
+    },
+
     onChildGridBeforeRender : function(grid) {
         var store      = grid.getStore(),
             filters    = grid.filters,
@@ -72,17 +85,53 @@ Ext.define('App.form.controller.Controller', {
         }
     },
 
-    onCreateClick : function() {
-        this.setContainer(this.getView().add({
-            xtype : this.getName(),
-            title : 'New Record',
+    onChildGridItemContextMenu : function(view, record, node, index, e) {
+        var me = this,
+            contextMenu = new Ext.menu.Menu({
+            plain : true,
 
-            viewModel : {
-                data : {
-                    record : []
+            items : [
+                {
+                    text : 'Add Record'
+                },
+                {
+                    text : 'Delete Selection'
+                }
+            ],
+
+            listeners : {
+                click : function(menu, item, e, eOpts) {
+                    var store = view.getStore();
+
+                    if (item.text.match(/Add Record/)) {
+                        me.onChildGridCreateClick(store);
+                    } else if (item.text.match(/Delete Selection/)) {
+                        me.onChildGridDeleteClick()
+                    }
                 }
             }
-        }).show());
+        });
+
+        e.stopEvent();
+        contextMenu.showAt(e.getXY());
+        return false;
+    },
+
+    onChildGridCreateClick : function(store) {
+        var filters     = store.getFilters(),
+            data        = {};
+
+        if (filters.length > 0) {
+            if (store.dataDefaults) {
+                data = store.dataDefaults;
+            }
+
+            data['id'] = '';
+            data[filters.items[0].getId()] = filters.items[0].getValue();
+            data[filters.items[0].getId().replace('_id','')]    = filters.items[0].getValue();
+
+            store.add(data);
+        }
     },
 
     onSyncAndCloseClick : function() {

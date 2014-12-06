@@ -15,4 +15,12 @@ class Reply extends AbstractEntityService
                     ->getReplies();
     }
 
+    public function getReply($id)
+    {
+        return $this->getEntityManager()
+                    ->getRepository('Reply\Entity\Reply')
+                    ->setQueryHydrator($this->getQueryHydrator())
+                    ->getReply($id);
+    }
+
 }

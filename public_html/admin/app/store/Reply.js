@@ -3,6 +3,16 @@ Ext.define('App.store.Reply', {
     autoLoad : true,
     autoSync : true,
 
+    constructor : function() {
+        this.callParent(arguments);
+
+        this.dataDefaults = {
+            name        : '',
+            comment     : '',
+            timestamp   : new Date()
+        }
+    },
+
     fields : [
         'id',
         'name',

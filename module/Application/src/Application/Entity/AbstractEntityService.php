@@ -3,6 +3,7 @@
 namespace Application\Entity;
 
 use Application\Entity\Exception\EntityException;
+use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Zend\Form\Form;

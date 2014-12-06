@@ -32,6 +32,61 @@ class ReplyController extends AbstractActionController
     }
 
     /**
+     * Create.
+     *
+     * @return JsonModel
+     */
+    public function createAction()
+    {
+        $success    = false;
+        $jsonObject = json_decode($this->params()->fromPost('data'));
+
+        if ($jsonObject) {
+            $entity = $this->getReplyService()
+                           ->mergeEntityWithJsonObject(new \Reply\Entity\Reply(), $jsonObject);
+
+            if ($this->getReplyService()->validateEntity($entity)) {
+                $success = $this->getReplyService()
+                                ->saveEntity($entity);
+            }
+        }
+
+        return new JsonModel(array(
+            'success' => $success
+        ));
+    }
+
+    /**
+     * Update.
+     *
+     * @return JsonModel
+     */
+    public function updateAction()
+    {
+        $success    = false;
+        $jsonObject = json_decode($this->params()->fromPost('data'));
+
+        if (isset($jsonObject->id)) {
+            $reply = $this->getReplyService()
+                          ->getReply($jsonObject->id);
+
+            if ($reply) {
+                $entity = $this->getReplyService()
+                               ->mergeEntityWithJsonObject($reply, $jsonObject);
+
+                if ($this->getReplyService()->validateEntity($entity)) {
+                    $success = $this->getReplyService()
+                                    ->saveEntity($entity, true);
+                }
+            }
+        }
+
+        return new JsonModel(array(
+            'success' => $success
+        ));
+    }
+
+    /**
      * @param \Reply\Service\Reply $replyService
      */
     public function setReplyService(ReplyService $replyService)

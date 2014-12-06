@@ -21,7 +21,7 @@ Ext.define('App.grid.Main', {
             {
                 xtype   : 'button',
                 text    : 'Create New Record',
-                handler : 'onCreateClick'
+                handler : 'onMainGridCreateClick'
             },
             {
                 xtype     : 'button',

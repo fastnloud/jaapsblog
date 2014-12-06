@@ -13,7 +13,8 @@ Ext.define('App.grid.Child', {
     },
 
     listeners : {
-        beforerender : 'onChildGridBeforeRender'
+        beforerender    : 'onChildGridBeforeRender',
+        itemcontextmenu : 'onChildGridItemContextMenu'
     }
 
 });
