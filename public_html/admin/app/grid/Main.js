@@ -26,7 +26,7 @@ Ext.define('App.grid.Main', {
             {
                 xtype     : 'button',
                 reference : 'mainGridDeleteButton',
-                text      : 'Delete selection',
+                text      : 'Delete Selection',
                 handler   : 'onDeleteClick',
                 disabled  : true
             }
