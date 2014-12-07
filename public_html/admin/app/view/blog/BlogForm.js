@@ -136,10 +136,7 @@ Ext.define('App.view.blog.BlogForm', {
                         dataIndex   : 'comment',
                         editor      : 'textarea',
                         flex        : 5,
-                        hideable    : false,
-                        renderer    : function(value) {
-                            return '<div style="height:70px;">' + value + '</div>';
-                        }
+                        hideable    : false
                     },
                     {
                         text        : 'Date',

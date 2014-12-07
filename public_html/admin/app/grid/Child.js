@@ -2,14 +2,13 @@ Ext.define('App.grid.Child', {
     extend              : 'Ext.grid.Panel',
     selType             : 'checkboxmodel',
     xtype               : 'childGrid',
+    scroll              : 'vertical',
     minHeight           : 70,
-
-    initComponent : function() {
-        this.callParent();
-    },
+    maxHeight           : 400,
+    forceFit            : true,
 
     plugins : {
-        ptype           : 'cellediting',
+        ptype           : 'rowediting',
         clicksToEdit    : 2
     },
 
