@@ -73,6 +73,28 @@ Ext.define('App.form.controller.Controller', {
         }).show());
     },
 
+    onMainGridDeleteClick : function() {
+        Ext.Msg.confirm('Delete', 'Are you sure?', 'onMainGridDeleteConfirm', this);
+    },
+
+    onMainGridDeleteConfirm : function(choice) {
+        if (choice === 'yes') {
+            var grid          = this.getView().down('mainGrid'),
+                store         = grid.lookupViewModel(true).getStore(this.getStore()),
+                selection     = grid.getSelection();
+
+            if (selection.length > 0) {
+                store.remove(selection);
+
+                store.sync({
+                    'failure' : function() {
+                        store.rejectChanges();
+                    }
+                });
+            }
+        }
+    },
+
     onChildGridBeforeRender : function(grid) {
         var store      = grid.getStore(),
             filters    = grid.filters,
@@ -167,28 +189,6 @@ Ext.define('App.form.controller.Controller', {
         }
 
         return false;
-    },
-
-    onDeleteClick : function() {
-        Ext.Msg.confirm('Delete', 'Are you sure?', 'onDeleteConfirm', this);
-    },
-
-    onDeleteConfirm : function(choice) {
-        if (choice === 'yes') {
-            var grid          = this.getView().down('mainGrid'),
-                store         = grid.lookupViewModel(true).getStore(this.getStore()),
-                selection     = grid.getSelection();
-
-            if (selection.length > 0) {
-                store.remove(selection);
-
-                store.sync({
-                    'failure' : function() {
-                        store.rejectChanges();
-                    }
-                });
-            }
-        }
     },
 
     onCancelClick : function() {
