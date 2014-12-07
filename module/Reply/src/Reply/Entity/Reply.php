@@ -48,7 +48,7 @@ class Reply extends AbstractEntity
     protected $blog_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Blog\Entity\Blog", inversedBy="reply", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Blog\Entity\Blog", inversedBy="reply", cascade={"persist", "merge", "detach"})
      * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", nullable=false)
      */
     protected $blog;
