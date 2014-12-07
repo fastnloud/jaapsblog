@@ -107,32 +107,32 @@ Ext.define('App.form.controller.Controller', {
         }
     },
 
-    onChildGridItemContextMenu : function(view, record, node, index, e) {
-        var me = this,
+    onChildGridItemContextMenu : function(grid, record, node, index, e) {
+        var me          = this,
             contextMenu = new Ext.menu.Menu({
-            plain : true,
+                plain : true,
 
-            items : [
-                {
-                    text : 'Add Record'
-                },
-                {
-                    text : 'Delete Selection'
-                }
-            ],
+                items : [
+                    {
+                        text : 'Add Record'
+                    },
+                    {
+                        text : 'Delete Selection'
+                    }
+                ],
 
-            listeners : {
-                click : function(menu, item, e, eOpts) {
-                    var store = view.getStore();
+                listeners : {
+                    click : function(menu, item, e, eOpts) {
+                        var store = grid.getStore();
 
-                    if (item.text.match(/Add Record/)) {
-                        me.onChildGridCreateClick(store);
-                    } else if (item.text.match(/Delete Selection/)) {
-                        me.onChildGridDeleteClick()
+                        if (item.text.match(/Add Record/)) {
+                            me.onChildGridCreateClick(store);
+                        } else if (item.text.match(/Delete Selection/)) {
+                            me.onChildGridDeleteClick(store, grid)
+                        }
                     }
                 }
-            }
-        });
+            });
 
         e.stopEvent();
         contextMenu.showAt(e.getXY());
@@ -154,6 +154,16 @@ Ext.define('App.form.controller.Controller', {
 
             store.add(data);
         }
+    },
+
+    onChildGridDeleteClick : function(store, grid) {
+        var selection = grid.getSelection();
+
+        Ext.Msg.confirm('Delete', 'Are you sure?', function() {
+            if (selection.length > 0) {
+                store.remove(selection);
+            }
+        });
     },
 
     onSyncAndCloseClick : function() {

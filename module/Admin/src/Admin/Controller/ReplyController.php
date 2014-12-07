@@ -87,6 +87,44 @@ class ReplyController extends AbstractActionController
     }
 
     /**
+     * Destroy.
+     *
+     * @return JsonModel
+     */
+    public function destroyAction()
+    {
+        $success              = false;;
+        $jsonObject           = json_decode($this->params()->fromPost('data'));
+        $jsonObjectCollection = array();
+
+        if (isset($jsonObject->id)) {
+            $jsonObjectCollection[] = $jsonObject;
+        } elseif (is_array($jsonObject)) {
+            $jsonObjectCollection = $jsonObject;
+        }
+
+        if (!empty($jsonObjectCollection)) {
+            foreach ($jsonObjectCollection as $jsonObject) {
+                if (isset($jsonObject->id)) {
+                    $entity  = $this->getReplyService()
+                                    ->getReply($jsonObject->id);
+
+                    if ($entity) {
+                        $this->getReplyService()
+                             ->deleteEntity($entity);
+                    }
+
+                    $success = true;
+                }
+            }
+        }
+
+        return new JsonModel(array(
+            'success' => $success
+        ));
+    }
+
+    /**
      * @param \Reply\Service\Reply $replyService
      */
     public function setReplyService(ReplyService $replyService)
