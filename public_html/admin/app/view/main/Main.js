@@ -42,10 +42,10 @@ Ext.define('App.view.main.Main', {
             xtype  : 'tabpanel',
 
             items : [
-                /*{
+                {
                     title : 'Pages',
                     xtype : 'pageView'
-                },*/
+                },
                 {
                     title : 'Blog Items',
                     xtype : 'blogView'
