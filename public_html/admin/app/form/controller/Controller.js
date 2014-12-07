@@ -123,13 +123,21 @@ Ext.define('App.form.controller.Controller', {
     },
 
     onChildGridBeforeRender : function(grid) {
-        var store      = grid.getStore(),
-            filters    = grid.filters,
-            container  = this.getContainer();
+        var store       = grid.getStore(),
+            filters     = grid.filters,
+            container   = this.getContainer();
+
+        if (Ext.isEmpty(container.getViewModel().data.record)){
+            grid.disable(true);
+        }
 
         if (Ext.isArray(filters) && !Ext.isEmpty(filters)) {
             Ext.Array.each(filters, function(filter) {
-                store.filter(filter.property, container.getViewModel().data.record.get(filter.value));
+                if (!grid.isDisabled()) {
+                    store.filter(filter.property, container.getViewModel().data.record.get(filter.value));
+                } else {
+                    store.filter(filter.property, 0);
+                }
             });
         }
     },
