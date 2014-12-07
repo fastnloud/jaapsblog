@@ -95,6 +95,33 @@ Ext.define('App.form.controller.Controller', {
         }
     },
 
+    getChildGridContextMenu : function(grid) {
+        var me    = this,
+            items = [{text : 'Add Record'}];
+
+        if (grid.getStore().count() > 0) {
+            items.push({text : 'Delete Selection'});
+        }
+
+        return new Ext.menu.Menu({
+            plain : true,
+
+            items : items,
+
+            listeners : {
+                click : function(menu, item, e, eOpts) {
+                    var store = grid.getStore();
+
+                    if (item.text.match(/Add Record/)) {
+                        me.onChildGridCreateClick(store);
+                    } else if (item.text.match(/Delete Selection/)) {
+                        me.onChildGridDeleteClick(store, grid)
+                    }
+                }
+            }
+        });
+    },
+
     onChildGridBeforeRender : function(grid) {
         var store      = grid.getStore(),
             filters    = grid.filters,
@@ -107,35 +134,17 @@ Ext.define('App.form.controller.Controller', {
         }
     },
 
-    onChildGridItemContextMenu : function(grid, record, node, index, e) {
-        var me          = this,
-            contextMenu = new Ext.menu.Menu({
-                plain : true,
-
-                items : [
-                    {
-                        text : 'Add Record'
-                    },
-                    {
-                        text : 'Delete Selection'
-                    }
-                ],
-
-                listeners : {
-                    click : function(menu, item, e, eOpts) {
-                        var store = grid.getStore();
-
-                        if (item.text.match(/Add Record/)) {
-                            me.onChildGridCreateClick(store);
-                        } else if (item.text.match(/Delete Selection/)) {
-                            me.onChildGridDeleteClick(store, grid)
-                        }
-                    }
-                }
-            });
-
+    onChildGridContainerContextMenu : function(grid, e) {
         e.stopEvent();
-        contextMenu.showAt(e.getXY());
+        this.getChildGridContextMenu(grid).showAt(e.getXY());
+
+        return false;
+    },
+
+    onChildGridItemContextMenu : function(grid, record, node, index, e) {
+        e.stopEvent();
+        this.getChildGridContextMenu(grid).showAt(e.getXY());
+
         return false;
     },
 
@@ -152,16 +161,28 @@ Ext.define('App.form.controller.Controller', {
             data[filters.items[0].getId()] = filters.items[0].getValue();
             data[filters.items[0].getId().replace('_id','')]    = filters.items[0].getValue();
 
+            store.suspendAutoSync();
             store.add(data);
+            store.sync({
+                'failure' : function() {
+                    store.rejectChanges();
+                },
+                'success' : function() {
+                    store.reload();
+                    store.resumeAutoSync();
+                }
+            });
         }
     },
 
     onChildGridDeleteClick : function(store, grid) {
         var selection = grid.getSelection();
 
-        Ext.Msg.confirm('Delete', 'Are you sure?', function() {
-            if (selection.length > 0) {
-                store.remove(selection);
+        Ext.Msg.confirm('Delete', 'Are you sure?', function(choice) {
+            if (choice === 'yes') {
+                if (selection.length > 0) {
+                    store.remove(selection);
+                }
             }
         });
     },

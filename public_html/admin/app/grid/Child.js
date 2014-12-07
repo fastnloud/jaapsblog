@@ -2,6 +2,7 @@ Ext.define('App.grid.Child', {
     extend              : 'Ext.grid.Panel',
     selType             : 'checkboxmodel',
     xtype               : 'childGrid',
+    minHeight           : 70,
 
     initComponent : function() {
         this.callParent();
@@ -13,8 +14,9 @@ Ext.define('App.grid.Child', {
     },
 
     listeners : {
-        beforerender    : 'onChildGridBeforeRender',
-        itemcontextmenu : 'onChildGridItemContextMenu'
+        beforerender         : 'onChildGridBeforeRender',
+        itemcontextmenu      : 'onChildGridItemContextMenu',
+        containercontextmenu : 'onChildGridContainerContextMenu'
     }
 
 });
