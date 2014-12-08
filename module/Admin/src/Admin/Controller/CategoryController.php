@@ -18,7 +18,7 @@ class CategoryController extends AbstractActionController
     /**
      * Read.
      *
-     * @return array|JsonModel
+     * @return JsonModel
      */
     public function readAction()
     {

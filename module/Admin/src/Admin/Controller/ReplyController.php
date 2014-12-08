@@ -18,7 +18,7 @@ class ReplyController extends AbstractActionController
     /**
      * Read.
      *
-     * @return array|JsonModel
+     * @return JsonModel
      */
     public function readAction()
     {
