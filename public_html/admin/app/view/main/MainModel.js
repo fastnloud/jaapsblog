@@ -3,6 +3,6 @@ Ext.define('App.view.main.MainModel', {
     alias   : 'viewmodel.main',
 
     data : {
-        name: 'App'
+        name : 'Admin Panel'
     }
 });

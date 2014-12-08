@@ -10,11 +10,11 @@ Ext.define('App.view.main.Main', {
     ],
 
     viewModel : {
-        type: 'main'
+        type : 'main'
     },
 
     layout : {
-        type: 'border'
+        type : 'border'
     },
 
     items : [
