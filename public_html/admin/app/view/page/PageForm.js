@@ -3,75 +3,84 @@ Ext.define('App.view.page.PageForm', {
     xtype   : 'pageForm',
 
     items : {
-        xtype       : 'form',
-        defaultType : 'textfield',
-        padding     : '10 10 0 10',
 
-        fieldDefaults : {
-            width : '100%'
-        },
+        xtype : 'tabpanel',
 
-        items: [
+        items : [
             {
-                fieldLabel  : 'Title',
-                name        : 'title',
-                bind        : '{record.title}',
-                allowBlank  : false
-            },
-            {
-                fieldLabel  : 'Label',
-                name        : 'label',
-                bind        : '{record.label}',
-                allowBlank  : false
-            },
-            {
-                fieldLabel  : 'URL',
-                name        : 'url',
-                bind        : '{record.url}',
-                allowBlank  : false
-            },
-            {
-                xtype       : 'textarea',
-                fieldLabel  : 'Content',
-                name        : 'content',
-                bind        : '{record.content}'
-            },
-            {
-                xtype           : 'combobox',
-                fieldLabel      : 'Status',
-                name            : 'status',
-                bind            : '{record.status}',
-                store           : 'Status',
-                queryMode       : 'local',
-                valueField      : 'id',
-                displayField    : 'label',
-                allowBlank      : false
-            },
-            {
-                xtype       : 'fieldset',
+                title       : 'Page',
+                xtype       : 'form',
                 defaultType : 'textfield',
-                title       : 'SEO',
+                padding     : '10 10 0 10',
+                background  : 'white',
 
-                layout : {
-                    type: 'vbox'
+                fieldDefaults : {
+                    width : '100%'
                 },
 
-                items : [
+                items: [
                     {
                         fieldLabel  : 'Title',
-                        name        : 'meta_title',
-                        bind        : '{record.meta_title}'
+                        name        : 'title',
+                        bind        : '{record.title}',
+                        allowBlank  : false
+                    },
+                    {
+                        fieldLabel  : 'Label',
+                        name        : 'label',
+                        bind        : '{record.label}',
+                        allowBlank  : false
+                    },
+                    {
+                        fieldLabel  : 'URL',
+                        name        : 'url',
+                        bind        : '{record.url}',
+                        allowBlank  : false
                     },
                     {
                         xtype       : 'textarea',
-                        fieldLabel  : 'Description',
-                        name        : 'meta_description',
-                        bind        : '{record.meta_description}'
+                        fieldLabel  : 'Content',
+                        name        : 'content',
+                        bind        : '{record.content}'
                     },
                     {
-                        fieldLabel  : 'Keywords',
-                        name        : 'meta_keywords',
-                        bind        : '{record.meta_keywords}'
+                        xtype           : 'combobox',
+                        fieldLabel      : 'Status',
+                        name            : 'status',
+                        bind            : '{record.status}',
+                        store           : 'Status',
+                        queryMode       : 'local',
+                        valueField      : 'id',
+                        displayField    : 'label',
+                        allowBlank      : false
+                    },
+                    {
+                        xtype       : 'fieldset',
+                        defaultType : 'textfield',
+                        title       : 'SEO',
+
+                        layout : {
+                            type: 'vbox'
+                        },
+
+                        items : [
+                            {
+                                fieldLabel  : 'Title',
+                                name        : 'meta_title',
+                                bind        : '{record.meta_title}'
+                            },
+                            {
+                                xtype       : 'textarea',
+                                fieldLabel  : 'Description',
+                                name        : 'meta_description',
+                                bind        : '{record.meta_description}'
+                            },
+                            {
+                                fieldLabel  : 'Keywords',
+                                name        : 'meta_keywords',
+                                bind        : '{record.meta_keywords}'
+                            }
+                        ]
                     }
                 ]
             }

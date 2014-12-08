@@ -12,6 +12,7 @@ Ext.define('App.view.blog.BlogForm', {
                 xtype       : 'form',
                 defaultType : 'textfield',
                 padding     : '10 10 0 10',
+                background  : 'white',
 
                 fieldDefaults : {
                     width : '100%'
