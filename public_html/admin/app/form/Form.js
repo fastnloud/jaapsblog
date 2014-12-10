@@ -6,6 +6,7 @@ Ext.define('App.form.Form', {
     autoScroll      : true,
     resizable       : false,
     createRecord    : true,
+    border          : 0,
 
     buttons : [
         {

@@ -8,15 +8,19 @@ Ext.define('App.view.auth.Auth',{
         'Ext.form.Panel'
     ],
 
-    bodyPadding : 10,
     title       : 'Login',
     closable    : false,
     autoShow    : true,
+    draggable   : false,
+    resizable   : false,
 
     items: {
         xtype       : 'form',
         reference   : 'form',
         url         : '/auth/user',
+        padding     : 5,
+        border      : 1,
+        bodyStyle   : 'background:white;padding:5px;',
 
         items : [
             {

@@ -24,6 +24,7 @@ Ext.define('App.view.main.Main', {
             width       : 150,
             split       : true,
             collapsible : true,
+            collapsed   : true,
 
             bind : {
                 title : '{name}'
