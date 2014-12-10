@@ -33,7 +33,7 @@ class Reply extends AbstractEntity
     protected $comment;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     protected $timestamp;
 
