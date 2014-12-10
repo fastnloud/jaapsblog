@@ -162,7 +162,13 @@ Ext.define('App.form.controller.Controller', {
 
         if (filters.length > 0) {
             if (store.dataDefaults) {
-                data = store.dataDefaults;
+                data = Ext.clone(store.dataDefaults);
+
+                Ext.Object.each(data, function(index, value) {
+                    if (value == 'now()') {
+                        data[index] = getDateTime();
+                    }
+                });
             }
 
             data['id'] = '';

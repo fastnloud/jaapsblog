@@ -9,7 +9,7 @@ Ext.define('App.store.Reply', {
         this.dataDefaults = {
             name        : '',
             comment     : '',
-            timestamp   : new Date(),
+            timestamp   : 'now()',
             is_admin    : true
         }
     },
