@@ -21,7 +21,7 @@ Ext.define('App.view.main.Main', {
         {
             xtype       : 'panel',
             region      : 'west',
-            width       : 150,
+            width       : 105,
             split       : true,
             collapsible : true,
             collapsed   : true,
