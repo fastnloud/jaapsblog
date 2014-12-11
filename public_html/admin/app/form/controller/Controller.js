@@ -212,7 +212,8 @@ Ext.define('App.form.controller.Controller', {
     },
 
     onSyncClick : function() {
-        var formContainer = this.getContainer(),
+        var me            = this,
+            formContainer = me.getContainer(),
             form          = formContainer.down('form'),
             store         = formContainer.lookupViewModel(true).getStore(this.getStore()),
             values        = form.getValues(),
@@ -227,9 +228,10 @@ Ext.define('App.form.controller.Controller', {
                 'failure' : function() {
                     store.rejectChanges();
                 },
-                'success' : function() {
+                'success' : function(record) {
                     if (formContainer.createRecord) {
                         store.reload();
+                        me.onCancelClick();
                     }
                 }
             });
