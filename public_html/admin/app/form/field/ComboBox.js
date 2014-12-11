@@ -1,5 +1,6 @@
 Ext.define('App.form.field.ComboBox', {
-    override : 'Ext.form.field.ComboBox',
+    override       : 'Ext.form.field.ComboBox',
+    forceSelection : true,
 
     listeners : {
         change : function(combobox) {
