@@ -80,6 +80,7 @@ Ext.define('App.form.controller.Controller', {
     onMainGridDeleteConfirm : function(choice) {
         if (choice === 'yes') {
             var grid          = this.getView().down('mainGrid'),
+                deleteButton  = this.getView().lookupReference('mainGridDeleteButton'),
                 store         = grid.lookupViewModel(true).getStore(this.getStore()),
                 selection     = grid.getSelection();
 
@@ -87,6 +88,9 @@ Ext.define('App.form.controller.Controller', {
                 store.remove(selection);
 
                 store.sync({
+                    'success' : function() {
+                        deleteButton.disable();
+                    },
                     'failure' : function() {
                         store.rejectChanges();
                     }
