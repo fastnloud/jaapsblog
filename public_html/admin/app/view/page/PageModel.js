@@ -6,6 +6,11 @@ Ext.define('App.view.page.PageModel', {
         page : {
             autoLoad : true,
 
+            sorters : [{
+                property  : 'id',
+                direction : 'ASC'
+            }],
+
             fields : [
                 'id',
                 'title',

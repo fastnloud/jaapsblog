@@ -6,6 +6,11 @@ Ext.define('App.view.blog.BlogModel', {
         blog : {
             autoLoad : true,
 
+            sorters : [{
+                property  : 'date',
+                direction : 'DESC'
+            }],
+
             fields : [
                 'id',
                 'title',
