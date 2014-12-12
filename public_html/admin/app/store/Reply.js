@@ -24,6 +24,11 @@ Ext.define('App.store.Reply', {
         }
     ],
 
+    sorters : [{
+        property  : 'timestamp',
+        direction : 'DESC'
+    }],
+
     proxy : {
         type : 'ajax',
         url  : '/admin/reply',
