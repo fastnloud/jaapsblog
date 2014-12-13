@@ -31,10 +31,11 @@ Ext.define('App.view.page.PageForm', {
                         allowBlank  : false
                     },
                     {
-                        xtype       : 'textarea',
+                        xtype       : 'htmleditor',
                         fieldLabel  : 'Content',
                         name        : 'content',
-                        bind        : '{record.content}'
+                        bind        : '{record.content}',
+                        enableFont  : false
                     },
                     {
                         xtype           : 'combobox',

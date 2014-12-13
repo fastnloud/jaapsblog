@@ -40,7 +40,8 @@ Ext.define('App.view.blog.BlogForm', {
                         xtype       : 'htmleditor',
                         fieldLabel  : 'Content',
                         name        : 'content',
-                        bind        : '{record.content}'
+                        bind        : '{record.content}',
+                        enableFont  : false
                     },
                     {
                         fieldLabel  : 'Author',
