@@ -4,10 +4,6 @@ Ext.define('App.grid.Main', {
     xtype       : 'mainGrid',
     border      : 0,
 
-    initComponent : function() {
-        this.callParent();
-    },
-
     listeners : {
         select       : 'onMainGridSelect',
         deselect     : 'onMainGridDeselect',
