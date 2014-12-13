@@ -1,9 +1,7 @@
-Ext.define('App.form.Form', {
+Ext.define('App.form.Window', {
     extend          : 'Ext.window.Window',
     modal           : true,
     width           : 500,
-    maxHeight       : 620,
-    autoScroll      : true,
     resizable       : false,
     createRecord    : true,
     border          : 0,

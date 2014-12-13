@@ -1,5 +1,5 @@
 Ext.define('App.view.page.PageForm', {
-    extend  : 'App.form.Form',
+    extend  : 'App.form.Window',
     xtype   : 'pageForm',
 
     items : {
@@ -9,14 +9,7 @@ Ext.define('App.view.page.PageForm', {
         items : [
             {
                 title       : 'Page',
-                xtype       : 'form',
-                defaultType : 'textfield',
-                padding     : '10 10 0 10',
-                background  : 'white',
-
-                fieldDefaults : {
-                    width : '100%'
-                },
+                xtype       : 'formtab',
 
                 items: [
                     {

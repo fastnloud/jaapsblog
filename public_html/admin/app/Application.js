@@ -5,7 +5,8 @@ Ext.define('App.Application', {
     requires : [
         'App.grid.Main',
         'App.grid.Child',
-        'App.form.Form',
+        'App.form.Window',
+        'App.form.Tab',
         'App.form.controller.Controller',
         'App.form.field.ComboBox',
         'App.form.field.Date'

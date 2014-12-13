@@ -1,5 +1,5 @@
 Ext.define('App.view.blog.BlogForm', {
-    extend  : 'App.form.Form',
+    extend  : 'App.form.Window',
     xtype   : 'blogForm',
 
     items : {
@@ -9,14 +9,7 @@ Ext.define('App.view.blog.BlogForm', {
         items : [
             {
                 title       : 'Blog Item',
-                xtype       : 'form',
-                defaultType : 'textfield',
-                padding     : '10 10 0 10',
-                background  : 'white',
-
-                fieldDefaults : {
-                    width : '100%'
-                },
+                xtype       : 'formtab',
 
                 items: [
                     {
@@ -44,7 +37,7 @@ Ext.define('App.view.blog.BlogForm', {
                         bind        : '{record.lead}'
                     },
                     {
-                        xtype       : 'textarea',
+                        xtype       : 'htmleditor',
                         fieldLabel  : 'Content',
                         name        : 'content',
                         bind        : '{record.content}'
