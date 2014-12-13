@@ -6,6 +6,13 @@ Ext.define('App.view.main.MainController', {
         'Ext.MessageBox'
     ],
 
+    init : function ()
+    {
+        Ext.data.StoreManager.lookup('Category').load();
+        Ext.data.StoreManager.lookup('Reply').load();
+        Ext.data.StoreManager.lookup('Status').load();
+    },
+
     onLogoutClick : function () {
         Ext.Msg.confirm('Logout', 'Are you sure?', 'onLogoutConfirm', this);
     },

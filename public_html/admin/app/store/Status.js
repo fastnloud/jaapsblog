@@ -1,6 +1,6 @@
 Ext.define('App.store.Status', {
     extend   : 'Ext.data.Store',
-    autoLoad : true,
+    autoLoad : false,
 
     fields : [
         'id',

@@ -1,6 +1,6 @@
 Ext.define('App.store.Reply', {
     extend   : 'Ext.data.Store',
-    autoLoad : true,
+    autoLoad : false,
     autoSync : true,
 
     constructor : function() {
