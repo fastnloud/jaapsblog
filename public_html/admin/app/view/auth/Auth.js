@@ -31,7 +31,7 @@ Ext.define('App.view.auth.Auth',{
                 enableKeyEvents : true,
 
                 listeners : {
-                    'keypress' : 'onKeypress'
+                    keypress : 'onKeypress'
                 }
             },
             {
@@ -43,7 +43,7 @@ Ext.define('App.view.auth.Auth',{
                 enableKeyEvents : true,
 
                 listeners : {
-                    'keypress' : 'onKeypress'
+                    keypress : 'onKeypress'
                 }
             }
         ],
@@ -57,6 +57,10 @@ Ext.define('App.view.auth.Auth',{
                     click : 'onLoginClick'
                 }
             }
-        ]
+        ],
+
+        listeners : {
+            afterrender : 'onAfterRender'
+        }
     }
 });

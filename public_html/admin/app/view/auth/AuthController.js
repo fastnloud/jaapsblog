@@ -2,6 +2,14 @@ Ext.define('App.view.auth.AuthController', {
     extend : 'Ext.app.ViewController',
     alias  : 'controller.auth',
 
+    onAfterRender : function(form)
+    {
+        setTimeout(function() {
+            form.items.first().setValue('');
+            form.items.first().focus(true);
+        }, 200);
+    },
+
     onKeypress : function(field, e) {
         if(e.getKey() == e.ENTER ){
             this.onLoginClick();
@@ -9,12 +17,13 @@ Ext.define('App.view.auth.AuthController', {
     },
 
     onLoginClick : function(){
-        var form = this.lookupReference('form'),
-            view = this.getView();
+        var me   = this,
+            form = me.lookupReference('form'),
+            view = me.getView();
 
         if (form.isValid()) {
             form.submit({
-                success : function(form, action) {
+                success : function(task, action) {
                     localStorage.setItem("isAuthenticated", true);
 
                     view.destroy();
@@ -22,10 +31,11 @@ Ext.define('App.view.auth.AuthController', {
                     Ext.widget('mainView');
                 },
 
-                failure : function(form, action) {
-                    form.reset();
-
-                    Ext.Msg.alert('Error', action.result.msg);
+                failure : function(task, action) {
+                    Ext.Msg.alert('Error', action.result.msg, function() {
+                        form.reset();
+                        form.items.first().focus(true);
+                    });
                 }
             });
         }
