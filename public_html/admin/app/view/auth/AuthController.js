@@ -2,6 +2,12 @@ Ext.define('App.view.auth.AuthController', {
     extend : 'Ext.app.ViewController',
     alias  : 'controller.auth',
 
+    onKeypress : function(field, e) {
+        if(e.getKey() == e.ENTER ){
+            this.onLoginClick();
+        }
+    },
+
     onLoginClick : function(){
         var form = this.lookupReference('form'),
             view = this.getView();

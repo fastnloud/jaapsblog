@@ -24,17 +24,27 @@ Ext.define('App.view.auth.Auth',{
 
         items : [
             {
-                xtype       : 'textfield',
-                name        : 'username',
-                fieldLabel  : 'Username',
-                allowBlank  : false
+                xtype           : 'textfield',
+                name            : 'username',
+                fieldLabel      : 'Username',
+                allowBlank      : false,
+                enableKeyEvents : true,
+
+                listeners : {
+                    'keypress' : 'onKeypress'
+                }
             },
             {
-                xtype       : 'textfield',
-                name        : 'password',
-                inputType   : 'password',
-                fieldLabel  : 'Password',
-                allowBlank  : false
+                xtype           : 'textfield',
+                name            : 'password',
+                inputType       : 'password',
+                fieldLabel      : 'Password',
+                allowBlank      : false,
+                enableKeyEvents : true,
+
+                listeners : {
+                    'keypress' : 'onKeypress'
+                }
             }
         ],
 
