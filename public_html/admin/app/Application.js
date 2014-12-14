@@ -3,6 +3,7 @@ Ext.define('App.Application', {
     name    : 'App',
 
     requires : [
+        'App.global.Function',
         'App.grid.Main',
         'App.grid.Child',
         'App.form.Window',

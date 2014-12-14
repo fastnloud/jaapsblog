@@ -170,7 +170,7 @@ Ext.define('App.form.controller.Controller', {
 
                 Ext.Object.each(data, function(index, value) {
                     if (value == 'now()') {
-                        data[index] = getDateTime();
+                        data[index] = App.global.Function.getDateTime();
                     }
                 });
             }

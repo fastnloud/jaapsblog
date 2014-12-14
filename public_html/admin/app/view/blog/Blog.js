@@ -31,6 +31,14 @@ Ext.define('App.view.blog.Blog',{
                     dataIndex   : 'title'
                 },
                 {
+                    text        : 'Status',
+                    flex        : 1,
+                    dataIndex   : 'status',
+                    renderer    : function(value) {
+                        return App.global.Function.storeRenderer(value, 'Status', 'label');
+                    }
+                },
+                {
                     text        : 'Date',
                     flex        : 1,
                     dataIndex   : 'date',

@@ -5,9 +5,8 @@ Ext.define('App.form.field.ComboBox', {
         change : function(combobox) {
             if (Ext.isObject(combobox.getValue())) {
                 combobox.setValue(combobox.getValue().id);
+                combobox.forceSelection = true;
             }
-
-            combobox.forceSelection = true;
-        },
+        }
     }
 });
