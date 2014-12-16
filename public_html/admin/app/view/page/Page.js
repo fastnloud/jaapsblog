@@ -2,6 +2,7 @@ Ext.define('App.view.page.Page',{
     extend      : 'Ext.panel.Panel',
     controller  : 'page',
     xtype       : 'pageView',
+    layout      : 'fit',
 
     requires : [
         'App.view.page.PageController',
