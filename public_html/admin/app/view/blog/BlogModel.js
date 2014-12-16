@@ -14,7 +14,12 @@ Ext.define('App.view.blog.BlogModel', {
             fields : [
                 'id',
                 'title',
-                'status',
+                {
+                    name     : 'status',
+                    sortType : function(value) {
+                        return value.label;
+                    }
+                },
                 {
                     name    : 'date',
                     mapping : 'date.date'

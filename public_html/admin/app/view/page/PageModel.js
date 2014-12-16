@@ -14,7 +14,12 @@ Ext.define('App.view.page.PageModel', {
             fields : [
                 'id',
                 'title',
-                'status'
+                {
+                    name     : 'status',
+                    sortType : function(value) {
+                        return value.label;
+                    }
+                }
             ],
 
             proxy : {
