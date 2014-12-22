@@ -12,8 +12,8 @@ class Module
     {
         if ($e->getRequest() instanceof Request) {
             $sessionManager = $e->getApplication()
-                ->getServiceManager()
-                ->get('SessionManager');
+                                ->getServiceManager()
+                                ->get('SessionManager');
 
             $sessionManager->graceful();
         }

@@ -5,6 +5,7 @@ namespace Auth\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\Authentication\AuthenticationService as AuthService;
+use Session\Service\SessionManager;
 use User\Service\User as UserService;
 
 class AuthController extends AbstractActionController
@@ -24,6 +25,11 @@ class AuthController extends AbstractActionController
      * @var UserService
      */
     protected $userService;
+
+    /**
+     * @var SessionManager
+     */
+    protected $sessionManager;
 
     /**
      * Authenticate User action.
@@ -50,7 +56,12 @@ class AuthController extends AbstractActionController
 
                 $result = $this->getAuthService()->authenticate();
                 if ($result->isValid()) {
-                    $this->getUserService()->setIsAuthenticated(true);
+                    $this->getUserService()
+                         ->setIsAuthenticated(true);
+
+                    // remember session + regenerate id
+                    $this->getSessionManager()
+                         ->rememberMe();
 
                     return new JsonModel(array(
                         'success' => true,
@@ -96,6 +107,22 @@ class AuthController extends AbstractActionController
     protected function getUserService()
     {
         return $this->userService;
+    }
+
+    /**
+     * @param \Session\Service\SessionManager $sessionManager
+     */
+    public function setSessionManager(SessionManager $sessionManager)
+    {
+        $this->sessionManager = $sessionManager;
+    }
+
+    /**
+     * @return \Session\Service\SessionManager
+     */
+    protected function getSessionManager()
+    {
+        return $this->sessionManager;
     }
 
 }

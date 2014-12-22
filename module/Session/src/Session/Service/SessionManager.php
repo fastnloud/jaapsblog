@@ -50,8 +50,6 @@ class SessionManager extends \Zend\Session\SessionManager
                 $this->attachValidators($container, $sessionConfig['validators']);
             }
         }
-
-        $this->rememberMe();
     }
 
     /**

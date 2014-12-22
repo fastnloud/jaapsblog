@@ -44,6 +44,7 @@ class Module
                     $controller = new AuthController();
                     $controller->setAuthService($cm->getServiceLocator()->get('AuthService'));
                     $controller->setUserService($cm->getServiceLocator()->get('UserService'));
+                    $controller->setSessionManager($cm->getServiceLocator()->get('SessionManager'));
 
                     return $controller;
                 }
