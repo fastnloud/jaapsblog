@@ -4,10 +4,9 @@ namespace Admin\Controller;
 
 use Doctrine\ORM\Query;
 use Reply\Service\Reply as ReplyService;
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 
-class ReplyController extends AbstractActionController
+class ReplyController extends AbstractAdminController
 {
 
     /**
@@ -22,6 +21,10 @@ class ReplyController extends AbstractActionController
      */
     public function readAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $data = $this->getReplyService()
                      ->setQueryHydrator(Query::HYDRATE_ARRAY)
                      ->getReplies();
@@ -38,6 +41,10 @@ class ReplyController extends AbstractActionController
      */
     public function createAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
@@ -63,6 +70,10 @@ class ReplyController extends AbstractActionController
      */
     public function updateAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
@@ -93,6 +104,10 @@ class ReplyController extends AbstractActionController
      */
     public function destroyAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success              = false;;
         $jsonObject           = json_decode($this->params()->fromPost('data'));
         $jsonObjectCollection = array();

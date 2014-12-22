@@ -4,10 +4,9 @@ namespace Admin\Controller;
 
 use Doctrine\ORM\Query;
 use Page\Service\Page as PageService;
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 
-class PageController extends AbstractActionController
+class PageController extends AbstractAdminController
 {
 
     /**
@@ -22,6 +21,10 @@ class PageController extends AbstractActionController
      */
     public function readAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $data = $this->getPageService()
                      ->setQueryHydrator(Query::HYDRATE_ARRAY)
                      ->getAllPages();
@@ -38,6 +41,10 @@ class PageController extends AbstractActionController
      */
     public function createAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
@@ -63,6 +70,10 @@ class PageController extends AbstractActionController
      */
     public function updateAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
@@ -93,6 +104,10 @@ class PageController extends AbstractActionController
      */
     public function destroyAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success              = false;;
         $jsonObject           = json_decode($this->params()->fromPost('data'));
         $jsonObjectCollection = array();

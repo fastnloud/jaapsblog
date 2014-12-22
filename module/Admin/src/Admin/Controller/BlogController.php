@@ -4,10 +4,9 @@ namespace Admin\Controller;
 
 use Doctrine\ORM\Query;
 use Blog\Service\Blog as BlogService;
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 
-class BlogController extends AbstractActionController
+class BlogController extends AbstractAdminController
 {
 
     /**
@@ -22,6 +21,10 @@ class BlogController extends AbstractActionController
      */
     public function readAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $data = $this->getBlogService()
                      ->setQueryHydrator(Query::HYDRATE_ARRAY)
                      ->getAllBlogItems();
@@ -38,6 +41,10 @@ class BlogController extends AbstractActionController
      */
     public function createAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
@@ -63,6 +70,10 @@ class BlogController extends AbstractActionController
      */
     public function updateAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success    = false;
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
@@ -93,6 +104,10 @@ class BlogController extends AbstractActionController
      */
     public function destroyAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $success              = false;;
         $jsonObject           = json_decode($this->params()->fromPost('data'));
         $jsonObjectCollection = array();

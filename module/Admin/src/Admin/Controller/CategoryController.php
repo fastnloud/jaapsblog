@@ -4,10 +4,9 @@ namespace Admin\Controller;
 
 use Doctrine\ORM\Query;
 use Category\Service\Category as CategoryService;
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 
-class CategoryController extends AbstractActionController
+class CategoryController extends AbstractAdminController
 {
 
     /**
@@ -22,6 +21,10 @@ class CategoryController extends AbstractActionController
      */
     public function readAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $data = $this->getCategoryService()
                      ->setQueryHydrator(Query::HYDRATE_ARRAY)
                      ->getCategory();

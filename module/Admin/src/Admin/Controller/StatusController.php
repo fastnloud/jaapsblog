@@ -4,10 +4,9 @@ namespace Admin\Controller;
 
 use Doctrine\ORM\Query;
 use Status\Service\Status as StatusService;
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 
-class StatusController extends AbstractActionController
+class StatusController extends AbstractAdminController
 {
 
     /**
@@ -22,6 +21,10 @@ class StatusController extends AbstractActionController
      */
     public function readAction()
     {
+        if (!$this->getAuthService()->hasIdentity()) {
+            return $this->authFailed();
+        }
+
         $data = $this->getStatusService()
                      ->setQueryHydrator(Query::HYDRATE_ARRAY)
                      ->getStatus();
