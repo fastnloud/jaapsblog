@@ -89,11 +89,6 @@ class Page extends AbstractEntity
             ));
 
             $inputFilter->add(array(
-                'name'     => 'content',
-                'required' => true
-            ));
-
-            $inputFilter->add(array(
                 'name'     => 'label',
                 'required' => true
             ));
