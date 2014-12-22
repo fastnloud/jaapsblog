@@ -14,7 +14,7 @@ Ext.define('App.view.blog.BlogModel', {
             fields : [
                 'id',
                 'title',
-                'url',
+                'slug',
                 {
                     name     : 'status',
                     sortType : function(value) {

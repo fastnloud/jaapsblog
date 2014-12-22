@@ -25,9 +25,9 @@ Ext.define('App.view.blog.BlogForm', {
                         allowBlank  : false
                     },
                     {
-                        fieldLabel  : 'URL',
-                        name        : 'url',
-                        bind        : '{record.url}',
+                        fieldLabel  : 'Slug',
+                        name        : 'slug',
+                        bind        : '{record.slug}',
                         allowBlank  : false
                     },
                     {

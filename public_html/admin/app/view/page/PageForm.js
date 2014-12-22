@@ -25,10 +25,9 @@ Ext.define('App.view.page.PageForm', {
                         allowBlank  : false
                     },
                     {
-                        fieldLabel  : 'URL',
-                        name        : 'url',
-                        bind        : '{record.url}',
-                        allowBlank  : false
+                        fieldLabel  : 'Slug',
+                        name        : 'slug',
+                        bind        : '{record.slug}'
                     },
                     {
                         xtype       : 'htmleditor',

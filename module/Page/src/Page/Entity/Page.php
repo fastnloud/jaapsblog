@@ -12,7 +12,7 @@ use Zend\InputFilter\InputFilterInterface;
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Page\Entity\PageRepository")
- * @ORM\Table(name="page")
+ * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="slug", columns={"slug"})})
  */
 class Page extends AbstractEntity
 {
@@ -40,9 +40,9 @@ class Page extends AbstractEntity
     protected $label;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $url;
+    protected $slug;
 
     /**
      * @ORM\Column(type="string", nullable=true, length=80)
@@ -90,11 +90,6 @@ class Page extends AbstractEntity
 
             $inputFilter->add(array(
                 'name'     => 'label',
-                'required' => true
-            ));
-
-            $inputFilter->add(array(
-                'name'     => 'url',
                 'required' => true
             ));
 

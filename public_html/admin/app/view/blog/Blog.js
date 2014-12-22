@@ -30,9 +30,9 @@ Ext.define('App.view.blog.Blog',{
                     dataIndex   : 'title'
                 },
                 {
-                    text        : 'URL',
+                    text        : 'Slug',
                     flex        : 1,
-                    dataIndex   : 'url'
+                    dataIndex   : 'slug'
                 },
                 {
                     text        : 'Status',
