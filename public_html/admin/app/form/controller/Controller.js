@@ -226,7 +226,9 @@ Ext.define('App.form.controller.Controller', {
 
             store.sync({
                 'failure' : function() {
-                    store.rejectChanges();
+                    Ext.Msg.alert('Error', 'Request could not be processed.', function() {
+                        store.rejectChanges();
+                    });
                 },
                 'success' : function(record) {
                     if (formContainer.createRecord) {
