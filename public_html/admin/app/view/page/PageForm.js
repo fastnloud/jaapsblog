@@ -34,8 +34,11 @@ Ext.define('App.view.page.PageForm', {
                         xtype       : 'htmleditor',
                         fieldLabel  : 'Content',
                         name        : 'content',
-                        bind        : '{record.content}',
-                        enableFont  : false
+                        enableFont  : false,
+
+                        bind : {
+                            value : '{record.content}'
+                        }
                     },
                     {
                         xtype           : 'combobox',
