@@ -15,15 +15,15 @@ return array(
     'router' => array(
         'routes' => array(
             'auth' => array(
-                'type' => 'literal',
+                'type' => 'segment',
                 'options' => array(
-                    'route'    => '/auth/user',
+                    'route'    => '/auth/user[/:action]',
                     'defaults' => array(
                         'controller' => 'Auth\Controller\Auth',
                         'action'     => 'authUser'
                     ),
                 ),
-            )
+            ),
         ),
     ),
 );

@@ -32,6 +32,22 @@ class AuthController extends AbstractActionController
     protected $sessionManager;
 
     /**
+     * @return JsonModel
+     */
+    public function logoutAction()
+    {
+        $this->getAuthService()
+             ->clearIdentity();
+
+        $this->getSessionManager()
+             ->regenerateId();
+
+        return new JsonModel(array(
+            'success' => true
+        ));
+    }
+
+    /**
      * Authenticate User action.
      *
      * @return JsonModel
@@ -56,9 +72,6 @@ class AuthController extends AbstractActionController
 
                 $result = $this->getAuthService()->authenticate();
                 if ($result->isValid()) {
-                    $this->getUserService()
-                         ->setIsAuthenticated(true);
-
                     // remember session + regenerate id
                     $this->getSessionManager()
                          ->rememberMe();

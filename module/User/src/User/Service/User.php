@@ -19,23 +19,17 @@ class User
     protected $entityManager;
 
     /**
-     * Initialize service. Prepare Auth session and pass the user config to the
-     * User Repository.
+     * Pass the user config to the User Repository.
      */
     public function init()
     {
-        $session = new Container('auth');
-        if (!$session->isAuthenticated) {
-            $session->isAuthenticated = false;
-        }
-
         $this->getEntityManager()
              ->getRepository('User\Entity\User')
              ->setConfig($this->getConfig());
     }
 
     /**
-     * Table has users?
+     * Check for existing users.
      *
      * @return bool
      */
@@ -56,27 +50,6 @@ class User
         return $this->getEntityManager()
                     ->getRepository('User\Entity\User')
                     ->addDefaultUser($this->getConfig()['user']['default_user']);
-    }
-
-    /**
-     * Fetch isAuthenticated from 'auth' session container.
-     *
-     * @return bool
-     */
-    public static function isAuthenticated()
-    {
-        $session = new Container('auth');
-
-        return (bool) $session->isAuthenticated;
-    }
-
-    /**
-     * @param boolean $isAuthenticated
-     */
-    public function setIsAuthenticated($isAuthenticated)
-    {
-        $session = new Container('auth');
-        $session->isAuthenticated = (bool) $isAuthenticated;
     }
 
     /**

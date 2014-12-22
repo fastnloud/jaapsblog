@@ -18,12 +18,20 @@ Ext.define('App.view.main.MainController', {
     },
 
     onLogoutConfirm : function (choice) {
+        var me = this;
+
         if (choice === 'yes') {
-            localStorage.removeItem('isAuthenticated');
+            Ext.Ajax.request({
+                url : '/auth/user/logout',
 
-            this.getView().destroy();
+                success : function() {
+                    localStorage.removeItem('isAuthenticated');
 
-            Ext.widget('authView');
+                    me.getView().destroy();
+
+                    Ext.widget('authView');
+                }
+            });
         }
     }
 });

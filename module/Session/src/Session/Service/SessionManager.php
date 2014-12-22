@@ -43,7 +43,7 @@ class SessionManager extends \Zend\Session\SessionManager
         $container     = new Container('init');
 
         if (!isset($container->init)) {
-            $this->regenerateId(true);
+            $this->regenerateId();
             $container->init = true;
 
             if (isset($sessionConfig['validators'])) {
