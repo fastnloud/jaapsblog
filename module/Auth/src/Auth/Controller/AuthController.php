@@ -34,13 +34,20 @@ class AuthController extends AbstractActionController
     /**
      * @return JsonModel
      */
+    public function pollAction()
+    {
+        return new JsonModel(array(
+            'success' => $this->getAuthService()->hasIdentity()
+        ));
+    }
+
+    /**
+     * @return JsonModel
+     */
     public function logoutAction()
     {
         $this->getAuthService()
              ->clearIdentity();
-
-        $this->getSessionManager()
-             ->regenerateId();
 
         return new JsonModel(array(
             'success' => true

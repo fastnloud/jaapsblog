@@ -27,15 +27,22 @@ Ext.define('App.Application', {
     ],
     
     launch : function () {
-        var supportsLocalStorage = Ext.supports.LocalStorage,
-            isAuthenticated      = false;
+        Ext.Ajax.request({
+            url : '/auth/user/poll',
 
-        if (!supportsLocalStorage) {
-            Ext.Msg.alert('Your browser does not support Local Storage!');
-            return;
-        }
+            success : function(response) {
+                var jsonObject = Ext.decode(response.responseText);
 
-        isAuthenticated = localStorage.getItem("isAuthenticated");
-        Ext.widget(isAuthenticated ? 'mainView' : 'authView');
+                if (jsonObject.success) {
+                    Ext.widget('mainView')
+                } else {
+                    Ext.widget('authView');
+                };
+            },
+
+            failure : function () {
+                Ext.widget('authView');
+            }
+        });
     }
 });

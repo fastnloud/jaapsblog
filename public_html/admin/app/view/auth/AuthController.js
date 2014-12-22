@@ -2,8 +2,7 @@ Ext.define('App.view.auth.AuthController', {
     extend : 'Ext.app.ViewController',
     alias  : 'controller.auth',
 
-    onAfterRender : function(form)
-    {
+    onAfterRender : function(form) {
         setTimeout(function() {
             form.items.first().setValue('');
             form.items.first().focus(true);
@@ -16,7 +15,7 @@ Ext.define('App.view.auth.AuthController', {
         }
     },
 
-    onLoginClick : function(){
+    onLoginClick : function() {
         var me   = this,
             form = me.lookupReference('form'),
             view = me.getView();
@@ -24,8 +23,6 @@ Ext.define('App.view.auth.AuthController', {
         if (form.isValid()) {
             form.submit({
                 success : function(task, action) {
-                    localStorage.setItem("isAuthenticated", true);
-
                     view.destroy();
 
                     Ext.widget('mainView');
