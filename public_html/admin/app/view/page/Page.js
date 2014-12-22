@@ -30,6 +30,11 @@ Ext.define('App.view.page.Page',{
                     dataIndex   : 'title'
                 },
                 {
+                    text        : 'URL',
+                    flex        : 1,
+                    dataIndex   : 'url'
+                },
+                {
                     text        : 'Status',
                     flex        : 1,
                     dataIndex   : 'status',

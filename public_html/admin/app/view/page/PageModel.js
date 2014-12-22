@@ -14,6 +14,7 @@ Ext.define('App.view.page.PageModel', {
             fields : [
                 'id',
                 'title',
+                'url',
                 {
                     name     : 'status',
                     sortType : function(value) {
