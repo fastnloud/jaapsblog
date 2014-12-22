@@ -24,7 +24,8 @@ abstract class AbstractAdminController extends AbstractActionController
              ->setStatusCode(Response::STATUS_CODE_403);
 
         return new JsonModel(array(
-            'success' => false
+            'success' => false,
+            'msg'     => 'Authentication failed.'
         ));
     }
 
