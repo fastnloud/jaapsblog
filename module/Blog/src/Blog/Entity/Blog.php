@@ -13,7 +13,7 @@ use Status\Entity\Status;
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Blog\Entity\BlogRepository")
- * @ORM\Table(name="blog", uniqueConstraints={@ORM\UniqueConstraint(name="slug", columns={"slug"})})
+ * @ORM\Table(name="blog")
  */
 class Blog extends AbstractEntity
 {
@@ -56,7 +56,7 @@ class Blog extends AbstractEntity
     protected $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     protected $slug;
 
@@ -297,19 +297,19 @@ class Blog extends AbstractEntity
     }
 
     /**
-     * @param string $url
+     * @param string $slug
      */
-    public function setUrl($url)
+    public function setSlug($slug)
     {
-        $this->url = $url;
+        $this->slug = $slug;
     }
 
     /**
      * @return string
      */
-    public function getUrl()
+    public function getSlug()
     {
-        return $this->url;
+        return $this->slug;
     }
 
     /**

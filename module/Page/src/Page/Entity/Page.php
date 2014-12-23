@@ -12,7 +12,7 @@ use Zend\InputFilter\InputFilterInterface;
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Page\Entity\PageRepository")
- * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="slug", columns={"slug"})})
+ * @ORM\Table(name="page")
  */
 class Page extends AbstractEntity
 {
@@ -40,7 +40,7 @@ class Page extends AbstractEntity
     protected $label;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     protected $slug;
 
@@ -209,19 +209,19 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param string $url
+     * @param string $slug
      */
-    public function setUrl($url)
+    public function setSlug($slug)
     {
-        $this->url = $url;
+        $this->slug = $slug;
     }
 
     /**
      * @return string
      */
-    public function getUrl()
+    public function getSlug()
     {
-        return $this->url;
+        return $this->slug;
     }
 
     /**
