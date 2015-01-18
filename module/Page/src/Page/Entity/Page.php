@@ -6,8 +6,6 @@ use Application\Entity\AbstractEntity;
 use Application\Entity\Exception\EntityException;
 use Doctrine\ORM\Mapping as ORM;
 use Status\Entity\Status;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterInterface;
 
 /**
  * @ORM\Entity
@@ -71,37 +69,6 @@ class Page extends AbstractEntity
     public function __construct()
     {
         $this->status = new Status();
-    }
-
-    /**
-     * Retrieve input filter
-     *
-     * @return InputFilterInterface
-     */
-    public function getInputFilter()
-    {
-        if (!$this->inputFilter) {
-            $inputFilter = new InputFilter();
-
-            $inputFilter->add(array(
-                'name'     => 'title',
-                'required' => true
-            ));
-
-            $inputFilter->add(array(
-                'name'     => 'label',
-                'required' => true
-            ));
-
-            $inputFilter->add(array(
-                'name'     => 'status',
-                'required' => true
-            ));
-
-            $this->inputFilter = $inputFilter;
-        }
-
-        return $this->inputFilter;
     }
 
     /**

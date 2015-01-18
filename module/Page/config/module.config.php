@@ -19,6 +19,33 @@ return array(
             )
         )
     ),
+    'forms' => array(
+        __NAMESPACE__ . '\Entity\\' . __NAMESPACE__ => array(
+            'input_filter' => array(
+                'title' => array(
+                    'required' => true
+                ),
+                'label' => array(
+                    'required' => true
+                ),
+                'status' => array(
+                    'required' => true
+                ),
+                'slug' => array(
+                    'required'   => true,
+                    'validators' => array(
+                        array(
+                            'name' => 'EntityValidatorNoRecordExists',
+                            'options' => array(
+                                'repository' => __NAMESPACE__ . '\Entity\\' . __NAMESPACE__,
+                                'field'      => 'slug'
+                            )
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(

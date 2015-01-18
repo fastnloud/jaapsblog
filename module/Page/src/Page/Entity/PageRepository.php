@@ -49,4 +49,22 @@ class PageRepository extends AbstractEntityRepository
                   ->getSingleResult($this->getQueryHydrator());
     }
 
+    /**
+     * @param $slug
+     * @return mixed
+     */
+    public function getPageBySlug($slug)
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('p')
+           ->from('Page\Entity\Page', 'p')
+           ->where('p.slug = :slug')
+           ->setParameter(':slug', $slug);
+
+        return $qb->getQuery()
+                  ->getSingleResult($this->getQueryHydrator());
+    }
+
 }

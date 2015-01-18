@@ -6,11 +6,16 @@ use Application\Entity\Exception\EntityException;
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 abstract class AbstractEntityService
 {
+
+    /**
+     * @var ServiceLocatorInterface
+     */
+    protected $serviceLocator;
 
     /**
      * @var EntityManager
@@ -21,6 +26,17 @@ abstract class AbstractEntityService
      * @var int
      */
     protected $queryHydrator = Query::HYDRATE_OBJECT;
+
+    /**
+     * Init.
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     */
+    public function __construct(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->setServiceLocator($serviceLocator);
+        $this->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
+    }
 
     /**
      * Merge Entity with given JSON object. Note; the Entity will be detached
@@ -100,15 +116,40 @@ abstract class AbstractEntityService
     /**
      * Validate given Entity object.
      *
-     * @param InputFilterAwareInterface $entity
+     * @param AbstractEntity $entity
      * @return bool
      */
-    public function validateEntity(InputFilterAwareInterface $entity)
+    public function validateEntity(AbstractEntity $entity)
     {
-        $form = new Form();
-        $form->bind($entity);
+        $entityClassName = get_class($entity);
+
+        try {
+            $form = $this->getServiceLocator()
+                         ->get('FormElementManager')
+                         ->get($entityClassName);
+        } catch (ServiceNotFoundException $e) {
+            return false;
+        }
+
+        $form->setData($entity->getArrayCopy());
 
         return $form->isValid();
+    }
+
+    /**
+     * @param \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator
+     */
+    protected function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+    }
+
+    /**
+     * @return \Zend\ServiceManager\ServiceLocatorInterface
+     */
+    protected function getServiceLocator()
+    {
+        return $this->serviceLocator;
     }
 
     /**
