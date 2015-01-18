@@ -2,10 +2,9 @@
 
 namespace User\Service;
 
-use Doctrine\ORM\EntityManager;
-use Zend\Session\Container;
+use Application\Entity\AbstractEntityService;
 
-class User
+class User extends AbstractEntityService
 {
 
     /**
@@ -14,12 +13,9 @@ class User
     protected $config;
 
     /**
-     * @var EntityManager
-     */
-    protected $entityManager;
-
-    /**
      * Pass the user config to the User Repository.
+     *
+     * @return void
      */
     public function init()
     {
@@ -50,22 +46,6 @@ class User
         return $this->getEntityManager()
                     ->getRepository('User\Entity\User')
                     ->addDefaultUser($this->getConfig()['user']['default_user']);
-    }
-
-    /**
-     * @param \Doctrine\ORM\EntityManager $entityManager
-     */
-    public function setEntityManager(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getEntityManager()
-    {
-        return $this->entityManager;
     }
 
     /**

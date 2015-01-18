@@ -10,9 +10,8 @@ class UserFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $user = new User();
+        $user = new User($serviceLocator);
         $user->setConfig($serviceLocator->get('Config'));
-        $user->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
         $user->init();
 
         return $user;
