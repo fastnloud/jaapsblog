@@ -10,8 +10,7 @@ class PageFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $page = new Page();
-        $page->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
+        $page = new Page($serviceLocator);
 
         return $page;
     }

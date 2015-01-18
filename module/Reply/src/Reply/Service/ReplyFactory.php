@@ -10,8 +10,7 @@ class ReplyFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $category = new Reply();
-        $category->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
+        $category = new Reply($serviceLocator);
 
         return $category;
     }

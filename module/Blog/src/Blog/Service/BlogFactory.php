@@ -10,8 +10,7 @@ class BlogFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $blog = new Blog();
-        $blog->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
+        $blog = new Blog($serviceLocator);
 
         return $blog;
     }

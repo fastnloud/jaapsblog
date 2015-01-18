@@ -10,8 +10,7 @@ class StatusFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $status = new Status();
-        $status->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
+        $status = new Status($serviceLocator);
 
         return $status;
     }
