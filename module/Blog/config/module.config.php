@@ -19,6 +19,60 @@ return array(
             )
         )
     ),
+    'forms' => array(
+        __NAMESPACE__ . '\Entity\\' . __NAMESPACE__ => array(
+            'input_filter' => array(
+                'title' => array(
+                    'required' => true
+                ),
+                'subtitle' => array(
+                    'required' => true
+                ),
+                'author' => array(
+                    'required' => true
+                ),
+                'date' => array(
+                    'required' => true
+                ),
+                'status' => array(
+                    'required' => true,
+                    'validators' => array(
+                        array(
+                            'name' => 'EntityValidatorRecordExists',
+                            'options' => array(
+                                'repository' => 'Status\Entity\Status',
+                                'field'      => 'id'
+                            )
+                        ),
+                    ),
+                ),
+                'category' => array(
+                    'required' => true,
+                    'validators' => array(
+                        array(
+                            'name' => 'EntityValidatorRecordExists',
+                            'options' => array(
+                                'repository' => 'Category\Entity\Category',
+                                'field'      => 'id'
+                            )
+                        ),
+                    ),
+                ),
+                'slug' => array(
+                    'required'   => true,
+                    'validators' => array(
+                        array(
+                            'name' => 'EntityValidatorNoRecordExists',
+                            'options' => array(
+                                'repository' => __NAMESPACE__ . '\Entity\\' . __NAMESPACE__,
+                                'field'      => 'slug'
+                            )
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'blog' => array(
