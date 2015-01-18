@@ -5,10 +5,16 @@ return array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
+            'Zend\Form\FormAbstractServiceFactory'
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator',
-        ),
+        )
+    ),
+    'validators' => array(
+        'abstract_factories' => array(
+            'Application\Validator\Entity\EntityValidatorFactory'
+        )
     ),
     'translator' => array(
         'locale' => 'en_US',
