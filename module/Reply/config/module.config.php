@@ -33,9 +33,6 @@ return array(
                 'timestamp' => array(
                     'required' => true
                 ),
-                'is_admin' => array(
-                    'required' => true
-                ),
                 'blog' => array(
                     'required' => true,
                     'validators' => array(
