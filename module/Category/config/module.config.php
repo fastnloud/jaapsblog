@@ -3,6 +3,11 @@
 namespace Category;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'CategoryService' => 'Category\Service\CategoryFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(

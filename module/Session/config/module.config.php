@@ -3,6 +3,12 @@
 namespace Session;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'SessionManager'     => 'Session\Service\SessionManagerFactory',
+            'SessionSaveHandler' => 'Session\Service\SessionSaveHandlerFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(

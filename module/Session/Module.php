@@ -38,14 +38,4 @@ class Module
         );
     }
 
-    public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'SessionManager'     => 'Session\Service\SessionManagerFactory',
-                'SessionSaveHandler' => 'Session\Service\SessionSaveHandlerFactory'
-            )
-        );
-    }
-
 }

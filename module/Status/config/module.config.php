@@ -3,6 +3,11 @@
 namespace Status;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'StatusService' => 'Status\Service\StatusFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(

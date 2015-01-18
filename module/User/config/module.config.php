@@ -3,6 +3,11 @@
 namespace User;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'UserService' => 'User\Service\UserFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(

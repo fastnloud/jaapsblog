@@ -27,15 +27,6 @@ class Module
         );
     }
 
-    public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'PageService' => 'Page\Service\PageFactory'
-            )
-        );
-    }
-
     public function getControllerConfig()
     {
         return array(

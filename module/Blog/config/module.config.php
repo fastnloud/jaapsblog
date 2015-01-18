@@ -3,6 +3,11 @@
 namespace Blog;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'BlogService' => 'Blog\Service\BlogFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(

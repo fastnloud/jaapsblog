@@ -27,15 +27,6 @@ class Module
         );
     }
 
-    public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'BlogService' => 'Blog\Service\BlogFactory'
-            )
-        );
-    }
-
     public function getControllerConfig()
     {
         return array(

@@ -3,6 +3,11 @@
 namespace Page;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'PageService' => 'Page\Service\PageFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(

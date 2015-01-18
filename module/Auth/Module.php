@@ -27,15 +27,6 @@ class Module
         );
     }
 
-    public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'AuthService' => 'Auth\Service\AuthFactory'
-            )
-        );
-    }
-
     public function getControllerConfig()
     {
         return array(

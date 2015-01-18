@@ -1,6 +1,11 @@
 <?php
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'AuthService' => 'Auth\Service\AuthFactory'
+        )
+    ),
     'doctrine' => array(
         'authentication' => array(
             'orm_default' => array(

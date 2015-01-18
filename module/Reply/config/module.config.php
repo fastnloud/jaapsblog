@@ -3,6 +3,11 @@
 namespace Reply;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'ReplyService' => 'Reply\Service\ReplyFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(
