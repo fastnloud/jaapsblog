@@ -29,7 +29,16 @@ return array(
                     'required' => true
                 ),
                 'status' => array(
-                    'required' => true
+                    'required' => true,
+                    'validators' => array(
+                        array(
+                            'name' => 'EntityValidatorRecordExists',
+                            'options' => array(
+                                'repository' => 'Status\Entity\Status',
+                                'field'      => 'id'
+                            )
+                        ),
+                    ),
                 ),
                 'slug' => array(
                     'required'   => true,
