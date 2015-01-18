@@ -18,5 +18,37 @@ return array(
                 )
             )
         )
-    )
+    ),
+    'forms' => array(
+        __NAMESPACE__ . '\Entity\\' . __NAMESPACE__ => array(
+            'input_filter' => array(
+                'name' => array(
+                    'required' => true,
+                    'allow_empty' => true
+                ),
+                'comment' => array(
+                    'required' => true,
+                    'allow_empty' => true
+                ),
+                'timestamp' => array(
+                    'required' => true
+                ),
+                'is_admin' => array(
+                    'required' => true
+                ),
+                'blog' => array(
+                    'required' => true,
+                    'validators' => array(
+                        array(
+                            'name' => 'EntityValidatorRecordExists',
+                            'options' => array(
+                                'repository' => 'Blog\Entity\Blog',
+                                'field'      => 'id'
+                            )
+                        ),
+                    ),
+                )
+            ),
+        ),
+    ),
 );
