@@ -23,7 +23,8 @@ Ext.define('App.Application', {
         'App.view.auth.Auth',
         'App.view.main.Main',
         'App.view.page.Page',
-        'App.view.blog.Blog'
+        'App.view.blog.Blog',
+        'App.view.site.Site'
     ],
     
     launch : function () {

@@ -29,6 +29,19 @@ return array(
                     ),
                 ),
             ),
+            'admin_site' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin/site[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Site',
+                        'action'     => 'read'
+                    ),
+                ),
+            ),
             'admin_reply' => array(
                 'type'    => 'segment',
                 'options' => array(

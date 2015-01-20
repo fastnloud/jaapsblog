@@ -6,6 +6,7 @@ use Admin\Controller\BlogController;
 use Admin\Controller\CategoryController;
 use Admin\Controller\PageController;
 use Admin\Controller\ReplyController;
+use Admin\Controller\SiteController;
 use Admin\Controller\StatusController;
 use Zend\Mvc\Controller\ControllerManager;
 
@@ -44,6 +45,12 @@ class Module
                 'Admin\Controller\Blog' => function(ControllerManager $cm) {
                     $controller = new BlogController();
                     $controller->setBlogService($cm->getServiceLocator()->get('BlogService'));
+
+                    return $controller;
+                },
+                'Admin\Controller\Site' => function(ControllerManager $cm) {
+                    $controller = new SiteController();
+                    $controller->setSiteService($cm->getServiceLocator()->get('SiteService'));
 
                     return $controller;
                 },

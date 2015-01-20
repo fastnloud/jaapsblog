@@ -50,6 +50,10 @@ Ext.define('App.view.main.Main', {
                 {
                     title : 'Blog Items',
                     xtype : 'blogView'
+                },
+                {
+                    title : 'Sites',
+                    xtype : 'siteView'
                 }
             ]
         }
