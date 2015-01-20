@@ -8,7 +8,7 @@ Ext.define('App.view.site.SiteForm', {
 
         items : [
             {
-                title       : 'Site Item',
+                title       : 'Site',
                 xtype       : 'formtab',
 
                 items: [
