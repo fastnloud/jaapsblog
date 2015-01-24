@@ -139,7 +139,7 @@ class Site extends AbstractEntity
 
     /**
      * @param Status $status
-     * @throws EntityException
+     * @throws \Application\Entity\Exception\EntityException
      */
     public function setStatus($status)
     {

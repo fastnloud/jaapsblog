@@ -122,6 +122,7 @@ class Blog extends AbstractEntity
 
     /**
      * @param Category $category
+     * @throws \Application\Entity\Exception\EntityException
      */
     public function setCategory($category)
     {
@@ -165,7 +166,7 @@ class Blog extends AbstractEntity
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -246,6 +247,7 @@ class Blog extends AbstractEntity
 
     /**
      * @param Status $status
+     * @throws \Application\Entity\Exception\EntityException
      */
     public function setStatus($status)
     {
@@ -314,6 +316,7 @@ class Blog extends AbstractEntity
 
     /**
      * @param Reply $reply
+     * @throws \Application\Entity\Exception\EntityException
      */
     public function setReply($reply)
     {

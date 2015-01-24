@@ -64,6 +64,7 @@ class Reply extends AbstractEntity
 
     /**
      * @param Blog $blog
+     * @throws \Application\Entity\Exception\EntityException
      */
     public function setBlog($blog)
     {
@@ -131,7 +132,7 @@ class Reply extends AbstractEntity
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getTimestamp()
     {
