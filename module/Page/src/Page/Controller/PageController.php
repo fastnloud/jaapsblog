@@ -6,6 +6,10 @@ use Page\Service\Page as PageService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class PageController
+ * @package Page\Controller
+ */
 class PageController extends AbstractActionController
 {
 

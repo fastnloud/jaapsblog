@@ -2,6 +2,10 @@
 
 namespace Application\Entity;
 
+/**
+ * Class AbstractEntity
+ * @package Application\Entity
+ */
 abstract class AbstractEntity
 {
 

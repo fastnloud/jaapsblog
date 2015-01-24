@@ -4,23 +4,34 @@ namespace Reply\Service;
 
 use Application\Entity\AbstractEntityService;
 
+/**
+ * Class Reply
+ * @package Reply\Service
+ */
 class Reply extends AbstractEntityService
 {
 
-    public function getReplies()
+    /**
+     * @return mixed
+     */
+    public function fetchEntities()
     {
         return $this->getEntityManager()
                     ->getRepository('Reply\Entity\Reply')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->getReplies();
+                    ->fetchEntities();
     }
 
-    public function getReply($id)
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function fetchEntity($id)
     {
         return $this->getEntityManager()
                     ->getRepository('Reply\Entity\Reply')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->getReply($id);
+                    ->fetchEntity($id);
     }
 
 }

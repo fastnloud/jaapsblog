@@ -5,13 +5,17 @@ namespace Site\Entity;
 use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
 
+/**
+ * Class SiteRepository
+ * @package Site\Entity
+ */
 class SiteRepository extends AbstractEntityRepository
 {
 
     /**
      * @return array
      */
-    public function getSites()
+    public function fetchEntities()
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
@@ -28,7 +32,7 @@ class SiteRepository extends AbstractEntityRepository
      * @param $id
      * @return mixed
      */
-    public function getSite($id)
+    public function fetchEntity($id)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();

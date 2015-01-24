@@ -4,31 +4,34 @@ namespace Blog\Service;
 
 use Application\Entity\AbstractEntityService;
 
+/**
+ * Class Blog
+ * @package Blog\Service
+ */
 class Blog extends AbstractEntityService
 {
 
-    public function getBlogItems()
+    /**
+     * @return mixed
+     */
+    public function fetchEntities()
     {
         return $this->getEntityManager()
                     ->getRepository('Blog\Entity\Blog')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->getBlogItems();
+                    ->fetchEntities();
     }
 
-    public function getAllBlogItems()
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function fetchEntity($id)
     {
         return $this->getEntityManager()
                     ->getRepository('Blog\Entity\Blog')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->getBlogItems(true);
-    }
-
-    public function getBlogItem($id)
-    {
-        return $this->getEntityManager()
-                    ->getRepository('Blog\Entity\Blog')
-                    ->setQueryHydrator($this->getQueryHydrator())
-                    ->getBlogItem($id);
+                    ->fetchEntity($id);
     }
 
 }

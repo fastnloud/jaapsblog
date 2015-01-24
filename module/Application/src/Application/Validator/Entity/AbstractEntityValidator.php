@@ -5,6 +5,10 @@ namespace Application\Validator\Entity;
 use Doctrine\ORM\EntityManager;
 use Zend\Validator\AbstractValidator;
 
+/**
+ * Class AbstractEntityValidator
+ * @package Application\Validator\Entity
+ */
 abstract class AbstractEntityValidator extends AbstractValidator
 {
 

@@ -5,6 +5,10 @@ namespace Application\Entity;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
+/**
+ * Class AbstractEntityRepository
+ * @package Application\Entity
+ */
 abstract class AbstractEntityRepository extends EntityRepository
 {
 

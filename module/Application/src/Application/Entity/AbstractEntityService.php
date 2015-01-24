@@ -9,7 +9,11 @@ use Doctrine\ORM\Query;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-abstract class AbstractEntityService
+/**
+ * Class AbstractEntityService
+ * @package Application\Entity
+ */
+abstract class AbstractEntityService implements EntityServiceInterface
 {
 
     /**
@@ -100,12 +104,12 @@ abstract class AbstractEntityService
     }
 
     /**
-     * Delete given entity.
+     * Destroy given entity.
      *
      * @param $entity
      * @return mixed
      */
-    public function deleteEntity($entity)
+    public function destroyEntity(AbstractEntity $entity)
     {
         $this->getEntityManager()
              ->remove($entity);

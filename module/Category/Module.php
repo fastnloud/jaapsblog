@@ -2,14 +2,24 @@
 
 namespace Category;
 
+/**
+ * Class Module
+ * @package Category
+ */
 class Module
 {
 
+    /**
+     * @return mixed
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(

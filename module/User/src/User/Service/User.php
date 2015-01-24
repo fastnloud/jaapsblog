@@ -3,14 +3,19 @@
 namespace User\Service;
 
 use Application\Entity\AbstractEntityService;
+use Doctrine\ORM\NoResultException;
 
+/**
+ * Class User
+ * @package User\Service
+ */
 class User extends AbstractEntityService
 {
 
     /**
      * @var array
      */
-    protected $config;
+    protected $config = array();
 
     /**
      * Pass the user config to the User Repository.
@@ -22,6 +27,29 @@ class User extends AbstractEntityService
         $this->getEntityManager()
              ->getRepository('User\Entity\User')
              ->setConfig($this->getConfig());
+    }
+
+    /**
+     * Fetch entity.
+     *
+     * @param int $id
+     * @return mixed|void
+     * @throws \Doctrine\ORM\NoResultException
+     */
+    public function fetchEntity($id)
+    {
+        throw new NoResultException;
+    }
+
+    /**
+     * Fetch Entities.
+     *
+     * @return mixed|void
+     * @throws \Doctrine\ORM\NoResultException
+     */
+    public function fetchEntities()
+    {
+        throw new NoResultException;
     }
 
     /**

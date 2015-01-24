@@ -1,80 +1,75 @@
 <?php
 
 return array(
+    'admin' => array(
+        'tables' => array(
+            'site' => array(
+                'service' => 'SiteService',
+                'entity'  => 'Site\Entity\Site',
+                'actions' => array(
+                    'read', 'create', 'update', 'destroy'
+                )
+            ),
+            'page' => array(
+                'service' => 'PageService',
+                'entity'  => 'Page\Entity\Page',
+                'actions' => array(
+                    'read', 'create', 'update', 'destroy'
+                )
+            ),
+            'blog' => array(
+                'service' => 'BlogService',
+                'entity'  => 'Blog\Entity\Blog',
+                'actions' => array(
+                    'read', 'create', 'update', 'destroy'
+                )
+            ),
+            'reply' => array(
+                'service' => 'ReplyService',
+                'entity'  => 'Reply\Entity\Reply',
+                'actions' => array(
+                    'read', 'create', 'update', 'destroy'
+                )
+            ),
+
+            // root tables
+            'status' => array(
+                'service' => 'StatusService',
+                'entity'  => 'Status\Entity\Status',
+                'actions' => array(
+                    'read'
+                )
+            ),
+            'category' => array(
+                'service' => 'CategoryService',
+                'entity'  => 'Category\Entity\Category',
+                'actions' => array(
+                    'read'
+                )
+            )
+        )
+    ),
+    'controllers' => array(
+        'factories' => array(
+            'Admin\Controller\Admin' => 'Admin\Controller\AdminControllerFactory'
+        )
+    ),
     'router' => array(
         'routes' => array(
-            'admin_page' => array(
+            'admin' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/page[/:action]',
+                    'route'    => '/admin/:table[/:action]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                        'table'  => '[a-z][a-z_]+',
+                        'action' => '(read|create|update|destroy)'
                     ),
                     'defaults' => array(
-                        'controller' => 'Admin\Controller\Page',
+                        'controller' => 'Admin\Controller\Admin',
                         'action'     => 'read'
                     ),
                 ),
             ),
-            'admin_blog' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    => '/admin/blog[/:action]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Blog',
-                        'action'     => 'read'
-                    ),
-                ),
-            ),
-            'admin_site' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    => '/admin/site[/:action]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Site',
-                        'action'     => 'read'
-                    ),
-                ),
-            ),
-            'admin_reply' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    => '/admin/reply[/:action]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Reply',
-                        'action'     => 'read'
-                    ),
-                ),
-            ),
-            'admin_status' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route'    => '/admin/status',
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Status',
-                        'action'     => 'read'
-                    ),
-                ),
-            ),
-            'admin_category' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route'    => '/admin/category',
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Category',
-                        'action'     => 'read'
-                    ),
-                ),
-            )
         ),
     ),
 );

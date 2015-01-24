@@ -5,9 +5,16 @@ namespace Session;
 use Zend\Mvc\MvcEvent;
 use Zend\Http\Request;
 
+/**
+ * Class Module
+ * @package Session
+ */
 class Module
 {
 
+    /**
+     * @param MvcEvent $e
+     */
     public function onBootstrap(MvcEvent $e)
     {
         if ($e->getRequest() instanceof Request) {
@@ -19,11 +26,17 @@ class Module
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(

@@ -8,6 +8,10 @@ use Zend\Authentication\AuthenticationService as AuthService;
 use Session\Service\SessionManager;
 use User\Service\User as UserService;
 
+/**
+ * Class AuthController
+ * @package Auth\Controller
+ */
 class AuthController extends AbstractActionController
 {
 

@@ -5,14 +5,24 @@ namespace Blog;
 use Blog\Controller\BlogController;
 use Zend\Mvc\Controller\ControllerManager;
 
+/**
+ * Class Module
+ * @package Blog
+ */
 class Module
 {
 
+    /**
+     * @return mixed
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(
@@ -27,6 +37,9 @@ class Module
         );
     }
 
+    /**
+     * @return array
+     */
     public function getControllerConfig()
     {
         return array(

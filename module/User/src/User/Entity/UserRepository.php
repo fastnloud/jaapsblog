@@ -5,13 +5,17 @@ namespace User\Entity;
 use Doctrine\ORM\EntityRepository;
 use Zend\Crypt\Password\Bcrypt;
 
+/**
+ * Class UserRepository
+ * @package User\Entity
+ */
 class UserRepository extends EntityRepository
 {
 
     /**
      * @var array
      */
-    protected $config;
+    protected $config = array();
 
     /**
      * @return bool

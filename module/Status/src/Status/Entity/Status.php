@@ -2,6 +2,7 @@
 
 namespace Status\Entity;
 
+use Application\Entity\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Status\Entity\StatusRepository")
  * @ORM\Table(name="status")
  */
-class Status
+class Status extends AbstractEntity
 {
 
     /**

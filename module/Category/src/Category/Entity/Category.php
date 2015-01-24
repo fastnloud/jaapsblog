@@ -2,6 +2,7 @@
 
 namespace Category\Entity;
 
+use Application\Entity\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Category\Entity\CategoryRepository")
  * @ORM\Table(name="category")
  */
-class Category
+class Category extends AbstractEntity
 {
 
     /**

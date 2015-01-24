@@ -5,26 +5,24 @@ namespace Page\Entity;
 use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
 
+/**
+ * Class PageRepository
+ * @package Page\Entity
+ */
 class PageRepository extends AbstractEntityRepository
 {
 
     /**
-     * @param bool $fetchAll
      * @return array
      */
-    public function getPages($fetchAll = false)
+    public function fetchEntities()
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('p', 's')
-           ->from('Page\Entity\Page', 'p')
-           ->join('p.status', 's');
-
-        if (true !== $fetchAll) {
-            $qb->where('p.status_id = :statusId')
-               ->setParameter(':statusId', 1);
-        }
+        $qb->select('page', 'status')
+           ->from('Page\Entity\Page', 'page')
+           ->join('page.status', 'status');
 
         return $qb->getQuery()
                   ->getResult($this->getQueryHydrator());
@@ -34,15 +32,15 @@ class PageRepository extends AbstractEntityRepository
      * @param $id
      * @return mixed
      */
-    public function getPage($id)
+    public function fetchEntity($id)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('p', 's')
-           ->from('Page\Entity\Page', 'p')
-           ->join('p.status', 's')
-           ->where('p.id = :id')
+        $qb->select('page', 'status')
+           ->from('Page\Entity\Page', 'page')
+           ->join('page.status', 'status')
+           ->where('page.id = :id')
            ->setParameter(':id', $id);
 
         return $qb->getQuery()
@@ -53,14 +51,14 @@ class PageRepository extends AbstractEntityRepository
      * @param $slug
      * @return mixed
      */
-    public function getPageBySlug($slug)
+    public function fetchPageBySlug($slug)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('p')
-           ->from('Page\Entity\Page', 'p')
-           ->where('p.slug = :slug')
+        $qb->select('page')
+           ->from('Page\Entity\Page', 'page')
+           ->where('page.slug = :slug')
            ->setParameter(':slug', $slug);
 
         return $qb->getQuery()

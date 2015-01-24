@@ -6,9 +6,17 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Session\Config\SessionConfig;
 
+/**
+ * Class SessionManagerFactory
+ * @package Session\Service
+ */
 class SessionManagerFactory implements FactoryInterface
 {
 
+    /**
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return SessionManager
+     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('Config');

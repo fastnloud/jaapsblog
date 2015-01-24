@@ -6,6 +6,10 @@ use Blog\Service\Blog as BlogService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class BlogController
+ * @package Blog\Controller
+ */
 class BlogController extends AbstractActionController
 {
 

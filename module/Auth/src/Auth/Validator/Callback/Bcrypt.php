@@ -4,6 +4,10 @@ namespace Auth\Validator\Callback;
 
 use User\Entity\User;
 
+/**
+ * Class Bcrypt
+ * @package Auth\Validator\Callback
+ */
 class Bcrypt
 {
 

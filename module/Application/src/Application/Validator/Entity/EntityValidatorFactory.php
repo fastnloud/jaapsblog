@@ -7,6 +7,10 @@ use Zend\ServiceManager\MutableCreationOptionsInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Validator\Exception;
 
+/**
+ * Class EntityValidatorFactory
+ * @package Application\Validator\Entity
+ */
 class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreationOptionsInterface
 {
 
@@ -16,7 +20,7 @@ class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreatio
     protected $options;
 
     /**
-     * Determine if we can create a service with name
+     * Determine if we can create a service with name.
      *
      * @param ServiceLocatorInterface $serviceLocator
      * @param $name
@@ -37,7 +41,7 @@ class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreatio
     }
 
     /**
-     * Create service with name
+     * Create service with name.
      *
      * @param ServiceLocatorInterface $serviceLocator
      * @param $name

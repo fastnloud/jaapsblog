@@ -4,31 +4,34 @@ namespace Page\Service;
 
 use Application\Entity\AbstractEntityService;
 
+/**
+ * Class Page
+ * @package Page\Service
+ */
 class Page extends AbstractEntityService
 {
 
-    public function getPages()
+    /**
+     * @return mixed
+     */
+    public function fetchEntities()
     {
         return $this->getEntityManager()
                     ->getRepository('Page\Entity\Page')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->getPages();
+                    ->fetchEntities();
     }
 
-    public function getAllPages()
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function fetchEntity($id)
     {
         return $this->getEntityManager()
                     ->getRepository('Page\Entity\Page')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->getPages(true);
-    }
-
-    public function getPage($id)
-    {
-        return $this->getEntityManager()
-                    ->getRepository('Page\Entity\Page')
-                    ->setQueryHydrator($this->getQueryHydrator())
-                    ->getPage($id);
+                    ->fetchEntity($id);
     }
 
 }

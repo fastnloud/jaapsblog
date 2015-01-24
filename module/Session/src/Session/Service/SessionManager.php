@@ -6,6 +6,10 @@ use Zend\Session\Container;
 use Zend\Http\Request;
 use Zend\Session\Exception\RuntimeException;
 
+/**
+ * Class SessionManager
+ * @package Session\Service
+ */
 class SessionManager extends \Zend\Session\SessionManager
 {
 

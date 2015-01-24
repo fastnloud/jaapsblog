@@ -6,6 +6,10 @@ use Session\Entity\Session;
 use Zend\Session\SaveHandler\SaveHandlerInterface;
 use Doctrine\ORM\EntityManager;
 
+/**
+ * Class SessionSaveHandler
+ * @package Session\Service
+ */
 class SessionSaveHandler implements SaveHandlerInterface
 {
 

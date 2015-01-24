@@ -5,6 +5,10 @@ namespace Session\Entity;
 use Doctrine\ORM\EntityRepository;
 use Zend\Debug\Debug;
 
+/**
+ * Class SessionRepository
+ * @package Session\Entity
+ */
 class SessionRepository extends EntityRepository
 {
 

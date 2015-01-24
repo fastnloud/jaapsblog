@@ -4,6 +4,10 @@ namespace Application\Validator\Entity;
 
 use Zend\Validator\Exception;
 
+/**
+ * Class RecordExists
+ * @package Application\Validator\Entity
+ */
 class RecordExists extends AbstractEntityValidator
 {
 

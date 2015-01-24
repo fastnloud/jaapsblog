@@ -5,6 +5,10 @@ namespace Application\Validator\Entity;
 use Doctrine\ORM\NoResultException;
 use Zend\Validator\Exception;
 
+/**
+ * Class NoRecordExists
+ * @package Application\Validator\Entity
+ */
 class NoRecordExists extends AbstractEntityValidator
 {
 

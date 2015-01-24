@@ -5,19 +5,23 @@ namespace Reply\Entity;
 use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
 
+/**
+ * Class ReplyRepository
+ * @package Reply\Entity
+ */
 class ReplyRepository extends AbstractEntityRepository
 {
 
     /**
      * @return array
      */
-    public function getReplies()
+    public function fetchEntities()
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('r')
-           ->from('Reply\Entity\Reply', 'r');
+        $qb->select('reply')
+           ->from('Reply\Entity\Reply', 'reply');
 
         return $qb->getQuery()
                   ->getResult($this->getQueryHydrator());
@@ -25,17 +29,17 @@ class ReplyRepository extends AbstractEntityRepository
 
     /**
      * @param $id
-     * @return array
+     * @return mixed
      */
-    public function getReply($id)
+    public function fetchEntity($id)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('r', 'b')
-           ->from('Reply\Entity\Reply', 'r')
-           ->join('r.blog', 'b')
-           ->where('r.id = :id')
+        $qb->select('reply', 'blog')
+           ->from('Reply\Entity\Reply', 'reply')
+           ->join('reply.blog', 'blog')
+           ->where('reply.id = :id')
            ->setParameter(':id', $id);
 
         return $qb->getQuery()
