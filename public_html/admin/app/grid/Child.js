@@ -15,7 +15,8 @@ Ext.define('App.grid.Child', {
     listeners : {
         beforerender         : 'onChildGridBeforeRender',
         itemcontextmenu      : 'onChildGridItemContextMenu',
-        containercontextmenu : 'onChildGridContainerContextMenu'
+        containercontextmenu : 'onChildGridContainerContextMenu',
+        beforeedit           : 'onChildGridBeforeEdit'
     }
 
 });

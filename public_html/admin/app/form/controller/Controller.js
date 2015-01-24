@@ -146,6 +146,16 @@ Ext.define('App.form.controller.Controller', {
         }
     },
 
+    onChildGridBeforeEdit : function(editor, context) {
+        if (Ext.isObject(context.value)) {
+            Ext.Object.each(context.value, function(index, value) {
+                if (index != 'id') {
+                    context.value = value;
+                }
+            });
+        }
+    },
+
     onChildGridContainerContextMenu : function(grid, e) {
         e.stopEvent();
         this.getChildGridContextMenu(grid).showAt(e.getXY());
