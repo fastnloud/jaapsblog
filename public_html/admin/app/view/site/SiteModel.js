@@ -3,6 +3,9 @@ Ext.define('App.view.site.SiteModel', {
     alias   : 'viewmodel.site',
 
     stores : {
+        banner : {
+            type : 'banner'
+        },
         site : {
             autoLoad : true,
 

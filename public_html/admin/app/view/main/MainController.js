@@ -5,9 +5,10 @@ Ext.define('App.view.main.MainController', {
     init : function () {
         this.addUserPoll();
 
+        Ext.data.StoreManager.lookup('Status').load();
         Ext.data.StoreManager.lookup('Category').load();
         Ext.data.StoreManager.lookup('Reply').load();
-        Ext.data.StoreManager.lookup('Status').load();
+        Ext.data.StoreManager.lookup('Banner').load();
     },
 
     addUserPoll : function() {

@@ -48,45 +48,57 @@ Ext.define('App.view.site.SiteForm', {
                         allowBlank      : false
                     }
                 ]
-            }/*,
+            },
             {
-                title           : 'Replies',
+                title           : 'Banners',
                 xtype           : 'childGrid',
-                bind            : 'Reply',
+                bind            : 'Banner',
 
                 filters : [{
-                    property    : 'blog_id',
+                    property    : 'site_id',
                     value       : 'id'
                 }],
 
                 columns : [
                     {
-                        text        : 'Name',
+                        text        : 'Titel',
                         flex        : 2,
-                        dataIndex   : 'name',
+                        dataIndex   : 'title',
                         editor      : 'textfield'
                     },
                     {
-                        text        : 'Comment',
-                        dataIndex   : 'comment',
+                        text        : 'Content',
+                        dataIndex   : 'content',
                         editor      : 'textarea',
-                        flex        : 5,
+                        flex        : 6,
                         hideable    : false
                     },
                     {
-                        text        : 'Date',
-                        flex        : 3,
-                        dataIndex   : 'timestamp',
-                        editor      : 'textfield'
+                        text        : 'Priority',
+                        dataIndex   : 'priority',
+                        editor      : 'numberfield',
+                        flex        : 2,
+                        hideable    : false
                     },
                     {
-                        text        : 'Admin',
+                        text        : 'Status',
+                        dataIndex   : 'status',
                         flex        : 2,
-                        dataIndex   : 'is_admin',
-                        editor      : 'checkbox'
+                        hideable    : false,
+                        editor      : {
+                            xtype           : 'combobox',
+                            name            : 'status',
+                            store           : 'Status',
+                            queryMode       : 'local',
+                            valueField      : 'id',
+                            displayField    : 'label'
+                        },
+                        renderer : function(value) {
+                            return App.global.Function.storeRenderer(value, 'Status', 'label');
+                        }
                     }
                 ]
-            }*/
+            }
         ]
     }
 

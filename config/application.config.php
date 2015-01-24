@@ -14,6 +14,7 @@ return array(
         'Category',
         'Site',
         'Reply',
+        'Banner',
         'Application',
     ),
 

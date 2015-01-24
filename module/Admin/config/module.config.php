@@ -10,6 +10,13 @@ return array(
                     'read', 'create', 'update', 'destroy'
                 )
             ),
+            'banner' => array(
+                'service' => 'BannerService',
+                'entity'  => 'Banner\Entity\Banner',
+                'actions' => array(
+                    'read', 'create', 'update', 'destroy'
+                )
+            ),
             'page' => array(
                 'service' => 'PageService',
                 'entity'  => 'Page\Entity\Page',

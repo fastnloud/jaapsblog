@@ -52,7 +52,7 @@ Ext.define('App.view.main.Main', {
                     xtype : 'blogView'
                 },
                 {
-                    title : 'Sites',
+                    title : 'Site',
                     xtype : 'siteView'
                 }
             ]

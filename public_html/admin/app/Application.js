@@ -16,7 +16,8 @@ Ext.define('App.Application', {
     stores: [
         'Status',
         'Category',
-        'Reply'
+        'Reply',
+        'Banner'
     ],
 
     views : [
