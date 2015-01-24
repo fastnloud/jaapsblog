@@ -66,12 +66,14 @@ abstract class AbstractEntityService implements EntityServiceInterface
                     $getter     = 'get' . $var;
                     $repository = get_class($entity->$getter());
 
-                    $joinedEntity = $this->getEntityManager()
-                                         ->getRepository($repository)
-                                         ->find($value);
+                    if (!empty($value)) {
+                        $joinedEntity = $this->getEntityManager()
+                                             ->getRepository($repository)
+                                             ->find($value);
 
-                    if ($joinedEntity) {
-                        $entity->$setter($joinedEntity);
+                        if ($joinedEntity) {
+                            $entity->$setter($joinedEntity);
+                        }
                     }
                 }
             }
