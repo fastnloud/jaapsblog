@@ -40,7 +40,7 @@ class NoRecordExists extends AbstractEntityValidator
            ->setParameter(':value', $value);
 
         if ($excludeValue) {
-            $qb->andWhere('r.' . $this->getExclude() .' != :exclude')
+            $qb->andWhere('r.' . $this->getExclude() . ' != :exclude')
                ->setParameter(':exclude', $excludeValue);
         }
 
