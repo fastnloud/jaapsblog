@@ -12,7 +12,9 @@
                         ->appendName('viewport', 'width=device-width, initial-scale=1') ?>
 
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/mobile.css')
                         ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet('http://fonts.googleapis.com/css?family=Roboto:300,700,100italic,400')
                         ->prependStylesheet($this->basePath() . '/css/main.css')
                         ->prependStylesheet($this->basePath() . '/css/normalize.css') ?>
 
@@ -25,6 +27,95 @@
     </head>
 
     <body>
+
+        <div class="outer-container shadow-line background">
+
+            <div class="inner-container clearfix">
+
+                <nav class="main">
+                    <ul>
+                        <li>
+                            <a class="transition gradient" href="">Home</a>
+                        </li>
+                        <li>
+                            <a class="transition gradient" href="">Blog</a>
+                        </li>
+                        <li class="active">
+                            <a class="transition gradient" href="">About Jaap</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="site-name">
+                    Jaapsblog.nl
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="outer-container">
+
+            <div class="inner-container">
+
+                <nav class="breadcrumbs">
+
+                    <ul>
+                        <li>
+                            <span>You are here: </span>
+                            <a href="/">Home</a>
+                        </li>
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        </div>
+
+        <div class="outer-container">
+            <div class="inner-container clearfix">
+                <div class="column1">
+                    <div class="content">
+                        <h1>Home</h1>
+                        <p>
+                            All blog items can be found here.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="column2">
+                    <aside class="shadow-line gradient">
+                        <h1>Latest blog posts</h1>
+                        <ul>
+                            <li class="transition">
+                                <a class="transition" href="">ZF2: DKIM Signer</a>
+                            </li>
+                            <li class="transition">
+                                <a class="transition" href="">ZF2: Creating a dynamic Navigation</a>
+                            </li>
+                            <li class="transition">
+                                <a class="transition" href="">Introduction to Sass</a>
+                            </li>
+                            <li class="transition">
+                                <a class="transition" href="">Jaapsblog.nl on GitHub</a>
+                            </li>
+                            <li class="transition">
+                                <a class="transition" href="">ZF2: Writing "advanced" MySQL where clauses</a>
+                            </li>
+                        </ul>
+                    </aside>
+
+                    <aside class="shadow-line gradient">
+                        <h1>ZF2: DKIM Signer</h1>
+                        <p>Zend Framework 2 DKIM Signer module for Zend\Mail v1.0.4 (MIT). Interested? Stay up-to-date and follow this project on <a title="Zend Framework 2 DKIM Signer" href="https://github.com/fastnloud/zf2-dkim" target="_blank">GitHub</a>.</p>
+                        <p>Zend Framework 2 DKIM Signer v1.0.4 (latest): <a title="Zend Framework 2 DKIM Signer" href="https://github.com/fastnloud/zf2-dkim/releases/tag/v1.0.4" target="_blank">zf2-dkim-v1.0.4</a></p>
+                    </aside>
+                </div>
+
+
+            </div>
+        </div>
 
         <?php echo $this->content; ?>
 
