@@ -52,7 +52,8 @@ return array(
                             'name' => 'EntityValidatorNoRecordExists',
                             'options' => array(
                                 'repository' => __NAMESPACE__ . '\Entity\\' . __NAMESPACE__,
-                                'field'      => 'slug'
+                                'field'      => 'slug',
+                                'exclude'    => 'id'
                             )
                         ),
                     ),

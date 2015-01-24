@@ -57,6 +57,7 @@ class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreatio
             $validator->setEntityManager($serviceLocator->getServiceLocator()->get('Doctrine\ORM\EntityManager'));
             $validator->setRepository($this->getOption('repository'));
             $validator->setField($this->getOption('field'));
+            $validator->setExclude($this->getOption('exclude'));
         }
 
         return $validator;
@@ -76,6 +77,10 @@ class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreatio
 
         if (isset($options['field'])) {
             $this->setOption('field', $options['field']);
+        }
+
+        if (isset($options['exclude'])) {
+            $this->setOption('exclude', $options['exclude']);
         }
     }
 

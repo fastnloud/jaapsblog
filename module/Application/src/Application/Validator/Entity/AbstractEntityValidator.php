@@ -28,6 +28,11 @@ abstract class AbstractEntityValidator extends AbstractValidator
     protected $field;
 
     /**
+     * @var string
+     */
+    protected $exclude;
+
+    /**
      * @param \Doctrine\ORM\EntityManager $entityManager
      */
     public function setEntityManager(EntityManager $entityManager)
@@ -73,6 +78,22 @@ abstract class AbstractEntityValidator extends AbstractValidator
     protected function getField()
     {
         return $this->field;
+    }
+
+    /**
+     * @param string $exclude
+     */
+    public function setExclude($exclude)
+    {
+        $this->exclude = $exclude;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getExclude()
+    {
+        return $this->exclude;
     }
 
 }

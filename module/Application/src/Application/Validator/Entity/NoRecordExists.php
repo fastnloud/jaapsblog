@@ -2,7 +2,6 @@
 
 namespace Application\Validator\Entity;
 
-use Doctrine\ORM\NoResultException;
 use Zend\Validator\Exception;
 
 /**
@@ -21,13 +20,14 @@ class NoRecordExists extends AbstractEntityValidator
      */
     public function isValid($value)
     {
-        $id = null;
+        $excludeValue = null;
 
-        if (isset($_POST['data'])) {
+        if ($this->getExclude() && isset($_POST['data'])) {
+            $exclude  = $this->getExclude();
             $jsonData = json_decode($_POST['data']);
 
-            if (isset($jsonData->id)) {
-                $id = (int) $jsonData->id;
+            if (isset($jsonData->{$exclude})) {
+                $excludeValue = $jsonData->{$exclude};
             }
         }
 
@@ -37,20 +37,14 @@ class NoRecordExists extends AbstractEntityValidator
         $qb->select('r')
            ->from($this->getRepository(), 'r')
            ->where('r.' . $this->getField() . ' = :value')
-           ->andWhere('r.id != :id')
-           ->setParameters(array(
-               ':value' => $value,
-               ':id'    => $id
-           ));
+           ->setParameter(':value', $value);
 
-        try {
-            $qb->getQuery()
-               ->getSingleResult();
-        } catch (NoResultException $e) {
-            return true;
+        if ($excludeValue) {
+            $qb->andWhere('r.' . $this->getExclude() .' != :exclude')
+               ->setParameter(':exclude', $excludeValue);
         }
 
-        return false;
+        return ($qb->getQuery()->getResult() ? false : true);
     }
 
 }
