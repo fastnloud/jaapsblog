@@ -187,6 +187,8 @@ Ext.define('App.form.controller.Controller', {
                 },
                 'success' : function() {
                     store.reload();
+                },
+                'callback' : function() {
                     store.resumeAutoSync();
                 }
             });
@@ -199,7 +201,19 @@ Ext.define('App.form.controller.Controller', {
         Ext.Msg.confirm('Delete', 'Are you sure?', function(choice) {
             if (choice === 'yes') {
                 if (selection.length > 0) {
+                    store.suspendAutoSync();
                     store.remove(selection);
+                    store.sync({
+                        'failure' : function() {
+                            store.rejectChanges();
+                        },
+                        'success' : function() {
+                            store.reload();
+                        },
+                        'callback' : function() {
+                            store.resumeAutoSync();
+                        }
+                    });
                 }
             }
         });
