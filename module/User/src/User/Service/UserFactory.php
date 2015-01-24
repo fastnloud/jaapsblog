@@ -18,11 +18,11 @@ class UserFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $user = new User($serviceLocator);
-        $user->setConfig($serviceLocator->get('Config'));
-        $user->init();
+        $service = new User($serviceLocator);
+        $service->setConfig($serviceLocator->get('Config'));
+        $service->init();
 
-        return $user;
+        return $service;
     }
 
 }

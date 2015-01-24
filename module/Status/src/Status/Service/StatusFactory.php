@@ -18,9 +18,9 @@ class StatusFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $status = new Status($serviceLocator);
+        $service = new Status($serviceLocator);
 
-        return $status;
+        return $service;
     }
 
 }

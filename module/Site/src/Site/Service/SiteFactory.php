@@ -18,9 +18,9 @@ class SiteFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $site = new Site($serviceLocator);
+        $service = new Site($serviceLocator);
 
-        return $site;
+        return $service;
     }
 
 }

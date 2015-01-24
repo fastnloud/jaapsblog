@@ -18,9 +18,9 @@ class PageFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $page = new Page($serviceLocator);
+        $service = new Page($serviceLocator);
 
-        return $page;
+        return $service;
     }
 
 }

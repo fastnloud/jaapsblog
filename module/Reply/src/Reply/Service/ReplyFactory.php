@@ -18,9 +18,9 @@ class ReplyFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $category = new Reply($serviceLocator);
+        $service = new Reply($serviceLocator);
 
-        return $category;
+        return $service;
     }
 
 }

@@ -18,9 +18,9 @@ class BlogFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $blog = new Blog($serviceLocator);
+        $service = new Blog($serviceLocator);
 
-        return $blog;
+        return $service;
     }
 
 }

@@ -18,9 +18,9 @@ class CategoryFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $category = new Category($serviceLocator);
+        $service = new Category($serviceLocator);
 
-        return $category;
+        return $service;
     }
 
 }
