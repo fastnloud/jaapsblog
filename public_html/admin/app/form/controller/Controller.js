@@ -30,6 +30,34 @@ Ext.define('App.form.controller.Controller', {
         this.setContainer(null);
     },
 
+    getChildGridContextMenu : function(grid) {
+        var me    = this,
+            items = [{text : 'Add Record'}];
+
+        if (grid.getStore().count() > 0) {
+            items.push({text : 'Delete Selection'});
+        }
+
+        return Ext.create('Ext.menu.Menu', {
+            plain : true,
+            items : items,
+
+            listeners : {
+                click : function(menu, item, e, eOpts) {
+                    var store = grid.getStore();
+
+                    if (Ext.isDefined(item)) {
+                        if (item.text.match(/Add Record/)) {
+                            me.onChildGridCreateClick(store);
+                        } else if (item.text.match(/Delete Selection/)) {
+                            me.onChildGridDeleteClick(store, grid)
+                        }
+                    }
+                }
+            }
+        });
+    },
+
     onMainGridSelect : function() {
         this.getView().lookupReference('mainGridDeleteButton').enable();
     },
@@ -99,33 +127,6 @@ Ext.define('App.form.controller.Controller', {
         }
     },
 
-    getChildGridContextMenu : function(grid) {
-        var me    = this,
-            items = [{text : 'Add Record'}];
-
-        if (grid.getStore().count() > 0) {
-            items.push({text : 'Delete Selection'});
-        }
-
-        return new Ext.menu.Menu({
-            plain : true,
-
-            items : items,
-
-            listeners : {
-                click : function(menu, item, e, eOpts) {
-                    var store = grid.getStore();
-
-                    if (item.text.match(/Add Record/)) {
-                        me.onChildGridCreateClick(store);
-                    } else if (item.text.match(/Delete Selection/)) {
-                        me.onChildGridDeleteClick(store, grid)
-                    }
-                }
-            }
-        });
-    },
-
     onChildGridBeforeRender : function(grid) {
         var store       = grid.getStore(),
             filters     = grid.filters,
@@ -158,16 +159,12 @@ Ext.define('App.form.controller.Controller', {
 
     onChildGridContainerContextMenu : function(grid, e) {
         e.stopEvent();
-        this.getChildGridContextMenu(grid).showAt(e.getXY());
-
-        return false;
+        this.getChildGridContextMenu(grid).showAt(e.getXY()).focus();
     },
 
     onChildGridItemContextMenu : function(grid, record, node, index, e) {
         e.stopEvent();
-        this.getChildGridContextMenu(grid).showAt(e.getXY());
-
-        return false;
+        this.getChildGridContextMenu(grid).showAt(e.getXY()).focus();
     },
 
     onChildGridCreateClick : function(store) {
