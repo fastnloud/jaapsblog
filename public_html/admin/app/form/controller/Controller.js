@@ -159,12 +159,12 @@ Ext.define('App.form.controller.Controller', {
 
     onChildGridContainerContextMenu : function(grid, e) {
         e.stopEvent();
-        this.getChildGridContextMenu(grid).showAt(e.getXY()).focus();
+        this.getChildGridContextMenu(grid).showAt(e.getXY()).focus(null, true);
     },
 
     onChildGridItemContextMenu : function(grid, record, node, index, e) {
         e.stopEvent();
-        this.getChildGridContextMenu(grid).showAt(e.getXY()).focus();
+        this.getChildGridContextMenu(grid).showAt(e.getXY()).focus(null, true);
     },
 
     onChildGridCreateClick : function(store) {
