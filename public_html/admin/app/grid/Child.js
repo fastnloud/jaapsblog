@@ -3,7 +3,7 @@ Ext.define('App.grid.Child', {
     selType             : 'checkboxmodel',
     xtype               : 'childGrid',
     scroll              : 'vertical',
-    minHeight           : 100,
+    minHeight           : 250,
     maxHeight           : 400,
     forceFit            : true,
 
