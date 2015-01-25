@@ -36,12 +36,21 @@ class SessionManager extends \Zend\Session\SessionManager
     /**
      * Gracefully start session.
      *
+     * @param bool $preserveStorage
      * @return void
-     * @throws RuntimeException
      */
-    public function graceful()
+    public function start($preserveStorage = false)
     {
-        $this->start();
+        if ($this->sessionExists()) {
+            return;
+        }
+
+        try {
+            parent::start($preserveStorage);
+        } catch (RuntimeException $e) {
+            $this->destroy();
+            return;
+        }
 
         $sessionConfig = $this->getSessionConfig();
         $container     = new Container('init');

@@ -22,7 +22,7 @@ class Module
                                 ->getServiceManager()
                                 ->get('SessionManager');
 
-            $sessionManager->graceful();
+            $sessionManager->start();
         }
     }
 
