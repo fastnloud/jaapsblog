@@ -45,6 +45,21 @@ class Site extends AbstractEntity
     protected $googleAnalytics;
 
     /**
+     * @ORM\Column(name="facebook_url", type="string", nullable=true)
+     */
+    protected $facebookUrl;
+
+    /**
+     * @ORM\Column(name="linkedin_url", type="string", nullable=true)
+     */
+    protected $linkedinUrl;
+
+    /**
+     * @ORM\Column(name="google_plus_url", type="string", nullable=true)
+     */
+    protected $googlePlusUrl;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
@@ -172,11 +187,59 @@ class Site extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return Banner
      */
     public function getBanner()
     {
         return $this->banner;
+    }
+
+    /**
+     * @param string $facebookUrl
+     */
+    public function setFacebookUrl($facebookUrl)
+    {
+        $this->facebookUrl = $facebookUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookUrl()
+    {
+        return $this->facebookUrl;
+    }
+
+    /**
+     * @param string $googlePlusUrl
+     */
+    public function setGooglePlusUrl($googlePlusUrl)
+    {
+        $this->googlePlusUrl = $googlePlusUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGooglePlusUrl()
+    {
+        return $this->googlePlusUrl;
+    }
+
+    /**
+     * @param string $linkedinUrl
+     */
+    public function setLinkedinUrl($linkedinUrl)
+    {
+        $this->linkedinUrl = $linkedinUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLinkedinUrl()
+    {
+        return $this->linkedinUrl;
     }
 
 }
