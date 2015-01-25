@@ -8,7 +8,7 @@ Ext.define('App.grid.Child', {
     forceFit            : true,
 
     plugins : {
-        ptype           : 'cellediting',
+        ptype           : 'rowediting',
         clicksToEdit    : 2
     },
 

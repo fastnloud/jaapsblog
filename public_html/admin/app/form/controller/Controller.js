@@ -39,8 +39,9 @@ Ext.define('App.form.controller.Controller', {
         }
 
         return Ext.create('Ext.menu.Menu', {
-            plain : true,
-            items : items,
+            plain       : true,
+            alwaysOnTop : true,
+            items       : items,
 
             listeners : {
                 click : function(menu, item, e, eOpts) {
@@ -148,13 +149,22 @@ Ext.define('App.form.controller.Controller', {
     },
 
     onChildGridBeforeEdit : function(editor, context) {
-        if (Ext.isObject(context.value)) {
-            Ext.Object.each(context.value, function(index, value) {
-                if (index != 'id') {
-                    context.value = value;
-                }
-            });
-        }
+        var grid        = editor.grid,
+            columns     = grid.columns,
+            selection   = grid.getSelection()[0],
+            data        = selection.data;
+
+        Ext.Array.each(columns, function(column) {
+            var value = data[column.dataIndex];
+
+            if (Ext.isObject(value) ) {
+                Ext.Object.each(value, function(objectIndex, objectValue) {
+                    if (objectIndex == 'id') {
+                        selection.set(column.dataIndex, 23);
+                    }
+                });
+            }
+        });
     },
 
     onChildGridContainerContextMenu : function(grid, e) {

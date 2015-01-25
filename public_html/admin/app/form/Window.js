@@ -1,6 +1,7 @@
 Ext.define('App.form.Window', {
     extend          : 'Ext.window.Window',
     modal           : true,
+    alwaysOnTop     : true,
     width           : 500,
     resizable       : false,
     createRecord    : true,

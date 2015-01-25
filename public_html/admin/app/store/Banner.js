@@ -19,7 +19,8 @@ Ext.define('App.store.Banner', {
         'id',
         'title',
         'content',
-        'priority'
+        'priority',
+        'status'
     ],
 
     sorters : [{

@@ -91,7 +91,11 @@ Ext.define('App.view.site.SiteForm', {
                     {
                         text        : 'Content',
                         dataIndex   : 'content',
-                        editor      : 'htmleditor',
+                        editor      : {
+                            xtype          : 'htmleditor',
+                            enableFont     : false,
+                            height         : 125
+                        },
                         flex        : 6,
                         hideable    : false
                     },
