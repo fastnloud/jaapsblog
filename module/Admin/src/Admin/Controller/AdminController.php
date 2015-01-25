@@ -214,7 +214,7 @@ class AdminController extends AbstractActionController
             return $this->tableDataError();
         }
 
-        $success              = false;;
+        $success              = false;
         $jsonObject           = json_decode($this->params()->fromPost('data'));
         $jsonObjectCollection = array();
 

@@ -162,7 +162,7 @@ class Blog extends AbstractEntity
      */
     public function setDate($date)
     {
-        $this->date = new \DateTime($date);;
+        $this->date = new \DateTime($date);
     }
 
     /**
