@@ -33,8 +33,8 @@ Ext.define('App.view.site.SiteForm', {
                     {
                         xtype       : 'textarea',
                         fieldLabel  : 'GA-code',
-                        name        : 'googleAnalytics',
-                        bind        : '{record.googleAnalytics}'
+                        name        : 'google_analytics',
+                        bind        : '{record.google_analytics}'
                     },
                     {
                         xtype           : 'combobox',
@@ -56,18 +56,18 @@ Ext.define('App.view.site.SiteForm', {
                 items: [
                     {
                         fieldLabel  : 'Facebook',
-                        name        : 'facebookUrl',
-                        bind        : '{record.facebookUrl}'
+                        name        : 'linkedin_url',
+                        bind        : '{record.facebook_url}'
                     },
                     {
                         fieldLabel  : 'LinkedIn',
-                        name        : 'linkedinUrl',
-                        bind        : '{record.linkedinUrl}'
+                        name        : 'linkedin_url',
+                        bind        : '{record.linkedin_url}'
                     },
                     {
                         fieldLabel  : 'Google+',
-                        name        : 'googlePlusUrl',
-                        bind        : '{record.googlePlusUrl}'
+                        name        : 'google_plus_url',
+                        bind        : '{record.google_plus_url}'
                     }
                 ]
             },

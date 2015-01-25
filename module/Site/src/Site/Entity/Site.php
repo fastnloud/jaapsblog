@@ -40,24 +40,24 @@ class Site extends AbstractEntity
     protected $email;
 
     /**
-     * @ORM\Column(name="google_analytics", type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    protected $googleAnalytics;
+    protected $google_analytics;
 
     /**
-     * @ORM\Column(name="facebook_url", type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    protected $facebookUrl;
+    protected $facebook_url;
 
     /**
-     * @ORM\Column(name="linkedin_url", type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    protected $linkedinUrl;
+    protected $linkedin_url;
 
     /**
-     * @ORM\Column(name="google_plus_url", type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    protected $googlePlusUrl;
+    protected $google_plus_url;
 
     /**
      * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
@@ -102,22 +102,6 @@ class Site extends AbstractEntity
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * @param string $googleAnalytics
-     */
-    public function setGoogleAnalytics($googleAnalytics)
-    {
-        $this->googleAnalytics = $googleAnalytics;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGoogleAnalytics()
-    {
-        return $this->googleAnalytics;
     }
 
     /**
@@ -195,11 +179,11 @@ class Site extends AbstractEntity
     }
 
     /**
-     * @param string $facebookUrl
+     * @param string $facebook_url
      */
-    public function setFacebookUrl($facebookUrl)
+    public function setFacebookUrl($facebook_url)
     {
-        $this->facebookUrl = $facebookUrl;
+        $this->facebook_url = $facebook_url;
     }
 
     /**
@@ -207,15 +191,31 @@ class Site extends AbstractEntity
      */
     public function getFacebookUrl()
     {
-        return $this->facebookUrl;
+        return $this->facebook_url;
     }
 
     /**
-     * @param string $googlePlusUrl
+     * @param string $google_analytics
      */
-    public function setGooglePlusUrl($googlePlusUrl)
+    public function setGoogleAnalytics($google_analytics)
     {
-        $this->googlePlusUrl = $googlePlusUrl;
+        $this->google_analytics = $google_analytics;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoogleAnalytics()
+    {
+        return $this->google_analytics;
+    }
+
+    /**
+     * @param string $google_plus_url
+     */
+    public function setGooglePlusUrl($google_plus_url)
+    {
+        $this->google_plus_url = $google_plus_url;
     }
 
     /**
@@ -223,15 +223,15 @@ class Site extends AbstractEntity
      */
     public function getGooglePlusUrl()
     {
-        return $this->googlePlusUrl;
+        return $this->google_plus_url;
     }
 
     /**
-     * @param string $linkedinUrl
+     * @param string $linkedin_url
      */
-    public function setLinkedinUrl($linkedinUrl)
+    public function setLinkedinUrl($linkedin_url)
     {
-        $this->linkedinUrl = $linkedinUrl;
+        $this->linkedin_url = $linkedin_url;
     }
 
     /**
@@ -239,7 +239,7 @@ class Site extends AbstractEntity
      */
     public function getLinkedinUrl()
     {
-        return $this->linkedinUrl;
+        return $this->linkedin_url;
     }
 
 }
