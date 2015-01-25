@@ -47,7 +47,10 @@ Ext.define('App.view.blog.Blog',{
                     flex        : 1,
                     dataIndex   : 'date',
                     xtype       : 'datecolumn',
-                    format      : 'Y-m-d'
+                    format      : 'Y-m-d',
+                    renderer    : function(value) {
+                        return App.global.Function.convertToDate(value);
+                    }
                 }
             ]
         }

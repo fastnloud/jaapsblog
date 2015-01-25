@@ -37,6 +37,13 @@ Ext.define('App.global.Function', {
                 + ':' + second;
         },
 
+        convertToDate : function(value, format) {
+            var date       = new Date(value.replace(/-/g,"/"))
+                dateFormat = format ? format : 'Y-m-d';
+
+            return Ext.Date.format(date, dateFormat);
+        },
+
         storeRenderer : function(value, storeName, storeDisplayField) {
             if (Ext.isObject(value)) {
                 return value.label;
