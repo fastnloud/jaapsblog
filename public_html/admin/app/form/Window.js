@@ -1,7 +1,5 @@
 Ext.define('App.form.Window', {
     extend          : 'Ext.window.Window',
-    modal           : true,
-    alwaysOnTop     : true,
     width           : 500,
     resizable       : false,
     createRecord    : true,
@@ -20,6 +18,15 @@ Ext.define('App.form.Window', {
             text    : 'Cancel',
             handler : 'onCancelClick'
         }
-    ]
+    ],
+
+    listeners : {
+        show : function(formWindow) {
+            formWindow.up().down('mainGrid').mask()
+        },
+        close : function(formWindow) {
+            formWindow.up().down('mainGrid').unmask()
+        }
+    }
 
 });

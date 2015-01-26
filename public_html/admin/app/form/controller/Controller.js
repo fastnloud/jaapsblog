@@ -26,7 +26,7 @@ Ext.define('App.form.controller.Controller', {
     },
 
     removeContainer : function() {
-        this.getView().remove(this.getContainer());
+        this.getContainer().close();
         this.setContainer(null);
     },
 
