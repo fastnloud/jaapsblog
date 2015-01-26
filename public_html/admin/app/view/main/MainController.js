@@ -9,6 +9,7 @@ Ext.define('App.view.main.MainController', {
         Ext.data.StoreManager.lookup('Category').load();
         Ext.data.StoreManager.lookup('Reply').load();
         Ext.data.StoreManager.lookup('Banner').load();
+        Ext.data.StoreManager.lookup('Footer').load();
     },
 
     addUserPoll : function() {

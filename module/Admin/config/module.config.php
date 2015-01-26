@@ -17,6 +17,13 @@ return array(
                     'read', 'create', 'update', 'destroy'
                 )
             ),
+            'footer' => array(
+                'service' => 'FooterService',
+                'entity'  => 'Footer\Entity\Footer',
+                'actions' => array(
+                    'read', 'create', 'update', 'destroy'
+                )
+            ),
             'page' => array(
                 'service' => 'PageService',
                 'entity'  => 'Page\Entity\Page',

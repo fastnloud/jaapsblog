@@ -15,6 +15,7 @@ return array(
         'Site',
         'Reply',
         'Banner',
+        'Footer',
         'Application',
     ),
 

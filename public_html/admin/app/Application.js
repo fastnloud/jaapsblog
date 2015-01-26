@@ -17,7 +17,8 @@ Ext.define('App.Application', {
         'Status',
         'Category',
         'Reply',
-        'Banner'
+        'Banner',
+        'Footer'
     ],
 
     views : [

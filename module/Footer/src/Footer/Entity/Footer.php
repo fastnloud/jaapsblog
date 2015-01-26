@@ -1,6 +1,6 @@
 <?php
 
-namespace Banner\Entity;
+namespace Footer\Entity;
 
 use Application\Entity\AbstractEntity;
 use Application\Entity\Exception\EntityException;
@@ -10,10 +10,10 @@ use Status\Entity\Status;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Banner\Entity\BannerRepository")
- * @ORM\Table(name="banner")
+ * @ORM\Entity(repositoryClass="Footer\Entity\FooterRepository")
+ * @ORM\Table(name="footer")
  */
-class Banner extends AbstractEntity
+class Footer extends AbstractEntity
 {
 
     /**
@@ -26,12 +26,12 @@ class Banner extends AbstractEntity
     /**
      * @ORM\Column(type="string", length=80)
      */
-    protected $title;
+    protected $label;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
-    protected $content;
+    protected $href;
 
     /**
      * @ORM\Column(type="integer")
@@ -44,13 +44,18 @@ class Banner extends AbstractEntity
     protected $priority;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $footer_column;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
     protected $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Site\Entity\Site", inversedBy="banner", cascade={"persist", "merge", "detach"})
+     * @ORM\ManyToOne(targetEntity="Site\Entity\Site", inversedBy="footer", cascade={"persist", "merge", "detach"})
      * @ORM\JoinColumn(name="site_id", referencedColumnName="id", nullable=false)
      */
     protected $site;
@@ -83,22 +88,6 @@ class Banner extends AbstractEntity
     public function getSite()
     {
         return $this->site;
-    }
-
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
     }
 
     /**
@@ -139,22 +128,6 @@ class Banner extends AbstractEntity
     }
 
     /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
      * @param int $priority
      */
     public function setPriority($priority)
@@ -168,6 +141,54 @@ class Banner extends AbstractEntity
     public function getPriority()
     {
         return (int) $this->priority;
+    }
+
+    /**
+     * @param int $footer_column
+     */
+    public function setFooterColumn($footer_column)
+    {
+        $this->footer_column = (int) $footer_column;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFooterColumn()
+    {
+        return (int) $this->footer_column;
+    }
+
+    /**
+     * @param string $href
+     */
+    public function setHref($href)
+    {
+        $this->href = $href;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHref()
+    {
+        return $this->href;
+    }
+
+    /**
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 
 }

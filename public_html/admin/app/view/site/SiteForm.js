@@ -124,6 +124,62 @@ Ext.define('App.view.site.SiteForm', {
                         }
                     }
                 ]
+            },
+            {
+                title           : 'Footer Items',
+                xtype           : 'childGrid',
+                bind            : 'Footer',
+
+                filters : [{
+                    property    : 'site_id',
+                    value       : 'id'
+                }],
+
+                columns : [
+                    {
+                        text        : 'Label',
+                        flex        : 2,
+                        dataIndex   : 'label',
+                        editor      : 'textfield'
+                    },
+                    {
+                        text        : 'Href',
+                        flex        : 2,
+                        dataIndex   : 'href',
+                        editor      : 'textfield'
+                    },
+                    {
+                        text        : 'Priority',
+                        dataIndex   : 'priority',
+                        editor      : 'numberfield',
+                        flex        : 2,
+                        hideable    : false
+                    },
+                    {
+                        text        : 'Column',
+                        dataIndex   : 'footer_column',
+                        editor      : 'numberfield',
+                        flex        : 2,
+                        hideable    : false
+                    },
+                    {
+                        text        : 'Status',
+                        dataIndex   : 'status',
+                        flex        : 2,
+                        hideable    : false,
+                        editor      : {
+                            xtype           : 'combobox',
+                            name            : 'status',
+                            store           : 'Status',
+                            queryMode       : 'local',
+                            valueField      : 'id',
+                            displayField    : 'label'
+                        },
+                        renderer : function(value) {
+                            return App.global.Function.storeRenderer(value, 'Status', 'label');
+                        }
+                    }
+                ]
             }
         ]
     }

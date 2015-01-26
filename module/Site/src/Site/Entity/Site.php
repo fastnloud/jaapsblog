@@ -7,6 +7,7 @@ use Application\Entity\Exception\EntityException;
 use Banner\Entity\Banner;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Footer\Entity\Footer;
 use Status\Entity\Status;
 
 /**
@@ -72,12 +73,19 @@ class Site extends AbstractEntity
     protected $banner;
 
     /**
+     * @ORM\OneToMany(targetEntity="Footer\Entity\Footer", mappedBy="site", cascade={"all"})
+     * @ORM\JoinColumn(name="id", referencedColumnName="site_id", nullable=false)
+     */
+    protected $footer;
+
+    /**
      * Init default values.
      */
     public function __construct()
     {
         $this->status = new Status();
         $this->banner = new ArrayCollection();
+        $this->footer = new ArrayCollection();
     }
 
     /**
@@ -176,6 +184,27 @@ class Site extends AbstractEntity
     public function getBanner()
     {
         return $this->banner;
+    }
+
+    /**
+     * @param Footer $footer
+     * @throws \Application\Entity\Exception\EntityException
+     */
+    public function setFooter($footer)
+    {
+        if (!$footer instanceof Footer) {
+            throw new EntityException('Invalid object!');
+        }
+
+        $this->footer = $footer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFooter()
+    {
+        return $this->footer;
     }
 
     /**
