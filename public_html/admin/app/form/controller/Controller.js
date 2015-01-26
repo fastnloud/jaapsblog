@@ -160,7 +160,7 @@ Ext.define('App.form.controller.Controller', {
             if (Ext.isObject(value) ) {
                 Ext.Object.each(value, function(objectIndex, objectValue) {
                     if (objectIndex == 'id') {
-                        selection.set(column.dataIndex, 23);
+                        data[column.dataIndex] = objectValue;
                     }
                 });
             }
