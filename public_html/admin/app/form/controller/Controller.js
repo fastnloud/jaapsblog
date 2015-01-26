@@ -224,9 +224,6 @@ Ext.define('App.form.controller.Controller', {
                         'failure' : function() {
                             store.rejectChanges();
                         },
-                        'success' : function() {
-                            store.reload();
-                        },
                         'callback' : function() {
                             store.resumeAutoSync();
                         }
