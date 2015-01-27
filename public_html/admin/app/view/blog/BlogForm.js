@@ -125,7 +125,7 @@ Ext.define('App.view.blog.BlogForm', {
                 columns : [
                     {
                         text        : 'Name',
-                        flex        : 2,
+                        flex        : 1,
                         dataIndex   : 'name',
                         editor      : 'textfield'
                     },
@@ -133,18 +133,18 @@ Ext.define('App.view.blog.BlogForm', {
                         text        : 'Comment',
                         dataIndex   : 'comment',
                         editor      : 'textarea',
-                        flex        : 5,
+                        width       : 200,
                         hideable    : false
                     },
                     {
                         text        : 'Date',
-                        flex        : 3,
+                        width       : 120,
                         dataIndex   : 'timestamp',
                         editor      : 'textfield'
                     },
                     {
                         text        : 'Admin',
-                        flex        : 2,
+                        width       : 60,
                         dataIndex   : 'is_admin',
                         editor      : 'checkbox'
                     }

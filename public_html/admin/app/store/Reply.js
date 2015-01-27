@@ -18,6 +18,7 @@ Ext.define('App.store.Reply', {
         'id',
         'name',
         'comment',
+        'is_admin',
         {
             name    : 'timestamp',
             mapping : 'timestamp.date'

@@ -84,34 +84,33 @@ Ext.define('App.view.site.SiteForm', {
                 columns : [
                     {
                         text        : 'Titel',
-                        flex        : 2,
+                        flex        : 1,
                         dataIndex   : 'title',
                         editor      : 'textfield'
                     },
                     {
                         text        : 'Content',
                         dataIndex   : 'content',
-                        editor      : {
+                        width       : 200,
+
+                        editor : {
                             xtype          : 'htmleditor',
                             enableFont     : false,
                             height         : 125
-                        },
-                        flex        : 6,
-                        hideable    : false
+                        }
                     },
                     {
                         text        : 'Priority',
                         dataIndex   : 'priority',
                         editor      : 'numberfield',
-                        flex        : 2,
-                        hideable    : false
+                        width       : 70
                     },
                     {
                         text        : 'Status',
                         dataIndex   : 'status',
-                        flex        : 2,
-                        hideable    : false,
-                        editor      : {
+                        width       : 70,
+
+                        editor : {
                             xtype           : 'combobox',
                             name            : 'status',
                             store           : 'Status',
@@ -119,6 +118,7 @@ Ext.define('App.view.site.SiteForm', {
                             valueField      : 'id',
                             displayField    : 'label'
                         },
+
                         renderer : function(value) {
                             return App.global.Function.storeRenderer(value, 'Status', 'label');
                         }
@@ -138,13 +138,13 @@ Ext.define('App.view.site.SiteForm', {
                 columns : [
                     {
                         text        : 'Label',
-                        flex        : 2,
+                        flex        : 1,
                         dataIndex   : 'label',
                         editor      : 'textfield'
                     },
                     {
                         text        : 'Href',
-                        flex        : 2,
+                        width       : 130,
                         dataIndex   : 'href',
                         editor      : 'textfield'
                     },
@@ -152,22 +152,20 @@ Ext.define('App.view.site.SiteForm', {
                         text        : 'Priority',
                         dataIndex   : 'priority',
                         editor      : 'numberfield',
-                        flex        : 2,
-                        hideable    : false
+                        width       : 70
                     },
                     {
                         text        : 'Column',
                         dataIndex   : 'footer_column',
                         editor      : 'numberfield',
-                        flex        : 2,
-                        hideable    : false
+                        width       : 70
                     },
                     {
                         text        : 'Status',
                         dataIndex   : 'status',
-                        flex        : 2,
-                        hideable    : false,
-                        editor      : {
+                        width       : 70,
+
+                        editor : {
                             xtype           : 'combobox',
                             name            : 'status',
                             store           : 'Status',
@@ -175,6 +173,7 @@ Ext.define('App.view.site.SiteForm', {
                             valueField      : 'id',
                             displayField    : 'label'
                         },
+
                         renderer : function(value) {
                             return App.global.Function.storeRenderer(value, 'Status', 'label');
                         }
