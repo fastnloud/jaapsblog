@@ -6,7 +6,7 @@ Ext.define('App.grid.Child', {
     maxHeight           : 400,
 
     plugins : {
-        ptype           : 'rowediting',
+        ptype           : 'cellediting',
         clicksToEdit    : 2
     },
 
