@@ -26,7 +26,10 @@ Ext.define('App.form.controller.Controller', {
     },
 
     removeContainer : function() {
-        this.getContainer().close();
+        if (this.getContainer()) {
+            this.getContainer().close();
+        }
+
         this.setContainer(null);
     },
 
@@ -49,7 +52,7 @@ Ext.define('App.form.controller.Controller', {
 
                     if (Ext.isDefined(item)) {
                         if (item.text.match(/Add Record/)) {
-                            me.onChildGridCreateClick(store);
+                            me.onChildGridCreateClick(store, grid);
                         } else if (item.text.match(/Delete Selection/)) {
                             me.onChildGridDeleteClick(store, grid)
                         }
@@ -57,6 +60,18 @@ Ext.define('App.form.controller.Controller', {
                 }
             }
         });
+    },
+
+    syncStoreId : function (batch, store) {
+        var id   = batch.getOperations()[0].getProxy().getReader().rawData.id,
+            copy = null;
+
+        store.last().data.id = id;
+        copy = store.last().copy();
+
+        store.last().drop();
+        store.add(copy);
+        store.commitChanges();
     },
 
     onMainGridSelect : function() {
@@ -177,8 +192,9 @@ Ext.define('App.form.controller.Controller', {
         this.getChildGridContextMenu(grid).showAt(e.getXY()).focus(null, true);
     },
 
-    onChildGridCreateClick : function(store) {
-        var filters     = store.getFilters(),
+    onChildGridCreateClick : function(store, grid) {
+        var me          = this,
+            filters     = store.getFilters(),
             data        = {};
 
         if (filters.length > 0) {
@@ -192,7 +208,6 @@ Ext.define('App.form.controller.Controller', {
                 });
             }
 
-            data['id'] = '';
             data[filters.items[0].getId()] = filters.items[0].getValue();
             data[filters.items[0].getId().replace('_id','')]    = filters.items[0].getValue();
 
@@ -202,8 +217,8 @@ Ext.define('App.form.controller.Controller', {
                 'failure' : function() {
                     store.rejectChanges();
                 },
-                'success' : function() {
-                    store.reload();
+                'success' : function(batch) {
+                    me.syncStoreId(batch, store);
                 },
                 'callback' : function() {
                     store.resumeAutoSync();
@@ -258,9 +273,9 @@ Ext.define('App.form.controller.Controller', {
                         store.rejectChanges();
                     });
                 },
-                'success' : function(record) {
+                'success' : function(batch) {
                     if (formContainer.createRecord) {
-                        store.reload();
+                        me.syncStoreId(batch, store);
                         me.onCancelClick();
                     }
                 }
