@@ -10,7 +10,8 @@ Ext.define('App.Application', {
         'App.form.Tab',
         'App.form.controller.Controller',
         'App.form.field.ComboBox',
-        'App.form.field.Date'
+        'App.form.field.Date',
+        'App.form.field.HtmlCellEditor'
     ],
 
     stores: [

@@ -94,17 +94,7 @@ Ext.define('App.view.site.SiteForm', {
                         width       : 200,
 
                         editor : {
-                            xtype          : 'htmleditor',
-                            enableFont     : false,
-                            enableColors   : false,
-                            height         : 125,
-
-                            listeners : {
-                                resize : function(editor) {
-                                    editor.container.setLeft(0);
-                                    editor.container.setSize('100%', editor.getHeight())
-                                    editor.setSize(editor.container.getWidth(), editor.getHeight());                               }
-                            }
+                            xtype : 'htmlcelleditor'
                         }
                     },
                     {
