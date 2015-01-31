@@ -2,7 +2,7 @@
 
 namespace Admin\Controller;
 
-use Doctrine\Common\Util\Debug;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query;
 use Zend\Authentication\AuthenticationService as AuthService;
 use Application\Entity\AbstractEntityService as EntityService;
@@ -153,6 +153,13 @@ class AdminController extends AbstractActionController
             if ($this->getEntityService()->validateEntity($entity)) {
                 $success = $this->getEntityService()
                                 ->saveEntity($entity);
+
+                if (false !== $success) {
+                    return new JsonModel(array(
+                        'success'   => $success,
+                        'id'        => $entity->getId()
+                    ));
+                }
             }
         }
 
@@ -180,17 +187,21 @@ class AdminController extends AbstractActionController
         $jsonObject = json_decode($this->params()->fromPost('data'));
 
         if (isset($jsonObject->id)) {
-            $record = $this->getEntityService()
-                           ->fetchEntity($jsonObject->id);
+            try {
+                $record = $this->getEntityService()
+                               ->fetchEntity($jsonObject->id);
 
-            if ($record) {
-                $entity = $this->getEntityService()
-                               ->mergeEntityWithJsonObject($record, $jsonObject);
+                if ($record) {
+                    $entity = $this->getEntityService()
+                                   ->mergeEntityWithJsonObject($record, $jsonObject);
 
-                if ($this->getEntityService()->validateEntity($entity)) {
-                    $success = $this->getEntityService()
-                                    ->saveEntity($entity, true);
+                    if ($this->getEntityService()->validateEntity($entity)) {
+                        $success = $this->getEntityService()
+                                        ->saveEntity($entity, true);
+                    }
                 }
+            } catch (NoResultException $e) {
+                $success = false;
             }
         }
 
@@ -227,12 +238,17 @@ class AdminController extends AbstractActionController
         if (!empty($jsonObjectCollection)) {
             foreach ($jsonObjectCollection as $jsonObject) {
                 if (isset($jsonObject->id)) {
-                    $entity  = $this->getEntityService()
-                                    ->fetchEntity($jsonObject->id);
+                    try {
+                        $entity  = $this->getEntityService()
+                                        ->fetchEntity($jsonObject->id);
 
-                    if ($entity) {
-                        $this->getEntityService()
-                             ->destroyEntity($entity);
+                        if ($entity) {
+                            $this->getEntityService()
+                                 ->destroyEntity($entity);
+                        }
+                    } catch (NoResultException $e) {
+                        $success = false;
+                        break;
                     }
 
                     $success = true;
