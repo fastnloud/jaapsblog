@@ -70,34 +70,29 @@ Ext.define('App.view.blog.BlogForm', {
                         valueField      : 'id',
                         displayField    : 'label',
                         allowBlank      : false
+                    }
+                ]
+            },
+            {
+                title       : 'SEO',
+                xtype       : 'formtab',
+
+                items: [
+                    {
+                        fieldLabel  : 'Title',
+                        name        : 'meta_title',
+                        bind        : '{record.meta_title}'
                     },
                     {
-                        xtype       : 'fieldset',
-                        defaultType : 'textfield',
-                        title       : 'SEO',
-
-                        layout : {
-                            type: 'vbox'
-                        },
-
-                        items : [
-                            {
-                                fieldLabel  : 'Title',
-                                name        : 'meta_title',
-                                bind        : '{record.meta_title}'
-                            },
-                            {
-                                xtype       : 'textarea',
-                                fieldLabel  : 'Description',
-                                name        : 'meta_description',
-                                bind        : '{record.meta_description}'
-                            },
-                            {
-                                fieldLabel  : 'Keywords',
-                                name        : 'meta_keywords',
-                                bind        : '{record.meta_keywords}'
-                            }
-                        ]
+                        xtype       : 'textarea',
+                        fieldLabel  : 'Description',
+                        name        : 'meta_description',
+                        bind        : '{record.meta_description}'
+                    },
+                    {
+                        fieldLabel  : 'Keywords',
+                        name        : 'meta_keywords',
+                        bind        : '{record.meta_keywords}'
                     }
                 ]
             },
