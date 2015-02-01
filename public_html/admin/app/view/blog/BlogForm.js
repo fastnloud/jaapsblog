@@ -62,17 +62,6 @@ Ext.define('App.view.blog.BlogForm', {
                     },
                     {
                         xtype           : 'combobox',
-                        fieldLabel      : 'Category',
-                        name            : 'category',
-                        bind            : '{record.category}',
-                        store           : 'Category',
-                        queryMode       : 'local',
-                        valueField      : 'id',
-                        displayField    : 'label',
-                        allowBlank      : false
-                    },
-                    {
-                        xtype           : 'combobox',
                         fieldLabel      : 'Status',
                         name            : 'status',
                         bind            : '{record.status}',

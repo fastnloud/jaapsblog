@@ -4,7 +4,6 @@ namespace Blog\Entity;
 
 use Application\Entity\AbstractEntity;
 use Application\Entity\Exception\EntityException;
-use Category\Entity\Category;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Reply\Entity\Reply;
@@ -76,12 +75,6 @@ class Blog extends AbstractEntity
     protected $meta_keywords;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category\Entity\Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
-     */
-    protected $category;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
@@ -99,7 +92,6 @@ class Blog extends AbstractEntity
     public function __construct()
     {
         $this->status   = new Status();
-        $this->category = new Category();
         $this->reply    = new ArrayCollection();
         $this->date     = new \DateTime();
     }
@@ -118,27 +110,6 @@ class Blog extends AbstractEntity
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    /**
-     * @param Category $category
-     * @throws \Application\Entity\Exception\EntityException
-     */
-    public function setCategory($category)
-    {
-        if (!$category instanceof Category) {
-            throw new EntityException('Invalid object!');
-        }
-
-        $this->category = $category;
-    }
-
-    /**
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 
     /**

@@ -20,10 +20,9 @@ class BlogRepository extends AbstractEntityRepository
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('blog', 'status', 'category', 'reply')
+        $qb->select('blog', 'status', 'reply')
            ->from('Blog\Entity\Blog', 'blog')
            ->join('blog.status', 'status')
-           ->join('blog.category', 'category')
            ->leftJoin('blog.reply', 'reply');
 
         return $qb->getQuery()
@@ -39,10 +38,9 @@ class BlogRepository extends AbstractEntityRepository
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('blog', 'status', 'category', 'reply')
+        $qb->select('blog', 'status', 'reply')
            ->from('Blog\Entity\Blog', 'blog')
            ->join('blog.status', 'status')
-           ->join('blog.category', 'category')
            ->leftJoin('blog.reply', 'reply')
            ->where('blog.id = :id')
            ->setParameter(':id', $id);

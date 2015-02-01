@@ -16,7 +16,6 @@ Ext.define('App.Application', {
 
     stores: [
         'Status',
-        'Category',
         'Reply',
         'Banner',
         'Footer'

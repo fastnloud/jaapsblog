@@ -11,7 +11,6 @@ return array(
         'Page',
         'Blog',
         'Status',
-        'Category',
         'Site',
         'Reply',
         'Banner',
