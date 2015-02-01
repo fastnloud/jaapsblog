@@ -1,5 +1,9 @@
-.child-grid .x-grid-item-selected:first-child {
+.child-grid .x-grid-item-selected {
     margin: 0 0 90px 0;
+}
+
+.child-grid .x-grid-item-selected + .x-grid-item-selected {
+    margin: 0;
 }
 
 .child-grid .x-grid-cell-inner {
