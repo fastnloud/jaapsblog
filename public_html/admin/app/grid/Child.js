@@ -7,7 +7,7 @@ Ext.define('App.grid.Child', {
 
     plugins : {
         ptype           : 'rowediting',
-        clicksToEdit    : 1
+        clicksToEdit    : 2
     },
 
     listeners : {
