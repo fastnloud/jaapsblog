@@ -1,0 +1,16 @@
+.child-grid .x-grid-item-selected {
+    margin: 0 0 90px 0;
+}
+
+.child-grid .x-grid-item-selected + .x-grid-item-selected {
+    margin: 0;
+}
+
+.child-grid .x-grid-cell-inner {
+    max-height: 18px;
+    font-size: inherit!important;
+}
+
+.child-grid .x-grid-cell-inner * {
+    font-size: inherit!important;
+}
