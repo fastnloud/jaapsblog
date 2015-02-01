@@ -100,11 +100,11 @@ class Reply extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getId()
     {
-        return $this->id;
+        return (int) $this->id;
     }
 
     /**

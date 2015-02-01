@@ -70,6 +70,14 @@ class Footer extends AbstractEntity
     }
 
     /**
+     * @return int
+     */
+    public function getId()
+    {
+        return (int) $this->id;
+    }
+
+    /**
      * @param Site $site
      * @throws \Application\Entity\Exception\EntityException
      */
