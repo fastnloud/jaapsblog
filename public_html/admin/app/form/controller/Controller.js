@@ -26,10 +26,7 @@ Ext.define('App.form.controller.Controller', {
     },
 
     removeContainer : function() {
-        if (this.getContainer()) {
-            this.getContainer().close();
-        }
-
+        this.getContainer().close();
         this.setContainer(null);
     },
 
@@ -239,18 +236,23 @@ Ext.define('App.form.controller.Controller', {
     },
 
     onSyncAndCloseClick : function() {
-        if (this.onSyncClick()) {
-            this.onCancelClick();
-        }
+        this.sync(true);
     },
 
-    onSyncClick : function() {
+    onSyncClick : function(closeWindow) {
+        this.sync(false);
+    },
+
+    onCancelClick : function() {
+        this.removeContainer();
+    },
+
+    sync : function(closeWindow) {
         var me            = this,
             formContainer = me.getContainer(),
             form          = formContainer.down('form'),
             store         = formContainer.lookupViewModel(true).getStore(this.getStore()),
-            values        = form.getValues(),
-            success       = false;
+            values        = form.getValues();
 
         if (form.isValid()) {
             if (formContainer.createRecord) {
@@ -264,21 +266,13 @@ Ext.define('App.form.controller.Controller', {
                     });
                 },
                 'success' : function(batch) {
-                    if (formContainer.createRecord) {
+                    if (closeWindow || formContainer.createRecord) {
                         store.reload();
                         me.onCancelClick();
                     }
                 }
             });
-
-            return true;
         }
-
-        return false;
-    },
-
-    onCancelClick : function() {
-        this.removeContainer();
     }
 
 });
