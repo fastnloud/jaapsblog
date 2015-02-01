@@ -51,18 +51,6 @@ return array(
                         ),
                     ),
                 ),
-                'category' => array(
-                    'required' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'EntityValidatorRecordExists',
-                            'options' => array(
-                                'repository' => 'Category\Entity\Category',
-                                'field'      => 'id'
-                            )
-                        ),
-                    ),
-                ),
                 'slug' => array(
                     'required'   => true,
                     'validators' => array(
