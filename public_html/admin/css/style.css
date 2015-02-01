@@ -6,11 +6,15 @@
     margin: 0;
 }
 
-.child-grid .x-grid-cell-inner {
-    max-height: 18px;
+.child-grid .x-grid-cell {
+    max-height: 18px!important;
     font-size: inherit!important;
 }
 
-.child-grid .x-grid-cell-inner * {
+.child-grid .x-grid-cell + .x-grid-cell .x-grid-cell-inner * {
+    margin: 0!important;
+    padding: 0!important;
+    line-height: inherit!important;
     font-size: inherit!important;
+    display: inline!important;
 }
