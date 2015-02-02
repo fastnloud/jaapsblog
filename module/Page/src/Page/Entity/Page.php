@@ -43,6 +43,16 @@ class Page extends AbstractEntity
     protected $slug;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $priority = 0;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $is_visible = 0;
+
+    /**
      * @ORM\Column(type="string", nullable=true, length=80)
      */
     protected $meta_title;
@@ -210,6 +220,38 @@ class Page extends AbstractEntity
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param int $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = (int) $priority;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPriority()
+    {
+        return (int) $this->priority;
+    }
+
+    /**
+     * @param int $is_visible
+     */
+    public function setIsVisible($is_visible)
+    {
+        $this->is_visible = (int) $is_visible;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIsVisible()
+    {
+        return (int) $this->is_visible;
     }
 
 }

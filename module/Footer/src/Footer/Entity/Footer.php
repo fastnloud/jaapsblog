@@ -41,7 +41,7 @@ class Footer extends AbstractEntity
     /**
      * @ORM\Column(type="integer")
      */
-    protected $priority;
+    protected $priority = 0;
 
     /**
      * @ORM\Column(type="integer")

@@ -41,6 +41,11 @@ Ext.define('App.view.page.Page',{
                     renderer    : function(value) {
                         return App.global.Function.storeRenderer(value, 'Status', 'label');
                     }
+                },
+                {
+                    text        : 'Priority',
+                    flex        : 1,
+                    dataIndex   : 'priority'
                 }
             ]
         }

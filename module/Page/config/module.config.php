@@ -33,6 +33,9 @@ return array(
                 'label' => array(
                     'required' => true
                 ),
+                'priority' => array(
+                    'required' => true
+                ),
                 'status' => array(
                     'required' => true,
                     'validators' => array(

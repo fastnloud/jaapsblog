@@ -7,7 +7,7 @@ Ext.define('App.view.page.PageModel', {
             autoLoad : true,
 
             sorters : [{
-                property  : 'id',
+                property  : 'priority',
                 direction : 'ASC'
             }],
 
@@ -20,7 +20,8 @@ Ext.define('App.view.page.PageModel', {
                     sortType : function(value) {
                         return value.label;
                     }
-                }
+                },
+                'priority'
             ],
 
             proxy : {

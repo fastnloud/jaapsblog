@@ -27,7 +27,8 @@ Ext.define('App.view.page.PageForm', {
                     {
                         fieldLabel  : 'Slug',
                         name        : 'slug',
-                        bind        : '{record.slug}'
+                        bind        : '{record.slug}',
+                        allowBlank  : false
                     },
                     {
                         xtype       : 'htmleditor',
@@ -40,15 +41,41 @@ Ext.define('App.view.page.PageForm', {
                         }
                     },
                     {
-                        xtype           : 'combobox',
-                        fieldLabel      : 'Status',
-                        name            : 'status',
-                        bind            : '{record.status}',
-                        store           : 'Status',
-                        queryMode       : 'local',
-                        valueField      : 'id',
-                        displayField    : 'label',
-                        allowBlank      : false
+                        xtype       : 'numberfield',
+                        fieldLabel  : 'Priority',
+                        name        : 'priority',
+                        bind        : '{record.priority}',
+                        allowBlank  : false
+                    },
+                    {
+                        xtype   :'fieldset',
+                        layout  :'table',
+                        margin  : 0,
+                        padding : 0,
+                        border  : 0,
+
+                        items : [
+                            {
+                                xtype           : 'combobox',
+                                fieldLabel      : 'Status',
+                                name            : 'status',
+                                bind            : '{record.status}',
+                                store           : 'Status',
+                                queryMode       : 'local',
+                                valueField      : 'id',
+                                displayField    : 'label',
+                                allowBlank      : false
+                            },
+                            {
+                                xtype          : 'checkbox',
+                                name           : 'is_visible',
+                                bind           : '{record.is_visible}',
+                                boxLabel       : 'Visible',
+                                padding        : '0 0 0 10px;',
+                                hideLabel      : true,
+                                allowBlank     : false
+                            }
+                        ]
                     }
                 ]
             },
