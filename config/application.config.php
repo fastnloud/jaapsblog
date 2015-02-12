@@ -15,6 +15,7 @@ return array(
         'Reply',
         'Banner',
         'Footer',
+        'Route',
         'Application',
     ),
 

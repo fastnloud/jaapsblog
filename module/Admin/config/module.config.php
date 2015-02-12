@@ -47,6 +47,13 @@ return array(
             ),
 
             // root tables
+            'route' => array(
+                'service' => 'RouteService',
+                'entity'  => 'Route\Entity\Route',
+                'actions' => array(
+                    'read'
+                )
+            ),
             'status' => array(
                 'service' => 'StatusService',
                 'entity'  => 'Status\Entity\Status',

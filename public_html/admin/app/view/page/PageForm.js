@@ -67,6 +67,19 @@ Ext.define('App.view.page.PageForm', {
                                 allowBlank      : false
                             },
                             {
+                                xtype           : 'combobox',
+                                name            : 'route',
+                                bind            : '{record.route}',
+                                store           : 'Route',
+                                queryMode       : 'local',
+                                valueField      : 'id',
+                                displayField    : 'label',
+                                padding         : '0 0 0 10px;',
+                                width           : 100,
+                                allowBlank      : false,
+                                hideLabel       : true,
+                            },
+                            {
                                 xtype          : 'checkbox',
                                 name           : 'is_visible',
                                 bind           : '{record.is_visible}',

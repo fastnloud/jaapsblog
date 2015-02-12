@@ -48,6 +48,18 @@ return array(
                         ),
                     ),
                 ),
+                'route' => array(
+                    'required' => true,
+                    'validators' => array(
+                        array(
+                            'name' => 'EntityValidatorRecordExists',
+                            'options' => array(
+                                'repository' => 'Route\Entity\Route',
+                                'field'      => 'id'
+                            )
+                        ),
+                    ),
+                ),
                 'slug' => array(
                     'required'   => true,
                     'validators' => array(
