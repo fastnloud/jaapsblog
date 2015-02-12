@@ -20,9 +20,10 @@ class PageRepository extends AbstractEntityRepository
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('page', 'status')
+        $qb->select('page', 'status', 'route')
            ->from('Page\Entity\Page', 'page')
-           ->join('page.status', 'status');
+           ->join('page.status', 'status')
+           ->join('page.route', 'route');
 
         return $qb->getQuery()
                   ->getResult($this->getQueryHydrator());
@@ -37,9 +38,10 @@ class PageRepository extends AbstractEntityRepository
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('page', 'status')
+        $qb->select('page', 'status', 'route')
            ->from('Page\Entity\Page', 'page')
            ->join('page.status', 'status')
+           ->join('page.route', 'route')
            ->where('page.id = :id')
            ->setParameter(':id', $id);
 
@@ -63,6 +65,24 @@ class PageRepository extends AbstractEntityRepository
 
         return $qb->getQuery()
                   ->getSingleResult($this->getQueryHydrator());
+    }
+
+    /**
+     * @return array
+     */
+    public function fetchPages()
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('page', 'route')
+           ->from('Page\Entity\Page', 'page')
+           ->join('page.route', 'route')
+           ->where('page.status = :status')
+           ->setParameter(':status', 1);
+
+        return $qb->getQuery()
+                  ->getResult($this->getQueryHydrator());
     }
 
 }

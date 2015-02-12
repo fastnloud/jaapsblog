@@ -5,6 +5,7 @@ namespace Page\Entity;
 use Application\Entity\AbstractEntity;
 use Application\Entity\Exception\EntityException;
 use Doctrine\ORM\Mapping as ORM;
+use Route\Entity\Route;
 use Status\Entity\Status;
 
 /**
@@ -74,11 +75,18 @@ class Page extends AbstractEntity
     protected $status;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Route\Entity\Route")
+     * @ORM\JoinColumn(name="route_id", referencedColumnName="id", nullable=false)
+     */
+    protected $route;
+
+    /**
      * Init default values.
      */
     public function __construct()
     {
         $this->status = new Status();
+        $this->route  = new Route();
     }
 
     /**
@@ -220,6 +228,27 @@ class Page extends AbstractEntity
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param Route $route
+     * @throws \Application\Entity\Exception\EntityException
+     */
+    public function setRoute($route)
+    {
+        if (!$route instanceof Route) {
+            throw new EntityException('Invalid object!');
+        }
+
+        $this->route = $route;
+    }
+
+    /**
+     * @return Route
+     */
+    public function getRoute()
+    {
+        return $this->route;
     }
 
     /**

@@ -9,6 +9,9 @@ return array(
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator',
+        ),
+        'factories' => array(
+            'Navigation' => 'Application\Navigation\NavigationFactory',
         )
     ),
     'validators' => array(

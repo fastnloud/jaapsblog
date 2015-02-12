@@ -49,4 +49,23 @@ class BlogRepository extends AbstractEntityRepository
                   ->getSingleResult($this->getQueryHydrator());
     }
 
+    /**
+     * @return array
+     */
+    public function fetchBlogItems()
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('blog', 'status', 'reply')
+           ->from('Blog\Entity\Blog', 'blog')
+           ->join('blog.status', 'status')
+           ->leftJoin('blog.reply', 'reply')
+           ->where('blog.status = :status')
+           ->setParameter(':status', 1);
+
+        return $qb->getQuery()
+                  ->getResult($this->getQueryHydrator());
+    }
+
 }
