@@ -97,7 +97,8 @@ return array(
                         'slug'   => '[a-zA-Z0-9_-]+',
                     ),
                     'defaults' => array(
-                        'action' => 'page'
+                        'controller' => 'Page\Controller\Page',
+                        'action'     => 'page'
                     ),
                 ),
             ),
