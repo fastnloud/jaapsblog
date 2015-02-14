@@ -55,7 +55,7 @@ class Navigation extends DefaultNavigationFactory
                                 $navigation[$key]['pages'][] = array(
                                     'blog_id' => $blogItem->getId(),
                                     'label'   => $blogItem->getTitle(),
-                                    'route'   => $route,
+                                    'route'   => $route . '/item',
                                     'params'  => array(
                                         'slug' => $blogItem->getSlug()
                                     )
