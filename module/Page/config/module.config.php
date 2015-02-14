@@ -84,10 +84,23 @@ return array(
                     'route'    => '/',
                     'defaults' => array(
                         'controller' => 'Page\Controller\Page',
+                        'slug'       => 'home',
                         'action'     => 'index'
                     ),
                 ),
-            )
+            ),
+            'page' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/[:slug].html',
+                    'constraints' => array(
+                        'slug'   => '[a-zA-Z0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'action' => 'page'
+                    ),
+                ),
+            ),
         ),
     ),
     'view_manager' => array(

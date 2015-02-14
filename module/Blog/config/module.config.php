@@ -75,7 +75,23 @@ return array(
                     'route'    => '/blog',
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Blog',
-                        'action'     => 'index'
+                        'action'     => 'index',
+                        'slug'       => 'blog'
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'item' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/[:slug].html',
+                            'constraints' => array(
+                                'slug' => '[a-zA-Z0-9_-]+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'blog-item',
+                            ),
+                        ),
                     ),
                 ),
             )
