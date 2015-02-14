@@ -34,4 +34,16 @@ class Page extends AbstractEntityService
                     ->fetchEntity($id);
     }
 
+    /**
+     * @param string $slug
+     * @return mixed
+     */
+    public function fetchPageBySlug($slug)
+    {
+        return $this->getEntityManager()
+                    ->getRepository('Page\Entity\Page')
+                    ->setQueryHydrator($this->getQueryHydrator())
+                    ->fetchPageBySlug($slug);
+    }
+
 }

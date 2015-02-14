@@ -2,7 +2,9 @@
 
 namespace Page\Controller;
 
+use Doctrine\ORM\NoResultException;
 use Page\Service\Page as PageService;
+use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -19,13 +21,40 @@ class PageController extends AbstractActionController
     protected $pageService;
 
     /**
-     * Index.
+     * Homepage.
      *
      * @return array|ViewModel
      */
     public function indexAction()
     {
-        return new ViewModel();
+        return $this->forward()->dispatch('Page\Controller\Page',
+            array(
+                'action' => 'page',
+                'slug'   => $this->params()->fromRoute('slug')
+            )
+        );
+    }
+
+    /**
+     * Page.
+     *
+     * @return ViewModel
+     */
+    public function pageAction()
+    {
+        try {
+            $page = $this->getPageService()
+                         ->fetchPageBySlug($this->params()->fromRoute('slug'));
+        } catch (NoResultException $page) {
+            $this->getResponse()
+                 ->setStatusCode(Response::STATUS_CODE_404);
+
+            return false;
+        }
+
+        return new ViewModel(array(
+            'page' => $page
+        ));
     }
 
     /**
