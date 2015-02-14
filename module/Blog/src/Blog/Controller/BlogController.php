@@ -19,11 +19,21 @@ class BlogController extends AbstractActionController
     protected $blogService;
 
     /**
-     * Index.
+     * Blog index.
      *
      * @return array|ViewModel
      */
     public function indexAction()
+    {
+        return new ViewModel();
+    }
+
+    /**
+     * Blog item.
+     *
+     * @return ViewModel
+     */
+    public function blogItemAction()
     {
         return new ViewModel();
     }
