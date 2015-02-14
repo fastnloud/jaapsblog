@@ -19,9 +19,8 @@ class NavigationFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $navigation = new Navigation();
-        $navigation->createService($serviceLocator);
 
-        return $navigation;
+        return $navigation->createService($serviceLocator);
     }
 
 }
