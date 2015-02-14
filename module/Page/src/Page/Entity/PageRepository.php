@@ -79,7 +79,8 @@ class PageRepository extends AbstractEntityRepository
            ->from('Page\Entity\Page', 'page')
            ->join('page.route', 'route')
            ->where('page.status = :status')
-           ->setParameter(':status', 1);
+           ->setParameter(':status', 1)
+           ->orderBy('page.priority', 'ASC');
 
         return $qb->getQuery()
                   ->getResult($this->getQueryHydrator());
