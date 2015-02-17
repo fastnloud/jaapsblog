@@ -1,7 +1,6 @@
+<?php $this->headTitle()->append($page->getMetaTitle()); ?>
+
 <article>
-
     <h1><?php echo $this->escapeHtml($page->getTitle()); ?></h1>
-
     <?php echo $page->getContent(); ?>
-
 </article>
