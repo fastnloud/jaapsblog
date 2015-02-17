@@ -57,7 +57,7 @@ class Navigation extends DefaultNavigationFactory
                                     'label'   => $blogItem->getTitle(),
                                     'route'   => $route . '/item',
                                     'params'  => array(
-                                        'slug' => $blogItem->getSlug()
+                                        'item' => $blogItem->getSlug()
                                     )
                                 );
                             }
