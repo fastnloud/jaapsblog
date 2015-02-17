@@ -20,10 +20,6 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-
-        $e->getApplication()->getEventManager()->attach($e::EVENT_DISPATCH, function($e) {
-            $e->getApplication()->getServiceManager()->get('Navigation');
-        }, 900);
     }
 
     /**
