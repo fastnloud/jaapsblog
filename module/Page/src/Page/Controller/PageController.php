@@ -45,7 +45,7 @@ class PageController extends AbstractActionController
         try {
             $page = $this->getPageService()
                          ->fetchPageBySlug($this->params()->fromRoute('slug'));
-        } catch (NoResultException $page) {
+        } catch (NoResultException $e) {
             $this->getResponse()
                  ->setStatusCode(Response::STATUS_CODE_404);
 
