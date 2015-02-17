@@ -70,7 +70,7 @@ return array(
     'router' => array(
         'routes' => array(
             'blog' => array(
-                'type' => 'literal',
+                'type' => 'segment',
                 'options' => array(
                     'route'    => '/blog',
                     'defaults' => array(
@@ -84,9 +84,9 @@ return array(
                     'item' => array(
                         'type' => 'segment',
                         'options' => array(
-                            'route' => '/[:slug].html',
+                            'route' => '/[:item].html',
                             'constraints' => array(
-                                'slug' => '[a-zA-Z0-9_-]+',
+                                'item' => '[a-zA-Z0-9_-]+',
                             ),
                             'defaults' => array(
                                 'action' => 'blog-item',

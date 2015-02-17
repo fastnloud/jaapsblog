@@ -1,0 +1,21 @@
+<?php $this->headTitle()->append($blogItem->getMetaTitle())->append($page->getMetaTitle()); ?>
+
+<article>
+    <h1><?php echo $this->escapeHtml($blogItem->getTitle()); ?></h1>
+    <?php echo $blogItem->getContent(); ?>
+
+    <?php if($blogItem->getReply()->count() > 0): ?>
+        <?php foreach($blogItem->getReply() as $reply): ?>
+            <article>
+                <div><?php echo $reply->getName(); ?></div>
+                <div><?php echo $reply->getComment(); ?></div>
+            </article>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</article>
+
+<div>Leave a comment</div>
+
+<div class="reply-form">
+    <div id="reply-form"></div>
+</div>

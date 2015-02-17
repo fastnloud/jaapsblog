@@ -2,7 +2,10 @@
 
 namespace Blog\Controller;
 
+use Doctrine\ORM\NoResultException;
+use Page\Service\Page as PageService;
 use Blog\Service\Blog as BlogService;
+use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -12,6 +15,11 @@ use Zend\View\Model\ViewModel;
  */
 class BlogController extends AbstractActionController
 {
+
+    /**
+     * @var PageService
+     */
+    protected $pageService;
 
     /**
      * @var BlogService
@@ -25,7 +33,23 @@ class BlogController extends AbstractActionController
      */
     public function indexAction()
     {
-        return new ViewModel();
+        try {
+            $page = $this->getPageService()
+                         ->fetchPageBySlug($this->params()->fromRoute('slug'));
+        } catch (NoResultException $e) {
+            $this->getResponse()
+                 ->setStatusCode(Response::STATUS_CODE_404);
+
+            return false;
+        }
+
+        $blogItems = $this->getBlogService()
+                          ->fetchBlogItems();
+
+        return new ViewModel(array(
+            'page'      => $page,
+            'blogItems' => $blogItems
+        ));
     }
 
     /**
@@ -35,7 +59,39 @@ class BlogController extends AbstractActionController
      */
     public function blogItemAction()
     {
-        return new ViewModel();
+        try {
+            $page = $this->getPageService()
+                         ->fetchPageBySlug($this->params()->fromRoute('slug'));
+
+            $blogItem = $this->getBlogService()
+                             ->fetchBlogItemBySlug($this->params()->fromRoute('item'));
+        } catch (NoResultException $e) {
+            $this->getResponse()
+                 ->setStatusCode(Response::STATUS_CODE_404);
+
+            return false;
+        }
+
+        return new ViewModel(array(
+            'page'     => $page,
+            'blogItem' => $blogItem
+        ));
+    }
+
+    /**
+     * @param \Page\Service\Page $pageService
+     */
+    public function setPageService(PageService $pageService)
+    {
+        $this->pageService = $pageService;
+    }
+
+    /**
+     * @return \Page\Service\Page
+     */
+    protected  function getPageService()
+    {
+        return $this->pageService;
     }
 
     /**

@@ -34,4 +34,27 @@ class Blog extends AbstractEntityService
                     ->fetchEntity($id);
     }
 
+    /**
+     * @return mixed
+     */
+    public function fetchBlogItems()
+    {
+        return $this->getEntityManager()
+                    ->getRepository('Blog\Entity\Blog')
+                    ->setQueryHydrator($this->getQueryHydrator())
+                    ->fetchBlogItems();
+    }
+
+    /**
+     * @param $slug
+     * @return mixed
+     */
+    public function fetchBlogItemBySlug($slug)
+    {
+        return $this->getEntityManager()
+                    ->getRepository('Blog\Entity\Blog')
+                    ->setQueryHydrator($this->getQueryHydrator())
+                    ->fetchBlogItemBySlug($slug);
+    }
+
 }

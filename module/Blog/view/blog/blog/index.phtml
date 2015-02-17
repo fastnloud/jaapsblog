@@ -1,0 +1,18 @@
+<?php $this->headTitle()->append($page->getMetaTitle()); ?>
+
+<?php if(count($this->blogItems)): ?>
+    <?php foreach($this->blogItems as $blogItem): ?>
+        <a href="<?php echo $this->url('blog/item', array('item' => $blogItem->getSlug())); ?>">
+            <article>
+                <h1><?php echo $this->escapeHtml($blogItem->getTitle()); ?></h1>
+                <h2><?php echo $this->escapeHtml($blogItem->getSubTitle()); ?></h2>
+                <p><?php echo $this->escapeHtml($blogItem->getLead()); ?></p>
+            </article>
+        </a>
+    <?php endforeach; ?>
+<?php else: ?>
+    <article>
+        <h1><?php echo $this->escapeHtml($page->getTitle()); ?></h1>
+        <p>No items found.</p>
+    </article>
+<?php endif; ?>
