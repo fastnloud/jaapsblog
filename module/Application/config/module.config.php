@@ -7,9 +7,6 @@ return array(
             'Zend\Log\LoggerAbstractServiceFactory',
             'Zend\Form\FormAbstractServiceFactory'
         ),
-        'aliases' => array(
-            'translator' => 'MvcTranslator',
-        ),
         'factories' => array(
             'Navigation' => 'Application\Navigation\NavigationFactory',
         )
@@ -18,16 +15,6 @@ return array(
         'abstract_factories' => array(
             'Application\Validator\Entity\EntityValidatorFactory'
         )
-    ),
-    'translator' => array(
-        'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
-            ),
-        ),
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
