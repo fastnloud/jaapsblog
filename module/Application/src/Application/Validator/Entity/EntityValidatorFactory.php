@@ -29,7 +29,7 @@ class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreatio
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        if(false !== stristr($requestedName, 'EntityValidator')) {
+        if (false !== stristr($requestedName, 'EntityValidator')) {
             $class = 'Application\Validator\Entity\\' . substr($requestedName, 15);
 
             if (class_exists($class)) {
