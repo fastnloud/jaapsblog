@@ -47,4 +47,26 @@ class SiteRepository extends AbstractEntityRepository
                   ->getSingleResult($this->getQueryHydrator());
     }
 
+    /**
+     * @param $domain
+     * @return mixed
+     */
+    public function fetchSiteByDomain($domain)
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('site', 'status', 'banner', 'footer')
+           ->from('Site\Entity\Site', 'site')
+           ->join('site.status', 'status')
+           ->join('site.banner', 'banner')
+           ->join('site.footer', 'footer')
+           ->where('site.status = :status AND site.domain = :domain')
+           ->setParameter(':status', 1)
+           ->setParameter(':domain', $domain);
+
+        return $qb->getQuery()
+                  ->getSingleResult($this->getQueryHydrator());
+    }
+
 }

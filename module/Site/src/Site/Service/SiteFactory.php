@@ -19,6 +19,7 @@ class SiteFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $service = new Site($serviceLocator);
+        $service->setRequest($serviceLocator->get('Request'));
 
         return $service;
     }

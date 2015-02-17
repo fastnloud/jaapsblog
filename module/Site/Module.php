@@ -2,12 +2,24 @@
 
 namespace Site;
 
+use Zend\Mvc\MvcEvent;
+
 /**
  * Class Module
  * @package Site
  */
 class Module
 {
+
+    /**
+     * @param MvcEvent $e
+     */
+    public function onBootstrap(MvcEvent $e)
+    {
+        $e->getApplication()->getEventManager()->attach($e::EVENT_DISPATCH, function($e) {
+            $e->getApplication()->getServiceManager()->get('SiteService')->load();
+        }, 900);
+    }
 
     /**
      * @return mixed
