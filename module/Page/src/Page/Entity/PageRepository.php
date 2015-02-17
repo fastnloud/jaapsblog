@@ -58,9 +58,11 @@ class PageRepository extends AbstractEntityRepository
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('page')
+        $qb->select('page', 'status')
            ->from('Page\Entity\Page', 'page')
-           ->where('page.slug = :slug')
+           ->join('page.status', 'status')
+           ->where('page.slug = :slug AND status = :status')
+           ->setParameter(':status', 1)
            ->setParameter(':slug', $slug);
 
         return $qb->getQuery()
