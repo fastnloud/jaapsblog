@@ -322,3 +322,11 @@ footer .share a:hover {
     background: #be005e;
     cursor: pointer;
 }
+
+@media only screen and (max-width : 800px) {
+
+}
+
+@media only screen and (max-width : 640px) {
+
+}
