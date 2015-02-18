@@ -25,6 +25,11 @@ class Site extends AbstractEntityService
      */
     private static $activeSite;
 
+    /**
+     * Load and fetch 'active' site by domain.
+     *
+     * @return void
+     */
     public function load()
     {
         if ($this->getRequest() instanceof Request) {
@@ -33,10 +38,13 @@ class Site extends AbstractEntityService
                          ->getHost();
 
             try {
-                $this->setActiveSite($this->fetchSiteByDomain($host));
+                $site = $this->fetchSiteByDomain($host);
             } catch(NoResultException $e) {
-                $this->setActiveSite(new SiteEntity());
+                $site = new SiteEntity();
+                $site->setTitle('Undefined App');
             }
+
+            $this->setActiveSite($site);
         }
     }
 
@@ -76,7 +84,7 @@ class Site extends AbstractEntityService
     }
 
     /**
-     * @param \Site\Entity\Site $site
+     * @param SiteEntity $activeSite
      */
     private function setActiveSite(SiteEntity $activeSite)
     {
@@ -84,7 +92,7 @@ class Site extends AbstractEntityService
     }
 
     /**
-     * @return \Site\Entity\Site
+     * @return SiteEntity
      */
     public static function getActiveSite()
     {
