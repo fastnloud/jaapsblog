@@ -46,6 +46,15 @@ class AdminController extends AbstractActionController
     }
 
     /**
+     * @return false
+     */
+    public function indexAction()
+    {
+        $this->layout('layout/admin');
+        return false;
+    }
+
+    /**
      * Fetch and validate table data.
      *
      * @return bool

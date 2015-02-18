@@ -78,18 +78,31 @@ return array(
     'router' => array(
         'routes' => array(
             'admin' => array(
-                'type'    => 'segment',
+                'type' => 'literal',
                 'options' => array(
-                    'route'    => '/admin/:table[/:action]',
-                    'constraints' => array(
-                        'table'  => '[a-z][a-z_]+',
-                        'action' => '(read|create|update|destroy)'
-                    ),
+                    'route' => '/admin/',
                     'defaults' => array(
                         'controller' => 'Admin\Controller\Admin',
-                        'action'     => 'read'
+                        'action'     => 'index',
                     ),
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'table' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/:table[/:action]',
+                            'constraints' => array(
+                                'table'  => '[a-z][a-z_]+',
+                                'action' => '(read|create|update|destroy)'
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Admin\Controller\Admin',
+                                'action'     => 'read'
+                            ),
+                        ),
+                    ),
+                )
             ),
         ),
     ),

@@ -1,0 +1,26 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+
+<head>
+
+        <meta charset="utf-8">
+
+        <?php echo $this->headTitle('Admin Panel'); ?>
+
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/admin/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/js/vendor/sencha/ext/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css') ?>
+
+        <?php echo $this->headScript()
+                        ->prependFile('app.js')
+                        ->prependFile($this->basePath() . '/js/vendor/sencha/ext/build/packages/ext-theme-classic/build/ext-theme-classic.js')
+                        ->prependFile($this->basePath() . '/js/vendor/sencha/ext/build/ext-all.js'); ?>
+
+    </head>
+
+    <body>
+
+    </body>
+
+</html>
