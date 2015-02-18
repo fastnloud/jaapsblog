@@ -2,9 +2,6 @@
 
 namespace Blog;
 
-use Blog\Controller\BlogController;
-use Zend\Mvc\Controller\ControllerManager;
-
 /**
  * Class Module
  * @package Blog
@@ -34,24 +31,6 @@ class Module
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
-        );
-    }
-
-    /**
-     * @return array
-     */
-    public function getControllerConfig()
-    {
-        return array(
-            'factories' => array(
-                'Blog\Controller\Blog' => function(ControllerManager $cm) {
-                    $controller = new BlogController();
-                    $controller->setBlogService($cm->getServiceLocator()->get('BlogService'));
-                    $controller->setPageService($cm->getServiceLocator()->get('PageService'));
-
-                    return $controller;
-                }
-            )
         );
     }
 

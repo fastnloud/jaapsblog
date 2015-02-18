@@ -2,9 +2,6 @@
 
 namespace Page;
 
-use Page\Controller\PageController;
-use Zend\Mvc\Controller\ControllerManager;
-
 /**
  * Class Module
  * @package Page
@@ -34,23 +31,6 @@ class Module
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
-        );
-    }
-
-    /**
-     * @return array
-     */
-    public function getControllerConfig()
-    {
-        return array(
-            'factories' => array(
-                'Page\Controller\Page' => function(ControllerManager $cm) {
-                    $controller = new PageController();
-                    $controller->setPageService($cm->getServiceLocator()->get('PageService'));
-
-                    return $controller;
-                }
-            )
         );
     }
 

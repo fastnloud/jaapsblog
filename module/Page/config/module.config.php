@@ -8,6 +8,11 @@ return array(
             'PageService' => 'Page\Service\PageFactory'
         )
     ),
+    'controllers' => array(
+        'factories' => array(
+            'Page\Controller\Page' => 'Page\Controller\PageControllerFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(

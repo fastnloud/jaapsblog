@@ -8,6 +8,11 @@ return array(
             'BlogService' => 'Blog\Service\BlogFactory'
         )
     ),
+    'controllers' => array(
+        'factories' => array(
+            'Blog\Controller\Blog' => 'Blog\Controller\BlogControllerFactory'
+        )
+    ),
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(
