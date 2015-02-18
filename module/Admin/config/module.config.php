@@ -91,7 +91,7 @@ return array(
                     'table' => array(
                         'type'    => 'segment',
                         'options' => array(
-                            'route'    => '/:table[/:action]',
+                            'route'    => ':table[/:action]',
                             'constraints' => array(
                                 'table'  => '[a-z][a-z_]+',
                                 'action' => '(read|create|update|destroy)'
