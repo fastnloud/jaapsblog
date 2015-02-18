@@ -1,5 +1,15 @@
+@import 'icon.css';
+
+html,
+body {
+    margin: 0;
+    padding :0;
+    height: 100%;
+}
+
 body {
     font: normal 12px/20px Roboto, Arial;
+    background: #e9eaed;
 }
 
 h1 {
@@ -24,6 +34,15 @@ p {
     margin: 0 0 1em 0;
 }
 
+article,
+aside,
+.reply-form {
+    padding: 20px;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    background: #fff;
+}
+
 pre {
     background: #EEFFCC;
     padding: 5px;
@@ -33,6 +52,19 @@ a {
     color: #be005e;
 }
 
+nav.main ul li a,
+footer a,
+aside li,
+aside li a,
+.content > a {
+    transition: all 0.2s ease;
+}
+
+.container {
+    position: relative;
+    min-height: 100%;
+}
+
 .outer-container {
     width: 100%;
 }
@@ -40,11 +72,23 @@ a {
 .inner-container {
     width: 80%;
     margin: 0 auto;
-    max-width: 1024px;
+    max-width: 960px;
 }
 
-.background {
-    background: #222;
+.gradient {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #222),
+        color-stop(0.4, #000)
+    );
+
+    background-image: -o-linear-gradient(bottom, #222 0%, #000 40%);
+    background-image: -moz-linear-gradient(bottom, #222 0%, #000 40%);
+    background-image: -webkit-linear-gradient(bottom, #222 0%, #000 40%);
+    background-image: -ms-linear-gradient(bottom, #222 0%, #000 40%);
+    background-image: linear-gradient(to bottom, #222 0%, #000 40%);
 }
 
 .column1 {
@@ -58,7 +102,7 @@ a {
 }
 
 .shadow-line {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 .site-name {
@@ -68,18 +112,10 @@ a {
     font-weight: 700;
 }
 
-.transition {
-    transition: all 0.2s ease;
-}
-
-.gradient {
-    background-image: linear-gradient(#fcfcfc, #eee);
-    background: -webkit-linear-gradient(#fcfcfc, #eee); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#fcfcfc, #eee); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#fcfcfc, #eee); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#fcfcfc, #eee); /* Standard syntax */
-    background-color: #eeeeee;
-    background-repeat: repeat-x;
+.header {
+    position: fixed;
+    width: 100%;
+    height: 80px;
 }
 
 nav ul {
@@ -89,39 +125,62 @@ nav ul {
 
 nav.main {
     position: absolute;
-    top: 10px;
+    top: 18px;
 }
 
 nav.main ul li {
     float: left;
 }
 
+nav.main ul li:last-child:before {
+    position: absolute;
+    right: 0;
+    margin-right: -15px;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #af0058;
+    content: "";
+}
+
+nav.main ul li.arrow {
+    position: absolute;
+    right: 0;
+    margin-right: -15px;
+    z-index: -1;
+}
+
 nav.main ul li a {
     display: block;
     color: #222;
     font-weight: 700;
-    padding: 0 40px;
-    line-height: 3;
+    padding: 0 30px;
+    line-height: 2.5;
+    height: 30px;
     white-space: nowrap;
     text-shadow: 0 1px 0 rgba(255,255,255,0.9);
     text-decoration: none;
-    border-bottom: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d0d1d5;
+    background: #fff;
 }
 
 nav.main ul li a:hover {
     color: #be005e;
 }
 
-nav.main ul li + li a:hover {
-    margin-left: 10px;
+nav.main ul li.active a {
+    text-decoration: underline;
 }
 
-nav.main ul li + li {
-    border-left: 1px solid #d5d5d5;
+nav.main ul li + li a {
+    border-left: 1px solid #d0d1d5;
 }
 
 nav.breadcrumbs {
-    width: 100%;
+    float: right;
+    background: rgba(255, 255, 0, 0.3);
     margin: 1em 0;
 }
 
@@ -134,13 +193,8 @@ nav.breadcrumbs ul li {
 }
 
 aside {
-    padding: 20px;
     margin: 0 0 0 10px;
-    border-top: 1px dotted #222;
-}
-
-aside + aside {
-    margin-top: 1em;
+    background: #fff;
 }
 
 aside h1 {
@@ -156,11 +210,11 @@ aside ul {
 aside ul li {
     margin: 0.5em 0;
     padding: 5px;
-    background: #eee;
+    border-left: 0px solid #be005e;
 }
 
 aside ul li:hover {
-    margin-left: 20px;
+    border-left-width: 10px;
 }
 
 aside ul li a {
@@ -169,6 +223,9 @@ aside ul li a {
     font-weight: 400;
     text-shadow: 0 1px 0 rgba(255,255,255,0.9);
     text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 aside ul li:hover a  {
@@ -176,6 +233,92 @@ aside ul li:hover a  {
     font-weight: 700;
 }
 
-.content {
-    padding: 20px;
+.body {
+    padding: 85px 0 220px;
+}
+
+.content + .content,
+.content > a + a {
+    margin-top: 1em;
+}
+
+.content > a {
+    display: block;
+    text-decoration: none;
+    background: #fff;
+}
+
+.content > a:hover {
+    background: rgba(255, 255, 0, 0.3);
+}
+
+.content > a article {
+    background: none;
+}
+
+.content > a article h1 {
+    margin-bottom: 0em;
+    color: #be005e;
+}
+
+.content > a article h2 {
+    margin: 0.1em 0;
+}
+
+.content > a article p {
+    margin: 0.3em 0;
+    color: #222;
+}
+
+.reply-form {
+    margin: 1em 0;
+}
+
+footer {
+    border-top: 5px solid #be005e;
+    background: #222;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+}
+
+footer ul {
+    float: left;
+    width: 25%;
+    padding: 0;
+    list-style: none;
+}
+
+footer ul li a {
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 3px;
+    margin: 3px;
+}
+
+footer ul li a:hover {
+    background: #be005e;
+}
+
+footer .share {
+    float: right;
+    width: 25%;
+    color: #fff;
+    font-size: 1.4em;
+}
+
+footer .share a {
+    float: right;
+    padding: 1em;
+    margin: 0 0 4px 4px;
+    background: #333;
+    color: #fff;
+}
+
+footer .share a:hover {
+    background: #be005e;
+    cursor: pointer;
 }

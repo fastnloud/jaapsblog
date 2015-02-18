@@ -5,11 +5,12 @@
     <head>
 
         <meta charset="utf-8">
-        <?php echo $this->headTitle('')->setSeparator(' - '); ?>
+
+        <?php echo $this->headTitle(\Site\Service\Site::getActiveSite()->getTitle())->setSeparator(' - '); ?>
 
         <?php echo $this->headMeta()
                         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-                        ->appendName('viewport', 'width=device-width, initial-scale=1') ?>
+                        ->appendName('viewport', 'width=device-width, initial-scale=1'); ?>
 
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/favicon.ico'))
                         ->prependStylesheet($this->basePath() . '/css/mobile.css')
@@ -19,105 +20,106 @@
                         ->prependStylesheet($this->basePath() . '/css/normalize.css') ?>
 
         <?php echo $this->headScript()
-                        ->prependFile($this->basePath() . '/js/main.js')
-                        ->prependFile($this->basePath() . '/js/plugins.js')
-                        ->prependFile($this->basePath() . '/js/vendor/jquery-1.10.2.min.js')
-                        ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js') ?>
+                        //->prependFile($this->basePath() . '/js/main.js')
+                        ->prependFile($this->basePath() . '/js/vendor/modernizr-2.6.2.min.js'); ?>
 
     </head>
 
     <body>
 
-        <div class="outer-container shadow-line background">
+        <div class="container">
 
-            <div class="inner-container clearfix">
+            <div class="header">
+                <div class="outer-container shadow-line gradient">
 
-                <nav class="main">
-                    <ul>
-                        <li>
-                            <a class="transition gradient" href="">Home</a>
-                        </li>
-                        <li>
-                            <a class="transition gradient" href="">Blog</a>
-                        </li>
-                        <li class="active">
-                            <a class="transition gradient" href="">About Jaap</a>
-                        </li>
-                    </ul>
-                </nav>
+                    <div class="inner-container clearfix">
 
-                <div class="site-name">
-                    Jaapsblog.nl
-                </div>
+                        <nav class="main">
 
-            </div>
+                            <?php echo $this->navigation('navigation')->menu()->setMaxDepth(0); ?>
 
-        </div>
+                        </nav>
 
-        <div class="outer-container">
+                        <div class="site-name">
 
-            <div class="inner-container">
+                            <?php echo $this->escapeHtml(\Site\Service\Site::getActiveSite()->getTitle()); ?>
 
-                <nav class="breadcrumbs">
+                        </div>
 
-                    <ul>
-                        <li>
-                            <span>You are here: </span>
-                            <a href="/">Home</a>
-                        </li>
-                    </ul>
-
-                </nav>
-
-            </div>
-
-        </div>
-
-        <div class="outer-container">
-            <div class="inner-container clearfix">
-                <div class="column1">
-                    <div class="content">
-                        <h1>Home</h1>
-                        <p>
-                            All blog items can be found here.
-                        </p>
                     </div>
+
                 </div>
 
-                <div class="column2">
-                    <aside class="shadow-line gradient">
-                        <h1>Latest blog posts</h1>
-                        <ul>
-                            <li class="transition">
-                                <a class="transition" href="">ZF2: DKIM Signer</a>
-                            </li>
-                            <li class="transition">
-                                <a class="transition" href="">ZF2: Creating a dynamic Navigation</a>
-                            </li>
-                            <li class="transition">
-                                <a class="transition" href="">Introduction to Sass</a>
-                            </li>
-                            <li class="transition">
-                                <a class="transition" href="">Jaapsblog.nl on GitHub</a>
-                            </li>
-                            <li class="transition">
-                                <a class="transition" href="">ZF2: Writing "advanced" MySQL where clauses</a>
-                            </li>
-                        </ul>
-                    </aside>
+                <div class="outer-container">
 
-                    <aside class="shadow-line gradient">
-                        <h1>ZF2: DKIM Signer</h1>
-                        <p>Zend Framework 2 DKIM Signer module for Zend\Mail v1.0.4 (MIT). Interested? Stay up-to-date and follow this project on <a title="Zend Framework 2 DKIM Signer" href="https://github.com/fastnloud/zf2-dkim" target="_blank">GitHub</a>.</p>
-                        <p>Zend Framework 2 DKIM Signer v1.0.4 (latest): <a title="Zend Framework 2 DKIM Signer" href="https://github.com/fastnloud/zf2-dkim/releases/tag/v1.0.4" target="_blank">zf2-dkim-v1.0.4</a></p>
-                    </aside>
+                    <div class="inner-container">
+
+                        <nav class="breadcrumbs">
+
+                            <ul>
+                                <li>You are here:</li>
+                                <?php if (!$this->navigation()->findActive('navigation') || 'home' !== $this->navigation()->findActive('navigation')['page']->getRoute()): ?>
+                                    <li><a href="/">Home</a> &gt; </li>
+                                <?php endif; ?>
+                                <li><?php echo $this->navigation()->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?></li>
+                            </ul>
+
+                        </nav>
+
+                    </div>
+
                 </div>
-
 
             </div>
-        </div>
 
-        <?php echo $this->content; ?>
+            <div class="outer-container body">
+
+                <div class="inner-container clearfix">
+
+                    <div class="column1">
+
+                        <div class="content">
+
+                            <?php echo $this->content; ?>
+
+                        </div>
+
+                    </div>
+
+                    <div class="column2">
+
+                        <aside class="content">
+
+                        </aside>
+
+                        <aside class="content">
+
+                        </aside>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <footer class="outer-container">
+
+                <div class="inner-container">
+
+                    <div class="share">
+
+                        <a class="icon-facebook"></a>
+                        <a class="icon-googleplus"></a>
+                        <a class="icon-linkedin"></a>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+        </div>
 
     </body>
 
