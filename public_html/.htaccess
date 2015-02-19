@@ -1,6 +1,7 @@
 RewriteEngine On
 
 # Custom /admin/.* rewrite.
+RewriteRule ^admin$ /admin/ [R=301,L]
 RewriteRule ^admin/(app\.js|app.*|css.*)$ /js/admin/$1 [NC,L]
 
 # The following rule tells Apache that if the requested filename
