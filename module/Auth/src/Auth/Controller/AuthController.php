@@ -6,6 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\Authentication\AuthenticationService as AuthService;
 use Session\Service\SessionManager;
+use Application\Validator\XCrfToken;
 use User\Service\User as UserService;
 
 /**
@@ -34,6 +35,11 @@ class AuthController extends AbstractActionController
      * @var SessionManager
      */
     protected $sessionManager;
+
+    /**
+     * @var XCrfToken
+     */
+    protected $xCrfTokenValidator;
 
     /**
      * @return JsonModel
@@ -66,6 +72,13 @@ class AuthController extends AbstractActionController
     public function authUserAction()
     {
         if ($this->getRequest()->isPost()) {
+            if (!$this->getXCrfTokenValidator()->isValid()) {
+                return new JsonModel(array(
+                    'success' => false,
+                    'msg'     => 'Request could not be processed.'
+                ));
+            }
+
             $data = $this->getRequest()->getPost();
 
             if (isset($data['username']) && isset($data['password'])) {
@@ -147,6 +160,22 @@ class AuthController extends AbstractActionController
     protected function getSessionManager()
     {
         return $this->sessionManager;
+    }
+
+    /**
+     * @param \Application\Validator\XCrfToken $xCrfTokenValidator
+     */
+    public function setXCrfTokenValidator(XCrfToken $xCrfTokenValidator)
+    {
+        $this->xCrfTokenValidator = $xCrfTokenValidator;
+    }
+
+    /**
+     * @return \Application\Validator\XCrfToken
+     */
+    protected function getXCrfTokenValidator()
+    {
+        return $this->xCrfTokenValidator;
     }
 
 }
