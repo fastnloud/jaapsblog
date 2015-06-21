@@ -6,8 +6,11 @@ use Application\Entity\Exception\EntityException;
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
+use Zend\Stdlib\RequestInterface;
+use Zend\Form\FormElementManager;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Application\Validator\XCrfToken;
 
 /**
  * Class AbstractEntityService
@@ -17,19 +20,29 @@ abstract class AbstractEntityService implements EntityServiceInterface
 {
 
     /**
-     * @var ServiceLocatorInterface
-     */
-    protected $serviceLocator;
-
-    /**
      * @var EntityManager
      */
     protected $entityManager;
 
     /**
+     * @var FormElementManager
+     */
+    protected $formElementManager;
+
+    /**
+     * @var XCrfToken
+     */
+    protected $xCrfTokenValidator;
+
+    /**
      * @var int
      */
     protected $queryHydrator = Query::HYDRATE_OBJECT;
+
+    /**
+     * @var RequestInterface
+     */
+    protected $request;
 
     /**
      * Init.
@@ -38,8 +51,10 @@ abstract class AbstractEntityService implements EntityServiceInterface
      */
     public function __construct(ServiceLocatorInterface $serviceLocator)
     {
-        $this->setServiceLocator($serviceLocator);
         $this->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
+        $this->setFormElementManager($serviceLocator->get('FormElementManager'));
+        $this->setXCrfTokenValidator($serviceLocator->get('ValidatorManager')->get('XCrfTokenValidator'));
+        $this->setRequest($serviceLocator->get('Request'));
     }
 
     /**
@@ -130,10 +145,13 @@ abstract class AbstractEntityService implements EntityServiceInterface
         $entityClassName = get_class($entity);
 
         try {
-            $form = $this->getServiceLocator()
-                         ->get('FormElementManager')
+            $form = $this->getFormElementManager()
                          ->get($entityClassName);
         } catch (ServiceNotFoundException $e) {
+            return false;
+        }
+
+        if (!$this->getXCrfTokenValidator()->isValid()) {
             return false;
         }
 
@@ -143,25 +161,9 @@ abstract class AbstractEntityService implements EntityServiceInterface
     }
 
     /**
-     * @param \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator
-     */
-    protected function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-    }
-
-    /**
-     * @return \Zend\ServiceManager\ServiceLocatorInterface
-     */
-    protected function getServiceLocator()
-    {
-        return $this->serviceLocator;
-    }
-
-    /**
      * @param \Doctrine\ORM\EntityManager $entityManager
      */
-    public function setEntityManager(EntityManager $entityManager)
+    protected function setEntityManager(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -191,6 +193,54 @@ abstract class AbstractEntityService implements EntityServiceInterface
     protected function getQueryHydrator()
     {
         return (int) $this->queryHydrator;
+    }
+
+    /**
+     * @param \Zend\Form\FormElementManager $formElementManager
+     */
+    protected function setFormElementManager(FormElementManager $formElementManager)
+    {
+        $this->formElementManager = $formElementManager;
+    }
+
+    /**
+     * @return \Zend\Form\FormElementManager
+     */
+    protected function getFormElementManager()
+    {
+        return $this->formElementManager;
+    }
+
+    /**
+     * @param \Application\Validator\XCrfToken $xCrfTokenValidator
+     */
+    protected function setXCrfTokenValidator(XCrfToken $xCrfTokenValidator)
+    {
+        $this->xCrfTokenValidator = $xCrfTokenValidator;
+    }
+
+    /**
+     * @return \Application\Validator\XCrfToken
+     */
+    protected function getXCrfTokenValidator()
+    {
+        return $this->xCrfTokenValidator;
+    }
+
+    /**
+     * @param \Zend\Stdlib\RequestInterface $request
+     */
+    protected function setRequest(RequestInterface $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return \Zend\Stdlib\RequestInterface
+     */
+    protected function getRequest()
+    {
+        return $this->request;
     }
 
 }
