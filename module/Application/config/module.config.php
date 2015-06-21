@@ -13,7 +13,8 @@ return array(
     ),
     'validators' => array(
         'abstract_factories' => array(
-            'Application\Validator\Entity\EntityValidatorFactory'
+            'Application\Validator\Entity\EntityValidatorFactory',
+            'Application\Validator\XCrfTokenValidatorFactory'
         )
     ),
     'view_manager' => array(
