@@ -276,10 +276,15 @@ class AdminController extends AbstractActionController
             foreach ($jsonObjectCollection as $jsonObject) {
                 if (isset($jsonObject->id)) {
                     try {
-                        $entity  = $this->getEntityService()
-                                        ->fetchEntity($jsonObject->id);
+                        $entity = $this->getEntityService()
+                                       ->fetchEntity($jsonObject->id);
 
-                        if ($entity && $this->getEntityService()->validateEntity($entity)) {
+                        if ($entity) {
+                            if (!$this->getEntityService()->validateEntity($entity)) {
+                                $success = false;
+                                break;
+                            }
+
                             $this->getEntityService()
                                  ->destroyEntity($entity);
                         }
