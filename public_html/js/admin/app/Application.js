@@ -4,6 +4,7 @@ Ext.define('App.Application', {
 
     requires : [
         'App.global.Function',
+        'App.data.proxy.Ajax',
         'App.grid.Main',
         'App.grid.Child',
         'App.form.Window',

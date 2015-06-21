@@ -21,7 +21,13 @@ Ext.define('App.view.auth.AuthController', {
             view = me.getView();
 
         if (form.isValid()) {
-            form.submit({
+            form.getForm().doAction('submit', {
+                url : '/auth/user',
+
+                headers : {
+                    'X-Csrf-Token' : App.global.Function.getCsrfToken()
+                },
+
                 success : function(task, action) {
                     view.destroy();
 

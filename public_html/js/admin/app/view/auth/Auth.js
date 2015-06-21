@@ -17,7 +17,6 @@ Ext.define('App.view.auth.Auth',{
     items: {
         xtype       : 'form',
         reference   : 'form',
-        url         : '/auth/user',
         padding     : 5,
         border      : 1,
         bodyStyle   : 'background:white;padding:5px;',

@@ -37,6 +37,10 @@ Ext.define('App.global.Function', {
                 + ':' + second;
         },
 
+        getCsrfToken : function() {
+            return Ext.util.Cookies.get('Csrf-Token');
+        },
+
         convertToDate : function(value, format) {
             var date       = new Date(value.replace(/-/g,"/"))
                 dateFormat = format ? format : 'Y-m-d';
