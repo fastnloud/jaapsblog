@@ -21,7 +21,7 @@ class AdminControllerFactory implements FactoryInterface
         $config = $serviceLocator->getServiceLocator()
                                  ->get('Config');
 
-        $controller = new AdminController($config['admin']['tables']);
+        $controller = new AdminController($config);
 
         return $controller;
     }

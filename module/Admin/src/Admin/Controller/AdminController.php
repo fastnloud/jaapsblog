@@ -7,13 +7,20 @@ use Doctrine\ORM\Query;
 use Zend\Authentication\AuthenticationService as AuthService;
 use Application\Entity\AbstractEntityService as EntityService;
 use Application\Entity\AbstractEntity as Entity;
+use Zend\Http\Header\SetCookie;
 use Zend\Http\Response;
+use Zend\Math\Rand;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\View\Model\JsonModel;
 
 class AdminController extends AbstractActionController
 {
+
+    /**
+     * @var array
+     */
+    protected $config;
 
     /**
      * @var array
@@ -36,13 +43,17 @@ class AdminController extends AbstractActionController
     protected $entityService;
 
     /**
-     * Set tables.
+     * Set config admin tables.
      *
-     * @param array $tables
+     * @param array $config
      */
-    public function __construct(array $tables)
+    public function __construct(array $config)
     {
-        $this->setTables($tables);
+        $this->setConfig($config);
+
+        if (isset($config['admin']) && isset($config['admin']['tables'])) {
+            $this->setTables($config['admin']['tables']);
+        }
     }
 
     /**
@@ -50,8 +61,25 @@ class AdminController extends AbstractActionController
      */
     public function indexAction()
     {
+        $cookie = SetCookie::fromString("Set-Cookie: Csrf-Token={$this->generateCsrfToken()}; Path=/");
+
+        $this->getResponse()
+             ->getHeaders()
+             ->addHeader($cookie);
+
         $this->layout('layout/admin');
+
         return false;
+    }
+
+    /**
+     * Generate Csrf-Token random hash.
+     *
+     * @return string
+     */
+    protected function generateCsrfToken()
+    {
+        return md5(Rand::getBytes(32));
     }
 
     /**
@@ -251,7 +279,7 @@ class AdminController extends AbstractActionController
                         $entity  = $this->getEntityService()
                                         ->fetchEntity($jsonObject->id);
 
-                        if ($entity) {
+                        if ($entity && $this->getEntityService()->validateEntity($entity)) {
                             $this->getEntityService()
                                  ->destroyEntity($entity);
                         }
@@ -296,6 +324,22 @@ class AdminController extends AbstractActionController
             'success' => false,
             'msg'     => 'Table data error.'
         ));
+    }
+
+    /**
+     * @param array $config
+     */
+    protected function setConfig($config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getConfig()
+    {
+        return $this->config;
     }
 
     /**
