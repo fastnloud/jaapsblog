@@ -6,6 +6,11 @@ return array(
             'AuthService' => 'Auth\Service\AuthFactory'
         )
     ),
+    'controllers' => array(
+        'factories' => array(
+            'Auth\Controller\Auth' => 'Auth\Controller\AuthControllerFactory'
+        )
+    ),
     'doctrine' => array(
         'authentication' => array(
             'orm_default' => array(
