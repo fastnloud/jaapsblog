@@ -29,12 +29,14 @@ class XCrfToken extends AbstractValidator
     public function isValid($value = null)
     {
         if (null === $value) {
-            $value = $this->getRequest()->getHeader('X-Csrf-Token');
+            $value = $this->getRequest()
+                          ->getHeader('X-Csrf-Token');
         } elseif(!$value instanceof HeaderInterface) {
             return false;
         }
 
-        $csrfTokenCookie = $this->getRequest()->getCookie();
+        $csrfTokenCookie = $this->getRequest()
+                                ->getCookie();
 
         if (!$csrfTokenCookie || !$csrfTokenCookie->offsetExists('Csrf-Token')) {
             return false;
