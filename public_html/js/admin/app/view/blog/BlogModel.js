@@ -31,7 +31,7 @@ Ext.define('App.view.blog.BlogModel', {
                 type : 'ajax',
                 url  : '/admin/blog',
 
-                api: {
+                api : {
                     read    : '/admin/blog/read',
                     update  : '/admin/blog/update',
                     create  : '/admin/blog/create',

@@ -30,7 +30,7 @@ Ext.define('App.view.site.SiteModel', {
                 type : 'ajax',
                 url  : '/admin/site',
 
-                api: {
+                api : {
                     read    : '/admin/site/read',
                     update  : '/admin/site/update',
                     create  : '/admin/site/create',

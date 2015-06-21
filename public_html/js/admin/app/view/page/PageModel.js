@@ -28,7 +28,7 @@ Ext.define('App.view.page.PageModel', {
                 type : 'ajax',
                 url  : '/admin/page',
 
-                api: {
+                api : {
                     read    : '/admin/page/read',
                     update  : '/admin/page/update',
                     create  : '/admin/page/create',

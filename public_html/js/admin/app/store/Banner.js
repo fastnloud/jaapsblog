@@ -32,7 +32,7 @@ Ext.define('App.store.Banner', {
         type : 'ajax',
         url  : '/admin/banner',
 
-        api: {
+        api : {
             read    : '/admin/banner/read',
             update  : '/admin/banner/update',
             create  : '/admin/banner/create',

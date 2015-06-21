@@ -34,7 +34,7 @@ Ext.define('App.store.Footer', {
         type : 'ajax',
         url  : '/admin/footer',
 
-        api: {
+        api : {
             read    : '/admin/footer/read',
             update  : '/admin/footer/update',
             create  : '/admin/footer/create',

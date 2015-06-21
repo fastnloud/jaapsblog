@@ -34,7 +34,7 @@ Ext.define('App.store.Reply', {
         type : 'ajax',
         url  : '/admin/reply',
 
-        api: {
+        api : {
             read    : '/admin/reply/read',
             update  : '/admin/reply/update',
             create  : '/admin/reply/create',
