@@ -28,7 +28,7 @@ return array(
     'session' => array(
         'config' => array(
             'options' => array(
-                'name' => 'blog'
+                'name' => 'Blog'
             ),
         ),
         'validators' => array(
@@ -38,5 +38,5 @@ return array(
         'save_handler' => array(
             'debug' => false
         )
-    ),
+    )
 );
