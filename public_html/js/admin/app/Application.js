@@ -16,6 +16,7 @@ Ext.define('App.Application', {
     ],
 
     stores: [
+        'Site',
         'Route',
         'Status',
         'Reply',
