@@ -46,6 +46,14 @@ Ext.define('App.view.page.Page',{
                     text        : 'Priority',
                     flex        : 1,
                     dataIndex   : 'priority'
+                },
+                {
+                    text        : 'Site',
+                    flex        : 1,
+                    dataIndex   : 'site',
+                    renderer    : function(value) {
+                        return App.global.Function.storeRenderer(value, 'Site', 'title');
+                    }
                 }
             ]
         }

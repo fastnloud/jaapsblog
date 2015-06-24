@@ -48,6 +48,17 @@ Ext.define('App.view.page.PageForm', {
                         allowBlank  : false
                     },
                     {
+                        xtype           : 'combobox',
+                        fieldLabel      : 'Site',
+                        name            : 'site',
+                        bind            : '{record.site}',
+                        store           : 'Site',
+                        queryMode       : 'local',
+                        valueField      : 'id',
+                        displayField    : 'title',
+                        allowBlank      : false
+                    },
+                    {
                         xtype   :'fieldset',
                         layout  :'table',
                         margin  : 0,

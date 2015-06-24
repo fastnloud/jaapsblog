@@ -21,7 +21,13 @@ Ext.define('App.view.page.PageModel', {
                         return value.label;
                     }
                 },
-                'priority'
+                'priority',
+                {
+                    name     : 'site',
+                    sortType : function(value) {
+                        return value.title;
+                    }
+                }
             ],
 
             proxy : {

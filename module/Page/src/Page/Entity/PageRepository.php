@@ -20,10 +20,11 @@ class PageRepository extends AbstractEntityRepository
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('page', 'status', 'route')
+        $qb->select('page', 'status', 'route', 'site')
            ->from('Page\Entity\Page', 'page')
            ->join('page.status', 'status')
-           ->join('page.route', 'route');
+           ->join('page.route', 'route')
+           ->join('page.site', 'site');
 
         return $qb->getQuery()
                   ->getResult($this->getQueryHydrator());
@@ -38,10 +39,11 @@ class PageRepository extends AbstractEntityRepository
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('page', 'status', 'route')
+        $qb->select('page', 'status', 'route', 'site')
            ->from('Page\Entity\Page', 'page')
            ->join('page.status', 'status')
            ->join('page.route', 'route')
+           ->join('page.site', 'site')
            ->where('page.id = :id')
            ->setParameter(':id', $id);
 

@@ -73,6 +73,7 @@ return array(
                             'options' => array(
                                 'repository' => __NAMESPACE__ . '\Entity\\' . __NAMESPACE__,
                                 'field'      => 'slug',
+                                'include'    => 'site_id',
                                 'exclude'    => 'id'
                             )
                         ),

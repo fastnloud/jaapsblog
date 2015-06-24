@@ -6,12 +6,13 @@ use Application\Entity\AbstractEntity;
 use Application\Entity\Exception\EntityException;
 use Doctrine\ORM\Mapping as ORM;
 use Route\Entity\Route;
+use Site\Entity\Site;
 use Status\Entity\Status;
 
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Page\Entity\PageRepository")
- * @ORM\Table(name="page")
+ * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="slug", columns={"slug", "site_id"})})
  */
 class Page extends AbstractEntity
 {
@@ -39,7 +40,7 @@ class Page extends AbstractEntity
     protected $label;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $slug;
 
@@ -69,6 +70,11 @@ class Page extends AbstractEntity
     protected $meta_keywords;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $site_id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
@@ -81,11 +87,18 @@ class Page extends AbstractEntity
     protected $route;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Site\Entity\Site")
+     * @ORM\JoinColumn(name="site_id", referencedColumnName="id", nullable=false)
+     */
+    protected $site;
+
+    /**
      * Init default values.
      */
     public function __construct()
     {
         $this->status = new Status();
+        $this->site   = new Site();
         $this->route  = new Route();
     }
 
@@ -178,6 +191,22 @@ class Page extends AbstractEntity
     }
 
     /**
+     * @param int $site_id
+     */
+    public function setSiteId($site_id)
+    {
+        $this->site_id = (int) $site_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSiteId()
+    {
+        return (int) $this->site_id;
+    }
+
+    /**
      * @param string $title
      */
     public function setTitle($title)
@@ -228,6 +257,27 @@ class Page extends AbstractEntity
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param Site $site
+     * @throws \Application\Entity\Exception\EntityException
+     */
+    public function setSite($site)
+    {
+        if (!$site instanceof Site) {
+            throw new EntityException('Invalid object!');
+        }
+
+        $this->site = $site;
+    }
+
+    /**
+     * @return Site
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 
     /**

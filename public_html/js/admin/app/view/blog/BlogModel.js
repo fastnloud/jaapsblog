@@ -30,7 +30,7 @@ Ext.define('App.view.blog.BlogModel', {
                     sortType : function(value) {
                         return value.title;
                     }
-                },
+                }
             ],
 
             proxy : {
