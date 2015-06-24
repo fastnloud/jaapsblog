@@ -50,7 +50,7 @@ Ext.define('App.global.Function', {
 
         storeRenderer : function(value, storeName, storeDisplayField) {
             if (Ext.isObject(value)) {
-                return value.label;
+                return value[storeDisplayField];
             } else if (Ext.isNumeric(value)) {
                 var store = Ext.data.StoreManager.lookup(storeName);
 
