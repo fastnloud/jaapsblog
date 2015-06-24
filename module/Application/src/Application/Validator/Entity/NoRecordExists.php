@@ -8,7 +8,7 @@ use Zend\Validator\Exception;
  * Class NoRecordExists
  * @package Application\Validator\Entity
  */
-class NoRecordExists extends AbstractEntityValidator
+class NoRecordExists extends AbstractRecordExistsValidator
 {
 
     /**
@@ -20,31 +20,7 @@ class NoRecordExists extends AbstractEntityValidator
      */
     public function isValid($value)
     {
-        $excludeValue = null;
-
-        if ($this->getExclude() && isset($_POST['data'])) {
-            $exclude  = $this->getExclude();
-            $jsonData = json_decode($_POST['data']);
-
-            if (isset($jsonData->{$exclude})) {
-                $excludeValue = $jsonData->{$exclude};
-            }
-        }
-
-        $qb = $this->getEntityManager()
-                   ->createQueryBuilder();
-
-        $qb->select('r')
-           ->from($this->getRepository(), 'r')
-           ->where('r.' . $this->getField() . ' = :value')
-           ->setParameter(':value', $value);
-
-        if ($excludeValue) {
-            $qb->andWhere('r.' . $this->getExclude() . ' != :exclude')
-               ->setParameter(':exclude', $excludeValue);
-        }
-
-        return ($qb->getQuery()->getResult() ? false : true);
+        return ($this->fetch($value) ? false : true);
     }
 
 }

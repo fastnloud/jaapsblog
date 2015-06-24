@@ -58,6 +58,7 @@ class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreatio
             $validator->setRepository($this->getOption('repository'));
             $validator->setField($this->getOption('field'));
             $validator->setExclude($this->getOption('exclude'));
+            $validator->setInclude($this->getOption('include'));
         }
 
         return $validator;
@@ -81,6 +82,10 @@ class EntityValidatorFactory implements AbstractFactoryInterface, MutableCreatio
 
         if (isset($options['exclude'])) {
             $this->setOption('exclude', $options['exclude']);
+        }
+
+        if (isset($options['include'])) {
+            $this->setOption('include', $options['include']);
         }
     }
 
