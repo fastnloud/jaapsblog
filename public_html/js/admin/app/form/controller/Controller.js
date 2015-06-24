@@ -60,10 +60,15 @@ Ext.define('App.form.controller.Controller', {
     },
 
     onMainGridSiteFilterSelect : function(combo, record) {
-        var grid  = this.getView().down('mainGrid'),
-            store = grid.lookupViewModel(true).getStore(this.getStore());
+        var grid     = this.getView().down('mainGrid'),
+            store    = grid.lookupViewModel(true).getStore(this.getStore())
+            property = 'site_id';
 
-        store.filter('site_id', record.id);
+        if (this.getName() == 'siteForm') {
+            property = 'id';
+        }
+
+        store.filter(property, record.id);
     },
 
     onMainGridSiteFilterChange : function(combo, value) {
