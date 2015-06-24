@@ -51,6 +51,13 @@ Ext.define('App.view.blog.Blog',{
                     renderer    : function(value) {
                         return App.global.Function.convertToDate(value);
                     }
+                },
+                {
+                    text        : 'Site',
+                    dataIndex   : 'site',
+                    renderer    : function(value) {
+                        return App.global.Function.storeRenderer(value, 'Site', 'title');
+                    }
                 }
             ]
         }

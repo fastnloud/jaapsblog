@@ -70,6 +70,17 @@ Ext.define('App.view.blog.BlogForm', {
                         valueField      : 'id',
                         displayField    : 'label',
                         allowBlank      : false
+                    },
+                    {
+                        xtype           : 'combobox',
+                        fieldLabel      : 'Site',
+                        name            : 'site',
+                        bind            : '{record.site}',
+                        store           : 'Site',
+                        queryMode       : 'local',
+                        valueField      : 'id',
+                        displayField    : 'title',
+                        allowBlank      : false
                     }
                 ]
             },

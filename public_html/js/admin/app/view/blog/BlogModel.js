@@ -24,7 +24,13 @@ Ext.define('App.view.blog.BlogModel', {
                 {
                     name    : 'date',
                     mapping : 'date.date'
-                }
+                },
+                {
+                    name     : 'site',
+                    sortType : function(value) {
+                        return value.title;
+                    }
+                },
             ],
 
             proxy : {

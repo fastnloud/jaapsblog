@@ -59,6 +59,22 @@ Ext.define('App.form.controller.Controller', {
         });
     },
 
+    onMainGridSiteFilterSelect : function(combo, record) {
+        var grid  = this.getView().down('mainGrid'),
+            store = grid.lookupViewModel(true).getStore(this.getStore());
+
+        store.filter('site_id', record.id);
+    },
+
+    onMainGridSiteFilterChange : function(combo, value) {
+        var grid  = this.getView().down('mainGrid'),
+            store = grid.lookupViewModel(true).getStore(this.getStore());
+
+        if (Ext.isEmpty(value)) {
+            store.clearFilter();
+        }
+    },
+
     onMainGridSelect : function() {
         this.getView().lookupReference('mainGridDeleteButton').enable();
     },

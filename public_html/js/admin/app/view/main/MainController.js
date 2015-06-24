@@ -5,6 +5,7 @@ Ext.define('App.view.main.MainController', {
     init : function () {
         this.addUserPoll();
 
+        Ext.data.StoreManager.lookup('Site').load();
         Ext.data.StoreManager.lookup('Route').load();
         Ext.data.StoreManager.lookup('Status').load();
         Ext.data.StoreManager.lookup('Reply').load();
@@ -16,7 +17,7 @@ Ext.define('App.view.main.MainController', {
         var me = this;
 
         Ext.direct.Manager.addProvider({
-            type     :'polling',
+            type     : 'polling',
             id       : 'userPoll',
             interval : 120000,
 

@@ -7,12 +7,13 @@ use Application\Entity\Exception\EntityException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Reply\Entity\Reply;
+use Site\Entity\Site;
 use Status\Entity\Status;
 
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Blog\Entity\BlogRepository")
- * @ORM\Table(name="blog")
+ * @ORM\Table(name="blog", uniqueConstraints={@ORM\UniqueConstraint(name="slug", columns={"slug", "site_id"})})
  */
 class Blog extends AbstractEntity
 {
@@ -55,7 +56,7 @@ class Blog extends AbstractEntity
     protected $date;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     protected $slug;
 
@@ -75,6 +76,11 @@ class Blog extends AbstractEntity
     protected $meta_keywords;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $site_id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
@@ -87,11 +93,18 @@ class Blog extends AbstractEntity
     protected $reply;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Site\Entity\Site")
+     * @ORM\JoinColumn(name="site_id", referencedColumnName="id", nullable=false)
+     */
+    protected $site;
+
+    /**
      * Init object.
      */
     public function __construct()
     {
         $this->status   = new Status();
+        $this->site     = new Site();
         $this->reply    = new ArrayCollection();
         $this->date     = new \DateTime();
     }
@@ -217,6 +230,22 @@ class Blog extends AbstractEntity
     }
 
     /**
+     * @param int $site_id
+     */
+    public function setSiteId($site_id)
+    {
+        $this->site_id = (int) $site_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSiteId()
+    {
+        return (int) $this->site_id;
+    }
+
+    /**
      * @param Status $status
      * @throws \Application\Entity\Exception\EntityException
      */
@@ -235,6 +264,27 @@ class Blog extends AbstractEntity
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param Site $site
+     * @throws \Application\Entity\Exception\EntityException
+     */
+    public function setSite($site)
+    {
+        if (!$site instanceof Site) {
+            throw new EntityException('Invalid object!');
+        }
+
+        $this->site = $site;
+    }
+
+    /**
+     * @return Site
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 
     /**

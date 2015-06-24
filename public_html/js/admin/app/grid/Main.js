@@ -26,6 +26,20 @@ Ext.define('App.grid.Main', {
                 text      : 'Delete Selection',
                 handler   : 'onMainGridDeleteClick',
                 disabled  : true
+            },
+            '->',
+            {
+                xtype           : 'combobox',
+                store           : 'Site',
+                queryMode       : 'local',
+                valueField      : 'id',
+                displayField    : 'title',
+                emptyText       : 'Filter site',
+
+                listeners : {
+                    select : 'onMainGridSiteFilterSelect',
+                    change : 'onMainGridSiteFilterChange',
+                }
             }
         ]
     }]
