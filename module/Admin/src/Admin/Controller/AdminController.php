@@ -280,11 +280,6 @@ class AdminController extends AbstractActionController
                                        ->fetchEntity($jsonObject->id);
 
                         if ($entity) {
-                            if (!$this->getEntityService()->validateEntity($entity)) {
-                                $success = false;
-                                break;
-                            }
-
                             $this->getEntityService()
                                  ->destroyEntity($entity);
                         }
