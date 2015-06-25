@@ -42,10 +42,15 @@ Ext.define('App.global.Function', {
         },
 
         convertToDate : function(value, format) {
-            var date       = new Date(value.replace(/-/g,"/"))
-                dateFormat = format ? format : 'Y-m-d';
+            var dateFormat = format ? format : 'Y-m-d';
 
-            return Ext.Date.format(date, dateFormat);
+            if (Ext.isDate(value)) {
+                return Ext.Date.format(value, dateFormat);
+            } else if (Ext.isString(value)) {
+                return Ext.Date.format(new Date(value.replace(/-/g,"/")), dateFormat);
+            }
+
+            return null;
         },
 
         storeRenderer : function(value, storeName, storeDisplayField) {
