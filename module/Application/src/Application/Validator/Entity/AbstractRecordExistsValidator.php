@@ -24,6 +24,11 @@ abstract class AbstractRecordExistsValidator extends AbstractEntityValidator
         $excludeValue = null;
         $includeValue = null;
 
+        if ($value instanceof AbstractEntity) {
+            $valueGetter = 'get' . str_replace(' ', '', ucwords(str_replace('_', ' ', $this->getField())));
+            $value       = $value->$valueGetter();
+        }
+
         if (($this->getExclude() || $this->getInclude()) && isset($_POST['data'])) {
             $exclude        = str_replace('_id','', $this->getExclude());
             $excludeGetter  = 'get' . str_replace(' ', '', ucwords(str_replace('_', ' ', $exclude)));
