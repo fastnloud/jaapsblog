@@ -23,7 +23,10 @@ Ext.define('App.view.blog.BlogModel', {
                 },
                 {
                     name    : 'date',
-                    mapping : 'date.date'
+                    mapping : 'date.date',
+                    convert : function(value) {
+                        return App.global.Function.convertToDate(value);
+                    }
                 },
                 {
                     name     : 'site',
