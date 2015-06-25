@@ -152,16 +152,17 @@ Ext.define('App.form.controller.Controller', {
     onChildGridBeforeRender : function(grid) {
         var store       = grid.getStore(),
             filters     = grid.filters,
-            container   = this.getContainer();
+            container   = this.getContainer(),
+            record      = container.getViewModel().data.record;
 
-        if (Ext.isEmpty(container.getViewModel().data.record)){
+        if (Ext.isEmpty(record) || !Ext.isFunction(record.get)){
             grid.disable(true);
         }
 
         if (Ext.isArray(filters) && !Ext.isEmpty(filters)) {
             Ext.Array.each(filters, function(filter) {
                 if (!grid.isDisabled()) {
-                    store.filter(filter.property, container.getViewModel().data.record.get(filter.value));
+                    store.filter(filter.property, record.get(filter.value));
                 } else {
                     store.filter(filter.property, 0);
                 }
