@@ -72,6 +72,54 @@ Ext.define('App.view.site.SiteForm', {
                 ]
             },
             {
+                title       : 'Dkim',
+                xtype       : 'formtab',
+
+                items: [
+                    {
+                        xtype   :'fieldset',
+                        layout  :'table',
+                        margin  : 0,
+                        padding : 0,
+                        border  : 0,
+
+                        items : [
+                            {
+                                xtype       : 'textfield',
+                                fieldLabel  : 'Domain',
+                                name        : 'dkim_domain',
+                                bind        : '{record.dkim_domain}'
+                            },
+                            {
+                                xtype          : 'checkbox',
+                                name           : 'dkim',
+                                bind           : '{record.dkim}',
+                                boxLabel       : 'Enabled',
+                                padding        : '0 0 0 10px;',
+                                hideLabel      : true,
+                                allowBlank     : false
+                            }
+                        ]
+                    },
+                    {
+                        fieldLabel  : 'Selector',
+                        name        : 'dkim_selector',
+                        bind        : '{record.dkim_selector}'
+                    },
+                    {
+                        fieldLabel  : 'Headers',
+                        name        : 'dkim_headers',
+                        bind        : '{record.dkim_headers}'
+                    },
+                    {
+                        xtype       : 'textarea',
+                        fieldLabel  : 'Private Key',
+                        name        : 'dkim_private_key',
+                        bind        : '{record.dkim_private_key}'
+                    }
+                ]
+            },
+            {
                 title           : 'Banners',
                 xtype           : 'childGrid',
                 bind            : 'Banner',

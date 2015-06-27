@@ -61,6 +61,31 @@ class Site extends AbstractEntity
     protected $google_plus_url;
 
     /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $dkim;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $dkim_domain;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $dkim_selector;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $dkim_headers;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $dkim_private_key;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Status\Entity\Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
@@ -269,6 +294,86 @@ class Site extends AbstractEntity
     public function getLinkedinUrl()
     {
         return $this->linkedin_url;
+    }
+
+    /**
+     * @param bool $dkim
+     */
+    public function setDkim($dkim)
+    {
+        $this->dkim = (bool) $dkim;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDkim()
+    {
+        return (bool) $this->dkim;
+    }
+
+    /**
+     * @param string $dkim_domain
+     */
+    public function setDkimDomain($dkim_domain)
+    {
+        $this->dkim_domain = $dkim_domain;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDkimDomain()
+    {
+        return $this->dkim_domain;
+    }
+
+    /**
+     * @param string $dkim_headers
+     */
+    public function setDkimHeaders($dkim_headers)
+    {
+        $this->dkim_headers = $dkim_headers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDkimHeaders()
+    {
+        return $this->dkim_headers;
+    }
+
+    /**
+     * @param string $dkim_private_key
+     */
+    public function setDkimPrivateKey($dkim_private_key)
+    {
+        $this->dkim_private_key = $dkim_private_key;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDkimPrivateKey()
+    {
+        return $this->dkim_private_key;
+    }
+
+    /**
+     * @param string $dkim_selector
+     */
+    public function setDkimSelector($dkim_selector)
+    {
+        $this->dkim_selector = $dkim_selector;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDkimSelector()
+    {
+        return $this->dkim_selector;
     }
 
 }
