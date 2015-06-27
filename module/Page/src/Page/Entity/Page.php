@@ -87,7 +87,7 @@ class Page extends AbstractEntity
     protected $route;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Site\Entity\Site")
+     * @ORM\ManyToOne(targetEntity="Site\Entity\Site", inversedBy="page")
      * @ORM\JoinColumn(name="site_id", referencedColumnName="id", nullable=false)
      */
     protected $site;

@@ -63,7 +63,7 @@ class Site extends AbstractEntity
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
-    protected $dkim;
+    protected $dkim = 0;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -104,6 +104,18 @@ class Site extends AbstractEntity
     protected $footer;
 
     /**
+     * @ORM\OneToMany(targetEntity="Page\Entity\Page", mappedBy="site", cascade={"all"})
+     * @ORM\JoinColumn(name="id", referencedColumnName="site_id", nullable=false)
+     */
+    protected $page;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Blog\Entity\Blog", mappedBy="site", cascade={"all"})
+     * @ORM\JoinColumn(name="id", referencedColumnName="site_id", nullable=false)
+     */
+    protected $blog;
+
+    /**
      * Init default values.
      */
     public function __construct()
@@ -111,6 +123,8 @@ class Site extends AbstractEntity
         $this->status = new Status();
         $this->banner = new ArrayCollection();
         $this->footer = new ArrayCollection();
+        $this->page   = new ArrayCollection();
+        $this->blog   = new ArrayCollection();
     }
 
     /**

@@ -93,7 +93,7 @@ class Blog extends AbstractEntity
     protected $reply;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Site\Entity\Site")
+     * @ORM\ManyToOne(targetEntity="Site\Entity\Site", inversedBy="blog")
      * @ORM\JoinColumn(name="site_id", referencedColumnName="id", nullable=false)
      */
     protected $site;
