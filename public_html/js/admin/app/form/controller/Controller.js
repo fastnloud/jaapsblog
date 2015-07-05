@@ -59,6 +59,12 @@ Ext.define('App.form.controller.Controller', {
         });
     },
 
+    onMainGridSiteFilterAfterRender : function(combo) {
+        if (this.getName() == 'siteForm') {
+            combo.disable();
+        }
+    },
+
     onMainGridSiteFilterSelect : function(combo, record) {
         var grid     = this.getView().down('mainGrid'),
             store    = Ext.getStore(this.getStore()),

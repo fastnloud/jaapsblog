@@ -37,8 +37,9 @@ Ext.define('App.grid.Main', {
                 emptyText       : 'Filter site',
 
                 listeners : {
-                    select : 'onMainGridSiteFilterSelect',
-                    change : 'onMainGridSiteFilterChange',
+                    afterrender : 'onMainGridSiteFilterAfterRender',
+                    select      : 'onMainGridSiteFilterSelect',
+                    change      : 'onMainGridSiteFilterChange'
                 }
             }
         ]
