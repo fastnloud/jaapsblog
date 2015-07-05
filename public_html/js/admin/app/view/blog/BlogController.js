@@ -3,7 +3,7 @@ Ext.define('App.view.blog.BlogController', {
     alias  : 'controller.blog',
 
     init : function() {
-        this.initForm('blogForm', 'blog');
+        this.initForm('blogForm', 'Blog');
     },
 
     requires : [

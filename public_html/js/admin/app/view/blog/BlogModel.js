@@ -5,6 +5,7 @@ Ext.define('App.view.blog.BlogModel', {
     stores : {
         blog : {
             autoLoad : true,
+            id       : 'Blog',
 
             sorters : [{
                 property  : 'date',

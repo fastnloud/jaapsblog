@@ -61,7 +61,7 @@ Ext.define('App.form.controller.Controller', {
 
     onMainGridSiteFilterSelect : function(combo, record) {
         var grid     = this.getView().down('mainGrid'),
-            store    = grid.lookupViewModel(true).getStore(this.getStore())
+            store    = Ext.getStore(this.getStore()),
             property = 'site_id';
 
         if (this.getName() == 'siteForm') {
@@ -73,7 +73,7 @@ Ext.define('App.form.controller.Controller', {
 
     onMainGridSiteFilterChange : function(combo, value) {
         var grid  = this.getView().down('mainGrid'),
-            store = grid.lookupViewModel(true).getStore(this.getStore());
+            store = Ext.getStore(this.getStore());
 
         if (Ext.isEmpty(value)) {
             store.clearFilter();
@@ -129,9 +129,11 @@ Ext.define('App.form.controller.Controller', {
 
     onMainGridDeleteConfirm : function(choice) {
         if (choice === 'yes') {
-            var grid          = this.getView().down('mainGrid'),
+            var me            = this,
+                grid          = this.getView().down('mainGrid'),
                 deleteButton  = this.getView().lookupReference('mainGridDeleteButton'),
-                store         = grid.lookupViewModel(true).getStore(this.getStore()),
+                storeName     = this.getStore(),
+                store         = Ext.getStore(storeName),
                 selection     = grid.getSelection();
 
             if (selection.length > 0) {
@@ -140,6 +142,10 @@ Ext.define('App.form.controller.Controller', {
                 store.sync({
                     'success' : function() {
                         deleteButton.disable();
+
+                        if (storeName == 'Site') {
+                            me.syncSite();
+                        }
                     },
                     'failure' : function() {
                         store.rejectChanges();
@@ -271,9 +277,10 @@ Ext.define('App.form.controller.Controller', {
 
     sync : function(closeWindow) {
         var me            = this,
+            storeName     = this.getStore(),
+            store         = Ext.getStore(storeName),
             formContainer = me.getContainer(),
             form          = formContainer.down('form'),
-            store         = formContainer.lookupViewModel(true).getStore(this.getStore()),
             values        = form.getValues();
 
         if (form.isValid()) {
@@ -291,9 +298,23 @@ Ext.define('App.form.controller.Controller', {
                     if (closeWindow || formContainer.createRecord) {
                         store.reload();
                         me.onCancelClick();
+
+                        if (storeName == 'Site') {
+                            me.syncSite();
+                        }
                     }
                 }
             });
+        }
+    },
+
+    syncSite : function() {
+        if (Ext.getStore('Page')) {
+            Ext.getStore('Page').reload();
+        }
+
+        if (Ext.getStore('Blog')) {
+            Ext.getStore('Blog').reload();
         }
     }
 

@@ -3,7 +3,7 @@ Ext.define('App.view.site.SiteController', {
     alias  : 'controller.site',
 
     init : function() {
-        this.initForm('siteForm', 'site');
+        this.initForm('siteForm', 'Site');
     },
 
     requires : [

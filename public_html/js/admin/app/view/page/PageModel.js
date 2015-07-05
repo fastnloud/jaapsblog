@@ -5,6 +5,7 @@ Ext.define('App.view.page.PageModel', {
     stores : {
         page : {
             autoLoad : true,
+            id       : 'Page',
 
             sorters : [{
                 property  : 'priority',
