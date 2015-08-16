@@ -97,6 +97,7 @@ Ext.define('App.view.page.PageForm', {
                                 boxLabel       : 'Visible',
                                 padding        : '0 0 0 10px;',
                                 hideLabel      : true,
+                                inputValue     : true,
                                 allowBlank     : false
                             }
                         ]
