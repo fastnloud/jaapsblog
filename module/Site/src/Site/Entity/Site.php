@@ -43,6 +43,11 @@ class Site extends AbstractEntity
     /**
      * @ORM\Column(type="text", nullable=true)
      */
+    protected $css;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
     protected $google_analytics;
 
     /**
@@ -244,6 +249,22 @@ class Site extends AbstractEntity
     public function getFooter()
     {
         return $this->footer;
+    }
+
+    /**
+     * @param string $css
+     */
+    public function setCss($css)
+    {
+        $this->css = $css;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCss()
+    {
+        return $this->css;
     }
 
     /**
