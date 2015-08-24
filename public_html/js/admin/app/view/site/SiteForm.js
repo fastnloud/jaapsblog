@@ -32,6 +32,12 @@ Ext.define('App.view.site.SiteForm', {
                     },
                     {
                         xtype       : 'textarea',
+                        fieldLabel  : 'CSS',
+                        name        : 'css',
+                        bind        : '{record.css}'
+                    },
+                    {
+                        xtype       : 'textarea',
                         fieldLabel  : 'GA-code',
                         name        : 'google_analytics',
                         bind        : '{record.google_analytics}'
