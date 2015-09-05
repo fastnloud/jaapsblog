@@ -5,7 +5,7 @@ namespace Footer;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'FooterService' => 'Footer\Service\FooterFactory'
+            'Footer\Service\FooterService' => 'Footer\Factory\Service\FooterServiceFactory'
         )
     ),
     'doctrine' => array(

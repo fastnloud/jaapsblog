@@ -4,6 +4,7 @@ namespace Page\Entity;
 
 use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
+use Route\Entity\Route;
 
 /**
  * Class PageRepository
@@ -66,6 +67,28 @@ class PageRepository extends AbstractEntityRepository
            ->where('page.slug = :slug AND status = :status')
            ->setParameter(':status', 1)
            ->setParameter(':slug', $slug);
+
+        return $qb->getQuery()
+                  ->getSingleResult($this->getQueryHydrator());
+    }
+
+    /**
+     * @param Route $route
+     * @return mixed
+     */
+    public function fetchPageByRoute(Route $route)
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('page', 'status', 'route')
+           ->from('Page\Entity\Page', 'page')
+           ->join('page.status', 'status')
+           ->join('page.route', 'route')
+           ->where('route = :route')
+           ->andWhere('page.status = :status')
+           ->setParameter(':route', $route)
+           ->setParameter(':status', 1);
 
         return $qb->getQuery()
                   ->getSingleResult($this->getQueryHydrator());

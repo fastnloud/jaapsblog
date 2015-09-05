@@ -3,12 +3,12 @@
 return array(
     'service_manager' => array(
         'factories' => array(
-            'AuthService' => 'Auth\Service\AuthFactory'
+            'Auth\Service\AuthService' => 'Auth\Factory\Service\AuthServiceFactory'
         )
     ),
     'controllers' => array(
         'factories' => array(
-            'Auth\Controller\Auth' => 'Auth\Controller\AuthControllerFactory'
+            'Auth\Controller\AuthController' => 'Auth\Factory\Controller\AuthControllerFactory'
         )
     ),
     'doctrine' => array(
@@ -29,7 +29,7 @@ return array(
                 'options' => array(
                     'route'    => '/auth/user[/:action]',
                     'defaults' => array(
-                        'controller' => 'Auth\Controller\Auth',
+                        'controller' => 'Auth\Controller\AuthController',
                         'action'     => 'authUser'
                     ),
                 ),

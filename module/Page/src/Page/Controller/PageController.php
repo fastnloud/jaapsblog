@@ -3,7 +3,7 @@
 namespace Page\Controller;
 
 use Doctrine\ORM\NoResultException;
-use Page\Service\Page as PageService;
+use Page\Service\PageService;
 use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -27,7 +27,7 @@ class PageController extends AbstractActionController
      */
     public function indexAction()
     {
-        return $this->forward()->dispatch('Page\Controller\Page',
+        return $this->forward()->dispatch('Page\Controller\PageController',
             array(
                 'action' => 'page',
                 'slug'   => $this->params()->fromRoute('slug')
@@ -58,7 +58,7 @@ class PageController extends AbstractActionController
     }
 
     /**
-     * @param \Page\Service\Page $pageService
+     * @param \Page\Service\PageService $pageService
      */
     public function setPageService(PageService $pageService)
     {
@@ -66,7 +66,7 @@ class PageController extends AbstractActionController
     }
 
     /**
-     * @return \Page\Service\Page
+     * @return \Page\Service\PageService
      */
     protected  function getPageService()
     {

@@ -5,7 +5,7 @@ namespace Site;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'SiteService' => 'Site\Service\SiteFactory'
+            'Site\Service\SiteService' => 'Site\Factory\Service\SiteServiceFactory'
         )
     ),
     'doctrine' => array(

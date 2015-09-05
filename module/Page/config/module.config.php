@@ -5,12 +5,12 @@ namespace Page;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'PageService' => 'Page\Service\PageFactory'
+            'Page\Service\PageService' => 'Page\Factory\Service\PageServiceFactory'
         )
     ),
     'controllers' => array(
         'factories' => array(
-            'Page\Controller\Page' => 'Page\Controller\PageControllerFactory'
+            'Page\Controller\PageController' => 'Page\Factory\Controller\PageControllerFactory'
         )
     ),
     'doctrine' => array(
@@ -89,7 +89,7 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Page\Controller\Page',
+                        'controller' => 'Page\Controller\PageController',
                         'slug'       => 'home',
                         'action'     => 'index'
                     ),
@@ -103,7 +103,7 @@ return array(
                         'slug'   => '[a-zA-Z0-9_-]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Page\Controller\Page',
+                        'controller' => 'Page\Controller\PageController',
                         'action'     => 'page'
                     ),
                 ),

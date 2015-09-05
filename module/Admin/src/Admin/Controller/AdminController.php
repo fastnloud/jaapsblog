@@ -4,9 +4,9 @@ namespace Admin\Controller;
 
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query;
-use Zend\Authentication\AuthenticationService as AuthService;
-use Application\Entity\AbstractEntityService as EntityService;
-use Application\Entity\AbstractEntity as Entity;
+use Zend\Authentication\AuthenticationService;
+use Application\Service\AbstractEntityService;
+use Application\Entity\AbstractEntity;
 use Zend\Http\Header\SetCookie;
 use Zend\Http\Response;
 use Zend\Math\Rand;
@@ -28,17 +28,17 @@ class AdminController extends AbstractActionController
     protected $tables;
 
     /**
-     * @var Entity
+     * @var AbstractEntity
      */
     protected $entity;
 
     /**
-     * @var AuthService
+     * @var AuthenticationService
      */
     protected $authService;
 
     /**
-     * @var EntityService
+     * @var AbstractEntityService
      */
     protected $entityService;
 
@@ -109,7 +109,7 @@ class AdminController extends AbstractActionController
                             $service = $this->getServiceLocator()
                                             ->get($tables[$table]['service']);
 
-                            if ($service instanceof EntityService) {
+                            if ($service instanceof AbstractEntityService) {
                                 $this->setEntityService($service);
 
                                 // if service is found and set fetch entity
@@ -120,7 +120,7 @@ class AdminController extends AbstractActionController
                                         $class = new $entity();
 
                                         // only if entity is entity continue
-                                        if ($class instanceof Entity) {
+                                        if ($class instanceof AbstractEntity) {
                                             $this->setEntity($class);
 
                                             return true;
@@ -361,7 +361,7 @@ class AdminController extends AbstractActionController
     /**
      * @param \Application\Entity\AbstractEntity $entity
      */
-    protected function setEntity(Entity $entity)
+    protected function setEntity(AbstractEntity $entity)
     {
         $this->entity = $entity;
     }
@@ -375,15 +375,15 @@ class AdminController extends AbstractActionController
     }
 
     /**
-     * @param \Application\Entity\AbstractEntityService $entityService
+     * @param \Application\Service\AbstractEntityService $entityService
      */
-    protected function setEntityService(EntityService $entityService)
+    protected function setEntityService(AbstractEntityService $entityService)
     {
         $this->entityService = $entityService;
     }
 
     /**
-     * @return \Application\Entity\AbstractEntityService
+     * @return \Application\Service\AbstractEntityService
      */
     protected function getEntityService()
     {
@@ -393,7 +393,7 @@ class AdminController extends AbstractActionController
     /**
      * @param \Zend\Authentication\AuthenticationService $authService
      */
-    public function setAuthService($authService)
+    public function setAuthService(AuthenticationService $authService)
     {
         $this->authService = $authService;
     }
@@ -401,10 +401,10 @@ class AdminController extends AbstractActionController
     /**
      * @return \Zend\Authentication\AuthenticationService
      */
-    protected function getAuthService()
+    public function getAuthService()
     {
         if (!$this->authService) {
-            $this->setAuthService($this->getServiceLocator()->get('AuthService'));
+            $this->setAuthService($this->getServiceLocator()->get('Auth\Service\AuthService'));
         }
 
         return $this->authService;

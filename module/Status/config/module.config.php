@@ -5,7 +5,7 @@ namespace Status;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'StatusService' => 'Status\Service\StatusFactory'
+            'Status\Service\StatusService' => 'Status\Factory\Service\StatusServiceFactory'
         )
     ),
     'doctrine' => array(

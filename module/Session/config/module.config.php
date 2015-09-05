@@ -5,8 +5,8 @@ namespace Session;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'SessionManager'     => 'Session\Service\SessionManagerFactory',
-            'SessionSaveHandler' => 'Session\Service\SessionSaveHandlerFactory'
+            'Session\Session\SessionManager'                  => 'Session\Factory\Session\SessionManagerFactory',
+            'Session\Session\SaveHandler\DoctrineSaveHandler' => 'Session\Factory\Session\SaveHandler\DoctrineSaveHandlerFactory'
         )
     ),
     'doctrine' => array(

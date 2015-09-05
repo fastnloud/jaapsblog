@@ -5,12 +5,12 @@ namespace Blog;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'BlogService' => 'Blog\Service\BlogFactory'
+            'Blog\Service\BlogService' => 'Blog\Factory\Service\BlogServiceFactory'
         )
     ),
     'controllers' => array(
         'factories' => array(
-            'Blog\Controller\Blog' => 'Blog\Controller\BlogControllerFactory'
+            'Blog\Controller\BlogController' => 'Blog\Factory\Controller\BlogControllerFactory'
         )
     ),
     'doctrine' => array(
@@ -80,9 +80,8 @@ return array(
                 'options' => array(
                     'route'    => '/blog',
                     'defaults' => array(
-                        'controller' => 'Blog\Controller\Blog',
-                        'action'     => 'index',
-                        'slug'       => 'blog'
+                        'controller' => 'Blog\Controller\BlogController',
+                        'action'     => 'index'
                     ),
                 ),
                 'may_terminate' => true,

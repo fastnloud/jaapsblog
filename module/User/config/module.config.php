@@ -5,7 +5,7 @@ namespace User;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'UserService' => 'User\Service\UserFactory'
+            'User\Service\UserService' => 'User\Factory\Service\UserServiceFactory'
         )
     ),
     'doctrine' => array(

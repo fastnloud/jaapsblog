@@ -4,42 +4,42 @@ return array(
     'admin' => array(
         'tables' => array(
             'site' => array(
-                'service' => 'SiteService',
+                'service' => 'Site\Service\SiteService',
                 'entity'  => 'Site\Entity\Site',
                 'actions' => array(
                     'read', 'create', 'update', 'destroy'
                 )
             ),
             'banner' => array(
-                'service' => 'BannerService',
+                'service' => 'Banner\Service\BannerService',
                 'entity'  => 'Banner\Entity\Banner',
                 'actions' => array(
                     'read', 'create', 'update', 'destroy'
                 )
             ),
             'footer' => array(
-                'service' => 'FooterService',
+                'service' => 'Footer\Service\FooterService',
                 'entity'  => 'Footer\Entity\Footer',
                 'actions' => array(
                     'read', 'create', 'update', 'destroy'
                 )
             ),
             'page' => array(
-                'service' => 'PageService',
+                'service' => 'Page\Service\PageService',
                 'entity'  => 'Page\Entity\Page',
                 'actions' => array(
                     'read', 'create', 'update', 'destroy'
                 )
             ),
             'blog' => array(
-                'service' => 'BlogService',
+                'service' => 'Blog\Service\BlogService',
                 'entity'  => 'Blog\Entity\Blog',
                 'actions' => array(
                     'read', 'create', 'update', 'destroy'
                 )
             ),
             'reply' => array(
-                'service' => 'ReplyService',
+                'service' => 'Reply\Service\ReplyService',
                 'entity'  => 'Reply\Entity\Reply',
                 'actions' => array(
                     'read', 'create', 'update', 'destroy'
@@ -48,21 +48,21 @@ return array(
 
             // root tables
             'route' => array(
-                'service' => 'RouteService',
+                'service' => 'Route\Service\RouteService',
                 'entity'  => 'Route\Entity\Route',
                 'actions' => array(
                     'read'
                 )
             ),
             'status' => array(
-                'service' => 'StatusService',
+                'service' => 'Status\Service\StatusService',
                 'entity'  => 'Status\Entity\Status',
                 'actions' => array(
                     'read'
                 )
             ),
             'category' => array(
-                'service' => 'CategoryService',
+                'service' => 'Category\Service\CategoryService',
                 'entity'  => 'Category\Entity\Category',
                 'actions' => array(
                     'read'
@@ -72,7 +72,7 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'Admin\Controller\Admin' => 'Admin\Controller\AdminControllerFactory'
+            'Admin\Controller\AdminController' => 'Admin\Factory\Controller\AdminControllerFactory'
         )
     ),
     'router' => array(
@@ -82,7 +82,7 @@ return array(
                 'options' => array(
                     'route' => '/admin/',
                     'defaults' => array(
-                        'controller' => 'Admin\Controller\Admin',
+                        'controller' => 'Admin\Controller\AdminController',
                         'action'     => 'index',
                     ),
                 ),
@@ -97,7 +97,7 @@ return array(
                                 'action' => '(read|create|update|destroy)'
                             ),
                             'defaults' => array(
-                                'controller' => 'Admin\Controller\Admin',
+                                'controller' => 'Admin\Controller\AdminController',
                                 'action'     => 'read'
                             ),
                         ),

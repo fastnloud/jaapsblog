@@ -2,7 +2,6 @@
 
 namespace Application\Navigation;
 
-use Doctrine\ORM\EntityManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Navigation\Service\DefaultNavigationFactory;
 
@@ -14,22 +13,14 @@ class Navigation extends DefaultNavigationFactory
 {
 
     /**
-     * @var EntityManager
-     */
-    protected $entityManager;
-
-    /**
      * @param ServiceLocatorInterface $serviceLocator
      * @return array|mixed
      */
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {
-        $this->setEntityManager($serviceLocator->get('Doctrine\ORM\EntityManager'));
-
         if (null === $this->pages) {
-            $pages = $this->getEntityManager()
-                          ->getRepository('Page\Entity\Page')
-                          ->fetchPages();
+            $pages = $serviceLocator->get('Page\Service\PageService')
+                                    ->fetchEntities();
 
             if ($pages) {
                 foreach ($pages as $key => $page) {
@@ -46,9 +37,8 @@ class Navigation extends DefaultNavigationFactory
                     );
 
                     if ('blog' == $route) {
-                        $blogItems = $this->getEntityManager()
-                                          ->getRepository('Blog\Entity\Blog')
-                                          ->fetchBlogItems();
+                        $blogItems = $serviceLocator->get('Blog\Service\BlogService')
+                                                    ->fetchEntities();
 
                         if ($blogItems) {
                             foreach ($blogItems as $blogItem) {
@@ -78,22 +68,6 @@ class Navigation extends DefaultNavigationFactory
         }
 
         return $this->pages;
-    }
-
-    /**
-     * @param \Doctrine\ORM\EntityManager $entityManager
-     */
-    protected function setEntityManager(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getEntityManager()
-    {
-        return $this->entityManager;
     }
 
 }

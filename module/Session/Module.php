@@ -20,7 +20,7 @@ class Module
         if ($e->getRequest() instanceof Request) {
             $sessionManager = $e->getApplication()
                                 ->getServiceManager()
-                                ->get('SessionManager');
+                                ->get('Session\Session\SessionManager');
 
             $sessionManager->start();
         }

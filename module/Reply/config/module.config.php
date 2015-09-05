@@ -5,7 +5,7 @@ namespace Reply;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'ReplyService' => 'Reply\Service\ReplyFactory'
+            'Reply\Service\ReplyService' => 'Reply\Factory\Service\ReplyServiceFactory'
         )
     ),
     'doctrine' => array(

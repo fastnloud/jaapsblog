@@ -8,13 +8,13 @@ return array(
             'Zend\Form\FormAbstractServiceFactory'
         ),
         'factories' => array(
-            'Navigation' => 'Application\Navigation\NavigationFactory',
+            'Application\Navigation\Navigation' => 'Application\Factory\Navigation\NavigationFactory',
         )
     ),
     'validators' => array(
         'abstract_factories' => array(
-            'Application\Validator\Entity\EntityValidatorFactory',
-            'Application\Validator\XCrfTokenValidatorFactory'
+            'Application\Factory\Validator\Entity\EntityValidatorFactory',
+            'Application\Factory\Validator\XCrfTokenValidatorFactory'
         )
     ),
     'view_manager' => array(

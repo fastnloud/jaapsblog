@@ -5,7 +5,7 @@ namespace Banner;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'BannerService' => 'Banner\Service\BannerFactory'
+            'Banner\Service\BannerService' => 'Banner\Factory\Service\BannerServiceFactory'
         )
     ),
     'doctrine' => array(

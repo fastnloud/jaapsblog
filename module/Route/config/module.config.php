@@ -5,7 +5,7 @@ namespace Route;
 return array(
     'service_manager' => array(
         'factories' => array(
-            'RouteService' => 'Route\Service\RouteFactory'
+            'Route\Service\RouteService' => 'Route\Factory\Service\RouteServiceFactory'
         )
     ),
     'doctrine' => array(

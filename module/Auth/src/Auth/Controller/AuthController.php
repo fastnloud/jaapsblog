@@ -5,9 +5,9 @@ namespace Auth\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\Authentication\AuthenticationService as AuthService;
-use Session\Service\SessionManager;
+use Session\Session\SessionManager;
 use Application\Validator\XCrfToken;
-use User\Service\User as UserService;
+use User\Service\UserService;
 
 /**
  * Class AuthController
@@ -131,7 +131,7 @@ class AuthController extends AbstractActionController
     }
 
     /**
-     * @param \User\Service\User $userService
+     * @param \User\Service\UserService $userService
      */
     public function setUserService(UserService $userService)
     {
@@ -139,7 +139,7 @@ class AuthController extends AbstractActionController
     }
 
     /**
-     * @return \User\Service\User
+     * @return \User\Service\UserService
      */
     protected function getUserService()
     {
@@ -147,7 +147,7 @@ class AuthController extends AbstractActionController
     }
 
     /**
-     * @param \Session\Service\SessionManager $sessionManager
+     * @param \Session\Session\SessionManager $sessionManager
      */
     public function setSessionManager(SessionManager $sessionManager)
     {
@@ -155,7 +155,7 @@ class AuthController extends AbstractActionController
     }
 
     /**
-     * @return \Session\Service\SessionManager
+     * @return \Session\Session\SessionManager
      */
     protected function getSessionManager()
     {

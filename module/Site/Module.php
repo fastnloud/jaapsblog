@@ -17,7 +17,7 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         $e->getApplication()->getEventManager()->attach($e::EVENT_DISPATCH, function($e) {
-            $e->getApplication()->getServiceManager()->get('SiteService')->load();
+            $e->getApplication()->getServiceManager()->get('Site\Service\SiteService')->load();
         }, 900);
     }
 

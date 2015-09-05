@@ -3,8 +3,10 @@
 namespace Blog\Controller;
 
 use Doctrine\ORM\NoResultException;
-use Page\Service\Page as PageService;
-use Blog\Service\Blog as BlogService;
+use Page\Service\PageService;
+use Blog\Service\BlogService;
+use Route\Entity\Route;
+use Site\Service\SiteService;
 use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -34,8 +36,11 @@ class BlogController extends AbstractActionController
     public function indexAction()
     {
         try {
+            $route = new Route();
+            $route->setId(1);
+
             $page = $this->getPageService()
-                         ->fetchPageBySlug($this->params()->fromRoute('slug'));
+                         ->fetchPageByRoute($route);
         } catch (NoResultException $e) {
             $this->getResponse()
                  ->setStatusCode(Response::STATUS_CODE_404);
@@ -60,8 +65,11 @@ class BlogController extends AbstractActionController
     public function blogItemAction()
     {
         try {
+            $route = new Route();
+            $route->setId(1);
+
             $page = $this->getPageService()
-                         ->fetchPageBySlug($this->params()->fromRoute('slug'));
+                         ->fetchPageByRoute($route);
 
             $blogItem = $this->getBlogService()
                              ->fetchBlogItemBySlug($this->params()->fromRoute('item'));
@@ -79,7 +87,7 @@ class BlogController extends AbstractActionController
     }
 
     /**
-     * @param \Page\Service\Page $pageService
+     * @param \Page\Service\PageService $pageService
      */
     public function setPageService(PageService $pageService)
     {
@@ -87,7 +95,7 @@ class BlogController extends AbstractActionController
     }
 
     /**
-     * @return \Page\Service\Page
+     * @return \Page\Service\PageService
      */
     protected  function getPageService()
     {
@@ -95,7 +103,7 @@ class BlogController extends AbstractActionController
     }
 
     /**
-     * @param \Blog\Service\Blog $blogService
+     * @param \Blog\Service\BlogService $blogService
      */
     public function setBlogService(BlogService $blogService)
     {
@@ -103,7 +111,7 @@ class BlogController extends AbstractActionController
     }
 
     /**
-     * @return \Blog\Service\Blog
+     * @return \Blog\Service\BlogService
      */
     protected function getBlogService()
     {
