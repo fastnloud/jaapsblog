@@ -55,10 +55,12 @@
 
                             <ul>
                                 <li>You are here:</li>
-                                <?php if (!$this->navigation()->findActive('Application/Navigation/Navigation') || 'home' !== $this->navigation()->findActive('Application/Navigation/Navigation')['page']->getRoute()): ?>
-                                    <li><a href="/">Home</a> &gt; </li>
+                                <?php if ('home' === $this->navigation()->findActive('Application/Navigation/Navigation')['page']->getRoute()): ?>
+                                    <li><a href="/">Home</a></li>
+                                <?php else: ?>
+                                    <li><a href="/">Home</a> &gt;</li>
+                                    <li><?php echo $this->navigation()->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?></li>
                                 <?php endif; ?>
-                                <li><?php echo $this->navigation()->breadcrumbs()->setMinDepth(0)->setRenderInvisible(true); ?></li>
                             </ul>
 
                         </nav>
