@@ -61,9 +61,10 @@ class SiteRepository extends AbstractEntityRepository
            ->join('site.status', 'status')
            ->join('site.banner', 'banner')
            ->join('site.footer', 'footer')
-           ->where('site.status = :status AND site.domain = :domain')
-           ->setParameter(':status', 1)
-           ->setParameter(':domain', $domain);
+           ->where('site.domain = :domain')
+           ->andWhere('site.status = :status')
+           ->setParameter(':domain', $domain)
+           ->setParameter(':status', 1);
 
         return $qb->getQuery()
                   ->getSingleResult($this->getQueryHydrator());

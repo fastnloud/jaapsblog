@@ -83,9 +83,10 @@ class BlogRepository extends AbstractEntityRepository
            ->from('Blog\Entity\Blog', 'blog')
            ->join('blog.status', 'status')
            ->leftJoin('blog.reply', 'reply')
-           ->where('blog.status = :status AND blog.slug = :slug')
-           ->setParameter(':status', 1)
-           ->setParameter(':slug', $slug);
+           ->where('blog.slug = :slug')
+           ->andWhere('blog.status = :status')
+           ->setParameter(':slug', $slug)
+           ->setParameter(':status', 1);
 
         return $qb->getQuery()
                   ->getSingleResult($this->getQueryHydrator());
