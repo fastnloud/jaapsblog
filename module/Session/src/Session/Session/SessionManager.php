@@ -49,7 +49,8 @@ class SessionManager extends \Zend\Session\SessionManager
             parent::start($preserveStorage);
         } catch (RuntimeException $e) {
             $this->destroy();
-            return;
+
+            throw new RuntimeException($e->getMessage(), $e->getCode());
         }
 
         $sessionConfig = $this->getSessionConfig();
