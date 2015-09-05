@@ -10,8 +10,8 @@
         <?php echo $this->headTitle('title')->setSeparator(' - '); ?>
 
         <?php echo $this->headMeta()
-                        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-                        ->appendName('viewport', 'width=device-width, initial-scale=1'); ?>
+                        ->prependName('viewport', 'width=device-width, initial-scale=1')
+                        ->prependHttpEquiv('X-UA-Compatible', 'IE=edge'); ?>
 
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/favicon.ico'))
                         ->prependStylesheet($this->basePath() . '/css/style.css')
@@ -107,9 +107,9 @@
 
                     <div class="share">
 
-                        <a class="icon-facebook"></a>
-                        <a class="icon-googleplus"></a>
-                        <a class="icon-linkedin"></a>
+                        <a class="fa fa-facebook"></a>
+                        <a class="fa fa-google-plus"></a>
+                        <a class="fa fa-linkedin"></a>
 
                     </div>
 
