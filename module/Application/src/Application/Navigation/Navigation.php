@@ -29,12 +29,16 @@ class Navigation extends DefaultNavigationFactory
                     $navigation[$key] = array (
                         'page_id'   => $page->getId(),
                         'visible'   => $page->getIsVisible(),
-                        'label'     => $page->getLabel(),
-                        'route'     => $route,
-                        'params'    => array(
-                            'slug' => $page->getSlug()
-                        )
+                        'label'     => ('home' === $route ? null : $page->getLabel()),
+                        'class'     => ('home' === $route ? 'fa fa-home' : null),
+                        'route'     => $route
                     );
+
+                    if ('page' === $route) {
+                        $navigation[$key]['params'] = array(
+                            'slug' => $page->getSlug()
+                        );
+                    }
 
                     if ('blog' == $route) {
                         $blogItems = $serviceLocator->get('Blog\Service\BlogService')
