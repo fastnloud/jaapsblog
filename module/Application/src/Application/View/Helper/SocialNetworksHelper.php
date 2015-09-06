@@ -34,7 +34,11 @@ class SocialNetworksHelper extends AbstractSiteHelper
             $html .= "<a href=\"$facebookHref\"><i class=\"fa fa-facebook\"></i></a>";
         }
 
-        $html = "<div class=\"social-networks\">$html</div>";
+        $html = <<<SOCIALNETWORKS
+<div class="social-networks">
+    $html
+</div>
+SOCIALNETWORKS;
 
         return $html;
     }

@@ -25,13 +25,17 @@ class FooterHelper extends AbstractSiteHelper
                     $href  = $this->getView()->escapeHtmlAttr($footer->getHref());
                     $label = $this->getView()->escapeHtml($footer->getLabel());
 
-                    $footerColumns[$footer->getFooterColumn()][] = "<li><a href=\"$href\">$label</a></li>";
+                    $footerColumns[$footer->getFooterColumn()][] = <<<FOOTER
+<li>
+    <a href="$href">$label</a>
+</li>
+FOOTER;
                 }
             }
         }
 
         foreach ($footerColumns as $footerColumn) {
-            $html .= '<ul>' . implode('', $footerColumn) . '</ul>';
+            $html .= '<ul>' . implode(PHP_EOL, $footerColumn) . '</ul>';
         }
 
         return $html;
