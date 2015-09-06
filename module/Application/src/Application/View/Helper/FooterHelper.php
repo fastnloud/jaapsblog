@@ -3,7 +3,6 @@
 namespace Application\View\Helper;
 
 use Footer\Entity\Footer;
-use Site\Service\SiteService;
 
 class FooterHelper extends AbstractSiteHelper
 {

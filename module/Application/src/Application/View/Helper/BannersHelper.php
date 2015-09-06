@@ -16,7 +16,6 @@ class BannersHelper extends AbstractSiteHelper
      */
     public function __invoke()
     {
-        $html    = '';
         $banners = [];
 
         $site = $this->getSiteService()
