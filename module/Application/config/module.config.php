@@ -21,7 +21,8 @@ return array(
         'factories' => array(
             'footer'         => 'Application\Factory\ViewHelper\FooterHelperFactory',
             'socialNetworks' => 'Application\Factory\ViewHelper\SocialNetworksHelperFactory',
-            'banners'        => 'Application\Factory\ViewHelper\BannersHelperFactory'
+            'banners'        => 'Application\Factory\ViewHelper\BannersHelperFactory',
+            'siteTitle'      => 'Application\Factory\ViewHelper\SiteTitleHelperFactory'
         )
     ),
     'view_manager' => array(

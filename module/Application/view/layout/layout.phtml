@@ -6,7 +6,7 @@
 
         <meta charset="utf-8">
 
-        <?php echo $this->headTitle('title')->setSeparator(' - '); ?>
+        <?php echo $this->headTitle($this->siteTitle())->setSeparator(' - '); ?>
 
         <?php echo $this->headMeta()
                         ->prependName('viewport', 'width=device-width, initial-scale=1')
@@ -39,8 +39,8 @@
 
                         </nav>
 
-                        <div class="site-name">
-                            site <i class="fa fa-code"></i>
+                        <div class="site-title">
+                            <?php echo $this->escapeHtml($this->siteTitle()); ?> <i class="fa fa-code"></i>
                         </div>
 
                     </div>
