@@ -3,23 +3,17 @@
 namespace Application\View\Helper;
 
 use Footer\Entity\Footer;
-use Zend\Form\View\Helper\AbstractHelper;
 use Site\Service\SiteService;
 
-class FooterHelper extends AbstractHelper
+class FooterHelper extends AbstractSiteHelper
 {
-
-    /**
-     * @var SiteService
-     */
-    protected $siteService;
 
     /**
      * @return string
      */
     public function __invoke()
     {
-        $list          = '';
+        $html          = '';
         $footerColumns = [];
 
         $site = $this->getSiteService()
@@ -37,26 +31,10 @@ class FooterHelper extends AbstractHelper
         }
 
         foreach ($footerColumns as $footerColumn) {
-            $list .= '<ul>' . implode('', $footerColumn) . '</ul>';
+            $html .= '<ul>' . implode('', $footerColumn) . '</ul>';
         }
 
-        return $list;
-    }
-
-    /**
-     * @param \Site\Service\SiteService $siteService
-     */
-    public function setSiteService(SiteService $siteService)
-    {
-        $this->siteService = $siteService;
-    }
-
-    /**
-     * @return \Site\Service\SiteService
-     */
-    protected function getSiteService()
-    {
-        return $this->siteService;
+        return $html;
     }
 
 }
