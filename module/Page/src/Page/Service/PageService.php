@@ -36,6 +36,18 @@ class PageService extends AbstractEntityService
     }
 
     /**
+     * @param Site $site
+     * @return mixed
+     */
+    public function fetchPages(Site $site)
+    {
+        return $this->getEntityManager()
+                    ->getRepository('Page\Entity\Page')
+                    ->setQueryHydrator($this->getQueryHydrator())
+                    ->fetchPages($site);
+    }
+
+    /**
      * @param $slug
      * @param Site $site
      * @return mixed

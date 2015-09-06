@@ -4,6 +4,9 @@ namespace Application\Navigation;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Navigation\Service\DefaultNavigationFactory;
+use Page\Service\PageService;
+use Blog\Service\BlogService;
+use Site\Service\SiteService;
 
 /**
  * Class Navigation
@@ -13,14 +16,32 @@ class Navigation extends DefaultNavigationFactory
 {
 
     /**
+     * @var PageService
+     */
+    protected $pageService;
+
+    /**
+     * @var BlogService
+     */
+    protected $blogService;
+
+    /**
+     * @var SiteService
+     */
+    protected $siteService;
+
+    /**
      * @param ServiceLocatorInterface $serviceLocator
      * @return array|mixed
      */
     protected function getPages(ServiceLocatorInterface $serviceLocator)
     {
+        $site = $this->getSiteService()
+                     ->getSite();
+
         if (null === $this->pages) {
-            $pages = $serviceLocator->get('Page\Service\PageService')
-                                    ->fetchEntities();
+            $pages = $this->getPageService()
+                          ->fetchPages($site);
 
             if ($pages) {
                 foreach ($pages as $key => $page) {
@@ -41,8 +62,8 @@ class Navigation extends DefaultNavigationFactory
                     }
 
                     if ('blog' == $route) {
-                        $blogItems = $serviceLocator->get('Blog\Service\BlogService')
-                                                    ->fetchEntities();
+                        $blogItems = $this->getBlogService()
+                                          ->fetchBlogItems($site);
 
                         if ($blogItems) {
                             foreach ($blogItems as $blogItem) {
@@ -72,6 +93,54 @@ class Navigation extends DefaultNavigationFactory
         }
 
         return $this->pages;
+    }
+
+    /**
+     * @param \Blog\Service\BlogService $blogService
+     */
+    public function setBlogService(BlogService $blogService)
+    {
+        $this->blogService = $blogService;
+    }
+
+    /**
+     * @return \Blog\Service\BlogService
+     */
+    protected function getBlogService()
+    {
+        return $this->blogService;
+    }
+
+    /**
+     * @param \Page\Service\PageService $pageService
+     */
+    public function setPageService(PageService $pageService)
+    {
+        $this->pageService = $pageService;
+    }
+
+    /**
+     * @return \Page\Service\PageService
+     */
+    protected function getPageService()
+    {
+        return $this->pageService;
+    }
+
+    /**
+     * @param \Site\Service\SiteService $siteService
+     */
+    public function setSiteService(SiteService $siteService)
+    {
+        $this->siteService = $siteService;
+    }
+
+    /**
+     * @return \Site\Service\SiteService
+     */
+    protected function getSiteService()
+    {
+        return $this->siteService;
     }
 
 }

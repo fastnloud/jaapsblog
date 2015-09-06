@@ -53,6 +53,28 @@ class PageRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param Site $site
+     * @return mixed
+     */
+    public function fetchPages(Site $site)
+    {
+        $qb = $this->getEntityManager()
+                   ->createQueryBuilder();
+
+        $qb->select('page', 'status', 'site')
+           ->from('Page\Entity\Page', 'page')
+           ->join('page.status', 'status')
+           ->join('page.site', 'site')
+           ->andWhere('site = :site')
+           ->andWhere('page.status = :status')
+           ->setParameter(':site', $site)
+           ->setParameter(':status', 1);
+
+        return $qb->getQuery()
+                  ->getResult($this->getQueryHydrator());
+    }
+
+    /**
      * @param $slug
      * @param Site $site
      * @return mixed
@@ -101,25 +123,6 @@ class PageRepository extends AbstractEntityRepository
 
         return $qb->getQuery()
                   ->getSingleResult($this->getQueryHydrator());
-    }
-
-    /**
-     * @return array
-     */
-    public function fetchPages()
-    {
-        $qb = $this->getEntityManager()
-                   ->createQueryBuilder();
-
-        $qb->select('page', 'route')
-           ->from('Page\Entity\Page', 'page')
-           ->join('page.route', 'route')
-           ->where('page.status = :status')
-           ->setParameter(':status', 1)
-           ->orderBy('page.priority', 'ASC');
-
-        return $qb->getQuery()
-                  ->getResult($this->getQueryHydrator());
     }
 
 }
