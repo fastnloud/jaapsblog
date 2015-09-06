@@ -22,6 +22,7 @@ class BlogControllerFactory implements FactoryInterface
         $controller = new BlogController();
         $controller->setBlogService($serviceLocator->getServiceLocator()->get('Blog\Service\BlogService'));
         $controller->setPageService($serviceLocator->getServiceLocator()->get('Page\Service\PageService'));
+        $controller->setSiteService($serviceLocator->getServiceLocator()->get('Site\Service\SiteService'));
 
         return $controller;
     }

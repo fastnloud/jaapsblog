@@ -21,24 +21,30 @@ class SiteService extends AbstractEntityService
     protected $request;
 
     /**
-     * Load and fetch 'active' site by domain.
+     * Fetch 'active' site by domain.
      *
-     * @return void
+     * @return Site
+     * @throws \Exception
      */
-    public function load()
+    public function getSite()
     {
-        if ($this->getRequest() instanceof Request) {
-            $host = $this->getRequest()
-                         ->getUri()
-                         ->getHost();
+        $host = $this->getRequest()
+                     ->getUri()
+                     ->getHost();
 
-            try {
-                $site = $this->fetchSiteByDomain($host);
-            } catch(NoResultException $e) {
-                $site = new Site();
-                $site->setTitle('Undefined App');
+        $sites = $this->fetchEntities();
+
+        foreach ($sites as $site) {
+            $domains = array_map('trim', explode(',', $site->getDomain()));
+
+            foreach ($domains as $domain) {
+                if ($host == $domain) {
+                    return $this->fetchSite($site->getId());
+                }
             }
         }
+
+        throw new NoResultException('No site found');
     }
 
     /**
@@ -65,15 +71,15 @@ class SiteService extends AbstractEntityService
     }
 
     /**
-     * @param string $domain
+     * @param $id
      * @return mixed
      */
-    public function fetchSiteByDomain($domain)
+    protected function fetchSite($id)
     {
         return $this->getEntityManager()
                     ->getRepository('Site\Entity\Site')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->fetchSiteByDomain($domain);
+                    ->fetchSite($id);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Blog\Service;
 
 use Application\Service\AbstractEntityService;
+use Site\Entity\Site;
 
 /**
  * Class BlogService
@@ -35,26 +36,28 @@ class BlogService extends AbstractEntityService
     }
 
     /**
+     * @param Site $site
      * @return mixed
      */
-    public function fetchBlogItems()
+    public function fetchBlogItems(Site $site)
     {
         return $this->getEntityManager()
                     ->getRepository('Blog\Entity\Blog')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->fetchBlogItems();
+                    ->fetchBlogItems($site);
     }
 
     /**
      * @param $slug
+     * @param Site $site
      * @return mixed
      */
-    public function fetchBlogItemBySlug($slug)
+    public function fetchBlogItemBySlug($slug, Site $site)
     {
         return $this->getEntityManager()
                     ->getRepository('Blog\Entity\Blog')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->fetchBlogItemBySlug($slug);
+                    ->fetchBlogItemBySlug($slug, $site);
     }
 
 }

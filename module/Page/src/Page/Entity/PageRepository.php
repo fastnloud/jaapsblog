@@ -4,7 +4,7 @@ namespace Page\Entity;
 
 use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
-use Route\Entity\Route;
+use Site\Entity\Site;
 
 /**
  * Class PageRepository
@@ -54,19 +54,23 @@ class PageRepository extends AbstractEntityRepository
 
     /**
      * @param $slug
+     * @param Site $site
      * @return mixed
      */
-    public function fetchPageBySlug($slug)
+    public function fetchPageBySlug($slug, Site $site)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('page', 'status')
+        $qb->select('page', 'status', 'site')
            ->from('Page\Entity\Page', 'page')
            ->join('page.status', 'status')
+           ->join('page.site', 'site')
            ->where('page.slug = :slug')
+           ->andWhere('site = :site')
            ->andWhere('page.status = :status')
            ->setParameter(':slug', $slug)
+           ->setParameter(':site', $site)
            ->setParameter(':status', 1);
 
         return $qb->getQuery()
@@ -74,21 +78,25 @@ class PageRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param Route $route
+     * @param $route
+     * @param Site $site
      * @return mixed
      */
-    public function fetchPageByRoute(Route $route)
+    public function fetchPageByRoute($route, Site $site)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('page', 'status', 'route')
+        $qb->select('page', 'status', 'route', 'site')
            ->from('Page\Entity\Page', 'page')
            ->join('page.status', 'status')
            ->join('page.route', 'route')
-           ->where('route = :route')
+           ->join('page.site', 'site')
+           ->where('route.label = :route')
+           ->andWhere('site = :site')
            ->andWhere('page.status = :status')
            ->setParameter(':route', $route)
+           ->setParameter(':site', $site)
            ->setParameter(':status', 1);
 
         return $qb->getQuery()

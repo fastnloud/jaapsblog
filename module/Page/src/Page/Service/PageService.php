@@ -3,7 +3,7 @@
 namespace Page\Service;
 
 use Application\Service\AbstractEntityService;
-use Route\Entity\Route;
+use Site\Entity\Site;
 
 /**
  * Class PageService
@@ -36,27 +36,29 @@ class PageService extends AbstractEntityService
     }
 
     /**
-     * @param string $slug
+     * @param $slug
+     * @param Site $site
      * @return mixed
      */
-    public function fetchPageBySlug($slug)
+    public function fetchPageBySlug($slug, Site $site)
     {
         return $this->getEntityManager()
                     ->getRepository('Page\Entity\Page')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->fetchPageBySlug($slug);
+                    ->fetchPageBySlug($slug, $site);
     }
 
     /**
-     * @param Route $route
+     * @param $route
+     * @param Site $site
      * @return mixed
      */
-    public function fetchPageByRoute(Route $route)
+    public function fetchPageByRoute($route, Site $site)
     {
         return $this->getEntityManager()
                     ->getRepository('Page\Entity\Page')
                     ->setQueryHydrator($this->getQueryHydrator())
-                    ->fetchPageByRoute($route);
+                    ->fetchPageByRoute($route, $site);
     }
 
 }

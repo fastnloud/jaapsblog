@@ -21,6 +21,7 @@ class PageControllerFactory implements FactoryInterface
     {
         $controller = new PageController();
         $controller->setPageService($serviceLocator->getServiceLocator()->get('Page\Service\PageService'));
+        $controller->setSiteService($serviceLocator->getServiceLocator()->get('Site\Service\SiteService'));
 
         return $controller;
     }

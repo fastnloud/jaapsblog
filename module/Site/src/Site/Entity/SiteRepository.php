@@ -48,10 +48,10 @@ class SiteRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param $domain
+     * @param $id
      * @return mixed
      */
-    public function fetchSiteByDomain($domain)
+    public function fetchSite($id)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
@@ -61,9 +61,9 @@ class SiteRepository extends AbstractEntityRepository
            ->join('site.status', 'status')
            ->join('site.banner', 'banner')
            ->join('site.footer', 'footer')
-           ->where('site.domain = :domain')
+           ->where('site.id = :id')
            ->andWhere('site.status = :status')
-           ->setParameter(':domain', $domain)
+           ->setParameter(':id', $id)
            ->setParameter(':status', 1);
 
         return $qb->getQuery()

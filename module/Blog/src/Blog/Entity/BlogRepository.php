@@ -4,6 +4,7 @@ namespace Blog\Entity;
 
 use Application\Entity\AbstractEntityRepository;
 use Doctrine\ORM\Query;
+use Site\Entity\Site;
 
 /**
  * Class BlogRepository
@@ -52,18 +53,22 @@ class BlogRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param Site $site
      * @return array
      */
-    public function fetchBlogItems()
+    public function fetchBlogItems(Site $site)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('blog', 'status', 'reply')
+        $qb->select('blog', 'status', 'reply', 'site')
            ->from('Blog\Entity\Blog', 'blog')
            ->join('blog.status', 'status')
+           ->join('blog.site', 'site')
            ->leftJoin('blog.reply', 'reply')
-           ->where('blog.status = :status')
+           ->where('site = :site')
+           ->andWhere('blog.status = :status')
+           ->setParameter(':site', $site)
            ->setParameter(':status', 1);
 
         return $qb->getQuery()
@@ -72,20 +77,24 @@ class BlogRepository extends AbstractEntityRepository
 
     /**
      * @param $slug
+     * @param Site $site
      * @return mixed
      */
-    public function fetchBlogItemBySlug($slug)
+    public function fetchBlogItemBySlug($slug, Site $site)
     {
         $qb = $this->getEntityManager()
                    ->createQueryBuilder();
 
-        $qb->select('blog', 'status', 'reply')
+        $qb->select('blog', 'status', 'reply', 'site')
            ->from('Blog\Entity\Blog', 'blog')
            ->join('blog.status', 'status')
+           ->join('blog.site', 'site')
            ->leftJoin('blog.reply', 'reply')
            ->where('blog.slug = :slug')
+           ->andWhere('site = :site')
            ->andWhere('blog.status = :status')
            ->setParameter(':slug', $slug)
+           ->setParameter(':site', $site)
            ->setParameter(':status', 1);
 
         return $qb->getQuery()

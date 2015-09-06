@@ -29,6 +29,11 @@ class BlogController extends AbstractActionController
     protected $blogService;
 
     /**
+     * @var SiteService
+     */
+    protected $siteService;
+
+    /**
      * Blog index.
      *
      * @return array|ViewModel
@@ -36,11 +41,11 @@ class BlogController extends AbstractActionController
     public function indexAction()
     {
         try {
-            $route = new Route();
-            $route->setId(1);
+            $site = $this->getSiteService()
+                         ->getSite();
 
             $page = $this->getPageService()
-                         ->fetchPageByRoute($route);
+                         ->fetchPageByRoute('blog', $site);
         } catch (NoResultException $e) {
             $this->getResponse()
                  ->setStatusCode(Response::STATUS_CODE_404);
@@ -49,7 +54,7 @@ class BlogController extends AbstractActionController
         }
 
         $blogItems = $this->getBlogService()
-                          ->fetchBlogItems();
+                          ->fetchBlogItems($site);
 
         return new ViewModel(array(
             'page'      => $page,
@@ -65,14 +70,14 @@ class BlogController extends AbstractActionController
     public function blogItemAction()
     {
         try {
-            $route = new Route();
-            $route->setId(1);
+            $site = $this->getSiteService()
+                         ->getSite();
 
             $page = $this->getPageService()
-                         ->fetchPageByRoute($route);
+                         ->fetchPageByRoute('blog', $site);
 
             $blogItem = $this->getBlogService()
-                             ->fetchBlogItemBySlug($this->params()->fromRoute('item'));
+                             ->fetchBlogItemBySlug($this->params()->fromRoute('item'), $site);
         } catch (NoResultException $e) {
             $this->getResponse()
                  ->setStatusCode(Response::STATUS_CODE_404);
@@ -116,6 +121,22 @@ class BlogController extends AbstractActionController
     protected function getBlogService()
     {
         return $this->blogService;
+    }
+
+    /**
+     * @param \Site\Service\SiteService $siteService
+     */
+    public function setSiteService(SiteService $siteService)
+    {
+        $this->siteService = $siteService;
+    }
+
+    /**
+     * @return \Site\Service\SiteService
+     */
+    protected function getSiteService()
+    {
+        return $this->siteService;
     }
 
 }

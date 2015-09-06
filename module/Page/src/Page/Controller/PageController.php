@@ -4,6 +4,7 @@ namespace Page\Controller;
 
 use Doctrine\ORM\NoResultException;
 use Page\Service\PageService;
+use Site\Service\SiteService;
 use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -19,6 +20,11 @@ class PageController extends AbstractActionController
      * @var PageService
      */
     protected $pageService;
+
+    /**
+     * @var SiteService
+     */
+    protected $siteService;
 
     /**
      * Homepage.
@@ -43,8 +49,11 @@ class PageController extends AbstractActionController
     public function pageAction()
     {
         try {
+            $site = $this->getSiteService()
+                         ->getSite();
+
             $page = $this->getPageService()
-                         ->fetchPageBySlug($this->params()->fromRoute('slug'));
+                         ->fetchPageBySlug($this->params()->fromRoute('slug'), $site);
         } catch (NoResultException $e) {
             $this->getResponse()
                  ->setStatusCode(Response::STATUS_CODE_404);
@@ -71,6 +80,22 @@ class PageController extends AbstractActionController
     protected  function getPageService()
     {
         return $this->pageService;
+    }
+
+    /**
+     * @param \Site\Service\SiteService $siteService
+     */
+    public function setSiteService(SiteService $siteService)
+    {
+        $this->siteService = $siteService;
+    }
+
+    /**
+     * @return \Site\Service\SiteService
+     */
+    protected function getSiteService()
+    {
+        return $this->siteService;
     }
 
 }
