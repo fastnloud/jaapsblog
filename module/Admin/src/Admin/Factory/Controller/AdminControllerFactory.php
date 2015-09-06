@@ -23,6 +23,7 @@ class AdminControllerFactory implements FactoryInterface
                                  ->get('Config');
 
         $controller = new AdminController($config);
+        $controller->setAuthService($serviceLocator->getServiceLocator()->get('Auth\Service\AuthService'));
 
         return $controller;
     }

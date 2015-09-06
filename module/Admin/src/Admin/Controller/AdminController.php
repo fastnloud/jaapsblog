@@ -401,12 +401,8 @@ class AdminController extends AbstractActionController
     /**
      * @return \Zend\Authentication\AuthenticationService
      */
-    public function getAuthService()
+    protected function getAuthService()
     {
-        if (!$this->authService) {
-            $this->setAuthService($this->getServiceLocator()->get('Auth\Service\AuthService'));
-        }
-
         return $this->authService;
     }
 
