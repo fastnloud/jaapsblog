@@ -21,6 +21,11 @@ class SiteService extends AbstractEntityService
     protected $request;
 
     /**
+     * @var Site
+     */
+    protected $activeSite;
+
+    /**
      * Fetch 'active' site by domain.
      *
      * @return Site
@@ -28,6 +33,10 @@ class SiteService extends AbstractEntityService
      */
     public function getSite()
     {
+        if ($this->getActiveSite()) {
+            return $this->getActiveSite();
+        }
+
         $host = $this->getRequest()
                      ->getUri()
                      ->getHost();
@@ -39,7 +48,10 @@ class SiteService extends AbstractEntityService
 
             foreach ($domains as $domain) {
                 if ($host == $domain) {
-                    return $this->fetchSite($site->getId());
+                    $activeSite = $this->fetchSite($site->getId());
+                    $this->setActiveSite($activeSite);
+
+                    return $activeSite;
                 }
             }
         }
@@ -96,6 +108,22 @@ class SiteService extends AbstractEntityService
     protected function getRequest()
     {
         return $this->request;
+    }
+
+    /**
+     * @param \Site\Entity\Site $activeSite
+     */
+    protected function setActiveSite(Site $activeSite)
+    {
+        $this->activeSite = $activeSite;
+    }
+
+    /**
+     * @return \Site\Entity\Site
+     */
+    protected function getActiveSite()
+    {
+        return $this->activeSite;
     }
 
 }
