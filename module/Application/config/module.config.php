@@ -17,6 +17,11 @@ return array(
             'Application\Factory\Validator\XCrfTokenValidatorFactory'
         )
     ),
+    'view_helpers' => array(
+        'factories' => array(
+            'footer' => 'Application\Factory\ViewHelper\FooterHelperFactory'
+        )
+    ),
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
