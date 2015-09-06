@@ -59,11 +59,13 @@ class SiteRepository extends AbstractEntityRepository
         $qb->select('site', 'status', 'banner', 'footer')
            ->from('Site\Entity\Site', 'site')
            ->join('site.status', 'status')
-           ->join('site.banner', 'banner')
-           ->join('site.footer', 'footer')
+           ->leftJoin('site.banner', 'banner')
+           ->leftJoin('site.footer', 'footer')
            ->where('site.id = :id')
+           ->andWhere('banner.status = :bannerStatus')
            ->andWhere('site.status = :status')
            ->setParameter(':id', $id)
+           ->setParameter(':bannerStatus', 1)
            ->setParameter(':status', 1);
 
         return $qb->getQuery()

@@ -99,6 +99,7 @@ class Site extends AbstractEntity
     /**
      * @ORM\OneToMany(targetEntity="Banner\Entity\Banner", mappedBy="site", cascade={"all"})
      * @ORM\JoinColumn(name="id", referencedColumnName="site_id", nullable=false)
+     * @ORM\OrderBy({"priority" = "ASC"})
      */
     protected $banner;
 

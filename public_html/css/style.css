@@ -88,6 +88,10 @@ aside li a,
     width: 40%;
 }
 
+.column2 p {
+    margin-bottom: 0;
+}
+
 .shadow-line {
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
@@ -211,7 +215,7 @@ aside ul li:hover a  {
 
 .content + .content,
 .content > a + a {
-    margin-top: 1em;
+    margin-top: 10px;
 }
 
 .content > a {

@@ -20,7 +20,8 @@ return array(
     'view_helpers' => array(
         'factories' => array(
             'footer'         => 'Application\Factory\ViewHelper\FooterHelperFactory',
-            'socialNetworks' => 'Application\Factory\ViewHelper\SocialNetworksHelperFactory'
+            'socialNetworks' => 'Application\Factory\ViewHelper\SocialNetworksHelperFactory',
+            'banners'        => 'Application\Factory\ViewHelper\BannersHelperFactory'
         )
     ),
     'view_manager' => array(
