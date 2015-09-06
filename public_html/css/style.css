@@ -246,11 +246,15 @@ aside ul li:hover a  {
     color: #222;
 }
 
+.content > a article footer {
+    text-align: right;
+}
+
 .reply-form {
     margin: 1em 0;
 }
 
-footer {
+.footer {
     border-top: 5px solid #be005e;
     background: #222;
     position: absolute;
@@ -259,14 +263,14 @@ footer {
     height: 200px;
 }
 
-footer ul {
+.footer ul {
     float: left;
     width: 25%;
     padding: 0;
     list-style: none;
 }
 
-footer ul li a {
+.footer ul li a {
     display: inline-block;
     color: #fff;
     font-weight: 700;
@@ -275,18 +279,18 @@ footer ul li a {
     margin: 3px;
 }
 
-footer ul li a:hover {
+.footer ul li a:hover {
     background: #be005e;
 }
 
-footer .social-networks {
+.footer .social-networks {
     float: right;
     width: 25%;
     color: #fff;
     font-size: 1.4em;
 }
 
-footer .social-networks a {
+.footer .social-networks a {
     float: right;
     padding: 1em;
     margin: 0 0 4px 4px;
@@ -295,12 +299,12 @@ footer .social-networks a {
     text-decoration: none;
 }
 
-footer .social-networks a:hover {
+.footer .social-networks a:hover {
     background: #be005e;
     cursor: pointer;
 }
 
-footer .social-networks a i {
+.footer .social-networks a i {
     display: block;
     width: 20px;
     height: 20px;

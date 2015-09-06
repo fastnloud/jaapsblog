@@ -7,6 +7,16 @@
                 <h1><?php echo $this->escapeHtml($blogItem->getTitle()); ?></h1>
                 <h2><?php echo $this->escapeHtml($blogItem->getSubTitle()); ?></h2>
                 <p><?php echo $this->escapeHtml($blogItem->getLead()); ?></p>
+
+                <footer>
+                    <?php $replies = count($blogItem->getReply()); ?>
+                    <?php if ($replies > 0): ?>
+                        <span><?php echo $replies . ($replies > 1 ? ' replies' : ' reply'); ?> <i class="fa fa-comments-o"></i></span>
+                    <?php else: ?>
+                        <span>No replies</span>
+                    <?php endif; ?>
+                </footer>
+
             </article>
         </a>
     <?php endforeach; ?>
