@@ -1,17 +1,24 @@
 <?php $this->headTitle()->append($blogItem->getMetaTitle())->append($page->getMetaTitle()); ?>
 
-<article>
+<article class="blog-item">
     <h1><?php echo $this->escapeHtml($blogItem->getTitle()); ?></h1>
     <?php echo $blogItem->getContent(); ?>
 
-    <?php if($blogItem->getReply()->count() > 0): ?>
+    <footer class="blog-author">
+        <i class="fa fa-pencil-square-o"></i> By <?php echo $this->escapeHtml($blogItem->getAuthor()); ?>
+    </footer>
+
+    <?php if(0 < $replies = $blogItem->getReply()->count()): ?>
+        <h2 class="replies"><?php echo ($replies > 1 ? 'Replies' : 'Reply'); ?></h2>
+
         <?php foreach($blogItem->getReply() as $reply): ?>
-            <article>
-                <div><?php echo $reply->getName(); ?></div>
-                <div><?php echo $reply->getComment(); ?></div>
+            <article class="reply">
+                <div class="reply-name"><?php echo $this->escapeHtml($reply->getName()); ?></div>
+                <div class="reply-comment"><?php echo $this->escapeHtml($reply->getComment()); ?></div>
             </article>
         <?php endforeach; ?>
     <?php endif; ?>
+
 </article>
 
 <div>Leave a comment</div>
