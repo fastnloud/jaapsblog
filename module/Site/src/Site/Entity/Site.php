@@ -105,7 +105,7 @@ class Site extends AbstractEntity
     /**
      * @ORM\OneToMany(targetEntity="Footer\Entity\Footer", mappedBy="site", cascade={"all"})
      * @ORM\JoinColumn(name="id", referencedColumnName="site_id", nullable=false)
-     * @ORM\OrderBy({"priority" = "ASC"})
+     * @ORM\OrderBy({"footer_column" = "ASC", "priority" = "ASC"})
      */
     protected $footer;
 
