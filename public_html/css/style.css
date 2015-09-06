@@ -275,27 +275,28 @@ footer ul li a:hover {
     background: #be005e;
 }
 
-footer .share {
+footer .social-networks {
     float: right;
     width: 25%;
     color: #fff;
     font-size: 1.4em;
 }
 
-footer .share a {
+footer .social-networks a {
     float: right;
     padding: 1em;
     margin: 0 0 4px 4px;
     background: #333;
     color: #fff;
+    text-decoration: none;
 }
 
-footer .share a:hover {
+footer .social-networks a:hover {
     background: #be005e;
     cursor: pointer;
 }
 
-footer .share a i {
+footer .social-networks a i {
     display: block;
     width: 20px;
     height: 20px;

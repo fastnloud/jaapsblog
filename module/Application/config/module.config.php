@@ -19,7 +19,8 @@ return array(
     ),
     'view_helpers' => array(
         'factories' => array(
-            'footer' => 'Application\Factory\ViewHelper\FooterHelperFactory'
+            'footer'         => 'Application\Factory\ViewHelper\FooterHelperFactory',
+            'socialNetworks' => 'Application\Factory\ViewHelper\SocialNetworksHelperFactory'
         )
     ),
     'view_manager' => array(
